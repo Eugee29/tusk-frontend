@@ -1,14 +1,20 @@
 import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { Router } from 'react-router-dom'
-import { RootCmp } from './root-cmp'
+import ReactDOM from 'react-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { Provider } from 'react-redux'
+
 import * as serviceWorkerRegistration from './serviceWorkerRegistration'
+
+import { store } from './store/store'
+import { RootCmp } from './root-cmp'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <Router>
-    <RootCmp />
-  </Router>
+  <Provider store={store}>
+    <Router>
+      <RootCmp />
+    </Router>
+  </Provider>
 )
 
 // If you want your app to work offline and load faster, you can change
