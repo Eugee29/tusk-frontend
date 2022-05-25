@@ -2,16 +2,50 @@
 import React from 'react'
 
 import { BoardPreview } from './board-preview.jsx'
+import clock from '../assets/imgs/clock-regular.svg'
+import star from '../assets/imgs/star.svg'
 
-export const BoardList = ({ boards }) => {
+export const BoardList = ({ boards, onUpdateBoard }) => {
+
+   const onAddBoard = () => {
+      console.log('onAddBoard');
+   }
 
    return (
       <main>
-         <h1>YOUR BOARDS</h1>
+
+         <div className="boards-page-board-section-header">
+            <div className="boards-page-board-section-header-icon">
+               <img src={star} alt="" />
+            </div>
+            <h3 className="boards-page-board-section-header-name">Starred boards</h3>
+         </div>
+
          <ul className="boards-page-board-section-list">
-            {boards.map((board) => <BoardPreview board={board} key={board._id} />)}
+            {boards
+               .filter(board  => board.isStarred)
+               .map((board) => <BoardPreview board={board} onUpdateBoard={onUpdateBoard} key={board._id} />)}
+         </ul>
+
+         <div className="boards-page-board-section-header">
+            <div className="boards-page-board-section-header-icon">
+               <img src={clock} alt="" />
+            </div>
+            <h3 className="boards-page-board-section-header-name">Recently viewed</h3>
+         </div>
+
+         <ul className="boards-page-board-section-list">
+            {boards.map((board) => <BoardPreview board={board} onUpdateBoard={onUpdateBoard} key={board._id} />)}
+
+            <li className="boards-page-board-section-list-item" onClick={() => { onAddBoard() }}>
+               <div className="board-tile mod-add">
+                  <p className='board-tile-details-center' >
+                     <span>Create new board</span>
+                  </p>
+               </div>
+            </li>
          </ul>
       </main>
    )
-
 }
+

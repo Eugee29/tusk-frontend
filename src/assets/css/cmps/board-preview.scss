@@ -1,0 +1,122 @@
+.boards-page-board-section-list-item {
+   margin: 0 2% 2% 0;
+   padding: 0;
+   transform: translate(0);
+   width: 23.5%;
+   cursor: pointer;
+}
+
+.board-tile-details {
+   display: flex;
+   flex-direction: column;
+   height: 80px;
+   justify-content: space-between;
+   position: relative;
+   //  background-color: gold;
+}
+
+.board-tile-details-center {
+   display: flex;
+   flex-direction: column;
+   height: 80px;
+   justify-content: center;
+   position: relative;
+
+   span {
+      font-size: 14px;
+   }
+}
+
+.board-tile-details-name {
+   word-wrap: break-word;
+   display: inline-block;
+   flex: 0 0 auto;
+   font-size: 16px;
+   font-weight: 700;
+   max-height: 40px;
+   overflow: hidden;
+   width: 100%;
+}
+
+.board-tile {
+   background-color: #97a0af;
+   background-position: 50%;
+   background-size: cover;
+   color: #fff;
+   line-height: 20px;
+   padding: 8px;
+   position: relative;
+   text-decoration: none;
+   border-radius: 3px;
+   display: block;
+}
+
+.board-tile:hover .board-tile-fade {
+   background-color: #00000040;
+}
+
+.board-tile-fade {
+   background-color: #00000026;
+   bottom: 0;
+   left: 0;
+   position: absolute;
+   right: 0;
+   top: 0;
+   border-radius: 3px;
+   display: block;
+}
+
+ol,
+ul {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+
+.board-tile-details-sub-container {
+   align-items: baseline;
+   display: flex;
+   flex: 0 0 auto;
+   justify-content: flex-end;
+}
+
+.board-tile-options {
+   align-items: center;
+   display: flex;
+   flex: 0 0 auto;
+   margin-left: 4px;
+   overflow: hidden;
+   position: relative;
+   right: -4px;
+}
+
+.board-tile:hover .board-tile-options-star-icon {
+   margin-right: 6px;
+   opacity: 1;
+   width: 18px;
+}
+
+.board-tile-options-star-icon {
+   bottom: 0;
+   color: #fff;
+   display: block;
+   font-size: 16px;
+   height: 18px;
+   line-height: 18px;
+   opacity: 0;
+   right: 0;
+   top: 0;
+   transition-duration: .15s;
+   transition-property: color,background,opacity,transform,width,margin;
+   width: 0;
+}
+
+.board-list .starred-container .star-icon {
+   // strokeWidth: 20px;
+   color: #fff;
+   font-size: 1.3rem;
+   height: 17px;
+   opacity: 0;
+   opacity: 1;
+   width: 17px;
+}

@@ -12,8 +12,9 @@
 
 // PAGES
 @import './pages/home-page';
+@import './pages/workspace';
 
 // COMPONENTS
-@import './scss/cmps/board-list.scss';
-@import './scss/cmps/board-preview.scss';
+@import './cmps/board-list.scss';
+@import './cmps/board-preview.scss';
 @import './cmps/app-header/'
