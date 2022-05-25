@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import hero from '../assets/imgs/hero.png'
 
 export const HomePage = () => {
@@ -11,12 +13,13 @@ export const HomePage = () => {
             <p>
               Collaborate, manage projects, and reach new productivity peaks.
               <br />
-              From high rises to the home office, the way your team works is unique—accomplish it all with Trello.
+              From high rises to the home office, the way your team works is unique—accomplish it all with Tusk.
             </p>
             <form>
               <input type='email' placeholder='Email' />
               <button>Sign up-it's free!</button>
             </form>
+            <small>or <Link to="/workspace">Continue as Guest</Link></small>
           </section>
           <div className='hero-img'>
             <img src={hero} />
