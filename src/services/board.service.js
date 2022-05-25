@@ -188,10 +188,6 @@ function unsubscribe(listener) {
 //             }
 //           }
 //         ]
-<<<<<<< HEAD
-//      })
-//     // .then(x => console.log(x))
-=======
 //       }
 //     ],
 //     "activities": [
@@ -211,8 +207,7 @@ function unsubscribe(listener) {
 //       }
 //     ]
 //   })
-//     .then(x => console.log(x))
->>>>>>> e9f9dc59054b9c121ed0accdba6240a572c4b811
+//    
 
 
 
