@@ -12,8 +12,13 @@
 
 // PAGES
 @import './pages/home-page';
+@import './pages/board-details';
 
 // COMPONENTS
 @import './scss/cmps/board-list.scss';
 @import './scss/cmps/board-preview.scss';
-@import './cmps/app-header/'
+@import './cmps/app-header/';
+@import './cmps/board-header/';
+@import './cmps/group-list/';
+@import './cmps/group-preview/';
+@import './cmps/task-preview/';
