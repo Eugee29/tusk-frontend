@@ -8,24 +8,24 @@ import { BoardList } from '../cmps/board-list.jsx'
 
 const _Workspace = ({ loadBoards, boards }) => {
 
-   useEffect(() => {
-      loadBoards()
-   }, [])
+  useEffect(() => {
+    loadBoards()
+  }, [])
 
-   return (<main>
+  return (<main>
 
-      <BoardList boards={boards} />
-   </main> )
+    <BoardList boards={boards} />
+  </main>)
 
 }
 
 function mapStateToProps(state) {
-   return {
-      boards: state.boardModule.boards
-   }
+  return {
+    boards: state.boardModule.boards
+  }
 }
 const mapDispatchToProps = {
-   loadBoards
+  loadBoards
 }
 
 export const Workspace = connect(mapStateToProps, mapDispatchToProps)(_Workspace)
