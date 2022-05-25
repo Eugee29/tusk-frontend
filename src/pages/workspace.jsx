@@ -21,8 +21,9 @@ const _Workspace = ({ loadBoards, boards }) => {
 
    const onUpdateBoard = async (board) => {
       updateBoard(board)
-      // console.log(onUpdateBoard)
-      // setIsChange(!isChange)
+      setTimeout(() => {
+         setIsChange(!isChange)
+      }, 1000);
    }
 
    return (

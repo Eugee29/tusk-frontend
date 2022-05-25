@@ -135,7 +135,6 @@ export function checkout() {
    }
 }
 
-
 // Demo for Optimistic Mutation (IOW - Assuming the server call will work, so updating the UI first)
 export function onRemoveBoardOptimistic(boardId) {
 
