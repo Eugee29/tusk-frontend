@@ -1,7 +1,20 @@
-export function TaskPreview({ task }) {
-    console.log(task)
+import { Draggable } from 'react-beautiful-dnd'
 
-    return <section className="task-preview">
-        <h2> {task.title} </h2>
+export function TaskPreview({ task, index, innerRef }) {
+  return (
+    <section ref={innerRef}>
+      <Draggable draggableId={task.id} index={index}>
+        {(provided) => (
+          <section
+            className="task-preview"
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+          >
+            <h2> {task.title} </h2>
+          </section>
+        )}
+      </Draggable>
     </section>
+  )
 }
