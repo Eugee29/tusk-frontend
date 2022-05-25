@@ -2,22 +2,31 @@
   color: $brand-clr6;
   background: linear-gradient(0deg, #fff, #eae6ff 100%);
   height: 100vh;
+  overflow-x: hidden;
 
   .layout {
     margin: auto;
-    width: rem(1110px);
+    max-width: 768px;
     height: 100%;
     padding: rem(112px) rem(15px);
+
+    @media(min-width:1200px) {
+      max-width: 1140px;
+    }
   }
 
   .hero {
     display: flex;
     align-items: center;
     height: rem(575px);
+    max-width: rem(1140px);
 
     .hero-message {
+      // flex: 1;
       width: rem(665px);
+      // width: 100%;
       height: rem(360px);
+      padding: 0 15px;
 
 
       h1 {
@@ -38,13 +47,10 @@
         font-family: source-sans-pro-regular;
 
         input {
-
-          transition: .2s;
-
           font-family: inherit;
           font-size: 1.25rem;
           color: $clr2;
-          width: rem(365px);
+          width: rem(220px);
           height: rem(45px);
           padding: rem(12px) rem(6px);
           margin-inline-end: 8px;
@@ -53,6 +59,7 @@
           background-color: white;
 
           &:focus {
+            transition: .2s;
             border-color: $brand-clr7;
             box-shadow: 0 0 0 0.2rem rgb(0 101 255 / 25%);
             outline: none;
@@ -61,32 +68,72 @@
           &::placeholder {
             color: lighten($clr2, 40%);
           }
+
+          @media (min-width:1200px) {
+            display: initial;
+            width: rem(360px);
+          }
+
+          @media (max-width:870px) {
+            width: 50%;
+          }
+
+          @media (max-width:600px) {
+            display: none;
+          }
         }
 
 
         button {
           @include btn2($brand-clr5, white);
           font-family: inherit;
-          font-size: rem(20px);
-          width: rem(255px);
+
+          width: em(200px, 20px);
           height: rem(44px);
           margin-inline-start: 8px;
+          font-size: 1rem;
+
+          @media (min-width:1200px) {
+            width: rem(200px);
+            font-size: rem(20px);
+          }
+
+          @media (max-width:870px) {
+            width: 40%;
+          }
+
+          @media (max-width:600px) {
+            width: 100%;
+          }
         }
+      }
+
+      @media (max-width:870px) {
+        width: 100%;
       }
     }
 
     .hero-img {
-      flex-grow: 1;
+      display: none;
       height: 100%;
-      padding: 15px;
+      padding: 0 15px;
       margin-left: 95px;
       margin-right: -95px;
 
+
       img {
-        height: 100%;
         width: 100%;
-        object-fit: cover;
+        object-fit: contain;
+        height: 100%;
+      }
+
+      @media (min-width: 870px) {
+        display: initial;
       }
     }
+  }
+
+  @media (max-width:600px) {
+    text-align: center;
   }
 }
