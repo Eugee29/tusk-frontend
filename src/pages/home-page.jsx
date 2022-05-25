@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import hero from '../assets/imgs/hero.png'
 
 export const HomePage = () => {
@@ -17,6 +19,7 @@ export const HomePage = () => {
               <input type='email' placeholder='Email' />
               <button>Sign up-it's free!</button>
             </form>
+            <small>or <Link to="/workspace">Continue as Guest</Link></small>
           </section>
           <div className='hero-img'>
             <img src={hero} />
