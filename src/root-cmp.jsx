@@ -9,6 +9,7 @@ import { HomePage } from './pages/home-page'
 import { Login } from './pages/login'
 import { Signup } from './pages/signup'
 import { Workspace } from './pages/workspace'
+import { BoardDetails } from './pages/board-details'
 
 export function RootCmp() {
   return (
@@ -20,6 +21,7 @@ export function RootCmp() {
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/workspace' element={<Workspace />} />
+          <Route path='/board/:boardId' element={<BoardDetails />} />
         </Routes>
       </main>
     </div>
