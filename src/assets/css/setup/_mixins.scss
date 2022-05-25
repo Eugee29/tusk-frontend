@@ -1,24 +1,35 @@
+@mixin btn() {
+  border-radius: 3px;
+  color: #fff;
+  font-size: 14px;
+  max-width: 400px;
+  overflow: hidden;
+  padding: 6px 12px;
+  position: relative;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    @mixin btn() {
-        border-radius: 3px;
-        color: #fff;
-        cursor: pointer;
-        font-size: 14px;
-        max-width: 400px;
-        overflow: hidden;
-        padding: 6px 12px;
-        position: relative;
-        text-decoration: none;
-        text-overflow: ellipsis;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+  transition: background-color 0.2s;
 
-        transition: background-color 0.2s;
-        
-        &:hover {
-        background-color: rgba(255, 255, 255, 0.3);
-        color: #ffffff;
-        }
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+  }
 
-    }
+}
+
+@mixin btn2($bgclr, $clr) {
+  padding: rem(6px) 1.5rem;
+  border-radius: 6px;
+  border: none;
+  background-color: $bgclr;
+  color: $clr;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: darken($bgclr, 10%);
+  }
+}

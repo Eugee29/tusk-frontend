@@ -1,28 +1,30 @@
 .app-header {
-    background-color: $brand-clr1;
-    box-sizing: border-box;
+  position: fixed;
+  width: 100%;
+  background-color: $brand-clr1;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  max-height: 44px;
+  padding: 6px 4px;
+
+  .header-logo {
+    height: 30px;
+    @include btn()
+  }
+
+  .header-nav {
     display: flex;
-    align-items: center;
     gap: 20px;
-    overflow: hidden;
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-    max-height: 44px;
-    padding: 6px 4px;
 
-    .header-logo {
-        height: 30px;
-        @include btn()
+
+    .navlink {
+      @include btn()
     }
 
-    .header-nav {
-        display: flex;
-        gap: 20px;
-
-
-        .navlink {
-            @include btn()
-        }
-
-    }
+  }
 }
