@@ -22,7 +22,7 @@
 }
 
 @mixin btn2($bgclr, $clr) {
-  padding: rem(6px) 1.5rem;
+  padding: rem(6px) rem(6px);
   border-radius: 6px;
   border: none;
   background-color: $bgclr;

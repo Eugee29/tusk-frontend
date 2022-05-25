@@ -7,6 +7,9 @@ import { boardService } from '../services/board.service.js'
 import { BoardList } from '../cmps/board-list.jsx'
 import { useParams } from 'react-router-dom'
 
+import { BoardHeader } from '../cmps/board-header.jsx'
+import { GroupList } from '../cmps/group-list.jsx'
+
 const _BoardDetails = () => {
 
    const { boardId } = useParams()
@@ -18,18 +21,19 @@ const _BoardDetails = () => {
 
    const loadBoard = async () => {
       const board = await boardService.getById(boardId)
-      // console.log(board)
+      console.log(board)
       setBoard(board)
    }
 
    if (!board) return <h1>Loading..</h1>
    // console.log(board.title)
    return (
-         
+
       <main className='board-details'>
-            
+         <BoardHeader board={board} />
+         <GroupList groups={board.groups}/>
       </main>
-      )
+   )
 
 }
 

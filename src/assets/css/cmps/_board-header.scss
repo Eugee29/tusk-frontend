@@ -1,0 +1,24 @@
+.board-header {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  max-height: 44px;
+  padding: 6px 4px;
+  
+  h1 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 32px;
+    padding: 0 12px;
+  }
+
+  button {
+    @include btn2($brand-clr9, $font-clr1)
+    
+  }
+
+}
