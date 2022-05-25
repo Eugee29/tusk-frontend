@@ -1,0 +1,15 @@
+.boards-page-board-section-list-item {
+   margin: 0 2% 2% 0;
+   padding: 0;
+   transform: translate(0);
+   width: 23.5%;
+}
+
+.board-tile-details {
+   display: flex;
+    flex-direction: column;
+    height: 80px;
+    justify-content: space-between;
+    position: relative;
+    background-color: gold;
+}

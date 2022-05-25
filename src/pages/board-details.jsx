@@ -6,16 +6,17 @@ import { boardService } from '../services/board.service.js'
 
 import { BoardList } from '../cmps/board-list.jsx'
 
-const _Workspace = ({ loadBoards, boards }) => {
+const _BoardDetails = () => {
 
-   useEffect(() => {
-      loadBoards()
-   }, [])
+   // useEffect(() => {
+   //    loadBoards()
+   // }, [])
 
-   return (<main>
-
-      <BoardList boards={boards} />
-   </main> )
+   return (
+      <main>
+         <h1>Board Details</h1>
+      </main>
+      )
 
 }
 
@@ -28,4 +29,4 @@ const mapDispatchToProps = {
    loadBoards
 }
 
-export const Workspace = connect(mapStateToProps, mapDispatchToProps)(_Workspace)
+export const BoardDetails = connect(mapStateToProps, mapDispatchToProps)(_BoardDetails)
