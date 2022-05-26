@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { loadBoards } from '../store/actions/board.action.js'
@@ -8,6 +9,7 @@ import { useParams } from 'react-router-dom'
 
 import { BoardHeader } from '../cmps/board-header.jsx'
 import { GroupList } from '../cmps/group-list.jsx'
+import { TaskDetails } from './task-details.jsx'
 
 const _BoardDetails = () => {
 
@@ -29,9 +31,12 @@ const _BoardDetails = () => {
     <main className='board-details'>
       <BoardHeader board={board} />
       <GroupList groups={board.groups} />
+
+      <Routes>
+        <Route path=":groupId/:taskId" element={<TaskDetails />} />
+      </Routes>
     </main>
   )
-
 }
 
 function mapStateToProps(state) {

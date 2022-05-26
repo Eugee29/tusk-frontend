@@ -14,7 +14,7 @@ export function GroupPreview({ group }) {
       </div>
 
       <section className="tasks-container">
-        <TaskList key={group.id} tasks={group.tasks} />
+        <TaskList key={group.id} groupId={group.id} tasks={group.tasks} />
       </section>
 
     </section>
