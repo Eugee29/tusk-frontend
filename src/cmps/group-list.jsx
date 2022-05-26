@@ -1,8 +1,19 @@
 import { useState } from 'react'
+import { Draggable } from 'react-beautiful-dnd'
+import { Droppable } from 'react-beautiful-dnd'
+import { DragDropContext } from 'react-beautiful-dnd'
 import { GroupPreview } from "./group-preview"
 
 export const GroupList = (props) => {
   const [groups, setGroups] = useState(props.groups)
+
+  const handleOnDragEnd = (result) => {
+    if (!result.destination) return
+    const newGroups = [...groups]
+    const group = newGroups.splice(result.source.index, 1)[0]
+    newGroups.splice(result.destination.index, 0, group)
+    setGroups(newGroups)
+  }
 
   // const onDragEnd = result => {
   //   const { destination, source } = result
@@ -32,10 +43,15 @@ export const GroupList = (props) => {
   // }
 
   return (
-    <section className="group-list">
-
-      {groups.map(group => <GroupPreview key={group.id} group={group} />)}
-
-    </section>
+    <DragDropContext onDragEnd={handleOnDragEnd}>
+      <Droppable droppableId='groups'>
+        {(provided) => (
+          <section className="group-list" {...provided.droppableProps} ref={provided.innerRef}>
+            {groups.map((group, index) => <GroupPreview key={group.id} group={group} index={index} />)}
+            {provided.placeholder}
+          </section>
+        )}
+      </Droppable>
+    </DragDropContext>
   )
 }

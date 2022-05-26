@@ -16,5 +16,4 @@ export function TaskPreview({ task, groupId }) {
       <button> <RiPencilLine className='btn-icon' /> </button>
     </section>
   )
-
 }
