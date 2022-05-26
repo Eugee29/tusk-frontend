@@ -8,27 +8,25 @@ import { TaskList } from './task-list'
 export function GroupPreview({ group, index }) {
 
   return (
-    <Draggable draggableId={group.id} index={index} >
+    <Draggable draggableId={group.id} index={index} type='GROUP'>
       {(provided) => (
         <section className="group-preview"
           ref={provided.innerRef}
           {...provided.draggableProps}
-          {...provided.dragHandleProps}
         >
-
-          <div className="group-title-container">
-            <textarea className="group-title" name="" defaultValue={group.title} cols="30" rows="10"></textarea>
+          <div className="group-title-container"
+            {...provided.dragHandleProps}
+          >
+            <textarea className="group-title" name="" defaultValue={group.title} scols="30" rows="10"></textarea>
             <button className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
           </div>
-
-          <section className="tasks-container">
-            <TaskList key={group.id} groupId={group.id} tasks={group.tasks} />
-          </section>
+          <TaskList key={group.id} groupId={group.id} tasks={group.tasks} />
           <div className="add-btn-container">
             <button className="add-btn"> <AiOutlinePlus/> Add a card</button>
           </div>
         </section>
-      )}
-    </Draggable>
+      )
+      }
+    </Draggable >
   )
 }

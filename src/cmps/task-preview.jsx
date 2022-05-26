@@ -1,12 +1,11 @@
-import { useNavigate } from 'react-router-dom'
 
+import { Draggable } from 'react-beautiful-dnd'
 import { RiPencilLine } from 'react-icons/ri'
+import { useNavigate } from 'react-router-dom'
 import { MdOutlineSubject } from 'react-icons/md'
 
-export function TaskPreview({ task, groupId }) {
+export function TaskPreview({ task, groupId, index }) {
   const navigate = useNavigate()
-
-
   const onOpenDetails = (ev) => {
     ev.stopPropagation()
     navigate(`${groupId}/${task.id}`)
@@ -37,14 +36,17 @@ export function TaskPreview({ task, groupId }) {
   }
 
   return (
-    <section className={getTaskClass()} onClick={onOpenDetails} style={getTaskStyle()}>
-      <div className='task-title-container'>
-        <h2 className='task-title'> {task.title} </h2>
-        {task.description && (!task.style.bgColor) && (!task.style.imgURL)
-         && <MdOutlineSubject/>}
-      </div>
-      <button className='edit-btn'> <RiPencilLine className='btn-icon' /> </button>
-      {}
-    </section>
+    <Draggable draggableId={task.id} index={index} type='TASK'>
+      {(provided, snapshot) => {
+        <section className={getTaskClass()} onClick={onOpenDetails} style={getTaskStyle()}>
+          <div className='task-title-container'>
+            <h2 className='task-title'> {task.title} </h2>
+            {task.description && (!task.style.bgColor) && (!task.style.imgURL)
+              && <MdOutlineSubject />}
+          </div>
+          <button className='edit-btn'> <RiPencilLine className='btn-icon' /> </button>
+        </section>
+      }}
+    </Draggable>
   )
 }
