@@ -4,33 +4,37 @@
   overflow-x: hidden;
   height: 100vh;
 
-  // .layout {
-  //   margin: auto;
-  //   max-width: 768px;
-  //   height: 100%;
-  //   padding: rem(112px) rem(15px);
-
-  //   @include for-normal-layout {
-  //     max-width: 1140px;
-  //   }
-  // }
-
   .hero {
     text-align: center;
     position: relative;
     align-items: flex-start;
-    height: rem(575px);
+    height: 480px;
 
     @include for-narrow-layout {
       text-align: initial;
     }
 
+    @include for-normal-layout {
+      display: flex;
+      align-items: center;
+    }
+
+    @include for-wide-layout {
+      height: 575px;
+    }
+
     .hero-message {
-      // width: rem(540px);
       height: rem(348px);
-      // padding: 0 15px;
 
+      @include for-normal-layout {
+        width: rem(560px);
+        padding-left: 15px;
+        padding-right: 15px;
+      }
 
+      @include for-wide-layout {
+        width: rem(665px);
+      }
 
       h1 {
         width: 100%;
@@ -42,6 +46,10 @@
         @include for-narrow-layout {
           font-size: rem(44px);
         }
+
+        @include for-normal-layout {
+          font-size: rem(48px);
+        }
       }
 
       p {
@@ -49,6 +57,10 @@
         margin-bottom: 3rem;
         line-height: 1.5;
         font-family: source-sans-pro-regular;
+
+        @include for-normal-layout {
+          font-size: rem(23px);
+        }
       }
 
       form {
@@ -60,7 +72,6 @@
           font-family: inherit;
           font-size: 1.25rem;
           color: $clr2;
-          // width: 50%;
           height: rem(45px);
           padding: rem(12px) rem(6px);
           margin-inline-end: 8px;
@@ -84,6 +95,14 @@
             width: rem(397px);
             margin-inline-end: 16px
           }
+
+          @include for-normal-layout {
+            width: rem(303px)
+          }
+
+          @include for-wide-layout {
+            width: rem(364px)
+          }
         }
 
         button {
@@ -96,6 +115,14 @@
           @include for-narrow-layout {
             width: rem(277px);
           }
+
+          @include for-normal-layout {
+            width: rem(210px);
+          }
+
+          @include for-wide-layout {
+            width: rem(254px);
+          }
         }
       }
     }
@@ -103,29 +130,26 @@
     .hero-img {
       display: none;
       height: 100%;
-      padding: 0 15px;
-      margin-left: 95px;
-      margin-right: -95px;
+      flex-grow: 1;
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-inline-start: 80px;
+      margin-inline-end: -80px;
 
+      @include for-normal-layout {
+        display: initial;
+      }
+
+      @include for-wide-layout {
+        margin-inline-start: 95px;
+        margin-inline-end: -95px;
+      }
 
       img {
         width: 100%;
-        object-fit: contain;
         height: 100%;
+        object-fit: contain;
       }
-
-      // @media (min-width: 870px) {
-      //   display: initial;
-      // }
     }
-
-    // @media (min-width: 870px) {
-    //   align-items: center;
-
-    // }
   }
-
-  // @media (max-width:600px) {
-  //   text-align: center;
-  // }
 }

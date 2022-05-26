@@ -10,6 +10,8 @@
 
   @include for-normal-layout {
     max-width: 960px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   @include for-wide-layout {
