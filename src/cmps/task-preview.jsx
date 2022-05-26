@@ -8,5 +8,4 @@ export function TaskPreview({ task }) {
       <button> <RiPencilLine className='btn-icon' /> </button>
     </section>
   )
-
 }
