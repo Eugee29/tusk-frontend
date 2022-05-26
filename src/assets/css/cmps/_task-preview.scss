@@ -1,28 +1,27 @@
-.task-preview {
+.task-preview{
     position: relative;
     display: flex;
-    flex-direction: row;
     min-height: 56px;
     background-color: #fff;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 400;
     line-height: 20px;
     margin-bottom: 0;
     padding-bottom: 8px;
     padding: 10px;
     margin: 10px;
     border-radius: 3px;
-    box-shadow: 0 1px 0 #091e4240;
     cursor: pointer;
-    display: block;
     margin-bottom: 8px;
     max-width: 300px;
+    box-shadow: 0 1px 0 #091e4240;
+    color: $brand-clr6;
 
     &:hover button {
         opacity: 0.5;
     }
 
-    button {
+    .edit-btn {
         position: absolute;
         height: 25px;
         width: 25px;
@@ -33,7 +32,7 @@
         justify-content: center;
         border: none;
         border-radius: 3px;
-        background-color: rgba(255, 255, 255, 0);
+        background-color: rgba(177, 171, 171, 0);
         opacity: 0;
 
         &:hover {
@@ -46,9 +45,23 @@
             height: 1.8rem;
             width: 1.8rem;
         }
-
-
-
-
     }
+
+    &.styled {
+        font-size: 16px;
+        font-weight: 500;
+
+        .task-title-container {
+            align-self: flex-end;
+            z-index: 20;
+        }
+
+        &.img {
+            min-height: 260px;
+            background-size: cover;
+            box-shadow: inset 0px -40px 20px 0px rgba(234, 234, 234, 0.856);
+        }
+    }
+
 }
+

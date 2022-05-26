@@ -1,6 +1,10 @@
+
 import { Draggable } from 'react-beautiful-dnd'
 import { RiPencilLine } from 'react-icons/ri'
 import { useNavigate } from 'react-router-dom'
+import { MdOutlineSubject } from 'react-icons/md'
+
+import styled from "styled-components"
 
 export function TaskPreview({ task, groupId, index }) {
   const navigate = useNavigate()
@@ -9,18 +13,46 @@ export function TaskPreview({ task, groupId, index }) {
     navigate(`${groupId}/${task.id}`)
   }
 
+  const getTaskStyle = () => {
+    if (task.style) {
+      if (task.style.imgURL) {
+        return ` background-image: url(${task.style.imgURL}) `
+      }
+      if (task.style.bgColor) {
+        return ` background-color: ${task.style.bgColor} `
+      }
+
+    } else {
+      return ''
+    }
+  }
+
+  const Container = styled.div`
+  ${getTaskStyle()}
+`
+
+  const getTaskClass = () => {
+    if (task.style.bgColor) {
+      return 'task-preview styled'
+    } else if (task.style.imgURL) {
+      return 'task-preview styled img'
+    } else {
+      return 'task-preview'
+    }
+  }
+
   return (
-    <Draggable draggableId={task.id} index={index}>
-      {(provided) => (
-        <section className="task-preview" onClick={onOpenDetails}
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-        >
-          <h2 className='task-title'> {task.title} </h2>
-          <button> <RiPencilLine className='btn-icon' /> </button>
-        </section>
+    <Draggable draggableId={task.id} index={index} type='TASK' >
+      {provided => (
+        <Container className={getTaskClass()} onClick={onOpenDetails} {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}  >
+          <div className='task-title-container'>
+            <h2 className='task-title'> {task.title} </h2>
+            {task.description && (!task.style.bgColor) && (!task.style.imgURL)
+              && <MdOutlineSubject />}
+          </div>
+          <button className='edit-btn'> <RiPencilLine className='btn-icon' /> </button>
+        </Container>
       )}
-    </Draggable>
+    </Draggable >
   )
 }

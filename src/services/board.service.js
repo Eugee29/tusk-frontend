@@ -9,14 +9,13 @@ const boardChannel = new BroadcastChannel('boardChannel')
 // const listeners = []
 
 export const boardService = {
-   query,
-   getById,
-   save,
-   remove,
-   getEmptyBoard,
-   subscribe,
-   unsubscribe,
-   getTask
+  query,
+  getById,
+  save,
+  remove,
+  getEmptyBoard,
+  subscribe,
+  unsubscribe
 
 }
 window.cs = boardService
@@ -197,8 +196,7 @@ function unsubscribe(listener) {
 //                             "fullName": "Eran Avichzer",
 //                             "imgUrl": "https://bestlifeonline.com/wp-content/uploads/sites/3/2019/07/what-is-quokka.jpg?quality=82&strip=all"
 //                         },
-//                         "style": {
-//                             "imgURL": "https://bestlifeonline.com/wp-content/uploads/sites/3/2019/07/what-is-quokka.jpg?quality=8sddsvdsvl"
+//                         "style": ''{
 //                         }
 //                     }
 //                 ]
