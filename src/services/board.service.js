@@ -9,13 +9,13 @@ const boardChannel = new BroadcastChannel('boardChannel')
 // const listeners = []
 
 export const boardService = {
-    query,
-    getById,
-    save,
-    remove,
-    getEmptyBoard,
-    subscribe,
-    unsubscribe
+  query,
+  getById,
+  save,
+  remove,
+  getEmptyBoard,
+  subscribe,
+  unsubscribe
 
 }
 window.cs = boardService
@@ -39,20 +39,20 @@ async function remove(boardId) {
 }
 
 async function save(board) {
-    // debugger
-    var savedBoard
+  // debugger
+  var savedBoard
 
-    if (board._id) {
-        savedBoard = await storageService.put(STORAGE_KEY, board)
-        boardChannel.postMessage(getActionUpdateBoard(savedBoard))
+  if (board._id) {
+    savedBoard = await storageService.put(STORAGE_KEY, board)
+    boardChannel.postMessage(getActionUpdateBoard(savedBoard))
 
-    } else {
-        // Later, owner is set by the backend
-        board.owner = userService.getLoggedinUser()
-        savedBoard = await storageService.post(STORAGE_KEY, board)
-        boardChannel.postMessage(getActionAddBoard(savedBoard))
-    }
-    return savedBoard
+  } else {
+    // Later, owner is set by the backend
+    board.owner = userService.getLoggedinUser()
+    savedBoard = await storageService.post(STORAGE_KEY, board)
+    boardChannel.postMessage(getActionAddBoard(savedBoard))
+  }
+  return savedBoard
 }
 
 function getEmptyBoard() {

@@ -32,9 +32,10 @@ export const GroupList = (props) => {
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <Droppable droppableId='groups' type='GROUP' direction='horizontal'>
-        {(provided) => (
+        {provided => (
           <section className="group-list"
-            {...provided.droppableProps} ref={provided.innerRef}
+            {...provided.droppableProps}
+            ref={provided.innerRef}
           >
             {groups.map((group, index) => <GroupPreview key={group.id} group={group} index={index} />)}
             {provided.placeholder}
