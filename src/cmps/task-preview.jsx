@@ -10,17 +10,19 @@ export function TaskPreview({ task, groupId, index }) {
   }
 
   return (
-    <Draggable draggableId={task.id} index={index}>
-      {(provided) => (
-        <section className="task-preview" onClick={onOpenDetails}
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-          {...provided.dragHandleProps}
-        >
-          <h2 className='task-title'> {task.title} </h2>
-          <button> <RiPencilLine className='btn-icon' /> </button>
-        </section>
-      )}
+    <Draggable draggableId={task.id} index={index} type='TASK'>
+      {(provided, snapshot) => {
+        return (
+          <section className={`task-preview`} onClick={onOpenDetails}
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+          >
+            <h2 className='task-title'> {task.title} </h2>
+            <button> <RiPencilLine className='btn-icon' /> </button>
+          </section>
+        )
+      }}
     </Draggable>
   )
 }

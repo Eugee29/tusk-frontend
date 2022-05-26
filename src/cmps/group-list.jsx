@@ -6,12 +6,30 @@ import { GroupPreview } from "./group-preview"
 export const GroupList = (props) => {
   const [groups, setGroups] = useState(props.groups)
 
-  const handleOnDragEnd = (result) => {
-    if (!result.destination) return
-    const newGroups = [...groups]
-    const group = newGroups.splice(result.source.index, 1)[0]
-    newGroups.splice(result.destination.index, 0, group)
-    setGroups(newGroups)
+  const handleOnDragEnd = ({ destination, source, type }) => {
+    if (!destination) return
+
+    const groupsCopy = [...groups]
+
+    if (type === 'TASK') {
+      const destinationGroup = groupsCopy.find(group => group.id === destination.droppableId)
+      const sourceGroup = groupsCopy.find(group => group.id === source.droppableId)
+      const task = sourceGroup.tasks.splice(source.index, 1)[0]
+      destinationGroup.tasks.splice(destination.index, 0, task)
+    }
+
+    if (type === 'GROUP') {
+      const group = groupsCopy.splice(source.index, 1)[0]
+      groupsCopy.splice(destination.index, 0, group)
+    }
+
+    setGroups(groupsCopy)
+
+
+    // const newGroups = [...groups]
+    // const group = newGroups.splice(result.source.index, 1)[0]
+    // newGroups.splice(result.destination.index, 0, group)
+    // setGroups(newGroups)
   }
 
   // const onDragEnd = result => {
@@ -40,17 +58,19 @@ export const GroupList = (props) => {
   //   newGroups[toGroupIdx] = newToGroup
   //   setGroups(newGroups)
   // }
-
+  console.log(groups)
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
-      <Droppable droppableId='groups'>
+      <Droppable droppableId='groups' type='GROUP'>
         {(provided) => (
-          <section className="group-list" {...provided.droppableProps} ref={provided.innerRef}>
+          <section className="group-list"
+            {...provided.droppableProps} ref={provided.innerRef}
+          >
             {groups.map((group, index) => <GroupPreview key={group.id} group={group} index={index} />)}
             {provided.placeholder}
           </section>
         )}
       </Droppable>
-    </DragDropContext>
+    </DragDropContext >
   )
 }
