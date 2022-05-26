@@ -4,49 +4,39 @@
   overflow-x: hidden;
   height: 100vh;
 
-  // .layout {
-  //   margin: auto;
-  //   max-width: 768px;
-  //   height: 100%;
-  //   padding: rem(112px) rem(15px);
+  .layout {
+    margin: auto;
+    max-width: 768px;
+    height: 100%;
+    padding: rem(112px) rem(15px);
 
-  //   @include for-normal-layout {
-  //     max-width: 1140px;
-  //   }
-  // }
+    @media(min-width:1200px) {
+      max-width: 1140px;
+    }
+  }
 
   .hero {
-    text-align: center;
-    position: relative;
+    display: flex;
     align-items: flex-start;
     height: rem(575px);
-
-    @include for-narrow-layout {
-      text-align: initial;
-    }
+    max-width: rem(1140px);
 
     .hero-message {
-      // width: rem(540px);
-      height: rem(348px);
-      // padding: 0 15px;
-
+      width: rem(665px);
+      height: rem(360px);
+      padding: 0 15px;
 
 
       h1 {
-        width: 100%;
-        font-size: 2rem;
+        font-size: 3rem;
         margin-bottom: .5rem;
         line-height: 1.25;
         font-family: source-sans-pro-semibold;
-
-        @include for-narrow-layout {
-          font-size: rem(44px);
-        }
       }
 
       p {
         font-size: rem(22px);
-        margin-bottom: 3rem;
+        margin-bottom: 1.5rem;
         line-height: 1.5;
         font-family: source-sans-pro-regular;
       }
@@ -56,11 +46,10 @@
         margin-block-end: 1rem;
 
         input {
-          display: none;
           font-family: inherit;
           font-size: 1.25rem;
           color: $clr2;
-          // width: 50%;
+          width: rem(220px);
           height: rem(45px);
           padding: rem(12px) rem(6px);
           margin-inline-end: 8px;
@@ -79,24 +68,47 @@
             color: lighten($clr2, 40%);
           }
 
-          @include for-narrow-layout {
+          @media (min-width:1200px) {
             display: initial;
-            width: rem(397px);
-            margin-inline-end: 16px
+            width: rem(360px);
+          }
+
+          @media (max-width:870px) {
+            width: 50%;
+          }
+
+          @media (max-width:600px) {
+            display: none;
           }
         }
+
 
         button {
           @include btn2($brand-clr5, white);
           font-family: inherit;
-          width: 100%;
-          height: rem(44px);
-          font-size: rem(20px);
 
-          @include for-narrow-layout {
-            width: rem(277px);
+          width: em(200px, 20px);
+          height: rem(44px);
+          margin-inline-start: 8px;
+          font-size: 1rem;
+
+          @media (min-width:1200px) {
+            width: rem(200px);
+            font-size: rem(20px);
+          }
+
+          @media (max-width:870px) {
+            width: 40%;
+          }
+
+          @media (max-width:600px) {
+            width: 100%;
           }
         }
+      }
+
+      @media (max-width:870px) {
+        width: 100%;
       }
     }
 
@@ -114,18 +126,18 @@
         height: 100%;
       }
 
-      // @media (min-width: 870px) {
-      //   display: initial;
-      // }
+      @media (min-width: 870px) {
+        display: initial;
+      }
     }
 
-    // @media (min-width: 870px) {
-    //   align-items: center;
+    @media (min-width: 870px) {
+      align-items: center;
 
-    // }
+    }
   }
 
-  // @media (max-width:600px) {
-  //   text-align: center;
-  // }
+  @media (max-width:600px) {
+    text-align: center;
+  }
 }

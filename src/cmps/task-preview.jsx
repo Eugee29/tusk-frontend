@@ -6,7 +6,7 @@ import { MdOutlineSubject } from 'react-icons/md'
 
 import styled from "styled-components"
 
-export function TaskPreview({ task, groupId, index }) {
+export const TaskPreview = ({ task, groupId, index }) => {
   const navigate = useNavigate()
   const onOpenDetails = (ev) => {
     ev.stopPropagation()

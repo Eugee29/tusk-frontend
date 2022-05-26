@@ -5,7 +5,7 @@ import { Draggable } from 'react-beautiful-dnd'
 
 import { TaskList } from './task-list'
 
-export function GroupPreview({ group, index }) {
+export const GroupPreview = ({ group, index }) => {
 
   return (
     <Draggable draggableId={group.id} index={index} type='GROUP'>
