@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux'
 
-import { loadBoards, updateBoard } from '../store/actions/board.action.js'
+import { loadBoards, updateBoard } from '../store/board/board.action.js'
 // import { loadBoards, updateBoard } from '../store/actions/board-back.action.js'
 
 import { boardService } from '../services/board.service.js'

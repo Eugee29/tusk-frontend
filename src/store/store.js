@@ -4,8 +4,8 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunk from 'redux-thunk'
 
-import { boardReducer } from './reducers/board.reducer.js'
-import { boardBackReducer } from './reducers/board-back.reducer.js'
+import { boardReducer } from './board/board.reducer.js'
+import { boardBackReducer } from './board/board-back.reducer.js'
 // import { userReducer } from './user.reducer.js'
 // import { reviewReducer } from './review.reducer'
 // import { systemReducer } from './system.reducer'

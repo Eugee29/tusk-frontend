@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { loadBoards } from '../store/actions/board.action.js'
+import { loadBoards } from '../store/board/board.action.js'
 import { boardService } from '../services/board.service.js'
 
 import { useParams } from 'react-router-dom'
