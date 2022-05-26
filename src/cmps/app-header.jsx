@@ -1,9 +1,13 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import logo from '../assets/imgs/logo-horizontal-white.png'
 
 export const AppHeader = () => {
+
+  const { pathname } = useLocation()
+
+
   return (
-    <header className='app-header'>
+    <header className={`app-header ${pathname === '/' ? 'home' : 'standard'}`} >
       <img src={logo} alt="bla" className='header-logo' />
       <nav className='header-nav'>
         <NavLink className="navlink" to="/">Home</NavLink>

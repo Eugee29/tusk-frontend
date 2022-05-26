@@ -1,13 +1,24 @@
+import { useState } from 'react'
 import { GroupPreview } from "./group-preview"
+import { DragDropContext } from 'react-beautiful-dnd'
 
-export function GroupList({ groups }) {
-    console.log(groups)
+export const GroupList = (props) => {
+  const [groups, setGroups] = useState(props.groups)
 
-    return <section className="group-list">
+  return (
+    <DragDropContext
+      onDragEnd={result => { }}
+    >
+      <section className="group-list">
+
         {groups.map(group => {
-            return (<div key={group.id}>
-                <GroupPreview group={group} />
-            </div>)
+          console.log(group)
+          return (
+            <GroupPreview key={group.id} group={group} />
+          )
         })}
-    </section>
+
+      </section>
+    </DragDropContext >
+  )
 }

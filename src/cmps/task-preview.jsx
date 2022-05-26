@@ -7,4 +7,5 @@ export function TaskPreview({ task }) {
         <h2 className='task-title'> {task.title} </h2>
         <button> <RiPencilLine className='btn-icon'/> </button>
     </section>
+  
 }

@@ -1,5 +1,6 @@
 import React from "react"
-import { TaskPreview } from "./task-preview"
+import { TaskList } from "./task-list"
+import { Droppable } from 'react-beautiful-dnd'
 
 import {BsThreeDots} from 'react-icons/bs'
 
