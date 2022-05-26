@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux'
 
 import { loadBoards, updateBoard } from '../store/actions/board.action.js'
+// import { loadBoards, updateBoard } from '../store/actions/board-back.action.js'
+
 import { boardService } from '../services/board.service.js'
 
 import { BoardList } from '../cmps/board-list.jsx'
@@ -36,6 +38,7 @@ const _Workspace = ({ loadBoards, boards }) => {
 function mapStateToProps(state) {
    return {
       boards: state.boardModule.boards
+      // boards: state.boardBackModule.boards
    }
 }
 const mapDispatchToProps = {

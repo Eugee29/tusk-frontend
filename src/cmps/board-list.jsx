@@ -14,30 +14,30 @@ export const BoardList = ({ boards, onUpdateBoard }) => {
    return (
       <main>
 
-         <div className="boards-page-board-section-header">
-            <div className="boards-page-board-section-header-icon">
+         <div className="board-section-header">
+            <div className="board-section-header-icon">
                <img src={star} alt="" />
             </div>
-            <h3 className="boards-page-board-section-header-name">Starred boards</h3>
+            <h3 className="board-section-header-name">Starred boards</h3>
          </div>
 
-         <ul className="boards-page-board-section-list">
+         <ul className="board-section-list">
             {boards
                .filter(board  => board.isStarred)
                .map((board) => <BoardPreview board={board} onUpdateBoard={onUpdateBoard} key={board._id} />)}
          </ul>
 
-         <div className="boards-page-board-section-header">
-            <div className="boards-page-board-section-header-icon">
+         <div className="board-section-header">
+            <div className="board-section-header-icon">
                <img src={clock} alt="" />
             </div>
-            <h3 className="boards-page-board-section-header-name">Recently viewed</h3>
+            <h3 className="board-section-header-name">Recently viewed</h3>
          </div>
 
-         <ul className="boards-page-board-section-list">
+         <ul className="board-section-list">
             {boards.map((board) => <BoardPreview board={board} onUpdateBoard={onUpdateBoard} key={board._id} />)}
 
-            <li className="boards-page-board-section-list-item" onClick={() => { onAddBoard() }}>
+            <li className="board-section-list-item" onClick={() => { onAddBoard() }}>
                <div className="board-tile mod-add">
                   <p className='board-tile-details-center' >
                      <span>Create new board</span>
