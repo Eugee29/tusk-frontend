@@ -1,11 +1,11 @@
 @function rem($pixels) {
-  @return ($pixels / 16px) * 1rem;
+  @return calc($pixels / 16px) * 1rem;
 }
 
 @function em($pixels, $context: 16px) {
-  @return ($pixels/$context) * 1em;
+  @return calc($pixels/$context) * 1em;
 }
 
 @function lh($pixels, $context: 16px) {
-  @return ($pixels/$context);
+  @return calc($pixels/$context);
 }
