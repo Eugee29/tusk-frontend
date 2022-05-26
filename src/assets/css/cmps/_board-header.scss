@@ -2,23 +2,44 @@
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  gap: 20px;
   overflow: hidden;
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
   max-height: 44px;
   padding: 6px 4px;
+  color: $font-clr1;
   
   h1 {
     font-size: 18px;
     font-weight: 700;
-    line-height: 32px;
+    line-height: 20px;
     padding: 0 12px;
   }
 
   button {
-    @include btn2($brand-clr9, $font-clr1)
-    
+        height: 32px;
+        width: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 3px;
+        background-color: rgba(255, 255, 255, 0.325);
+        padding: 6px;
+        
+        .star-icon {
+          color: $font-clr1;
+          height: 16px;
+          width: 16px;
+        }
+
+        &:hover .star-icon {
+          color: gold;
+          height: 20px;
+          width: 20px;
+        }
+
+
   }
 
 }
