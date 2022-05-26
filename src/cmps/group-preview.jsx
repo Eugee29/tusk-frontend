@@ -20,15 +20,9 @@ export function GroupPreview({ group, index }) {
             <button> <BsThreeDots /> </button>
           </div>
 
-<<<<<<< HEAD
       <section className="tasks-container">
         <TaskList key={group.id} groupId={group.id} tasks={group.tasks} />
       </section>
-=======
-          <section className="tasks-container">
-            <TaskList key={group.id} tasks={group.tasks} />
-          </section>
->>>>>>> 20d46189f1a8511d4f2424787befef9a4bb94df2
 
         </section>
       )}
