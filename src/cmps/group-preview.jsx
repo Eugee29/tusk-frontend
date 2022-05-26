@@ -13,11 +13,10 @@ export function GroupPreview({ group, index }) {
           ref={provided.innerRef}
           {...provided.draggableProps}
         >
-
           <div className="group-title-container"
             {...provided.dragHandleProps}
           >
-            <textarea className="group-title" name="" defaultValue={group.title} cols="30" rows="10"></textarea>
+            <textarea className="group-title" name="" defaultValue={group.title} scols="30" rows="10"></textarea>
             <button> <BsThreeDots /> </button>
           </div>
           <TaskList key={group.id} groupId={group.id} tasks={group.tasks} />
