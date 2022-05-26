@@ -1,0 +1,42 @@
+.app-header {
+  &.standard {
+    background-color: $brand-clr1;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    overflow: hidden;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    max-height: 44px;
+    padding: 6px 4px;
+
+    .header-logo {
+      height: 30px;
+      @include btn()
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 20px;
+
+
+      .navlink {
+        @include btn()
+      }
+
+    }
+  }
+
+  &.home {
+    background: none;
+    position: fixed;
+    width: 100%;
+
+    .header-logo {
+      height: 30px;
+      @include btn()
+    }
+  }
+
+}

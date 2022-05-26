@@ -1,0 +1,12 @@
+.group-preview {
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+    margin: 0 4px;
+    background-color: $brand-clr8;
+
+    .group-title {
+        font-weight: 600;
+        margin: 0 0 8px;
+    }
+}
