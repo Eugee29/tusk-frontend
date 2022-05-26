@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { DragDropContext } from 'react-beautiful-dnd'
+// import { DragDropContext } from 'react-beautiful-dnd'
 
 import { loadBoards } from '../store/actions/board.action.js'
 import { boardService } from '../services/board.service.js'
