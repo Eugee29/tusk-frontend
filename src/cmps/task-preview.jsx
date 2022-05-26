@@ -42,6 +42,7 @@ export const TaskPreview = ({ task, groupId, index }) => {
   }
 
   return (
+    // Setting each task to be draggable
     <Draggable draggableId={task.id} index={index} type='TASK' >
       {provided => (
         <Container className={getTaskClass()} onClick={onOpenDetails} {...provided.draggableProps} ref={provided.innerRef} {...provided.dragHandleProps}  >

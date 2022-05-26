@@ -17,7 +17,7 @@ export const HomePage = () => {
               From high rises to the home office, the way your team works is unique—accomplish it all with Tusk.
             </p>
             <form>
-              <input type='text' placeholder='Email' />
+              <input type='email' placeholder='Email' />
               <button>Sign up-it's free!</button>
             </form>
             <small>or <Link to="/workspace">Continue as Guest</Link></small>

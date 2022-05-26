@@ -31,6 +31,7 @@ export const GroupList = (props) => {
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
+      {/* Setting each group to be a droppable area, only for groups, by wrapping is with the Droppable CMP */}
       <Droppable droppableId='groups' type='GROUP' direction='horizontal'>
         {provided => (
           <section className="group-list"

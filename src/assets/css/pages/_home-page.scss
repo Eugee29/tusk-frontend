@@ -78,9 +78,9 @@
           border-radius: 6px;
           border: 1px solid $clr1;
           background-color: white;
+          transition: .2s;
 
           &:focus {
-            transition: .2s;
             border-color: $brand-clr7;
             box-shadow: 0 0 0 0.2rem rgb(0 101 255 / 25%);
             outline: none;
