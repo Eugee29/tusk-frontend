@@ -11,22 +11,23 @@ export const BoardList = ({ boards, onUpdateBoard }) => {
       console.log('onAddBoard');
    }
 
+   const starredBoards = boards.filter(board => board.isStarred)
    return (
       <main>
 
-         <div className="board-section-header">
+         {/* Starred boards */}
+         {!!starredBoards.length && <div className="board-section-header">
             <div className="board-section-header-icon">
                <img src={star} alt="" />
             </div>
             <h3 className="board-section-header-name">Starred boards</h3>
-         </div>
+         </div>}
 
-         <ul className="board-section-list">
-            {boards
-               .filter(board  => board.isStarred)
-               .map((board) => <BoardPreview board={board} onUpdateBoard={onUpdateBoard} key={board._id} />)}
-         </ul>
+         {!!starredBoards.length && <ul className="board-section-list">
+            {starredBoards.map(board => <BoardPreview board={board} onUpdateBoard={onUpdateBoard} key={board._id} />)}
+         </ul>}
 
+         {/* Recently viewed */}  
          <div className="board-section-header">
             <div className="board-section-header-icon">
                <img src={clock} alt="" />

@@ -28,13 +28,14 @@ var subscriber
 
 export function loadBoards() {
    return (dispatch) => {
-      boardService.query()
+      return boardService.query()
          .then(boards => {
             console.log('Boards from DB:', boards)
             dispatch({
                type: 'SET_BOARDS',
                boards
             })
+            return boards
          })
          .catch(err => {
             // showErrorMsg('Cannot load boards')
@@ -82,9 +83,8 @@ export function addBoard(board) {
 }
 
 export function updateBoard(board) {
-   boardService.save(board)
    return (dispatch) => {
-      boardService.save(board)
+      return boardService.save(board)
          .then(savedBoard => {
             console.log('Updated Board:', savedBoard);
             dispatch({
@@ -93,6 +93,7 @@ export function updateBoard(board) {
             })
             // dispatch(getActionUpdateBoard(savedBoard))
             // showSuccessMsg('Board updated')
+            return savedBoard
          })
          .catch(err => {
             // showErrorMsg('Cannot update board')
