@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-// import { DragDropContext } from 'react-beautiful-dnd'
 
 import { loadBoards } from '../store/actions/board.action.js'
 import { boardService } from '../services/board.service.js'
 
-import { BoardList } from '../cmps/board-list.jsx'
 import { useParams } from 'react-router-dom'
 
 import { BoardHeader } from '../cmps/board-header.jsx'

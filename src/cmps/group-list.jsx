@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { GroupPreview } from "./group-preview"
-// import { DragDropContext } from 'react-beautiful-dnd'
 
 export const GroupList = (props) => {
   const [groups, setGroups] = useState(props.groups)
@@ -34,9 +33,9 @@ export const GroupList = (props) => {
 
   return (
     <section className="group-list">
-      {/* <DragDropContext onDragEnd={onDragEnd}> */}
+
       {groups.map(group => <GroupPreview key={group.id} group={group} />)}
-      {/* </DragDropContext > */}
+
     </section>
   )
 }
