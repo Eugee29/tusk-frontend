@@ -191,8 +191,7 @@ function unsubscribe(listener) {
 //                             "fullName": "Eran Avichzer",
 //                             "imgUrl": "https://bestlifeonline.com/wp-content/uploads/sites/3/2019/07/what-is-quokka.jpg?quality=82&strip=all"
 //                         },
-//                         "style": {
-//                             "imgURL": "https://bestlifeonline.com/wp-content/uploads/sites/3/2019/07/what-is-quokka.jpg?quality=8sddsvdsvl"
+//                         "style": ''{
 //                         }
 //                     }
 //                 ]
@@ -612,7 +611,7 @@ function unsubscribe(listener) {
 //             "imgUrl": "https://bestlifeonline.com/wp-content/uploads/sites/3/2019/07/what-is-quokka.jpg?quality=82&strip=all"
 //           },
 //           "style": {
-//             "imgURL": "https://bestlifeonline.com/wp-content/uploads/sites/3/2019/07/what-is-quokka.jpg?quality=8sddsvdsvl"
+//             "imgURL": ""
 //           }
 //         },
 //         {

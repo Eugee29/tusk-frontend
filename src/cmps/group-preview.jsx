@@ -1,5 +1,6 @@
 import React from "react"
 import { BsThreeDots } from 'react-icons/bs'
+import { AiOutlinePlus } from 'react-icons/ai'
 import { Draggable } from 'react-beautiful-dnd'
 
 import { TaskList } from './task-list'
@@ -17,19 +18,15 @@ export function GroupPreview({ group, index }) {
 
           <div className="group-title-container">
             <textarea className="group-title" name="" defaultValue={group.title} cols="30" rows="10"></textarea>
-            <button> <BsThreeDots /> </button>
+            <button className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
           </div>
 
-<<<<<<< HEAD
-      <section className="tasks-container">
-        <TaskList key={group.id} groupId={group.id} tasks={group.tasks} />
-      </section>
-=======
           <section className="tasks-container">
-            <TaskList key={group.id} tasks={group.tasks} />
+            <TaskList key={group.id} groupId={group.id} tasks={group.tasks} />
           </section>
->>>>>>> 20d46189f1a8511d4f2424787befef9a4bb94df2
-
+          <div className="add-btn-container">
+            <button className="add-btn"> <AiOutlinePlus/> Add a card</button>
+          </div>
         </section>
       )}
     </Draggable>
