@@ -19,17 +19,9 @@ export function GroupPreview({ group, index }) {
             <textarea className="group-title" name="" defaultValue={group.title} cols="30" rows="10"></textarea>
             <button> <BsThreeDots /> </button>
           </div>
-
-<<<<<<< HEAD
-      <section className="tasks-container">
-        <TaskList key={group.id} groupId={group.id} tasks={group.tasks} />
-      </section>
-=======
           <section className="tasks-container">
-            <TaskList key={group.id} tasks={group.tasks} />
+            <TaskList key={group.id} groupId={group.id} tasks={group.tasks} />
           </section>
->>>>>>> 20d46189f1a8511d4f2424787befef9a4bb94df2
-
         </section>
       )}
     </Draggable>

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Draggable } from 'react-beautiful-dnd'
 import { Droppable } from 'react-beautiful-dnd'
 import { DragDropContext } from 'react-beautiful-dnd'
 import { GroupPreview } from "./group-preview"
