@@ -51,6 +51,25 @@ export function loadBoards() {
    }
 }
 
+export function loadTask(ids) {
+   return (dispatch) => {
+      return boardService.getTask(ids)
+         .then(task => {
+            console.log('Task from DB:', task)
+            dispatch({
+               type: 'SET_TASK',
+               task
+            })
+            return task
+         })
+         .catch(err => {
+            // showErrorMsg('Cannot load boards')
+            console.log('Cannot load task', err)
+         })
+         
+   }
+}
+
 export function removeBoard(boardId) {
    return async (dispatch) => {
       try {
@@ -72,7 +91,7 @@ export function addBoard(board) {
          .then(savedBoard => {
             console.log('Added Board', savedBoard);
             // dispatch(getActionAddBoard(savedBoard))
-            
+
             // showSuccessMsg('Board added')
          })
          .catch(err => {
