@@ -18,7 +18,7 @@ export function GroupPreview({ group, index }) {
             {...provided.dragHandleProps}
           >
             <textarea className="group-title" name="" defaultValue={group.title} scols="30" rows="10"></textarea>
-            <button className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
+            <button className="group-btn"> <BsThreeDots className="dots-icon"/> </button>
           </div>
           <TaskList key={group.id} groupId={group.id} tasks={group.tasks} />
           <div className="add-btn-container">
