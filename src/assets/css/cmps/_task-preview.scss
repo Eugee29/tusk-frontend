@@ -1,5 +1,14 @@
 .task-preview {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    min-height: 56px;
     background-color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    margin-bottom: 0;
+    padding-bottom: 8px;
     padding: 10px;
     margin: 10px;
     border-radius: 3px;
@@ -8,4 +17,38 @@
     display: block;
     margin-bottom: 8px;
     max-width: 300px;
+
+    &:hover button {
+        opacity: 0.5;
+    }
+
+    button {
+        position: absolute;
+        height: 25px;
+        width: 25px;
+        top: 3px;
+        right: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 3px;
+        background-color: rgba(255, 255, 255, 0);
+        opacity: 0;
+
+        &:hover {
+            background-color: $brand-clr8;
+            opacity: 0.8;
+            
+        }
+
+        .btn-icon {
+            height: 1.8rem;
+            width: 1.8rem;
+        }
+
+
+
+
+    }
 }

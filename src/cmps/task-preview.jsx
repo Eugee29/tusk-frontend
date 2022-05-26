@@ -1,22 +1,14 @@
-// import { Draggable } from 'react-beautiful-dnd'
+import { RiPencilLine } from 'react-icons/ri'
 
-export function TaskPreview({ task, index, /*innerRef*/ }) {
+export function TaskPreview({ task }) {
+
+
+
   return (
-    <section
-    //  ref={innerRef}
-    >
-      {/* <Draggable draggableId={task.id} index={index}> */}
-      {/* {provided => ( */}
-      <section
-        className="task-preview"
-      // {...provided.draggableProps}
-      // {...provided.dragHandleProps}
-      // ref={provided.innerRef}
-      >
-        <h2> {task.title} </h2>
-      </section>
-      {/* )} */}
-      {/* </Draggable> */}
+    <section className="task-preview">
+      <h2 className='task-title'> {task.title} </h2>
+      <button> <RiPencilLine className='btn-icon' /> </button>
     </section>
   )
+
 }

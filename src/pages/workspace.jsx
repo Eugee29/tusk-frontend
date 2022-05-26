@@ -1,31 +1,49 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { connect } from 'react-redux'
 
-import { loadBoards } from '../store/actions/board.action.js'
+import { loadBoards, updateBoard } from '../store/actions/board.action.js'
+// import { loadBoards, updateBoard } from '../store/actions/board-back.action.js'
+
 import { boardService } from '../services/board.service.js'
 
 import { BoardList } from '../cmps/board-list.jsx'
 
 const _Workspace = ({ loadBoards, boards }) => {
 
-  useEffect(() => {
-    loadBoards()
-  }, [])
+   const [load, setLoad] = useState(boards)
+   const [isChange, setIsChange] = useState(false)
 
-  return (<main>
+   useEffect(() => {
+      loadBoradsAsync()
+   }, [isChange])
 
-    <BoardList boards={boards} />
-  </main>)
+   const loadBoradsAsync = async () => {
+      await loadBoards()
+   }
 
+   const onUpdateBoard = async (board) => {
+      updateBoard(board)
+      setTimeout(() => {
+         setIsChange(!isChange)
+      }, 1000);
+   }
+
+   return (
+      <main className='workspace'>
+         <BoardList boards={boards} onUpdateBoard={onUpdateBoard} />
+      </main>
+   )
 }
 
 function mapStateToProps(state) {
-  return {
-    boards: state.boardModule.boards
-  }
+   return {
+      boards: state.boardModule.boards
+      // boards: state.boardBackModule.boards
+   }
 }
 const mapDispatchToProps = {
-  loadBoards
+   loadBoards,
+   updateBoard
 }
 
 export const Workspace = connect(mapStateToProps, mapDispatchToProps)(_Workspace)
