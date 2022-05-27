@@ -10,43 +10,40 @@
   top: 0;
   left: 0;
   color: $brand-clr4;
+  padding: 0 .5rem;
 
   .task-details-container {
     background-color: #f4f5f7;
     border-radius: 2px;
-    width: 768px;
+    max-width: 768px;
+    width: 100%;
     margin-top: 48px;
     margin-bottom: 80px;
     position: relative;
-    // margin: 48px 0 80px;
-    // display: none;
-    // overflow: hidden;
-    // position: fixed;
-    // top: 50%;
-    // left: 50%;
-    // transform: translate(-50%, -50%);
-    // width: 70%;
-    // z-index: 50;
-    // min-height: 600px;
-    // // width: 768px;
-    // margin: 48px 0 80px;
 
     .go-back-button {
-      height: 32px;
-      width: 32px;
+      background-color: #f4f5f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 40px;
+      width: 40px;
       font-size: 20px;
-      padding: 4px;
-      background-color: $clr1;
-      color: $clr2;
+      padding: 0;
       border: none;
       border-radius: 50%;
       position: absolute;
       right: 5px;
       top: 5px;
-      transition: background-color .1s;
+      transition: background-color .2s;
+
+      .close-icon {
+        width: 50%;
+        height: 50%;
+      }
 
       &:hover {
-        background-color: (darken($color: $clr1, $amount: 7%))
+        background-color: $clr9
       }
     }
   }
@@ -57,7 +54,8 @@
     min-height: 24px;
     padding: 0 8px 8px 16px;
     position: relative;
-    width: 576px;
+    max-width: 576px;
+    width: 100%;
     z-index: 1;
   }
 }

@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate, useParams } from "react-router-dom"
 import { connect } from 'react-redux'
 import { useDispatch } from 'react-redux'
+import { GrClose } from 'react-icons/gr'
 
 import { loadTask } from '../store/board/board.action.js'
 import { TaskDetailsCover } from '../cmps/task-details-cover.jsx'
@@ -44,7 +45,7 @@ const _TaskDetails = () => {
 
   return <section className="task-details" onClick={onGoBack}>
     <div className="task-details-container" onClick={onDetailsClick}>
-      <button className="go-back-button" onClick={onGoBack}> X </button>
+      <button className="go-back-button" onClick={onGoBack}><GrClose className='close-icon' /> </button>
 
       {task?.cover && <TaskDetailsCover cover={task.cover} />}
       {task?.title && <TaskDetailsTitle title={task.title} />}
