@@ -10,10 +10,14 @@ import { TaskDetailsCover } from '../cmps/task-details-cover.jsx'
 import { TaskDetailsTitle } from '../cmps/task-details-title.jsx'
 import { TaskDetailsInfo } from '../cmps/task-details-info.jsx'
 import { TaskDetailsDescription } from '../cmps/task-details-description.jsx'
+import { TaskDetailsAttachments } from '../cmps/task-details-attachments.jsx'
+import { TaskDetailsActivity } from '../cmps/task-details-activity.jsx'
 
 const _TaskDetails = () => {
 
     const [task, setTask] = useState(null)
+    const [isCloseEdit, setIsCloseEdit] = useState(true)
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -22,8 +26,12 @@ const _TaskDetails = () => {
     const { taskId } = useParams()
 
     useEffect(() => {
-        loadTaskAsync()
-    }, [])
+        if (!task) {
+            loadTaskAsync()
+            console.log('loadTaskAsync');
+        }
+        // setIsCloseEdit(false)
+    }, [isCloseEdit])
 
     const loadTaskAsync = async () => {
         const taskFromSrevice = await dispatch(loadTask({ boardId, groupId, taskId }))
@@ -36,6 +44,7 @@ const _TaskDetails = () => {
 
     const onDetailsClick = (ev) => {
         ev.stopPropagation()
+        setIsCloseEdit(!isCloseEdit)
     }
 
     return <section className="task-details" onClick={onGoBack}>
@@ -47,7 +56,9 @@ const _TaskDetails = () => {
 
             <div className="main-task">
                 {task && <TaskDetailsInfo task={task} />}
-                {task && <TaskDetailsDescription task={task} />}
+                {task && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
+                {task && <TaskDetailsAttachments task={task} isCloseEdit={isCloseEdit} />}
+                {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
 
             </div>
 

@@ -4,6 +4,21 @@
    position: relative;
    z-index: 1;
 
+   span {
+      left: -40px;
+      position: absolute;
+      color: #42526e;
+      height: 32px;
+      line-height: 49px;
+      width: 32px;
+      font-size: 24px;
+
+      svg {
+         height: 25px;
+    width: 27px;
+      }
+   }
+
    .task-title-icon {
       left: -40px;
       position: absolute;

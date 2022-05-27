@@ -1,7 +1,6 @@
 import React from "react"
 
 export function TaskDetailsCover({ cover }) {
-  console.log('TaskDetailsCover', cover);
 
   return (
     <header className="task-details-cover" style={{ backgroundColor: `${cover.bgColor}` }}>
