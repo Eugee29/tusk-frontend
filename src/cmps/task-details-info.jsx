@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from 'react'
 import { connect, useSelector } from 'react-redux'
 
 function _TaskDetailsInfo({ task }) {
-  console.log('TaskDetailsInfo', task.dueDate)
   //memberIds, labelIds, dueDate
 
   const { board } = useSelector((storeState) => storeState.boardModule)
@@ -24,10 +23,10 @@ function _TaskDetailsInfo({ task }) {
     (task.dueDate <= now.setHours(23, 59, 59, 59) && task.dueDate >= now ? 'duesoon' : 'overdue')
 
 
-  console.log('statusDate', statusDate)
-  console.log('task.dueDate', task.dueDate)
-  console.log('statusDatess', Date.now())
-  console.log('statusDatess', now.setHours(23, 59, 59, 59))
+  // console.log('statusDate', statusDate)
+  // console.log('task.dueDate', task.dueDate)
+  // console.log('statusDatess', Date.now())
+  // console.log('statusDatess', now.setHours(23, 59, 59, 59))
   return (
     <section className="task-details-info" >
 

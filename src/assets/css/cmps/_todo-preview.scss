@@ -1,0 +1,51 @@
+.todo-preview {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $clr8;
+  }
+
+  .checkbox {
+    width: 1rem;
+    height: 1rem;
+    margin: 0;
+    border-radius: 2px;
+    transition: .2s;
+    margin-left: 6px;
+
+    &.unchecked {
+      color: $clr5;
+      background-color: $clr4;
+
+      &:hover {
+        background-color: darken($clr4, 4%);
+      }
+
+
+    }
+
+    &.checked {
+      color: $brand-clr2;
+    }
+
+  }
+
+  .todo-title {
+    height: 100%;
+    padding: 6px 0;
+    line-height: 20px;
+    width: 512px;
+    font-size: rem(14px);
+    font-weight: 400;
+
+    &.crossed {
+      text-decoration: line-through;
+      color: $clr3;
+    }
+  }
+}
