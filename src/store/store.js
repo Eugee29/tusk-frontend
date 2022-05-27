@@ -12,7 +12,7 @@ import { boardBackReducer } from './board/board-back.reducer.js'
 
 const rootReducer = combineReducers({
     boardModule: boardReducer,
-    boardModule: boardBackReducer,
+    boardBackModule: boardBackReducer,
    //  userModule: userReducer,
    //  systemModule: systemReducer,
    //  reviewModule: reviewReducer,

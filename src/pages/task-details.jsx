@@ -9,6 +9,7 @@ import { loadTask } from '../store/board/board.action.js'
 import { TaskDetailsCover } from '../cmps/task-details-cover.jsx'
 import { TaskDetailsTitle } from '../cmps/task-details-title.jsx'
 import { TaskDetailsInfo } from '../cmps/task-details-info.jsx'
+import { TaskDetailsDescription } from '../cmps/task-details-description.jsx'
 
 const _TaskDetails = () => {
 
@@ -46,6 +47,7 @@ const _TaskDetails = () => {
 
             <div className="main-task">
                 {task && <TaskDetailsInfo task={task} />}
+                {task && <TaskDetailsDescription task={task} />}
 
             </div>
 

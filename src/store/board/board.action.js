@@ -66,7 +66,7 @@ export function loadTask(ids) {
             // showErrorMsg('Cannot load boards')
             console.log('Cannot load task', err)
          })
-         
+
    }
 }
 
@@ -120,6 +120,16 @@ export function updateBoard(board) {
          })
    }
 }
+
+export function saveBoard(board) {
+   return (dispatch) => {
+      dispatch({
+         type: 'SAVE_BOARD',
+         board
+      })
+   }
+}
+
 
 export function addToBoard(board) {
    return (dispatch) => {
