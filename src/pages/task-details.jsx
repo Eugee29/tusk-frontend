@@ -13,52 +13,54 @@ import { TaskDetailsDescription } from '../cmps/task-details-description.jsx'
 
 const _TaskDetails = () => {
 
-    const [task, setTask] = useState(null)
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+  const [task, setTask] = useState(null)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-    const { boardId } = useParams()
-    const { groupId } = useParams()
-    const { taskId } = useParams()
+  const { boardId } = useParams()
+  const { groupId } = useParams()
+  const { taskId } = useParams()
 
-    useEffect(() => {
-        loadTaskAsync()
-    }, [])
+  useEffect(() => {
+    loadTaskAsync()
+  }, [])
 
-    const loadTaskAsync = async () => {
-        const taskFromSrevice = await dispatch(loadTask({ boardId, groupId, taskId }))
-        setTask(taskFromSrevice)
-    }
+  const loadTaskAsync = async () => {
+    const taskFromSrevice = await dispatch(loadTask({ boardId, groupId, taskId }))
+    setTask(taskFromSrevice)
+  }
 
-    const onGoBack = () => {
-        navigate(`/board/${boardId}`)
-    }
+  const onGoBack = () => {
+    navigate(`/board/${boardId}`)
+  }
 
-    const onDetailsClick = (ev) => {
-        ev.stopPropagation()
-    }
+  const onDetailsClick = (ev) => {
+    ev.stopPropagation()
+  }
 
-    return <section className="task-details" onClick={onGoBack}>
-        <div className="task-details-container" onClick={onDetailsClick}>
-            <button className="go-back-button" onClick={onGoBack}> X </button>
+  if (!task) return <h1>Loading task...</h1>
 
-            {task?.cover && <TaskDetailsCover cover={task.cover} />}
-            {task?.title && <TaskDetailsTitle title={task.title} />}
+  return <section className="task-details" onClick={onGoBack}>
+    <div className="task-details-container" onClick={onDetailsClick}>
+      <button className="go-back-button" onClick={onGoBack}> X </button>
 
-            <div className="main-task">
-                {task && <TaskDetailsInfo task={task} />}
-                {task && <TaskDetailsDescription task={task} />}
+      {task?.cover && <TaskDetailsCover cover={task.cover} />}
+      {task?.title && <TaskDetailsTitle title={task.title} />}
 
-            </div>
+      <div className="main-task">
+        {task && <TaskDetailsInfo task={task} />}
+        {task && <TaskDetailsDescription task={task} />}
 
-        </div>
-    </section>
+      </div>
+
+    </div>
+  </section>
 }
 
 function mapStateToProps(state) {
-    return {
-        task: state.boardModule.task
-    }
+  return {
+    task: state.boardModule.task
+  }
 }
 
 export const TaskDetails = connect(mapStateToProps)(_TaskDetails)
