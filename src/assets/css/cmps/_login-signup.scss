@@ -42,20 +42,22 @@
     height: rem(36px);
     padding: rem(8.4px) rem(18.2px);
     font-weight: bold;
+    transition: background-color .08s;
 
     &.login-btn {
       background-color: $clr6;
 
       &:hover {
-        background-color: lighten($clr6, 5%);
+        background-color: lighten($clr6, 8%);
       }
     }
 
     &.signup-btn {
-      background-color: $brand-clr5;
+      background-color: $clr7;
+      height: rem(40px);
 
       &:hover {
-        background-color: lighten($brand-clr5, 5%);
+        background-color: lighten($clr7, 8%);
       }
     }
   }
