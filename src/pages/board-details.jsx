@@ -14,7 +14,7 @@ import { GroupList } from '../cmps/group-list.jsx'
 import { TaskDetails } from './task-details.jsx'
 import { useDispatch } from 'react-redux'
 
-const _BoardDetails = () => {
+export const BoardDetails = () => {
 
   const { boardId } = useParams()
   const [board, setBoard] = useState(null)
@@ -48,13 +48,13 @@ const _BoardDetails = () => {
   )
 }
 
-function mapStateToProps(state) {
-  return {
-    boards: state.boardModule.boards
-  }
-}
-const mapDispatchToProps = {
-  loadBoards
-}
+// function mapStateToProps(state) {
+//   return {
+//     boards: state.boardModule.boards
+//   }
+// }
+// const mapDispatchToProps = {
+//   loadBoards
+// }
 
-export const BoardDetails = connect(mapStateToProps, mapDispatchToProps)(_BoardDetails)
+// export const BoardDetails = connect(mapStateToProps, mapDispatchToProps)(_BoardDetails)

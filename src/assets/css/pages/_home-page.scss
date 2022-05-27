@@ -4,41 +4,63 @@
   overflow-x: hidden;
   height: 100vh;
 
-  .layout {
-    margin: auto;
-    max-width: 768px;
-    height: 100%;
-    padding: rem(112px) rem(15px);
-
-    @media(min-width:1200px) {
-      max-width: 1140px;
-    }
-  }
-
   .hero {
-    display: flex;
+    text-align: center;
+    position: relative;
     align-items: flex-start;
-    height: rem(575px);
-    max-width: rem(1140px);
+    height: 480px;
+
+    @include for-narrow-layout {
+      text-align: initial;
+    }
+
+    @include for-normal-layout {
+      display: flex;
+      align-items: center;
+    }
+
+    @include for-wide-layout {
+      height: 575px;
+    }
 
     .hero-message {
-      width: rem(665px);
-      height: rem(360px);
-      padding: 0 15px;
+      height: rem(348px);
 
+      @include for-normal-layout {
+        width: rem(560px);
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      @include for-wide-layout {
+        width: rem(665px);
+      }
 
       h1 {
-        font-size: 3rem;
+        width: 100%;
+        font-size: 2rem;
         margin-bottom: .5rem;
         line-height: 1.25;
         font-family: source-sans-pro-semibold;
+
+        @include for-narrow-layout {
+          font-size: rem(44px);
+        }
+
+        @include for-normal-layout {
+          font-size: rem(48px);
+        }
       }
 
       p {
         font-size: rem(22px);
-        margin-bottom: 1.5rem;
+        margin-bottom: 3rem;
         line-height: 1.5;
         font-family: source-sans-pro-regular;
+
+        @include for-normal-layout {
+          font-size: rem(23px);
+        }
       }
 
       form {
@@ -46,19 +68,19 @@
         margin-block-end: 1rem;
 
         input {
+          display: none;
           font-family: inherit;
           font-size: 1.25rem;
           color: $clr2;
-          width: rem(220px);
           height: rem(45px);
           padding: rem(12px) rem(6px);
           margin-inline-end: 8px;
           border-radius: 6px;
           border: 1px solid $clr1;
           background-color: white;
+          transition: .2s;
 
           &:focus {
-            transition: .2s;
             border-color: $brand-clr7;
             box-shadow: 0 0 0 0.2rem rgb(0 101 255 / 25%);
             outline: none;
@@ -68,76 +90,66 @@
             color: lighten($clr2, 40%);
           }
 
-          @media (min-width:1200px) {
+          @include for-narrow-layout {
             display: initial;
-            width: rem(360px);
+            width: rem(397px);
+            margin-inline-end: 16px
           }
 
-          @media (max-width:870px) {
-            width: 50%;
+          @include for-normal-layout {
+            width: rem(303px)
           }
 
-          @media (max-width:600px) {
-            display: none;
+          @include for-wide-layout {
+            width: rem(364px)
           }
         }
-
 
         button {
           @include btn2($brand-clr5, white);
           font-family: inherit;
-
-          width: em(200px, 20px);
+          width: 100%;
           height: rem(44px);
-          margin-inline-start: 8px;
-          font-size: 1rem;
+          font-size: rem(20px);
 
-          @media (min-width:1200px) {
-            width: rem(200px);
-            font-size: rem(20px);
+          @include for-narrow-layout {
+            width: rem(277px);
           }
 
-          @media (max-width:870px) {
-            width: 40%;
+          @include for-normal-layout {
+            width: rem(210px);
           }
 
-          @media (max-width:600px) {
-            width: 100%;
+          @include for-wide-layout {
+            width: rem(254px);
           }
         }
-      }
-
-      @media (max-width:870px) {
-        width: 100%;
       }
     }
 
     .hero-img {
       display: none;
       height: 100%;
-      padding: 0 15px;
-      margin-left: 95px;
-      margin-right: -95px;
+      flex-grow: 1;
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-inline-start: 80px;
+      margin-inline-end: -80px;
 
+      @include for-normal-layout {
+        display: initial;
+      }
+
+      @include for-wide-layout {
+        margin-inline-start: 95px;
+        margin-inline-end: -95px;
+      }
 
       img {
         width: 100%;
-        object-fit: contain;
         height: 100%;
-      }
-
-      @media (min-width: 870px) {
-        display: initial;
+        object-fit: contain;
       }
     }
-
-    @media (min-width: 870px) {
-      align-items: center;
-
-    }
-  }
-
-  @media (max-width:600px) {
-    text-align: center;
   }
 }

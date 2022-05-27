@@ -5,20 +5,22 @@ import { Draggable } from 'react-beautiful-dnd'
 
 import { TaskList } from './task-list'
 
-export function GroupPreview({ group, index }) {
+export const GroupPreview = ({ group, index }) => {
 
   return (
+    // Setting each group to be draggable with the Draggable CMP
     <Draggable draggableId={group.id} index={index} type='GROUP'>
       {provided => (
         <section className="group-preview"
           ref={provided.innerRef}
           {...provided.draggableProps}
         >
+          {/* Setting this CMP to be a handle for draggable item by spreading provided.dragHandleProps */}
           <div className="group-title-container"
             {...provided.dragHandleProps}
           >
             <textarea className="group-title" name="" defaultValue={group.title} scols="30" rows="10"></textarea>
-            <button className="group-btn"> <BsThreeDots className="dots-icon"/> </button>
+            <button className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
           </div>
 
           <TaskList key={group.id} groupId={group.id} tasks={group.tasks} />

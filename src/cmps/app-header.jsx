@@ -1,20 +1,42 @@
-import { NavLink, useLocation } from 'react-router-dom'
-import logo from '../assets/imgs/logo-horizontal-white.png'
+import { useLocation, Link } from 'react-router-dom'
+import logoLight from '../assets/imgs/logo-horizontal-white.png'
+import logoDark from '../assets/imgs/logo-horizontal-dark.png'
 
 export const AppHeader = () => {
 
   const { pathname } = useLocation()
 
+  if (pathname === '/login' || pathname === '/signup') return
+
+  const isHome = pathname === '/'
 
   return (
-    <header className={`app-header ${pathname === '/' ? 'home' : 'standard'}`} >
-      <img src={logo} alt="bla" className='header-logo' />
-      <nav className='header-nav'>
-        <NavLink className="navlink" to="/">Home</NavLink>
-        <NavLink className="navlink" to="/workspace">Workspace</NavLink>
-        <NavLink className="navlink" to="/login">Login</NavLink>
-        <NavLink className="navlink" to="/signup">Signup</NavLink>
+    <header className={`app-header ${isHome ? 'home' : 'general'}`} >
+      <nav className='link-container'>
+        <div className='logo-container'>
+          <Link to='/'>
+            {
+              isHome ?
+                <img src={logoDark} alt="tusk-logo" className='logo' />
+                :
+                <img src={logoLight} alt="tusk-logo" className='logo' />
+            }
+          </Link>
+        </div>
+        {!isHome && <Link className='workspace-link' to='/workspace'>Workspace</Link>}
       </nav>
-    </header>
+      {
+        isHome &&
+        <nav className='login-signup-container'>
+          <Link to='/login' className='login'>Log in</Link>
+          <Link to='/signup' className='signup'>Sign up</Link>
+        </nav>
+      }
+      {
+        !isHome &&
+        <div className='user-img-container'>
+        </div>
+      }
+    </header >
   )
 }
