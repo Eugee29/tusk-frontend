@@ -1,4 +1,4 @@
-import { NavLink, useLocation, Link } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
 import logoLight from '../assets/imgs/logo-horizontal-white.png'
 import logoDark from '../assets/imgs/logo-horizontal-dark.png'
 
@@ -6,8 +6,9 @@ export const AppHeader = () => {
 
   const { pathname } = useLocation()
 
-  const isHome = pathname === '/'
+  if (pathname === '/login' || pathname === '/signup') return
 
+  const isHome = pathname === '/'
 
   return (
     <header className={`app-header ${isHome ? 'home' : 'general'}`} >
@@ -26,7 +27,7 @@ export const AppHeader = () => {
       </nav>
       {
         isHome &&
-        <nav className='login-signup'>
+        <nav className='login-signup-container'>
           <Link to='/login' className='login'>Log in</Link>
           <Link to='/signup' className='signup'>Sign up</Link>
         </nav>
