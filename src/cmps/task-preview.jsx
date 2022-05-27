@@ -1,11 +1,17 @@
 
 import { Draggable } from 'react-beautiful-dnd'
-import { RiPencilLine } from 'react-icons/ri'
+
 import { useNavigate } from 'react-router-dom'
+
+import { LabelList } from './label-list'
+
+import { RiPencilLine } from 'react-icons/ri'
 import { MdOutlineSubject } from 'react-icons/md'
+import { IoMdCheckboxOutline } from 'react-icons/io'
 
 export const TaskPreview = ({ task, groupId, index }) => {
   const navigate = useNavigate()
+
   const onOpenDetails = (ev) => {
     ev.stopPropagation()
     navigate(`${groupId}/${task.id}`)
@@ -40,6 +46,7 @@ export const TaskPreview = ({ task, groupId, index }) => {
       {provided => (
         <div className='task-preview-handle' {...provided.draggableProps} {...provided.dragHandleProps}>
           <section className={getTaskClass()} onClick={onOpenDetails} ref={provided.innerRef} style={getTaskStyle()}  >
+            {task.labelIds.length && (!task.style.bgColor) && (!task.style.imgURL) && <LabelList labelIds={task.labelIds} />}
             <div className='task-title-container'>
               <h2 className='task-title'> {task.title} </h2>
               {task.description && (!task.style.bgColor) && (!task.style.imgURL)

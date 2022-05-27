@@ -5,8 +5,9 @@
   overflow: hidden;
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
-  max-height: 44px;
-  padding: 6px 4px;
+  max-height: 50px;
+  padding: 12px 4px;
+  padding-left: 0px;
   color: $font-clr1;
 
   h1 {
@@ -14,7 +15,8 @@
     font-weight: 700;
     line-height: 20px;
     padding: 0 12px;
-  }
+    padding-left: 0px;
+    }
 
   button {
     height: 32px;

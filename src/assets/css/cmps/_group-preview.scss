@@ -6,10 +6,12 @@
     margin: 10px 4px;
     background-color: $brand-clr8;
     color: $brand-clr6;
+    height: fit-content;
+    max-height: 100%;
 
     .group-title-container {
         height: 40px;
-        padding: 10px;
+        padding: 6px 8px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -22,7 +24,7 @@
             line-height: 20px;
             border-radius: 3px;
             font-weight: 600;
-            margin: -4px 0;
+            margin: 4px 0;
             max-height: 256px;
             height: 28px;
             padding: 4px 8px;
@@ -49,7 +51,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        color: $brand-clr11;
+        color: darken($color: $brand-clr11, $amount: 4%); 
 
         .dots-icon {
             height: 16px;
@@ -58,6 +60,7 @@
 
         &:hover {
             background-color: $clr1;
+            color: darken($color: $brand-clr11, $amount: 40%);
         }
     }
 
@@ -65,16 +68,17 @@
         display: flex;
         align-content: start;
         flex: 1;
-        padding: 8px;
+        margin-top: 3px;
+        padding: 0px 8px 8px 8px;
         width: 100%;
         cursor: pointer;
 
 
 
         .add-btn {
+            height: 20px;
             text-align: start;
             align-self: flex-end;
-            padding: 10px;
             font-size: 14px;
             width: 100%;
             background-color: transparent;
@@ -83,9 +87,10 @@
             display: flex;
             align-items: center;
             color: $clr2;
-            height: 37px;
+            height: 28px;
             font-weight: 400;
             gap: 5px;
+            line-height: 28;
 
             &:hover {
                 background-color: $clr1;
