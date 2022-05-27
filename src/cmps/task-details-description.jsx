@@ -2,22 +2,22 @@ import React, { useEffect, useState, useRef } from 'react'
 import { connect, useSelector } from 'react-redux'
 
 function _TaskDetailsDescription({ task }) {
-   //memberIds, labelIds, dueDate
+  //memberIds, labelIds, dueDate
 
-   const { board } = useSelector((storeState) => storeState.boardModule)
+  const { board } = useSelector((storeState) => storeState.boardModule)
 
-   return (
-      <section className="task-details-description" >
+  return (
+    <section className="task-details-description" >
 
-         {/* Description */}
-         {/* {task.description} */}
+      {/* Description */}
+      {/* {task.description} */}
 
-         <div class="description-title-container">
-            <span></span>
-            <h3 >Description</h3>
-         </div>
+      <div className="description-title-container">
+        <span></span>
+        <h3 >Description</h3>
+      </div>
 
-         {/* <div className="js-fill-card-detail-desc">
+      {/* <div className="js-fill-card-detail-desc">
             <div>
                <div className="js-react-root">
                   <div className="window-module">
@@ -55,20 +55,20 @@ function _TaskDetailsDescription({ task }) {
 
 
 
-      </section>
+    </section>
 
 
 
 
 
 
-   )
+  )
 }
 
 function mapStateToProps(state) {
-   return {
-      board: state.boardModule.board
-   }
+  return {
+    board: state.boardModule.board
+  }
 }
 
 export const TaskDetailsDescription = connect(mapStateToProps)(_TaskDetailsDescription)

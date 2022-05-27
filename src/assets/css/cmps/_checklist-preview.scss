@@ -1,0 +1,72 @@
+.checklist-preview {
+  margin-bottom: 24px;
+  width: 100%;
+
+
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 2rem;
+    margin-bottom: 12px;
+    margin-left: 6px;
+
+
+
+    .check-square {
+      width: 20px;
+      height: 20px;
+    }
+
+    .inner-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      width: 512px;
+
+
+      h3 {
+        margin: 6px 0;
+        font-weight: 600;
+      }
+
+      button {
+        @include btn3;
+        margin-inline-start: .5rem;
+      }
+    }
+  }
+
+  .progress-bar-container {
+    height: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    margin-left: 6px;
+
+    .progress {
+      font-size: rem(11px);
+      color: $clr3;
+      width: 32px;
+    }
+
+    .progress-bar {
+      background-color: #091e4214;
+      height: 100%;
+      width: 512px;
+      border-radius: 6rem;
+    }
+  }
+
+  .btn-container {
+    height: 48px;
+    padding: 8px 0 8px 40px;
+
+    button {
+      @include btn3;
+    }
+  }
+}
