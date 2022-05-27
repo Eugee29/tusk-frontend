@@ -22,58 +22,58 @@ export const boardService = {
 window.cs = boardService
 
 function query() {
-   return storageService.query(STORAGE_KEY)
+  return storageService.query(STORAGE_KEY)
 }
 
 function getById(boardId) {
-   return storageService.get(STORAGE_KEY, boardId)
-   // return axios.get(`/api/board/${boardId}`)
+  return storageService.get(STORAGE_KEY, boardId)
+  // return axios.get(`/api/board/${boardId}`)
 }
 
 function getTask(ids) {
-   return storageService.getTask(STORAGE_KEY, ids)
-   // return axios.get(`/api/board/${boardId}`)
+  return storageService.getTask(STORAGE_KEY, ids)
+  // return axios.get(`/api/board/${boardId}`)
 }
 
 async function remove(boardId) {
-   // return new Promise((resolve, reject) => {
-   //     setTimeout(reject, 2000)
-   // })
-   // return Promise.reject('Not now!');
-   await storageService.remove(STORAGE_KEY, boardId)
-   boardChannel.postMessage(getActionRemoveBoard(boardId))
+  // return new Promise((resolve, reject) => {
+  //     setTimeout(reject, 2000)
+  // })
+  // return Promise.reject('Not now!');
+  await storageService.remove(STORAGE_KEY, boardId)
+  boardChannel.postMessage(getActionRemoveBoard(boardId))
 }
 
 async function save(board) {
-   // debugger
-   var savedBoard
+  // debugger
+  var savedBoard
 
-   if (board._id) {
-      savedBoard = await storageService.put(STORAGE_KEY, board)
-      boardChannel.postMessage(getActionUpdateBoard(savedBoard))
+  if (board._id) {
+    savedBoard = await storageService.put(STORAGE_KEY, board)
+    boardChannel.postMessage(getActionUpdateBoard(savedBoard))
 
-   } else {
-      // Later, owner is set by the backend
-      board.owner = userService.getLoggedinUser()
-      savedBoard = await storageService.post(STORAGE_KEY, board)
-      boardChannel.postMessage(getActionAddBoard(savedBoard))
-   }
-   return savedBoard
+  } else {
+    // Later, owner is set by the backend
+    board.owner = userService.getLoggedinUser()
+    savedBoard = await storageService.post(STORAGE_KEY, board)
+    boardChannel.postMessage(getActionAddBoard(savedBoard))
+  }
+  return savedBoard
 }
 
 function getEmptyBoard() {
-   return {
-      vendor: 'Susita-' + (Date.now() % 1000),
-      price: utilService.getRandomIntInclusive(1000, 9000),
-   }
+  return {
+    vendor: 'Susita-' + (Date.now() % 1000),
+    price: utilService.getRandomIntInclusive(1000, 9000),
+  }
 }
 
 function subscribe(listener) {
-   boardChannel.addEventListener('message', listener)
+  boardChannel.addEventListener('message', listener)
 }
 
 function unsubscribe(listener) {
-   boardChannel.removeEventListener('message', listener)
+  boardChannel.removeEventListener('message', listener)
 }
 
 // TEST DATA 2
