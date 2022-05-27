@@ -9,7 +9,7 @@
   padding: 12px 4px;
   padding-left: 0px;
   color: $font-clr1;
-  
+
   h1 {
     font-size: 18px;
     font-weight: 700;
@@ -19,27 +19,27 @@
     }
 
   button {
-        height: 32px;
-        width: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        border-radius: 3px;
-        background-color: rgba(255, 255, 255, 0.325);
-        padding: 6px;
-        
-        .star-icon {
-          color: $font-clr1;
-          height: 16px;
-          width: 16px;
-        }
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.325);
+    padding: 6px;
 
-        &:hover .star-icon {
-          color: gold;
-          height: 20px;
-          width: 20px;
-        }
+    .star-icon {
+      color: $font-clr1;
+      height: 16px;
+      width: 16px;
+    }
+
+    &:hover .star-icon {
+      color: gold;
+      height: 20px;
+      width: 20px;
+    }
 
 
   }

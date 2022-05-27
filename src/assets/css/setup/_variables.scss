@@ -4,6 +4,11 @@ $font-clr1: #FFFFFF;
 
 $clr1: #ced4da; // INPUT BORDER
 $clr2: #495057; // INPUT FONT COLOR
+$clr3: #5E6C84; // LOGIN-SIGNUP TITLE
+$clr4: #FAFBFC; // INPUT BG COLOR
+$clr5: #DFE1E6; // INPUT BORDER 2
+$clr6: #5AAC44; // LOGIN BTN
+$clr7: #0052CC; // SIGNUP BTN
 
 $brand-clr1: #026AA7; // MAIN BRAND
 $brand-clr2: #0079BF; // ACTIVE FONT
@@ -16,5 +21,10 @@ $brand-clr8: #ebecf0; // GROUP BACKGROUND
 $brand-clr9: #f4f5f7; // GROUP HEADER BUTTON BACKGROUND
 $brand-clr10: #ffd229; // STAR
 $brand-clr11: #97a0af; // BOARD-TILE
+$brand-clr12: #4C9AFF; // INPUT BORDER
 
- 
+// LAYOUT BREAKPOINTS
+$break-mobile: 770px;
+$break-narrow: 770px;
+$break-normal: 990px;
+$break-wide: 1200px;

@@ -1,0 +1,66 @@
+.task-info {
+   margin-top: 8px;
+   margin-left: 40px;
+   color: #172b4d;
+
+   .task-member-title {
+      color: #5e6c84;
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 16px;
+      line-height: 20px;
+      margin: 0 8px 4px 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+   }
+
+   .members-add-button {
+      background-color: #091e420a;
+      border: none;
+      border-radius: 3px;
+      box-shadow: none;
+      cursor: pointer;
+      display: block;
+      float: left;
+      margin: 0 8px 8px 0;
+      transition-duration: 85ms;
+      transition-property: background-color, border-color, box-shadow;
+      transition-timing-function: ease;
+      border-radius: 100%;
+      text-transform: uppercase;
+      width: 32px;
+      height: 32px;
+
+      span {
+         font-size: 23px;
+         line-height: 28px;
+         padding: 8px;
+         color: #42526e;
+      }
+   }
+
+   .member {
+      border: none;
+      border-radius: 3px;
+      box-shadow: none;
+      cursor: pointer;
+      display: block;
+      float: left;
+      margin: 0 8px 8px 0;
+      transition-duration: 85ms;
+      transition-property: background-color, border-color, box-shadow;
+      transition-timing-function: ease;
+      border-radius: 50%;
+      text-transform: uppercase;
+      background-color: tomato;
+      width: 32px;
+      height: 32px;
+
+      span {
+         line-height: 30px;
+         padding: 6px;
+      }
+   }
+}

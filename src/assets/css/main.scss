@@ -15,6 +15,7 @@
 @import './pages/workspace';
 @import './pages/board-details';
 @import './pages/task-details';
+@import './pages/login-signup-page';
 
 // COMPONENTS
 @import './cmps/board-list.scss';
@@ -26,3 +27,8 @@
 @import './cmps/task-preview/';
 @import './cmps/task-list/';
 @import './cmps/label-list/';
+@import './cmps/login-signup/';
+@import './cmps/task-details-cover/';
+@import './cmps/task-details-title/';
+@import './cmps/task-details-info/';
+@import './cmps/task-list/';
