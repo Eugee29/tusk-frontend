@@ -154,7 +154,7 @@ function unsubscribe(listener) {
 //             "archivedAt": null,
 //             "title": "Create a CLI template",
 //             "description": "Setting the react up so we can begin working",
-//             "checklist": [
+//             "checklists": [
 //               {
 //                 "id": "c101",
 //                 "title": "CLI",
@@ -207,7 +207,7 @@ function unsubscribe(listener) {
 //             "archivedAt": null,
 //             "title": "Add Services",
 //             "description": "Add util and board services",
-//             "checklist": [
+//             "checklists": [
 //               {
 //                 "id": "c102",
 //                 "title": "Services",
