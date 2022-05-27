@@ -12,6 +12,8 @@ export const BoardList = ({ boards, onUpdateBoard }) => {
    }
 
    const starredBoards = boards.filter(board => board.isStarred)
+   const unStarredBoards = boards.filter(board => !board.isStarred)
+
    return (
       <main>
 
@@ -36,7 +38,7 @@ export const BoardList = ({ boards, onUpdateBoard }) => {
          </div>
 
          <ul className="board-section-list">
-            {boards.map((board) => <BoardPreview board={board} onUpdateBoard={onUpdateBoard} key={board._id} />)}
+            {unStarredBoards.map((board) => <BoardPreview board={board} onUpdateBoard={onUpdateBoard} key={board._id} />)}
 
             <li className="board-section-list-item" onClick={() => { onAddBoard() }}>
                <div className="board-tile mod-add">

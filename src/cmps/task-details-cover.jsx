@@ -4,8 +4,8 @@ export function TaskDetailsCover({ cover }) {
   console.log('TaskDetailsCover', cover);
 
   return (
-    <header className="task-cover" style={{ backgroundColor: `${cover.bgColor}` }}>
-      {cover.isFullCover ? 'isFullCover: true' : 'isFullCover: false'}
+    <header className="task-details-cover" style={{ backgroundColor: `${cover.bgColor}` }}>
+      {/* {cover.isFullCover ? 'isFullCover: true' : 'isFullCover: false'} */}
       <button>Cover</button>
     </header>
   )

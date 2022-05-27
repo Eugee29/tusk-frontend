@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { loadBoards } from '../store/board/board.action.js'
 import { boardService } from '../services/board.service.js'
 import { updateBoard } from '../store/board/board.action.js'
+import { saveBoard } from '../store/board/board.action.js'
 
 import { useParams } from 'react-router-dom'
 
@@ -26,6 +27,7 @@ const _BoardDetails = () => {
   const loadBoard = async () => {
     const board = await boardService.getById(boardId)
     setBoard(board)
+    dispatch(saveBoard(board))
   }
 
   const onUpdateBoard = async (groups) => {
