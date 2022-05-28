@@ -1,6 +1,8 @@
 
 import { Draggable } from 'react-beautiful-dnd'
 
+import React from 'react'
+
 import { useNavigate } from 'react-router-dom'
 
 import { LabelList } from './label-list'
@@ -32,11 +34,12 @@ export const TaskPreview = ({ task, groupId, index }) => {
   }
 
   const getTaskClass = () => {
-    if (task.style.bgColor) {
-      return 'task-preview styled'
-    } else if (task.style.imgURL) {
-      return 'task-preview styled img'
-    } else {
+    if (task.style) {
+      if (task.style.bgColor) {
+        return 'task-preview styled'
+      } else if (task.style.imgURL) {
+        return 'task-preview styled img'
+      }
       return 'task-preview'
     }
   }
@@ -51,6 +54,8 @@ export const TaskPreview = ({ task, groupId, index }) => {
               <h2 className='task-title'> {task.title} </h2>
               {task.description && (!task.style.bgColor) && (!task.style.imgURL)
                 && <MdOutlineSubject />}
+                {task.checklist && task.checklist.length && (!task.style.bgColor) && (!task.style.imgURL)
+                && <React.Fragment> <IoMdCheckboxOutline /> <span> {task.checklist.length} </span> </React.Fragment>}
             </div>
             <button className='edit-btn'> <RiPencilLine className='btn-icon' /> </button>
           </section>

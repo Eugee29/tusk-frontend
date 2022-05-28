@@ -4,38 +4,100 @@
    position: relative;
 
    .activity-title-container {
-      align-items: center;
-      display: flex;
+      @include task-category()
+   }
+
+   .activity-list-container {
+      margin-left: 40px;
       min-height: 32px;
-      margin: 0 0 4px 40px;
       padding: 8px 0;
       position: relative;
 
-      span {
-         left: -40px;
-         position: absolute;
-         color: #42526e;
+      .user-container {
          height: 32px;
-         line-height: 32px;
+         left: -44px;
+         position: absolute;
+         top: 8px;
          width: 32px;
-         font-size: 24px;
+         display: block;
 
-         svg {
-            height: 20px;
-            width: 20px;
+         .member {
+            background-color: #dfe1e6;
+            border-radius: 25em;
+            color: #172b4d;
+            cursor: pointer;
+            display: block;
+            float: left;
+            height: 32px;
+            margin: 0 4px 4px 0;
+            overflow: visible;
+            position: relative;
+            text-decoration: none;
+            -webkit-user-select: none;
+            user-select: none;
+            width: 32px;
+            z-index: 0;
+            text-transform: uppercase;
+
+            .label {
+               border: none;
+               box-shadow: none;
+               cursor: pointer;
+               transition-duration: 85ms;
+               transition-property: background-color, border-color, box-shadow;
+               transition-timing-function: ease;
+               text-transform: uppercase;
+               border-radius: 3px;
+               box-sizing: border-box;
+               display: block;
+               float: left;
+               font-weight: 600;
+               height: 32px;
+               line-height: 31px;
+               margin: 0 4px 4px 0;
+               min-width: 40px;
+               padding: 0 7px;
+               width: auto;
+
+               span {
+                  line-height: 30px;
+                  padding: 6px;
+                  color: #fff;
+                  font-size: 14px;
+                  text-transform: none
+               }
+            }
+         }
+
+         .label:hover {
+            opacity: .8;
+         }
+
+
+      }
+
+      .activity-container {
+         word-wrap: break-word;
+         margin: 0;
+         color: #172b4d;
+         font-size: 14px;
+         font-weight: 400;
+         line-height: 20px;
+         padding-bottom: 3px;
+
+         .member {
+            color: #172b4d;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 20px;
          }
       }
 
-      h3 {
-         display: inline-block;
+      .time-container {
+         font-size: 12px;
          margin: 0;
-         min-height: 18px;
-         min-width: 40px;
-         width: auto;
-         font-size: 16px;
-         line-height: 20px;
-         font-weight: 600;
-         color: #172b4d;
+         min-width: 110px;
+         color: #5e6c84;
       }
    }
 

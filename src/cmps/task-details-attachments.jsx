@@ -17,25 +17,22 @@ function _TaskDetailsAttachments({ task }) {
       const months = Math.floor(days / 30);
       const years = Math.floor(months / 12);
       const rtf = new Intl.RelativeTimeFormat(locale, { numeric: "auto" });
-    
+
       if (years > 0) {
-        value = rtf.format(0 - years, "year");
+         value = rtf.format(0 - years, "year");
       } else if (months > 0) {
-        value = rtf.format(0 - months, "month");
+         value = rtf.format(0 - months, "month");
       } else if (days > 0) {
-        value = rtf.format(0 - days, "day");
+         value = rtf.format(0 - days, "day");
       } else if (hours > 0) {
-        value = rtf.format(0 - hours, "hour");
+         value = rtf.format(0 - hours, "hour");
       } else if (minutes > 0) {
-        value = rtf.format(0 - minutes, "minute");
+         value = rtf.format(0 - minutes, "minute");
       } else {
-        value = rtf.format(0 - diff, "second");
+         value = rtf.format(0 - diff, "second");
       }
       return value;
-    }
-
-   console.log(timeAgo(task.attachments[0].createdAt));
-
+   }
 
    return (
       <section className="task-details-attachments" >
@@ -46,27 +43,26 @@ function _TaskDetailsAttachments({ task }) {
             <h3 >Attachments</h3>
          </div>
 
-
          <div className="attachments-body-container">
 
             {task.attachments.map(att =>
                <div key={att.id} className="attachments-section-container">
-                  <a className="attachment-thumbnail" target="_blank" style={{ backgroundImage: `url('${att.fileUrl}')` }}></a>
-                  <p className="attachment-thumbnail-info">
-                     <span className="attachment-thumbnail-name">pngwing.com.png</span>
-                     <div className="attachment-thumbnail-details">
-                        <span className="attachment-thumbnail-date" >Added <span className="date">{timeAgo(task.attachments[0].createdAt)}</span> </span>
-                        <span> - <a className="attachment-thumbnail-date" href="#"><span className="">Delete</span></a> </span>
-                        <span> - <a className="attachment-thumbnail-date" href="#"><span className="">Edit</span></a> </span>
+                  <a className="thumbnail-img" target="_blank" style={{ backgroundImage: `url('${att.fileUrl}')` }}></a>
+                  <p className="thumbnail-info">
+                     <span className="thumbnail-name">pngwing.com.png</span>
+                     <div className="thumbnail-details">
+                        <span className="thumbnail-date" >Added <span className="date">{timeAgo(task.attachments[0].createdAt)}</span> </span>
+                        <span> - <a className="thumbnail-date" href="#"><span className="button-att">Delete</span></a> </span>
+                        <span> - <a className="thumbnail-date" href="#"><span className="button-att">Edit</span></a> </span>
                      </div>
-                     <div className="attachment-thumbnail-cover">
+                     <div className="thumbnail-cover">
                         <span className="icon-make-cover"><RiLayoutBottom2Fill /></span>
-                        <span className="button-name">Make cover</span>
+                        <span className="button-att">Make cover</span>
                      </div>
                   </p>
                </div>)}
 
-            <p className="attachments-add"><a href="#">Add an attachment</a></p>
+            <a className="attachments-add" href="#">Add an attachment</a>
          </div>
 
       </section>

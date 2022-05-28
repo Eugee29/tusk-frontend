@@ -12,6 +12,7 @@ import { TaskDetailsInfo } from '../cmps/task-details-info.jsx'
 import { TaskDetailsDescription } from '../cmps/task-details-description.jsx'
 import { TaskDetailsAttachments } from '../cmps/task-details-attachments.jsx'
 import { TaskDetailsActivity } from '../cmps/task-details-activity.jsx'
+import { TaskDetailsSideTask } from '../cmps/task-details-side-task.jsx'
 
 const _TaskDetails = () => {
 
@@ -33,6 +34,10 @@ const _TaskDetails = () => {
         // setIsCloseEdit(false)
     }, [isCloseEdit])
 
+    useEffect(() => {
+        loadTaskAsync()
+    }, [])
+
     const loadTaskAsync = async () => {
         const taskFromSrevice = await dispatch(loadTask({ boardId, groupId, taskId }))
         setTask(taskFromSrevice)
@@ -47,23 +52,27 @@ const _TaskDetails = () => {
         setIsCloseEdit(!isCloseEdit)
     }
 
+    if (!task) return <h1>Loading task...</h1>
+
     return <section className="task-details" onClick={onGoBack}>
         <div className="task-details-container" onClick={onDetailsClick}>
             <button className="go-back-button" onClick={onGoBack}> X </button>
 
-            {task?.cover && <TaskDetailsCover cover={task.cover} />}
+            {task?.style && <TaskDetailsCover cover={task.style} />}
             {task?.title && <TaskDetailsTitle title={task.title} />}
-
+            
             <div className="main-task">
                 {task && <TaskDetailsInfo task={task} />}
-                {task && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
-                {task && <TaskDetailsAttachments task={task} isCloseEdit={isCloseEdit} />}
+                {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
+                {task?.attachments && <TaskDetailsAttachments task={task} isCloseEdit={isCloseEdit} />}
                 {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
-
             </div>
 
+            <div className="side-task">
+                <TaskDetailsSideTask task={task} />
+            </div>
         </div>
-    </section>
+    </section >
 }
 
 function mapStateToProps(state) {

@@ -1,0 +1,19 @@
+.side-task {
+   // float: right;
+   overflow: hidden;
+   padding: 0 16px 8px 8px;
+   // width: calc(100% - 600px);
+   z-index: 10;
+
+   .label-header {
+      @include task-sub-header()
+   }
+
+   .join-container {
+      margin-bottom: 16px;
+   }
+}
+
+.sidebar-button {
+   @include button-link()
+}

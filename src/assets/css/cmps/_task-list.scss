@@ -1,6 +1,9 @@
 .task-list {
   flex-grow: 1;
+  min-height: 1px;
   display: flex;
   flex-direction: column;
   padding: 0 .5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
 }

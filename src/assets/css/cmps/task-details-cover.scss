@@ -1,16 +1,27 @@
 .task-details-cover {
-   background-size: initial;
-   background-origin: content-box;
-   box-sizing: border-box;
-   background-position: left center;
-   height: 116px;
-   min-height: 116px;
-   padding: 0px;
    position: relative;
+   padding: 0px;
+   background-origin: content-box;
+
+   &.color {
+      background-size: initial;
+      background-position: left center;
+      height: 116px;
+      min-height: 116px;
+   }
+
+   &.img {
+      background-size: contain;
+      background-position: center center;
+      background-color: transparent;
+      height: 160px;
+      min-height: 160px;
+      background-repeat: no-repeat;
+   }
 
    button {
-      @include btn2(#00000014, #172b4d);
-      position:absolute;
+      @include button-cover();
+      position: absolute;
       right: 8px;
       bottom: 8px;
    }

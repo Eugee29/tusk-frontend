@@ -10,7 +10,6 @@ function _TaskDetailsTitle({ title }) {
 
    return (
       <header className="task-details-title" >
-         {/* <span className="task-title-icon"><img src={card} alt="" /></span> */}
          <span className=""><CgCreditCard/></span>
          <textarea className="main-title" name="" defaultValue={title} cols="30" rows="10"></textarea>
          <div className="sub-title">in list<button>{board.title}</button></div>
