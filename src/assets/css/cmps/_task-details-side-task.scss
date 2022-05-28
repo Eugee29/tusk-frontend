@@ -15,5 +15,14 @@
 }
 
 .sidebar-button {
-   @include button-link()
+   @include button-link();
+
+   .sidebar-icon{
+      margin: 0 6px 0 -6px; 
+      font-size: 16px;
+      height: 20px;
+      line-height: 20px;
+      width: 20px;
+      vertical-align: text-top;
+   }
 }

@@ -41,6 +41,7 @@ const _TaskDetails = () => {
 
     const loadTaskAsync = async () => {
         const taskFromSrevice = await dispatch(loadTask({ boardId, groupId, taskId }))
+        console.log(taskFromSrevice);
         setTask(taskFromSrevice)
     }
 
@@ -52,7 +53,6 @@ const _TaskDetails = () => {
         ev.stopPropagation()
         setIsCloseEdit(!isCloseEdit)
     }
-    console.log(task)
 
     if (!task) return <h1>Loading task...</h1>
 
@@ -68,7 +68,7 @@ const _TaskDetails = () => {
                 <div className="main-task">
                     {task && <TaskDetailsInfo task={task} />}
                     {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
-                    {task?.attachments && <TaskDetailsAttachments task={task} isCloseEdit={isCloseEdit} />}
+                    {task?.attachments && <TaskDetailsAttachments task={task}  />}
                     {task.checklists?.length && <ChecklistList checklists={task.checklists} />}
                     {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
                 </div>

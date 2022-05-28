@@ -42,7 +42,24 @@
 
       textarea {
          @include task-textarea();
-        
+      }
+
+      .btn-container {
+         clear: both;
+         display: flex;
+         flex-direction: row;
+         margin-top: 8px;
+         margin-left: 40px;
+         
+         input {
+            @include task-save();
+            float: left;
+            margin: 0 4px 0 0;
+         }
+
+         .cancel {
+            cursor: pointer;
+         }
       }
    }
 

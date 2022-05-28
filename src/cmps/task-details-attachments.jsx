@@ -48,7 +48,7 @@ function _TaskDetailsAttachments({ task }) {
             {task.attachments.map(att =>
                <div key={att.id} className="attachments-section-container">
                   <a className="thumbnail-img" target="_blank" style={{ backgroundImage: `url('${att.fileUrl}')` }}></a>
-                  <p className="thumbnail-info">
+                  <div className="thumbnail-info">
                      <span className="thumbnail-name">pngwing.com.png</span>
                      <div className="thumbnail-details">
                         <span className="thumbnail-date" >Added <span className="date">{timeAgo(task.attachments[0].createdAt)}</span> </span>
@@ -59,7 +59,7 @@ function _TaskDetailsAttachments({ task }) {
                         <span className="icon-make-cover"><RiLayoutBottom2Fill /></span>
                         <span className="button-att">Make cover</span>
                      </div>
-                  </p>
+                  </div>
                </div>)}
 
             <a className="attachments-add" href="#">Add an attachment</a>
