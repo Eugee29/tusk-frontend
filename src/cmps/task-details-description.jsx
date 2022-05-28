@@ -26,8 +26,8 @@ function _TaskDetailsDescription({ task, isCloseEdit }) {
       console.log(ev.target.value);
    }
 
-   return (
-      <section className="task-details-description" >
+  return (
+    <section className="task-details-description" >
 
          {/* Description */}
          <div className="description-title-container">
@@ -47,9 +47,9 @@ function _TaskDetailsDescription({ task, isCloseEdit }) {
 }
 
 function mapStateToProps(state) {
-   return {
-      board: state.boardModule.board
-   }
+  return {
+    board: state.boardModule.board
+  }
 }
 
 export const TaskDetailsDescription = connect(mapStateToProps)(_TaskDetailsDescription)

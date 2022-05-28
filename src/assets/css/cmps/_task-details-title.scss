@@ -38,28 +38,28 @@
       height: 28px;
       border: none;
 
-      &:focus {
-         background-color: $font-clr1;
-         outline: 2px solid $brand-clr1;
-      }
-   }
+    &:focus {
+      background-color: $font-clr1;
+      outline: 2px solid $brand-clr1;
+    }
+  }
 
-   .sub-title {
+  .sub-title {
+    color: #5e6c84;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    padding: 4px 8px;
+
+    button {
       color: #5e6c84;
       font-size: 14px;
       font-weight: 400;
       line-height: 20px;
-      padding: 4px 8px;
-
-      button {
-         color: #5e6c84;
-         font-size: 14px;
-         font-weight: 400;
-         line-height: 20px;
-         cursor: pointer;
-         text-decoration: underline;
-         border: unset;
-         background-color: unset;
-      }
-   }
+      cursor: pointer;
+      text-decoration: underline;
+      border: unset;
+      background-color: unset;
+    }
+  }
 }
