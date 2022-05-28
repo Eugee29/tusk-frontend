@@ -1,6 +1,8 @@
 .board-details {
   padding-left: 1rem;
-  background-color: $brand-clr4; //FOR NOW
+  background-image: url('https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2400x1600/0d616dda33108ac21c3184d19ccc73e2/photo-1652961989677-a236d38f63f6.jpg'); //FOR NOW
+  background-repeat: no-repeat;
+  background-size: cover;
   position: relative;
   height: calc(100vh - 44px);
   overflow-y: hidden;
