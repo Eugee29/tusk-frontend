@@ -1,28 +1,28 @@
 .side-task {
-   // float: right;
-   overflow: hidden;
-   padding: 0 16px 8px 8px;
-   // width: calc(100% - 600px);
-   z-index: 10;
+  // float: right;
+  overflow: hidden;
+  padding: 0 16px 8px 8px;
+  // width: calc(100% - 600px);
+  z-index: 10;
 
-   .label-header {
-      @include task-sub-header()
-   }
+  .label-header {
+    @include task-sub-header()
+  }
 
-   .join-container {
-      margin-bottom: 16px;
-   }
+  .join-container {
+    margin-bottom: 16px;
+  }
 }
 
 .sidebar-button {
-   @include button-link();
+  @include button-link();
 
-   .sidebar-icon{
-      margin: 0 6px 0 -6px; 
-      font-size: 16px;
-      height: 20px;
-      line-height: 20px;
-      width: 20px;
-      vertical-align: text-top;
-   }
+  .sidebar-icon {
+    margin: 0 6px 0 -6px;
+    font-size: 16px;
+    height: 20px;
+    line-height: 20px;
+    width: 20px;
+    vertical-align: text-top;
+  }
 }

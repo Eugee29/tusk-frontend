@@ -2,54 +2,82 @@
   margin-bottom: 24px;
   width: 100%;
 
-
-
   header {
-    display: flex;
+    // display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
-    height: 2rem;
-    margin-bottom: 12px;
-    margin-left: 6px;
+    height: auto;
+    padding: .5rem 0;
+    margin-inline-start: 40px;
+    margin-block-end: 4px;
 
 
+    .icon-container {
+      position: absolute;
+      left: -40px;
+      width: 2rem;
+      height: 2rem;
+      padding: 7px;
 
-    .check-square {
-      width: 20px;
-      height: 20px;
+      .icon {
+        width: 100%;
+        height: 100%;
+        color: $brand-clr4;
+      }
     }
+
+    // .check-square {
+    //   position: absolute;
+    //   width: 20px;
+    //   height: 20px;
+    // }
 
     .inner-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 100%;
-      width: 512px;
+      width: 100%;
+      // width: 512px;
 
 
-      h3 {
+      .title {
         margin: 6px 0;
         font-weight: 600;
       }
 
-      button {
-        @include btn3;
-        margin-inline-start: .5rem;
+      .header-btn-container {
+        flex-grow: 1;
+
+        .inner-btn-container {
+          height: 100%;
+          margin-right: 2px;
+          float: right;
+        }
+
+        button {
+          @include btn3;
+          margin-inline-start: .5rem;
+        }
       }
+
+
     }
   }
 
   .progress-bar-container {
+    position: relative;
     height: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 6px;
-    margin-left: 6px;
 
     .progress {
-      font-size: rem(11px);
+      font-size: rem(10px);
       color: $clr3;
+      text-align: center;
       width: 32px;
     }
 
@@ -58,15 +86,21 @@
       height: 100%;
       width: 512px;
       border-radius: 6rem;
+
+      &.bg-blue {
+        background-color: #5ba4cf !important;
+      }
+
+
     }
   }
 
   .btn-container {
-    height: 48px;
-    padding: 8px 0 8px 40px;
+    margin-left: 40px;
 
     button {
       @include btn3;
+      margin: .5rem 0;
     }
   }
 }
