@@ -399,7 +399,122 @@ storageService.post(STORAGE_KEY,
               "imgUrl": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
             },
             "style": {
-              "bgColor": "#2579bd",
+              "bgColor": "\"#2579bd\"",
+              "isCover": true
+            }
+          },
+          {
+            "id": "t1022227",
+            "createdAt": 1653523200000,
+            "archivedAt": null,
+            "title": "npm Install",
+            "members": [
+              {
+                "_id": "u101",
+                "fullName": "Tal Ofer",
+                "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+              },
+              {
+                "_id": "u102",
+                "fullName": "Eran Avichzer",
+                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              },
+              {
+                "_id": "u103",
+                "fullName": "Uri Gruda"
+              }
+            ],
+            "labelIds": [
+              "l103"
+            ],
+            "dueDate": 1654214400000,
+            "byMember": {
+              "_id": "u101",
+              "username": "Talofer",
+              "fullName": "Tal Ofer",
+              "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+            },
+            "style": {
+              "imgURL": "https://img.helpnetsecurity.com/wp-content/uploads/2021/11/17133051/npm-shield-1200-hns.jpg",
+              "isCover": false
+            },
+            "description": "npm i"
+          }
+        ]
+      },
+      {
+        "id": "g103",
+        "title": "Some demo data",
+        "archivedAt": null,
+        "tasks": [
+          {
+            "id": "t1109",
+            "createdAt": 1643133011000,
+            "archivedAt": null,
+            "title": "This is a task",
+            "description": "Behold, a task!",
+            "attachments": [
+              {
+                "id": "a10112",
+                "createdAt": 1643183411000,
+                "fileUrl": "https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/content/cover_image_file/cover_image/687457/retina_1708x683_staging.toptal.net_javascript_emulating-react-jsx-in-vanilla-javascript-816eafe06505b888585d08474f2166e7.png"
+              }
+            ],
+            "members": [
+              {
+                "_id": "u101",
+                "fullName": "Tal Ofer",
+                "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+              },
+              {
+                "_id": "u103",
+                "fullName": "Uri Gruda",
+                "imgUrl": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
+              }
+            ],
+            "labelIds": [
+              "l105",
+              "l102",
+              "l104"
+            ],
+            "dueDate": 1643696000000,
+            "byMember": {
+              "_id": "u102",
+              "username": "Eranavichzer",
+              "fullName": "Eran Avichzer",
+              "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+            },
+            "style": {}
+          },
+          {
+            "id": "t10222",
+            "createdAt": 1643523200000,
+            "archivedAt": null,
+            "title": "This is another task",
+            "description": "There are two of them now",
+            "members": [
+              {
+                "_id": "u102",
+                "fullName": "Eran Avichzer",
+                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              },
+              {
+                "_id": "u103",
+                "fullName": "Uri Gruda"
+              }
+            ],
+            "labelIds": [
+              "l101",
+              "l102"
+            ],
+            "byMember": {
+              "_id": "u103",
+              "userName": "Urigruda",
+              "fullName": "Uri Gruda",
+              "imgUrl": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
+            },
+            "style": {
+              "bgColor": "\"#2579bd\"",
               "isCover": true
             }
           },
@@ -443,55 +558,60 @@ storageService.post(STORAGE_KEY,
         ]
       },
       {
-        "id": "g103",
-        "title": "Style",
+        "id": "g10123",
+        "title": "Some more demo data",
         "archivedAt": null,
         "tasks": [
           {
-            "id": "t111",
+            "id": "t99101",
             "createdAt": 1653133011000,
             "archivedAt": null,
-            "title": "Get SCSS",
-            "description": "",
+            "title": "A very important task",
+            "description": "Attention! This task is very important",
             "checklists": [
               {
-                "id": "c111",
-                "title": "CSS to SCSS",
+                "id": "c12201",
+                "title": "A nice checklist",
                 "todos": [
                   {
-                    "id": "t615",
-                    "title": "install sass",
+                    "id": "t51115",
+                    "title": "A nice todo",
                     "isDone": true
                   },
                   {
-                    "id": "t711",
-                    "title": "refactor to scss",
-                    "isDone": true
-                  },
-                  {
-                    "id": "t712",
-                    "title": "create main.scss",
+                    "id": "t5222211",
+                    "title": "There's a second one",
                     "isDone": false
+                  },
+                  {
+                    "id": "t52222211",
+                    "title": "And a third one",
+                    "isDone": false
+                  },
+                  {
+                    "id": "t52232211",
+                    "title": "This one is my favorite",
+                    "isDone": true
                   }
                 ]
               },
               {
-                "id": "c112",
-                "title": "Styling",
+                "id": "c12222201",
+                "title": "Some todos",
                 "todos": [
                   {
-                    "id": "t815",
-                    "title": "get inspiration",
+                    "id": "t51sd115",
+                    "title": "Hello World",
                     "isDone": true
                   },
                   {
-                    "id": "t811",
-                    "title": "reset basics to your default",
-                    "isDone": false
+                    "id": "t522sd2211",
+                    "title": "ABCDEFGHIJKLMNOPQRSTUVWXYZ this is a very very very very very very looooooooooooooooooooooooooooooooooooooooong todo!!",
+                    "isDone": true
                   },
                   {
-                    "id": "t713",
-                    "title": "create mixins",
+                    "id": "t5222dd2211",
+                    "title": "short",
                     "isDone": true
                   }
                 ]
@@ -499,9 +619,14 @@ storageService.post(STORAGE_KEY,
             ],
             "attachments": [
               {
-                "id": "a202",
+                "id": "a1we01",
                 "createdAt": 1653183411000,
-                "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/1200px-Sass_Logo_Color.svg.png"
+                "fileUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3IeeUtGb2ElOQTdNKsdxVUHNg0FigDXZcw&usqp=CAU"
+              },
+              {
+                "id": "a1we33301",
+                "createdAt": 1653183411000,
+                "fileUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3IeeUtGb2ElOQTdNKsdxVUHNg0FigDXZcw&usqp=CAU"
               }
             ],
             "memberIds": [
@@ -522,15 +647,34 @@ storageService.post(STORAGE_KEY,
               "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
             },
             "style": {
-              "}": ""
+              "imgURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3IeeUtGb2ElOQTdNKsdxVUHNg0FigDXZcw&usqp=CAU",
+              "isCover": true
             }
           },
           {
-            "id": "t208",
+            "id": "t10fsdfssdf8",
             "createdAt": 1653523200000,
             "archivedAt": null,
-            "title": "Style meeting",
-            "description": "Gather up and explore options",
+            "title": "Add Services",
+            "description": "Add util and board services",
+            "checklists": [
+              {
+                "id": "c10dfdsd2",
+                "title": "Services",
+                "todos": [
+                  {
+                    "id": "t51asd8",
+                    "title": "util",
+                    "isDone": true
+                  },
+                  {
+                    "id": "t519asd",
+                    "title": "board",
+                    "isDone": false
+                  }
+                ]
+              }
+            ],
             "members": [
               {
                 "_id": "u102",
@@ -555,8 +699,82 @@ storageService.post(STORAGE_KEY,
               "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
             },
             "style": {
-              "bgColor": "#c374df",
+              "bgImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3IeeUtGb2ElOQTdNKsdxVUHNg0FigDXZcw&usqp=CAU"
+            }
+          },
+          {
+            "id": "t1xs03",
+            "createdAt": 1653523200000,
+            "archivedAt": null,
+            "title": "Create git",
+            "description": "Add util and board services",
+            "members": [
+              {
+                "_id": "u101",
+                "fullName": "Tal Ofer",
+                "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+              },
+              {
+                "_id": "u102",
+                "fullName": "Eran Avichzer",
+                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              },
+              {
+                "_id": "u103",
+                "fullName": "Uri Gruda"
+              }
+            ],
+            "labelIds": [
+              "l103"
+            ],
+            "dueDate": 1654214400000,
+            "byMember": {
+              "_id": "u101",
+              "username": "Talofer",
+              "fullName": "Tal Ofer",
+              "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+            },
+            "style": {
+              "bgColor": "#eed62b",
               "isCover": false
+            }
+          },
+          {
+            "id": "t1czxczx04",
+            "createdAt": 1653436800000,
+            "archivedAt": null,
+            "title": "Tusk board meeting",
+            "description": "Writing guidelines and plans",
+            "members": [
+              {
+                "_id": "u101",
+                "fullName": "Tal Ofer",
+                "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+              },
+              {
+                "_id": "u102",
+                "fullName": "Eran Avichzer",
+                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              },
+              {
+                "_id": "u103",
+                "fullName": "Uri Gruda"
+              }
+            ],
+            "labelIds": [
+              "l103",
+              "l101"
+            ],
+            "dueDate": 1653868800000,
+            "byMember": {
+              "_id": "u103",
+              "userName": "Urigruda",
+              "fullName": "Uri Gruda",
+              "imgUrl": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
+            },
+            "style": {
+              "bgColor": "#e6574c",
+              "isCover": true
             }
           }
         ]
@@ -564,7 +782,7 @@ storageService.post(STORAGE_KEY,
     ],
     "activities": [
       {
-        "id": "a501",
+        "id": "a101",
         "txt": "Add comment",
         "createdAt": 1653214400000,
         "byMember": {
