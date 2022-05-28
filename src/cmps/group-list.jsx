@@ -6,6 +6,13 @@ import { GroupPreview } from "./group-preview"
 export const GroupList = (props) => {
   const [groups, setGroups] = useState(props.groups)
 
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggleLabels = () => {
+    console.log('arrived')
+    setIsOpen(!isOpen)
+ }
+
   const handleOnDragEnd = ({ destination, source, type }) => {
     if (!destination) return
 
@@ -38,7 +45,7 @@ export const GroupList = (props) => {
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {groups.map((group, index) => <GroupPreview key={group.id} group={group} index={index} />)}
+            {groups.map((group, index) => <GroupPreview key={group.id} group={group} index={index} toggleLabels={toggleLabels} isOpen={isOpen}/>)}
             {provided.placeholder}
           </section>
         )}

@@ -5,7 +5,7 @@ import { Draggable } from 'react-beautiful-dnd'
 
 import { TaskList } from './task-list'
 
-export const GroupPreview = ({ group, index }) => {
+export const GroupPreview = ({ group, index, toggleLabels, isOpen }) => {
 
   return (
     // Setting each group to be draggable with the Draggable CMP
@@ -23,7 +23,7 @@ export const GroupPreview = ({ group, index }) => {
             <button className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
           </div>
 
-          <TaskList key={group.id} groupId={group.id} tasks={group.tasks} />
+          <TaskList key={group.id} groupId={group.id} tasks={group.tasks} toggleLabels={toggleLabels} isOpen={isOpen}/>
 
           <div className="add-btn-container">
             <button className="add-btn"> <AiOutlinePlus /> Add a card</button>

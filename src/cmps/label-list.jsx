@@ -8,14 +8,8 @@ export function LabelList({ labelIds, toggleLabels, isOpen }) {
 
   const { boardId } = useParams()
 
-<<<<<<< HEAD
     const [boardLabels, setBoardLabels] = useState()
     const [taskLabels, setTaskLabels] = useState(labelIds)
-=======
-  const [boardLabels, setBoardLabels] = useState()
-  const [taskLabels, setTaskLabels] = useState(labelIds)
-  const [isOpen, setIsOpen] = useState(false)
->>>>>>> 95a26264fa2849630fd96b9f6e1564f6a736c0c4
 
   useEffect(() => {
     ; (async () => {
@@ -38,7 +32,7 @@ export function LabelList({ labelIds, toggleLabels, isOpen }) {
   }
 
   const getLabelClass = () => {
-    const className = (isOpen) ? 'label open' : 'label'
+    const className = (isOpen) ? 'label open' : 'label close'
     return className
   }
 
