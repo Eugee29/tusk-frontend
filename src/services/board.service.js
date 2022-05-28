@@ -144,6 +144,125 @@ storageService.post(STORAGE_KEY,
     ],
     "groups": [
       {
+        "id": "g1032222",
+        "title": "Style",
+        "archivedAt": null,
+        "tasks": [
+          {
+            "id": "t111",
+            "createdAt": 1653133011000,
+            "archivedAt": null,
+            "title": "Get SCSS",
+            "description": "",
+            "checklists": [
+              {
+                "id": "c111",
+                "title": "CSS to SCSS",
+                "todos": [
+                  {
+                    "id": "t615",
+                    "title": "install sass",
+                    "isDone": true
+                  },
+                  {
+                    "id": "t711",
+                    "title": "refactor to scss",
+                    "isDone": true
+                  },
+                  {
+                    "id": "t712",
+                    "title": "create main.scss",
+                    "isDone": false
+                  }
+                ]
+              },
+              {
+                "id": "c112",
+                "title": "Styling",
+                "todos": [
+                  {
+                    "id": "t815",
+                    "title": "get inspiration",
+                    "isDone": true
+                  },
+                  {
+                    "id": "t811",
+                    "title": "reset basics to your default",
+                    "isDone": false
+                  },
+                  {
+                    "id": "t713",
+                    "title": "create mixins",
+                    "isDone": true
+                  }
+                ]
+              }
+            ],
+            "attachments": [
+              {
+                "id": "a202",
+                "createdAt": 1653183411000,
+                "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/1200px-Sass_Logo_Color.svg.png"
+              }
+            ],
+            "memberIds": [
+              {
+                "_id": "u101",
+                "fullName": "Tal Ofer"
+              }
+            ],
+            "labelIds": [
+              "l101",
+              "l102"
+            ],
+            "dueDate": 1653696000000,
+            "byMember": {
+              "_id": "u102",
+              "username": "Eranavichzer",
+              "fullName": "Eran Avichzer",
+              "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+            },
+            "style": {
+              "}": ""
+            }
+          },
+          {
+            "id": "t208",
+            "createdAt": 1653523200000,
+            "archivedAt": null,
+            "title": "Style meeting",
+            "description": "Gather up and explore options",
+            "members": [
+              {
+                "_id": "u102",
+                "fullName": "Eran Avichzer",
+                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              },
+              {
+                "_id": "u103",
+                "fullName": "Uri Gruda"
+              }
+            ],
+            "labelIds": [
+              "l105",
+              "l102",
+              "l104"
+            ],
+            "dueDate": 1654041600000,
+            "byMember": {
+              "_id": "u102",
+              "username": "Eranavichzer",
+              "fullName": "Eran Avichzer",
+              "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+            },
+            "style": {
+              "bgColor": "#c374df",
+              "isCover": false
+            }
+          }
+        ]
+      },
+      {
         "id": "g101",
         "title": "Setup",
         "archivedAt": null,
