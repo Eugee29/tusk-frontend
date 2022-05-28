@@ -21,6 +21,17 @@
         opacity: 0.7;
     }
 
+    .task-icon-container {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+
+        span {
+            font-size: 12px;
+            line-height: 10px
+        };
+    }
+
     .lines-icon {
         color: darken($color: $brand-clr11, $amount: 10%);
         height: 15px;
