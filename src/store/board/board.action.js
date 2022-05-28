@@ -103,7 +103,6 @@ export function updateBoard(board) {
   return (dispatch) => {
     return boardService.save(board)
       .then(savedBoard => {
-        console.log('Updated Board:', savedBoard)
         dispatch({
           type: 'UPDATE_BOARD',
           board

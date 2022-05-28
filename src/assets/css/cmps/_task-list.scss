@@ -8,18 +8,5 @@
   overflow-y: auto;
   overflow-x: hidden;
 
-  &::-webkit-scrollbar {
-    border-radius: 6rem;
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    border-radius: 6rem;
-    background-color: #dadbe2;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 6rem;
-    background: #c0c4ce;
-  }
+  @include custom-scrollbar
 }
