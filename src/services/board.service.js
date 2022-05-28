@@ -88,7 +88,7 @@ storageService.post(STORAGE_KEY,
     "createdBy": {
       "_id": "u101",
       "fullName": "Tal Ofer",
-      "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+      "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
     },
     "style": {
       "bgImg": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/540x960/5ea8e58274d92bff09a965995677906b/photo-1653299832314-5d3dc1e5a83c.jpg"
@@ -129,20 +129,324 @@ storageService.post(STORAGE_KEY,
       {
         "_id": "u101",
         "fullName": "Tal Ofer",
-        "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+        "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
       },
       {
         "_id": "u102",
         "fullName": "Eran Avichzer",
-        "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+        "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
       },
       {
         "_id": "u103",
         "fullName": "Uri Gruda",
-        "imgUrl": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
+        "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
       }
     ],
     "groups": [
+      {
+        "id": "g101",
+        "title": "Setup",
+        "archivedAt": null,
+        "tasks": [
+          {
+            "id": "t101",
+            "createdAt": 1653133011000,
+            "archivedAt": null,
+            "title": "Create a CLI template",
+            "description": "Setting the react up so we can begin working",
+            "checklists": [
+              {
+                "id": "c101",
+                "title": "CLI",
+                "todos": [
+                  {
+                    "id": "t515",
+                    "title": "create npx",
+                    "isDone": true
+                  },
+                  {
+                    "id": "t511",
+                    "title": "cleaning CLI up",
+                    "isDone": false
+                  }
+                ]
+              }
+            ],
+            "attachments": [
+              {
+                "id": "a101",
+                "createdAt": 1653183411000,
+                "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/React_Native_Logo.png/640px-React_Native_Logo.png"
+              }
+            ],
+            "memberIds": [
+              {
+                "_id": "u101",
+                "fullName": "Tal Ofer"
+              }
+            ],
+            "labelIds": [
+              "l101",
+              "l102"
+            ],
+            "dueDate": 1653696000000,
+            "byMember": {
+              "_id": "u102",
+              "username": "Eranavichzer",
+              "fullName": "Eran Avichzer",
+              "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+            },
+            "style": {
+              "imgURL": "https://avatars.githubusercontent.com/u/6412038?s=280&v=4",
+              "isCover": true
+            }
+          },
+          {
+            "id": "t108",
+            "createdAt": 1653523200000,
+            "archivedAt": null,
+            "title": "Add Services",
+            "description": "Add util and board services",
+            "checklists": [
+              {
+                "id": "c102",
+                "title": "Services",
+                "todos": [
+                  {
+                    "id": "t518",
+                    "title": "util",
+                    "isDone": true
+                  },
+                  {
+                    "id": "t519",
+                    "title": "board",
+                    "isDone": false
+                  }
+                ]
+              }
+            ],
+            "members": [
+              {
+                "_id": "u102",
+                "fullName": "Eran Avichzer",
+                "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              },
+              {
+                "_id": "u103",
+                "fullName": "Uri Gruda",
+                "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+              }
+            ],
+            "labelIds": [
+              "l105",
+              "l102",
+              "l104"
+            ],
+            "dueDate": 1654041600000,
+            "byMember": {
+              "_id": "u102",
+              "username": "Eranavichzer",
+              "fullName": "Eran Avichzer",
+              "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+            },
+            "style": {}
+          },
+          {
+            "id": "t103",
+            "createdAt": 1653523200000,
+            "archivedAt": null,
+            "title": "Create git",
+            "description": "Add util and board services",
+            "members": [
+              {
+                "_id": "u101",
+                "fullName": "Tal Ofer",
+                "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+              },
+              {
+                "_id": "u102",
+                "fullName": "Eran Avichzer",
+                "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              },
+              {
+                "_id": "u103",
+                "fullName": "Uri Gruda",
+                "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+              }
+            ],
+            "labelIds": [
+              "l103"
+            ],
+            "dueDate": 1654214400000,
+            "byMember": {
+              "_id": "u101",
+              "username": "Talofer",
+              "fullName": "Tal Ofer",
+              "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+            },
+            "style": {
+              "bgColor": "#eed62b",
+              "isCover": false
+            }
+          },
+          {
+            "id": "t104",
+            "createdAt": 1653436800000,
+            "archivedAt": null,
+            "title": "Tusk board meeting",
+            "description": "Writing guidelines and plans",
+            "members": [
+              {
+                "_id": "u101",
+                "fullName": "Tal Ofer",
+                "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+              },
+              {
+                "_id": "u102",
+                "fullName": "Eran Avichzer",
+                "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              },
+              {
+                "_id": "u103",
+                "fullName": "Uri Gruda",
+                "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+              }
+            ],
+            "labelIds": [
+              "l103",
+              "l101"
+            ],
+            "dueDate": 1653868800000,
+            "byMember": {
+              "_id": "u103",
+              "userName": "Urigruda",
+              "fullName": "Uri Gruda",
+              "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+            },
+            "style": {
+              "bgColor": "#e6574c",
+              "isCover": true
+            }
+          }
+        ]
+      },
+      {
+        "id": "g102",
+        "title": "Development",
+        "archivedAt": null,
+        "tasks": [
+          {
+            "id": "t109",
+            "createdAt": 1653133011000,
+            "archivedAt": null,
+            "title": "Component building",
+            "description": "Setting components up to fit component tree",
+            "attachments": [
+              {
+                "id": "a102",
+                "createdAt": 1653183411000,
+                "fileUrl": "https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/content/cover_image_file/cover_image/687457/retina_1708x683_staging.toptal.net_javascript_emulating-react-jsx-in-vanilla-javascript-816eafe06505b888585d08474f2166e7.png"
+              }
+            ],
+            "members": [
+              {
+                "_id": "u101",
+                "fullName": "Tal Ofer",
+                "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+              },
+              {
+                "_id": "u103",
+                "fullName": "Uri Gruda",
+                "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+              }
+            ],
+            "labelIds": [
+              "l105",
+              "l102",
+              "l104"
+            ],
+            "dueDate": 1653696000000,
+            "byMember": {
+              "_id": "u102",
+              "username": "Eranavichzer",
+              "fullName": "Eran Avichzer",
+              "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+            },
+            "style": {}
+          },
+          {
+            "id": "t102",
+            "createdAt": 1653523200000,
+            "archivedAt": null,
+            "title": "Add Router and create routes",
+            "description": "",
+            "members": [
+              {
+                "_id": "u102",
+                "fullName": "Eran Avichzer",
+                "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              },
+              {
+                "_id": "u103",
+                "fullName": "Uri Gruda",
+                "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+              }
+            ],
+            "labelIds": [
+              "l101",
+              "l102"
+            ],
+            "byMember": {
+              "_id": "u103",
+              "userName": "Urigruda",
+              "fullName": "Uri Gruda",
+              "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+            },
+            "style": {
+              "bgColor": "\"#2579bd\"",
+              "isCover": true
+            }
+          },
+          {
+            "id": "t1022227",
+            "createdAt": 1653523200000,
+            "archivedAt": null,
+            "title": "npm Install",
+            "members": [
+              {
+                "_id": "u101",
+                "fullName": "Tal Ofer",
+                "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+              },
+              {
+                "_id": "u102",
+                "fullName": "Eran Avichzer",
+                "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              },
+              {
+                "_id": "u103",
+                "fullName": "Uri Gruda",
+                "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+              }
+            ],
+            "labelIds": [
+              "l103"
+            ],
+            "dueDate": 1654214400000,
+            "byMember": {
+              "_id": "u101",
+              "username": "Talofer",
+              "fullName": "Tal Ofer",
+              "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+            },
+            "style": {
+              "imgURL": "https://img.helpnetsecurity.com/wp-content/uploads/2021/11/17133051/npm-shield-1200-hns.jpg",
+              "isCover": false
+            },
+            "description": "npm i"
+          }
+        ]
+      },
       {
         "id": "g1032222",
         "title": "Style",
@@ -220,7 +524,7 @@ storageService.post(STORAGE_KEY,
               "_id": "u102",
               "username": "Eranavichzer",
               "fullName": "Eran Avichzer",
-              "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
             },
             "style": {
               "}": ""
@@ -236,11 +540,12 @@ storageService.post(STORAGE_KEY,
               {
                 "_id": "u102",
                 "fullName": "Eran Avichzer",
-                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+                "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
               },
               {
                 "_id": "u103",
-                "fullName": "Uri Gruda"
+                "fullName": "Uri Gruda",
+                "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
               }
             ],
             "labelIds": [
@@ -253,7 +558,7 @@ storageService.post(STORAGE_KEY,
               "_id": "u102",
               "username": "Eranavichzer",
               "fullName": "Eran Avichzer",
-              "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
             },
             "style": {
               "bgColor": "#c374df",
@@ -263,314 +568,15 @@ storageService.post(STORAGE_KEY,
         ]
       },
       {
-        "id": "g101",
-        "title": "Setup",
-        "archivedAt": null,
-        "tasks": [
-          {
-            "id": "t101",
-            "createdAt": 1653133011000,
-            "archivedAt": null,
-            "title": "Create a CLI template",
-            "description": "Setting the react up so we can begin working",
-            "checklists": [
-              {
-                "id": "c101",
-                "title": "CLI",
-                "todos": [
-                  {
-                    "id": "t515",
-                    "title": "create npx",
-                    "isDone": true
-                  },
-                  {
-                    "id": "t511",
-                    "title": "cleaning CLI up",
-                    "isDone": false
-                  }
-                ]
-              }
-            ],
-            "attachments": [
-              {
-                "id": "a101",
-                "createdAt": 1653183411000,
-                "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/React_Native_Logo.png/640px-React_Native_Logo.png"
-              }
-            ],
-            "memberIds": [
-              {
-                "_id": "u101",
-                "fullName": "Tal Ofer"
-              }
-            ],
-            "labelIds": [
-              "l101",
-              "l102"
-            ],
-            "dueDate": 1653696000000,
-            "byMember": {
-              "_id": "u102",
-              "username": "Eranavichzer",
-              "fullName": "Eran Avichzer",
-              "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
-            },
-            "style": {
-              "imgURL": "https://avatars.githubusercontent.com/u/6412038?s=280&v=4",
-              "isCover": true
-            }
-          },
-          {
-            "id": "t108",
-            "createdAt": 1653523200000,
-            "archivedAt": null,
-            "title": "Add Services",
-            "description": "Add util and board services",
-            "checklists": [
-              {
-                "id": "c102",
-                "title": "Services",
-                "todos": [
-                  {
-                    "id": "t518",
-                    "title": "util",
-                    "isDone": true
-                  },
-                  {
-                    "id": "t519",
-                    "title": "board",
-                    "isDone": false
-                  }
-                ]
-              }
-            ],
-            "members": [
-              {
-                "_id": "u102",
-                "fullName": "Eran Avichzer",
-                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
-              },
-              {
-                "_id": "u103",
-                "fullName": "Uri Gruda"
-              }
-            ],
-            "labelIds": [
-              "l105",
-              "l102",
-              "l104"
-            ],
-            "dueDate": 1654041600000,
-            "byMember": {
-              "_id": "u102",
-              "username": "Eranavichzer",
-              "fullName": "Eran Avichzer",
-              "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
-            },
-            "style": {}
-          },
-          {
-            "id": "t103",
-            "createdAt": 1653523200000,
-            "archivedAt": null,
-            "title": "Create git",
-            "description": "Add util and board services",
-            "members": [
-              {
-                "_id": "u101",
-                "fullName": "Tal Ofer",
-                "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
-              },
-              {
-                "_id": "u102",
-                "fullName": "Eran Avichzer",
-                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
-              },
-              {
-                "_id": "u103",
-                "fullName": "Uri Gruda"
-              }
-            ],
-            "labelIds": [
-              "l103"
-            ],
-            "dueDate": 1654214400000,
-            "byMember": {
-              "_id": "u101",
-              "username": "Talofer",
-              "fullName": "Tal Ofer",
-              "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
-            },
-            "style": {
-              "bgColor": "#eed62b",
-              "isCover": false
-            }
-          },
-          {
-            "id": "t104",
-            "createdAt": 1653436800000,
-            "archivedAt": null,
-            "title": "Tusk board meeting",
-            "description": "Writing guidelines and plans",
-            "members": [
-              {
-                "_id": "u101",
-                "fullName": "Tal Ofer",
-                "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
-              },
-              {
-                "_id": "u102",
-                "fullName": "Eran Avichzer",
-                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
-              },
-              {
-                "_id": "u103",
-                "fullName": "Uri Gruda"
-              }
-            ],
-            "labelIds": [
-              "l103",
-              "l101"
-            ],
-            "dueDate": 1653868800000,
-            "byMember": {
-              "_id": "u103",
-              "userName": "Urigruda",
-              "fullName": "Uri Gruda",
-              "imgUrl": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
-            },
-            "style": {
-              "bgColor": "#e6574c",
-              "isCover": true
-            }
-          }
-        ]
-      },
-      {
-        "id": "g102",
-        "title": "Development",
-        "archivedAt": null,
-        "tasks": [
-          {
-            "id": "t109",
-            "createdAt": 1653133011000,
-            "archivedAt": null,
-            "title": "Component building",
-            "description": "Setting components up to fit component tree",
-            "attachments": [
-              {
-                "id": "a102",
-                "createdAt": 1653183411000,
-                "fileUrl": "https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/content/cover_image_file/cover_image/687457/retina_1708x683_staging.toptal.net_javascript_emulating-react-jsx-in-vanilla-javascript-816eafe06505b888585d08474f2166e7.png"
-              }
-            ],
-            "members": [
-              {
-                "_id": "u101",
-                "fullName": "Tal Ofer",
-                "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
-              },
-              {
-                "_id": "u103",
-                "fullName": "Uri Gruda",
-                "imgUrl": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
-              }
-            ],
-            "labelIds": [
-              "l105",
-              "l102",
-              "l104"
-            ],
-            "dueDate": 1653696000000,
-            "byMember": {
-              "_id": "u102",
-              "username": "Eranavichzer",
-              "fullName": "Eran Avichzer",
-              "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
-            },
-            "style": {}
-          },
-          {
-            "id": "t102",
-            "createdAt": 1653523200000,
-            "archivedAt": null,
-            "title": "Add Router and create routes",
-            "description": "",
-            "members": [
-              {
-                "_id": "u102",
-                "fullName": "Eran Avichzer",
-                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
-              },
-              {
-                "_id": "u103",
-                "fullName": "Uri Gruda"
-              }
-            ],
-            "labelIds": [
-              "l101",
-              "l102"
-            ],
-            "byMember": {
-              "_id": "u103",
-              "userName": "Urigruda",
-              "fullName": "Uri Gruda",
-              "imgUrl": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
-            },
-            "style": {
-              "bgColor": "\"#2579bd\"",
-              "isCover": true
-            }
-          },
-          {
-            "id": "t1022227",
-            "createdAt": 1653523200000,
-            "archivedAt": null,
-            "title": "npm Install",
-            "members": [
-              {
-                "_id": "u101",
-                "fullName": "Tal Ofer",
-                "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
-              },
-              {
-                "_id": "u102",
-                "fullName": "Eran Avichzer",
-                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
-              },
-              {
-                "_id": "u103",
-                "fullName": "Uri Gruda"
-              }
-            ],
-            "labelIds": [
-              "l103"
-            ],
-            "dueDate": 1654214400000,
-            "byMember": {
-              "_id": "u101",
-              "username": "Talofer",
-              "fullName": "Tal Ofer",
-              "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
-            },
-            "style": {
-              "imgURL": "https://img.helpnetsecurity.com/wp-content/uploads/2021/11/17133051/npm-shield-1200-hns.jpg",
-              "isCover": false
-            },
-            "description": "npm i"
-          }
-        ]
-      },
-      {
         "id": "g103",
-        "title": "Some demo data",
+        "title": "Backend",
         "archivedAt": null,
         "tasks": [
           {
             "id": "t1109",
             "createdAt": 1643133011000,
             "archivedAt": null,
-            "title": "This is a task",
+            "title": "Setup server",
             "description": "Behold, a task!",
             "attachments": [
               {
@@ -583,12 +589,12 @@ storageService.post(STORAGE_KEY,
               {
                 "_id": "u101",
                 "fullName": "Tal Ofer",
-                "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+                "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
               },
               {
                 "_id": "u103",
                 "fullName": "Uri Gruda",
-                "imgUrl": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
+                "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
               }
             ],
             "labelIds": [
@@ -601,7 +607,7 @@ storageService.post(STORAGE_KEY,
               "_id": "u102",
               "username": "Eranavichzer",
               "fullName": "Eran Avichzer",
-              "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
             },
             "style": {}
           },
@@ -609,17 +615,18 @@ storageService.post(STORAGE_KEY,
             "id": "t10222",
             "createdAt": 1643523200000,
             "archivedAt": null,
-            "title": "This is another task",
-            "description": "There are two of them now",
+            "title": "Get MongoDB",
+            "description": "",
             "members": [
               {
                 "_id": "u102",
                 "fullName": "Eran Avichzer",
-                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+                "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
               },
               {
                 "_id": "u103",
-                "fullName": "Uri Gruda"
+                "fullName": "Uri Gruda",
+                "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
               }
             ],
             "labelIds": [
@@ -630,10 +637,10 @@ storageService.post(STORAGE_KEY,
               "_id": "u103",
               "userName": "Urigruda",
               "fullName": "Uri Gruda",
-              "imgUrl": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
+              "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
             },
             "style": {
-              "bgColor": "\"#2579bd\"",
+              "imgURL": "https://g.foolcdn.com/art/companylogos/square/mdb.png",
               "isCover": true
             }
           },
@@ -641,21 +648,22 @@ storageService.post(STORAGE_KEY,
             "id": "t107",
             "createdAt": 1653523200000,
             "archivedAt": null,
-            "title": "npm Install",
+            "title": "Create backend services",
             "members": [
               {
                 "_id": "u101",
                 "fullName": "Tal Ofer",
-                "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+                "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
               },
               {
                 "_id": "u102",
                 "fullName": "Eran Avichzer",
-                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+                "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
               },
               {
                 "_id": "u103",
-                "fullName": "Uri Gruda"
+                "fullName": "Uri Gruda",
+                "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
               }
             ],
             "labelIds": [
@@ -666,19 +674,19 @@ storageService.post(STORAGE_KEY,
               "_id": "u101",
               "username": "Talofer",
               "fullName": "Tal Ofer",
-              "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+              "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
             },
             "style": {
-              "imgURL": "https://img.helpnetsecurity.com/wp-content/uploads/2021/11/17133051/npm-shield-1200-hns.jpg",
+              "bgColor": "#63be53",
               "isCover": false
             },
-            "description": "npm i"
+            "description": ""
           }
         ]
       },
       {
         "id": "g10123",
-        "title": "Some more demo data",
+        "title": "Done",
         "archivedAt": null,
         "tasks": [
           {
@@ -763,10 +771,10 @@ storageService.post(STORAGE_KEY,
               "_id": "u102",
               "username": "Eranavichzer",
               "fullName": "Eran Avichzer",
-              "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
             },
             "style": {
-              "imgURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3IeeUtGb2ElOQTdNKsdxVUHNg0FigDXZcw&usqp=CAU",
+              "imgURL": "https://laughingsquid.com/wp-content/uploads/Hansoloprofilethumb.jpg",
               "isCover": true
             }
           },
@@ -774,8 +782,8 @@ storageService.post(STORAGE_KEY,
             "id": "t10fsdfssdf8",
             "createdAt": 1653523200000,
             "archivedAt": null,
-            "title": "Add Services",
-            "description": "Add util and board services",
+            "title": "Do a very urgent thing",
+            "description": "It is very urgent",
             "checklists": [
               {
                 "id": "c10dfdsd2",
@@ -798,11 +806,12 @@ storageService.post(STORAGE_KEY,
               {
                 "_id": "u102",
                 "fullName": "Eran Avichzer",
-                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+                "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
               },
               {
                 "_id": "u103",
-                "fullName": "Uri Gruda"
+                "fullName": "Uri Gruda",
+                "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
               }
             ],
             "labelIds": [
@@ -815,32 +824,33 @@ storageService.post(STORAGE_KEY,
               "_id": "u102",
               "username": "Eranavichzer",
               "fullName": "Eran Avichzer",
-              "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+              "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
             },
             "style": {
-              "bgImg": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3IeeUtGb2ElOQTdNKsdxVUHNg0FigDXZcw&usqp=CAU"
+              "bgImg": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fvector-art%2F2239403-right-here-right-now-neon-signs-style-text-vector&psig=AOvVaw39u7IYBKqDHWJjV-eGZjy-&ust=1653853913661000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCOjTm4r8gvgCFQAAAAAdAAAAABAN"
             }
           },
           {
             "id": "t1xs03",
             "createdAt": 1653523200000,
             "archivedAt": null,
-            "title": "Create git",
-            "description": "Add util and board services",
+            "title": "Mark something as done",
+            "description": "I know it seems hard but do try.",
             "members": [
               {
                 "_id": "u101",
                 "fullName": "Tal Ofer",
-                "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+                "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
               },
               {
                 "_id": "u102",
                 "fullName": "Eran Avichzer",
-                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+                "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
               },
               {
                 "_id": "u103",
-                "fullName": "Uri Gruda"
+                "fullName": "Uri Gruda",
+                "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
               }
             ],
             "labelIds": [
@@ -851,33 +861,31 @@ storageService.post(STORAGE_KEY,
               "_id": "u101",
               "username": "Talofer",
               "fullName": "Tal Ofer",
-              "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+              "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
             },
-            "style": {
-              "bgColor": "#eed62b",
-              "isCover": false
-            }
+            "style": {}
           },
           {
             "id": "t1czxczx04",
             "createdAt": 1653436800000,
             "archivedAt": null,
-            "title": "Tusk board meeting",
+            "title": "Design a logo",
             "description": "Writing guidelines and plans",
             "members": [
               {
                 "_id": "u101",
                 "fullName": "Tal Ofer",
-                "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+                "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
               },
               {
                 "_id": "u102",
                 "fullName": "Eran Avichzer",
-                "imgUrl": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+                "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
               },
               {
                 "_id": "u103",
-                "fullName": "Uri Gruda"
+                "fullName": "Uri Gruda",
+                "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
               }
             ],
             "labelIds": [
@@ -889,7 +897,7 @@ storageService.post(STORAGE_KEY,
               "_id": "u103",
               "userName": "Urigruda",
               "fullName": "Uri Gruda",
-              "imgUrl": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
+              "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
             },
             "style": {
               "bgColor": "#e6574c",
@@ -897,17 +905,23 @@ storageService.post(STORAGE_KEY,
             }
           }
         ]
+      },
+      {
+        "id": "g1012234",
+        "title": "Code helpers",
+        "archivedAt": null,
+        "tasks": []
       }
     ],
     "activities": [
       {
         "id": "a101",
-        "txt": "Add comment",
+        "txt": "Moved \"Create a logo\" to done",
         "createdAt": 1653214400000,
         "byMember": {
           "_id": "u101",
           "fullName": "Tal Ofer",
-          "imgUrl": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+          "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
         },
         "task": {
           "id": "t101",
