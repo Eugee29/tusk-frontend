@@ -30,6 +30,10 @@
             font-size: 12px;
             line-height: 10px
         };
+
+        .member {
+            @include task-member-button(tomato)
+         }
     }
 
     .lines-icon {

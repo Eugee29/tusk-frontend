@@ -13,19 +13,15 @@ import { MdOutlineSubject } from 'react-icons/md'
 import { IoMdCheckboxOutline } from 'react-icons/io'
 import { ImAttachment } from 'react-icons/im'
 
-export const TaskPreview = ({ task, groupId, index }) => {
+export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
   const navigate = useNavigate()
 
-  const [isOpen, setIsOpen] = useState(false)
 
   const onOpenDetails = (ev) => {
     ev.stopPropagation()
     navigate(`${groupId}/${task.id}`)
   }
 
-  const toggleLabels = () => {
-     setIsOpen(!isOpen)
-  }
 
   const getTaskStyle = () => {
     if (task.style) {
@@ -62,9 +58,40 @@ export const TaskPreview = ({ task, groupId, index }) => {
     return activeCount
   }
 
+  const initials = (member) => ([...member.fullName])
+
   const getDoneTodos = (checklist) => {
     let doneTodos = checklist.todos.filter(todo => (todo.isDone))
     return doneTodos.length
+  }
+
+  const getMemberIcon = (member) => {
+    // let icon
+    // let className
+
+    // (function () {
+    //   if (member.imgUrl) {
+      
+    //     icon = `<img src={${member.imgUrl}} alt="..." />`
+  
+    //   } else {
+        
+    //     icon = `${initials(member)[0]}${initials(member)[1]}`
+    //   }
+     
+    //   return 
+    // })();
+
+    // if (member.imgUrl) {
+      
+    //   className = 'member'
+
+    // } else {
+      
+    //   className = 'member'
+    // }
+    // // console.log(icon)
+    // return <a key={member._id} className={className}> {icon} </a>
   }
 
   return (
@@ -76,6 +103,7 @@ export const TaskPreview = ({ task, groupId, index }) => {
             <div className='task-title-container'>
               <h2 className='task-title'> {task.title} </h2>
             </div>
+
             <div className='task-icon-container'>
               {task.description && (!task.style.bgColor) && (!task.style.imgURL)
                 && <MdOutlineSubject />}
@@ -83,6 +111,8 @@ export const TaskPreview = ({ task, groupId, index }) => {
                 && <React.Fragment> <IoMdCheckboxOutline /> <span> {getChecklistLength()} </span> </React.Fragment>}
               {task.attachments && task.attachments.length && (!task.style.bgColor) && (!task.style.imgURL)
                 && <React.Fragment> <ImAttachment /> <span> {task.attachments.length} </span> </React.Fragment>}
+              {task.members && task.members.length && (!task.style.bgColor) && (!task.style.imgURL)
+                && task.members.map((member) => { return getMemberIcon(member) })}
             </div>
 
             <button className='edit-btn'> <RiPencilLine className='btn-icon' /> </button>
