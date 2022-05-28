@@ -2,7 +2,6 @@
 import { Draggable } from 'react-beautiful-dnd'
 
 import React from 'react'
-import { useState } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -50,49 +49,16 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
 
   const getChecklistLength = () => {
     const todosLength = task.checklists.reduce((acc1, checklist) => acc1 += checklist.todos.length, 0)
-
     const doneLength = task.checklists.reduce((acc2, checklist) => acc2 += getDoneTodos(checklist), 0)
-
     const activeCount = doneLength + "/" + todosLength
-
     return activeCount
   }
-
-  const initials = (member) => ([...member.fullName])
 
   const getDoneTodos = (checklist) => {
     let doneTodos = checklist.todos.filter(todo => (todo.isDone))
     return doneTodos.length
   }
 
-  const getMemberIcon = (member) => {
-    // let icon
-    // let className
-
-    // (function () {
-    //   if (member.imgUrl) {
-      
-    //     icon = `<img src={${member.imgUrl}} alt="..." />`
-  
-    //   } else {
-        
-    //     icon = `${initials(member)[0]}${initials(member)[1]}`
-    //   }
-     
-    //   return 
-    // })();
-
-    // if (member.imgUrl) {
-      
-    //   className = 'member'
-
-    // } else {
-      
-    //   className = 'member'
-    // }
-    // // console.log(icon)
-    // return <a key={member._id} className={className}> {icon} </a>
-  }
 
   return (
     <Draggable draggableId={task.id} index={index} type='TASK' >
@@ -105,14 +71,25 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
             </div>
 
             <div className='task-icon-container'>
-              {task.description && (!task.style.bgColor) && (!task.style.imgURL)
-                && <MdOutlineSubject />}
-              {task.checklists && task.checklists.length && (!task.style.bgColor) && (!task.style.imgURL)
-                && <React.Fragment> <IoMdCheckboxOutline /> <span> {getChecklistLength()} </span> </React.Fragment>}
-              {task.attachments && task.attachments.length && (!task.style.bgColor) && (!task.style.imgURL)
-                && <React.Fragment> <ImAttachment /> <span> {task.attachments.length} </span> </React.Fragment>}
+
+              <div className='icon-container'>
+                {task.description && (!task.style.bgColor) && (!task.style.imgURL)
+                  && <MdOutlineSubject />}
+                {task.checklists && task.checklists.length && (!task.style.bgColor) && (!task.style.imgURL)
+                  && <React.Fragment> <IoMdCheckboxOutline /> <span> {getChecklistLength()} </span> </React.Fragment>}
+                {task.attachments && task.attachments.length && (!task.style.bgColor) && (!task.style.imgURL)
+                  && <React.Fragment> <ImAttachment /> <span> {task.attachments.length} </span> </React.Fragment>}
+                
+                {task.dueDate && (!task.style.bgColor) && (!task.style.imgURL)
+                  && <React.Fragment> 
+                      {/* //TIME// */}
+                    </React.Fragment>}
+              </div>
+
               {task.members && task.members.length && (!task.style.bgColor) && (!task.style.imgURL)
-                && task.members.map((member) => { return getMemberIcon(member) })}
+                && <div className='member-img-container'>
+                  {task.members.map((member) => <a key={member._id} className="member-img"> <img src={member.imgUrl} alt="" /> </a>)}
+                </div>}
             </div>
 
             <button className='edit-btn'> <RiPencilLine className='btn-icon' /> </button>

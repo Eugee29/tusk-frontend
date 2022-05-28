@@ -9,9 +9,16 @@ export const AppHeader = () => {
   if (pathname === '/login' || pathname === '/signup') return
 
   const isHome = pathname === '/'
+  const isBoard = (pathname.includes('/board'))
+
+  const getClassname = () => {
+      if (isHome) return 'home'
+      if (isBoard) return 'board'
+      else return 'general'
+  }
 
   return (
-    <header className={`app-header ${isHome ? 'home' : 'general'}`} >
+    <header className={`app-header ${getClassname()}`} >
       <nav className='link-container'>
         <div className='logo-container'>
           <Link to='/'>

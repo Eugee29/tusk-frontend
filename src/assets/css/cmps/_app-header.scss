@@ -17,14 +17,70 @@
 
   &.general {
     height: rem(44px);
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 10;
-
-    backdrop-filter: blur(6px);
-    background-color: rgba(0,0,0,.45);
+    background-color: $brand-clr1;
     padding: rem(6px) rem(4px);
+
+    a {
+      text-decoration: none;
+      color: $font-clr1;
+    }
+
+
+    .link-container {
+      display: flex;
+      height: 100%;
+      align-items: center;
+
+      a {
+        font-size: rem(14px);
+        height: 100%;
+        border-radius: 3px;
+        padding: rem(6px) rem(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background-color .085s;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.325);
+        }
+      }
+
+      .logo-container {
+        width: rem(87px);
+
+        &.a {
+          padding: 0 rem(6px);
+        }
+      }
+    }
+
+    .user-img-container {
+      height: 100%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background-color: orange;
+    }
+  }
+
+  &.board {
+    height: rem(44px);
+    background-color: $brand-clr1;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    padding: rem(6px) rem(4px);
+    
+    
+    // margin-top: 45px;
+    // display: flex;
+    // height: 44px;
+    // justify-content: space-between;
+    // padding: 6px 10px;
+    // position: absolute;
+    // top: 0;
+    // width: 100%;
+    // z-index: 10;
+
 
     a {
       text-decoration: none;
@@ -102,7 +158,7 @@
 
       .login {
         background: none;
-        color: $brand-clr5 ;
+        color: $brand-clr5;
         width: rem(67px);
         font-family: source-sans-pro-regular;
 

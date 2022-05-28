@@ -4,25 +4,25 @@
     }
 
     20% {
-        width: 77px
+        width: 69px
     }
 
     70% {
-        width: 77px;
-        height: 20px;
+        width: 69px;
+        height: 16px;
     }
 
     100% {
-        width: 77px;
-        height: 20px;
+        width: 69px;
+        height: 16px;
         color: #ffff
     }
 }
 
 @keyframes close {
     0% {
-        width: 77px;
-        height: 20px;
+        width: 69px;
+        height: 16px;
         color: #ffff
     }
 
@@ -58,6 +58,7 @@
         border-radius: 4px;
         cursor: pointer;
         color: transparent;
+        line-height: 16px;
         text-align: center;
     }
 

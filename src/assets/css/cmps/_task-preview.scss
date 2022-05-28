@@ -24,16 +24,52 @@
     .task-icon-container {
         display: flex;
         align-items: center;
+        justify-content: space-between;
+
+        .icon-container {
+            display: flex;
+        align-items: center;
         gap: 2px;
+        }
 
         span {
             font-size: 12px;
             line-height: 10px
         };
 
-        .member {
-            @include task-member-button(tomato)
-         }
+        .member-img-container {
+
+            align-self: flex-end;
+
+            .member {
+                @include task-member-button(tomato)
+             }
+    
+             .member-img {
+            
+                img {
+                cursor: pointer;
+                float: left;
+                border-radius: 50%;
+                text-transform: uppercase;
+                width: 32px;
+                height: 32px;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+                object-fit: cover;
+            }
+             
+                span {
+                   line-height: 30px;
+                }
+             
+                &:hover {
+                   opacity: 0.8;
+                }
+             }
+        }
     }
 
     .lines-icon {
