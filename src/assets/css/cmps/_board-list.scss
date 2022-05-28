@@ -7,6 +7,7 @@
     align-items: center;
     width: 100%;
     gap: 11px;
+    margin-top: 40px ;
 
     .board-section-header-icon {
         img {
@@ -32,10 +33,10 @@
     flex-wrap: wrap;
     justify-content: flex-start;
 
-    
-    @media (max-width: 580px) {
-        width: 100px;
-    }
+
+    // @media (max-width: 430px) {
+    //     flex-wrap: none;
+    // }
 
     .board-tile.mod-add {
         background-color: #091e420a;

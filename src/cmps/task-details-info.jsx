@@ -1,11 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { connect, useSelector } from 'react-redux'
 
+import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
+
 function _TaskDetailsInfo({ task }) {
-   console.log('TaskDetailsInfo', task.dueDate);
    //memberIds, labelIds, dueDate
 
    const { board } = useSelector((storeState) => storeState.boardModule)
+
+   const [isCompleteDate, setIsCompleteDate] = useState(false)
 
    const initials = (member) => ([...member.fullName])
 
@@ -13,28 +16,35 @@ function _TaskDetailsInfo({ task }) {
       onLabels()
    }, [])
 
+   const onToggleComplete = (value, ev) => {
+      // ev.preventDefault()
+      // ev.stopPropagation()
+      setIsCompleteDate(value)
+
+   }
+
    const onLabels = (label) => { return board.labels.filter(boardLabel => boardLabel.id === label)[0] }
 
    const month = new Intl.DateTimeFormat('en', { month: 'short' })
    const day = new Intl.DateTimeFormat('en', { day: '2-digit' })
-   const time = new Intl.DateTimeFormat('he', { hour: 'numeric', minute: 'numeric' });
+   const time = new Intl.DateTimeFormat('he', { hour: 'numeric', minute: 'numeric' })
    const displayDate = `${day.format(task.dueDate)} ${month.format(task.dueDate)} at ${time.format(task.dueDate)}`
-   const now = new Date();
+   const now = new Date()
    const statusDate = task.dueDate > now.setHours(23, 59, 59, 59) ? '' :
       (task.dueDate <= now.setHours(23, 59, 59, 59) && task.dueDate >= now ? 'duesoon' : 'overdue')
 
+   // console.log('statusDate', statusDate)
+   // console.log('task.dueDate', task.dueDate)
+   // console.log('statusDatess', Date.now())
+   // console.log('statusDatess', now.setHours(23, 59, 59, 59))
 
-   console.log('statusDate', statusDate);
-   console.log('task.dueDate', task.dueDate);
-   console.log('statusDatess', Date.now());
-   console.log('statusDatess', now.setHours(23, 59, 59, 59));
    return (
       <section className="task-details-info" >
 
          {/* Members */}
          <div className="task-card-info" >
             <h3 className="task-member-title">Members</h3>
-            {task.memberIds.map((member, idx) =>
+            {task.memberIds?.map((member, idx) =>
                <a key={member._id} className="member">{`${initials(member)[0]}${initials(member)[1]}`}<span ></span></a>)}
             <a className="members-add-button round "><span >+</span></a>
          </div>
@@ -53,9 +63,13 @@ function _TaskDetailsInfo({ task }) {
 
             <div className="date-container">
 
-               <a className="date-complete-button" href="#" role="button">
-                  <span className="">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="transparent" viewBox="-3 -4 16 16"><path d="M1.49 3.215a.667.667 0 0 0-.98.903l2.408 2.613c.358.351.892.351 1.223.02l.243-.239a1689.645 1689.645 0 0 0 2.625-2.589l.027-.026a328.23 328.23 0 0 0 2.439-2.429.667.667 0 1 0-.95-.936c-.469.476-1.314 1.316-2.426 2.417l-.027.026a1368.126 1368.126 0 0 1-2.517 2.482L1.49 3.215z"/></svg></span></a>
+               <div className="date-complete-button">
+                  {isCompleteDate
+                     ? <ImCheckboxChecked onClick={() => onToggleComplete(false)} className='checkbox checked' />
+                     : <ImCheckboxUnchecked onClick={() => onToggleComplete(true)} className='checkbox unchecked' />
+                  }
+               </div>
+
                <div className="date">
                   <button className="button-date" type="button">
                      <span className="dispaly-date">{displayDate}</span>

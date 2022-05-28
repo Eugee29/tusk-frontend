@@ -1,0 +1,66 @@
+.task-details-description {
+   clear: both;
+   margin-bottom: 24px;
+   position: relative;
+
+   .description-title-container {
+      @include task-category()
+   }
+
+   .description-body-container {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      margin: 0 0 8px;
+      color: #172b4d;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+
+      a {
+         background-color: #091e420a;
+         border: none;
+         border-radius: 3px;
+         box-shadow: none;
+         display: block;
+         min-height: 56px;
+         padding: 8px 12px;
+         text-decoration: none;
+         color: #172b4d;
+         cursor: pointer;
+         font-size: 14px;
+         font-weight: 400;
+         line-height: 20px;
+         margin-left: 40px;
+
+         &:hover {
+            background-color: #091e4214;
+            border: none;
+            box-shadow: none;
+            color: #091e42;
+         }
+      }
+
+      textarea {
+         @include task-textarea();
+      }
+
+      .btn-container {
+         clear: both;
+         display: flex;
+         flex-direction: row;
+         margin-top: 8px;
+         margin-left: 40px;
+         
+         input {
+            @include task-save();
+            float: left;
+            margin: 0 4px 0 0;
+         }
+
+         .cancel {
+            cursor: pointer;
+         }
+      }
+   }
+
+}

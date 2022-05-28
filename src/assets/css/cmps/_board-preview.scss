@@ -5,6 +5,17 @@
    width: 193px;
    cursor: pointer;
 
+   @media (max-width: 760px) {
+      width: 160px;
+   }
+   @media (max-width: 655px) {
+      width: 140px;
+   }
+   @media (max-width: 605px) {
+      width: 193px;
+   }
+
+
    .board-tile {
       background-color: $brand-clr11;
       background-position: 50%;

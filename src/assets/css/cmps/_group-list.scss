@@ -1,7 +1,8 @@
 .group-list {
-    display: flex;
+  display: flex;
+  height: calc(100% - 94px);
 
-    .group-title {
-        padding: 10px;
-    }
+  .group-title {
+    padding: 10px;
+  }
 }
