@@ -86,12 +86,15 @@
       height: 100%;
       width: 512px;
       border-radius: 6rem;
+      transition: .14s ease-in;
 
       &.bg-blue {
         background-color: #5ba4cf !important;
       }
 
-
+      &.bg-green {
+        background-color: #61bd4f !important;
+      }
     }
   }
 

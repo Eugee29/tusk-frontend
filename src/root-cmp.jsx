@@ -13,7 +13,7 @@ import { TaskDetails } from './pages/task-details'
 
 export function RootCmp() {
   return (
-    <div>
+    <div >
       <AppHeader />
       <main className='main-layout'>
         <Routes>

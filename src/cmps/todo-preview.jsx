@@ -1,28 +1,22 @@
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
 import { BsThreeDots } from 'react-icons/bs'
-// import { updateBoard } from '../store/board/board.action'
+import { VscClose } from 'react-icons/vsc'
+import { useRef, useState } from 'react'
 
-import { useState } from 'react'
-// import { useDispatch } from 'react-redux'
-// import { useSelector } from 'react-redux'
+export const TodoPreview = ({ todo, onUpdateTodo }) => {
 
-export const TodoPreview = (props) => {
+  const [isEdit, setIsEdit] = useState(false)
 
-  const [todo, setTodo] = useState(props.todo)
-  // const dispatch = useDispatch()
-  // const boardModule = useSelector(({ boardModule }) => boardModule)
-  // const [board, setBoard] = useState(boardModule.board)
-
-
-
-  // NEED TO SAVE TO DB
   const onCheck = () => {
     const newTodo = { ...todo, isDone: !todo.isDone }
-    setTodo(newTodo)
-
-
-
+    onUpdateTodo(newTodo)
   }
+
+  const handleChange = () => {
+    console.log('TODO')
+  }
+
+  const textRef = useRef()
 
   return (
     <li className='todo-preview'>
@@ -34,9 +28,17 @@ export const TodoPreview = (props) => {
         }
       </div>
 
-      <div className='title-container'>
-        <textarea className={`todo-title ${todo.isDone && 'crossed'}`} value={todo.title}></textarea>
-        <div className='menu-container'><BsThreeDots className='menu' /></div>
+      <div className={`title-container ${isEdit ? 'edit' : ''}`} onClick={() => textRef.current.focus()}>
+        <textarea className={`todo-title ${todo.isDone ? 'crossed' : ''}`} value={todo.title} onChange={handleChange} onClick={(e) => e.target.select()} rows="1" onFocus={() => setIsEdit(true)} onBlur={() => setIsEdit(false)} ref={textRef} ></textarea>
+        <div className='controls'>
+          <div className='btn-container' onMouseDown={e => e.preventDefault()}>
+            <button className='save'>Save</button>
+            <button className='close-container'><VscClose className='close' /></button>
+          </div>
+          <div className='menu-container' onMouseDown={e => e.preventDefault()}>
+            <BsThreeDots className='menu' />
+          </div>
+        </div>
       </div>
     </li >
   )

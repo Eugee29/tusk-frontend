@@ -23,7 +23,7 @@ export const GroupPreview = ({ group, index, toggleLabels, isOpen }) => {
             <button className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
           </div>
 
-          <TaskList key={group.id} groupId={group.id} tasks={group.tasks} toggleLabels={toggleLabels} isOpen={isOpen}/>
+          <TaskList key={group.id} groupId={group.id} tasks={group.tasks} toggleLabels={toggleLabels} isOpen={isOpen} />
 
           <div className="add-btn-container">
             <button className="add-btn"> <AiOutlinePlus /> Add a card</button>

@@ -23,6 +23,7 @@ const _TaskDetails = () => {
 
   const [task, setTask] = useState(null)
   const [isCloseEdit, setIsCloseEdit] = useState(true)
+  const params = useParams()
   const board = useSelector(({ boardModule }) => boardModule.board)
 
   const dispatch = useDispatch()
@@ -32,20 +33,23 @@ const _TaskDetails = () => {
   const { groupId } = useParams()
   const { taskId } = useParams()
 
-  console.log('board:', board)
 
-  const onUpdateTask = (taskToUpdate) => {
-    const { tasks } = board
+  const onUpdateTask = async (taskToUpdate) => {
+    const group = board.groups.find(group => group.id === params.groupId)
+    const { tasks } = group
     const updatedTasks = tasks.map(task => task.id === taskToUpdate.id ? taskToUpdate : task)
-    dispatch(updateBoard({ ...board, tasks: updatedTasks }))
+    const updatedGroup = { ...group, tasks: updatedTasks }
+    const updatedGroups = board.groups.map(group => group.id === updatedGroup.id ? updatedGroup : group)
+    const updatedBoard = { ...board, groups: updatedGroups }
+    // setTask(taskToUpdate) ENABLE WHEN CONNECTING TO BACKEND FOR BETTER USER EXPERIENCE
+    await dispatch(updateBoard(updatedBoard))
+    loadTaskAsync()
   }
 
   useEffect(() => {
     if (!task) {
       loadTaskAsync()
-      console.log('loadTaskAsync')
     }
-    // setIsCloseEdit(false)
   }, [isCloseEdit])
 
   useEffect(() => {
@@ -53,9 +57,8 @@ const _TaskDetails = () => {
   }, [])
 
   const loadTaskAsync = async () => {
-    const taskFromSrevice = await dispatch(loadTask({ boardId, groupId, taskId }))
-    console.log(taskFromSrevice)
-    setTask(taskFromSrevice)
+    const taskFromService = await dispatch(loadTask({ boardId, groupId, taskId }))
+    setTask(taskFromService)
   }
 
   const onGoBack = () => {
@@ -81,7 +84,7 @@ const _TaskDetails = () => {
           {task && <TaskDetailsInfo task={task} />}
           {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
           {task?.attachments && <TaskDetailsAttachments task={task} />}
-          {task.checklists?.length && <ChecklistList checklists={task.checklists} />}
+          {task.checklists?.length && <ChecklistList task={task} onUpdateTask={onUpdateTask} />}
           {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
         </div>
 

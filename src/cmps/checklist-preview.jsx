@@ -1,19 +1,9 @@
 import { FiCheckSquare } from 'react-icons/fi'
 import { ProgressBar } from 'react-bootstrap'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { updateBoard } from '../store/board/board.action'
 import { TodoList } from './todo-list'
 
-export const ChecklistPreview = ({ checklist }) => {
-
-  // const dispatch = useDispatch()
-  // const board = useSelector(({ boardModule }) => boardModule.board)
-
-  // const onUpdateBoard = () => {
-  //   console.log(board)
-  //   dispatch(updateBoard({ ...board, }))
-  // }
+export const ChecklistPreview = ({ checklist, onUpdateChecklist }) => {
 
   const numOfDone = checklist.todos.reduce((count, todo) => todo.isDone ? count + 1 : count, 0)
   const progress = (numOfDone / checklist.todos.length) * 100
@@ -28,7 +18,7 @@ export const ChecklistPreview = ({ checklist }) => {
           <h3 className='title'>{checklist.title}</h3>
           <div className='header-btn-container'>
             <div className='inner-btn-container'>
-              <button>Hide checked items</button>
+              {progress != 0 && <button>Hide checked items</button>}
               <button>Delete</button>
             </div>
           </div>
@@ -37,9 +27,9 @@ export const ChecklistPreview = ({ checklist }) => {
 
       <div className='progress-bar-container'>
         <h4 className='progress'>{progress}%</h4>
-        <ProgressBar now={progress} variant='blue' className='progress-bar'></ProgressBar>
+        <ProgressBar now={progress} variant={progress === 100 ? 'green' : 'blue'} className='progress-bar'></ProgressBar>
       </div>
-      {checklist.todos?.length && <TodoList todos={checklist.todos} />}
+      {checklist.todos?.length && <TodoList checklist={checklist} onUpdateChecklist={onUpdateChecklist} />}
       <div className='btn-container'>
         <button>Add an item</button>
       </div>

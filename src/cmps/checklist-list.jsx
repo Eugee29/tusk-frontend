@@ -9,14 +9,14 @@ export const ChecklistList = ({ task, onUpdateTask }) => {
   // const [board, setBoard] = useState(boardFromStore)
 
   // console.log(board)
-  const onUpdateChecklists = (checklistsToUpdate) => {
-
-    onUpdateTask()
+  const onUpdateChecklist = (checklistToUpdate) => {
+    const updatedChecklists = checklists.map(checklist => checklist.id === checklistToUpdate.id ? checklistToUpdate : checklist)
+    onUpdateTask({ ...task, checklists: updatedChecklists })
   }
 
   return (
     <ul className='checklist-list'>
-      {checklists.map(checklist => <ChecklistPreview key={checklist.id} checklist={checklist} />)}
+      {checklists.map(checklist => <ChecklistPreview key={checklist.id} checklist={checklist} onUpdateChecklist={onUpdateChecklist} />)}
     </ul>
   )
 }
