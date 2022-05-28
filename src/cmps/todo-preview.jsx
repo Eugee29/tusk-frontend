@@ -1,4 +1,5 @@
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
+import { BsThreeDots } from 'react-icons/bs'
 
 export const TodoPreview = ({ todo }) => {
 
@@ -9,7 +10,10 @@ export const TodoPreview = ({ todo }) => {
         :
         <ImCheckboxUnchecked className='checkbox unchecked' />
       }
-      <h3 className={`todo-title ${todo.isDone && 'crossed'}`}>{todo.title}</h3>
-    </li>
+      <div className='title-container'>
+        <textarea className={`todo-title ${todo.isDone && 'crossed'}`} value={todo.title}></textarea>
+        <div className='menu-container'><BsThreeDots className='menu' /></div>
+      </div>
+    </li >
   )
 }

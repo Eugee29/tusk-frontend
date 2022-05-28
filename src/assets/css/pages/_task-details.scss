@@ -1,17 +1,17 @@
 .task-details {
   display: flex;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.578);
-    align-items: flex-start;
-    color: #172b4d;
-    padding: 0 0.5rem;
-    justify-content: center;
-    left: 0;
-    overflow-y: auto;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 20;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.578);
+  align-items: flex-start;
+  color: #172b4d;
+  padding: 0 0.5rem;
+  justify-content: center;
+  left: 0;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 20;
 
   .task-details-container {
     background-color: #f4f5f7;
@@ -37,6 +37,7 @@
       right: 5px;
       top: 5px;
       transition: background-color .2s;
+      z-index: 300;
 
       .close-icon {
         width: 50%;
