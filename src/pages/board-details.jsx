@@ -22,7 +22,7 @@ export const BoardDetails = () => {
 
   useEffect(() => {
     loadBoard()
-    
+
   }, [])
 
   const loadBoard = async () => {

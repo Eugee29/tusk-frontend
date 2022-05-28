@@ -14,11 +14,17 @@ import { TaskDetailsAttachments } from '../cmps/task-details-attachments.jsx'
 import { TaskDetailsActivity } from '../cmps/task-details-activity.jsx'
 import { TaskDetailsSideTask } from '../cmps/task-details-side-task.jsx'
 import { ChecklistList } from '../cmps/checklist-list.jsx'
+import { boardService } from '../services/board.service.js'
+import { useSelector } from 'react-redux'
+
+import { updateBoard } from '../store/board/board.action.js'
 
 const _TaskDetails = () => {
 
   const [task, setTask] = useState(null)
   const [isCloseEdit, setIsCloseEdit] = useState(true)
+  const params = useParams()
+  const board = useSelector(({ boardModule }) => boardModule.board)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -27,15 +33,23 @@ const _TaskDetails = () => {
   const { groupId } = useParams()
   const { taskId } = useParams()
 
-  console.log('task:', task)
 
+  const onUpdateTask = async (taskToUpdate) => {
+    const group = board.groups.find(group => group.id === params.groupId)
+    const { tasks } = group
+    const updatedTasks = tasks.map(task => task.id === taskToUpdate.id ? taskToUpdate : task)
+    const updatedGroup = { ...group, tasks: updatedTasks }
+    const updatedGroups = board.groups.map(group => group.id === updatedGroup.id ? updatedGroup : group)
+    const updatedBoard = { ...board, groups: updatedGroups }
+    // setTask(taskToUpdate) ENABLE WHEN CONNECTING TO BACKEND FOR BETTER USER EXPERIENCE
+    await dispatch(updateBoard(updatedBoard))
+    loadTaskAsync()
+  }
 
   useEffect(() => {
     if (!task) {
       loadTaskAsync()
-      console.log('loadTaskAsync')
     }
-    // setIsCloseEdit(false)
   }, [isCloseEdit])
 
   useEffect(() => {
@@ -43,9 +57,8 @@ const _TaskDetails = () => {
   }, [])
 
   const loadTaskAsync = async () => {
-    const taskFromSrevice = await dispatch(loadTask({ boardId, groupId, taskId }))
-    console.log(taskFromSrevice)
-    setTask(taskFromSrevice)
+    const taskFromService = await dispatch(loadTask({ boardId, groupId, taskId }))
+    setTask(taskFromService)
   }
 
   const onGoBack = () => {
@@ -64,15 +77,14 @@ const _TaskDetails = () => {
       <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
 
       <div>
-
-        {task?.style && <TaskDetailsCover cover={task.style} />}
+        {task?.style && <TaskDetailsCover task={task} />}
         {task?.title && <TaskDetailsTitle title={task.title} />}
 
         <div className="main-task">
           {task && <TaskDetailsInfo task={task} />}
           {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
           {task?.attachments && <TaskDetailsAttachments task={task} />}
-          {task.checklists?.length && <ChecklistList checklists={task.checklists} />}
+          {task.checklists?.length && <ChecklistList task={task} onUpdateTask={onUpdateTask} />}
           {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
         </div>
 

@@ -1,8 +1,6 @@
 .todo-preview {
-  height: 36px;
   border-radius: 3px;
   padding-left: 40px;
-  cursor: pointer;
   position: relative;
 
   &:hover {
@@ -16,11 +14,9 @@
     width: 1rem;
     height: 1rem;
     margin: 6px;
-
+    cursor: pointer;
 
     .checkbox {
-      transition: .2s;
-
       &.unchecked {
         color: $clr5;
         background-color: $clr4;
@@ -37,19 +33,79 @@
           color: lighten($brand-clr2, 12%);
         }
       }
-
     }
   }
 
   .title-container {
+    min-height: 36px;
     display: flex;
     align-items: center;
     padding: 6px 0;
     width: 100%;
-    height: 100%;
+    cursor: pointer;
+
+    &.edit {
+      .controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 32px;
+        margin-top: 8px;
+
+        .menu-container {
+          opacity: initial;
+          padding: 8px 10px;
+          width: 36px;
+
+          .menu {
+            width: 16px;
+            height: 16px;
+          }
+        }
+
+        .btn-container {
+          display: flex;
+          align-items: center;
+          margin: 0;
+          height: 100%;
+
+          .save {
+            background-color: $brand-clr2;
+            color: $font-clr1;
+            margin: 0;
+            margin-inline-end: 4px;
+            transition: background-color .085s;
+
+            &:hover {
+              background-color: $brand-clr1;
+            }
+          }
+
+          .close-container {
+            height: 100%;
+            margin: 0;
+            padding: 2px;
+            background: none;
+
+            .close {
+              width: 100%;
+              height: 100%;
+              color: $clr10;
+
+              &:hover {
+                color: $brand-clr4;
+              }
+            }
+          }
+        }
+      }
+    }
 
     .todo-title {
-      height: 20px;
+      width: 100%;
+      min-height: 20px;
+      height: auto;
       padding: 0;
       flex-grow: 1;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -60,9 +116,11 @@
       resize: none;
       cursor: pointer;
       color: $brand-clr4;
-
+      overflow: hidden;
+      overflow-wrap: break-word;
 
       &:focus {
+        margin-top: -6px;
         padding: 8px 12px;
         border-radius: 3px;
         background-color: $clr8;
@@ -72,7 +130,7 @@
         overflow: hidden;
         overflow-wrap: break-word;
         min-height: rem(56px);
-
+        margin-bottom: 4px;
       }
 
       &.crossed {
@@ -82,10 +140,9 @@
     }
 
     .menu-container {
-      display: none;
-      height: 24px;
-      width: 24px;
-      padding: 4px;
+      opacity: 0;
+      height: 100%;
+      width: 20px;
       border-radius: 3px;
 
       &:hover {
@@ -99,12 +156,22 @@
       }
     }
 
+    .btn-container {
+      display: none;
+    }
 
+    &.edit {
+      flex-direction: column;
+
+      .btn-container {
+        display: initial;
+      }
+    }
   }
 
   &:hover {
     .menu-container {
-      display: initial;
+      opacity: initial;
     }
   }
 }

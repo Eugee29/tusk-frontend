@@ -15,7 +15,7 @@
 
     .icon-container {
       position: absolute;
-      left: -40px;
+      left: -47px;
       width: 2rem;
       height: 2rem;
       padding: 7px;
@@ -86,12 +86,15 @@
       height: 100%;
       width: 512px;
       border-radius: 6rem;
+      transition: .14s ease-in;
 
       &.bg-blue {
         background-color: #5ba4cf !important;
       }
 
-
+      &.bg-green {
+        background-color: #61bd4f !important;
+      }
     }
   }
 

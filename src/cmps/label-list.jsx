@@ -8,8 +8,8 @@ export function LabelList({ labelIds, toggleLabels, isOpen }) {
 
   const { boardId } = useParams()
 
-    const [boardLabels, setBoardLabels] = useState()
-    const [taskLabels, setTaskLabels] = useState(labelIds)
+  const [boardLabels, setBoardLabels] = useState()
+  const [taskLabels, setTaskLabels] = useState(labelIds)
 
   useEffect(() => {
     ; (async () => {
