@@ -17,7 +17,13 @@
 
   &.general {
     height: rem(44px);
-    background-color: $brand-clr1;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+
+    backdrop-filter: blur(6px);
+    background-color: rgba(0,0,0,.45);
     padding: rem(6px) rem(4px);
 
     a {
