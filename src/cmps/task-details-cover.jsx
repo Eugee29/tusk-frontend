@@ -1,19 +1,29 @@
-import React from "react"
+import React, { useEffect, useState, useRef } from 'react'
 
-export function TaskDetailsCover({ cover }) {
+import { Modal } from "./modal"
 
-  return (
-    <header>
+export function TaskDetailsCover({ task }) {
 
-      { cover?.bgColor && <div className="task-details-cover color" style={{ backgroundColor: `${cover.bgColor}` }}>
-        <button>Cover</button>
-      </div>}
+   const [isOpen, setIsOpen] = useState(false)
 
-      { cover?.imgURL && <div className="task-details-cover img " style={{ backgroundImage: `url('${cover.imgURL}')` }}>
-        <button>Cover</button>
-      </div>}
-      
-    </header>
+   const onOpenModal = () => {
+      setIsOpen(!isOpen)
+   }
 
-  )
+   return (
+      <header>
+
+         {task.style?.bgColor && <div className="task-details-cover color" style={{ backgroundColor: `${task.style.bgColor}` }}>
+            <button onClick={onOpenModal}>Cover</button>
+         </div>}
+
+         {task.style?.imgURL && <div className="task-details-cover img " style={{ backgroundImage: `url('${task.style.imgURL}')` }}>
+            <button onClick={onOpenModal}>Cover</button>
+         </div>}
+
+         {isOpen && <Modal task={task}></Modal>}
+
+      </header>
+
+   )
 }

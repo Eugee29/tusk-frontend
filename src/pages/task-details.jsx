@@ -62,7 +62,7 @@ const _TaskDetails = () => {
 
             <div>
 
-                {task?.style && <TaskDetailsCover cover={task.style} />}
+                {task?.style && <TaskDetailsCover task={task} />}
                 {task?.title && <TaskDetailsTitle title={task.title} />}
 
                 <div className="main-task">
