@@ -8,8 +8,13 @@ export function LabelList({ labelIds, toggleLabels, isOpen }) {
 
   const { boardId } = useParams()
 
+<<<<<<< HEAD
     const [boardLabels, setBoardLabels] = useState()
     const [taskLabels, setTaskLabels] = useState(labelIds)
+=======
+  const [boardLabels, setBoardLabels] = useState()
+  const [taskLabels, setTaskLabels] = useState(labelIds)
+>>>>>>> 9fa904627cb5c1a728107ed069a5a70d3334307c
 
   useEffect(() => {
     ; (async () => {
@@ -36,10 +41,10 @@ export function LabelList({ labelIds, toggleLabels, isOpen }) {
     return className
   }
 
-    const onToggleLabel = (ev) => {
-        ev.stopPropagation()
-        toggleLabels()
-    } 
+  const onToggleLabel = (ev) => {
+    ev.stopPropagation()
+    toggleLabels()
+  }
 
   return <section className="label-list">
     {taskLabels && taskLabels.map(label => <div onClick={onToggleLabel} className={getLabelClass()} key={label} style={getLabelValueById('color', label)}> {getLabelValueById('title', label)} </div>)}

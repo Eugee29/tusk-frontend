@@ -17,75 +17,78 @@ import { ChecklistList } from '../cmps/checklist-list.jsx'
 
 const _TaskDetails = () => {
 
-    const [task, setTask] = useState(null)
-    const [isCloseEdit, setIsCloseEdit] = useState(true)
+  const [task, setTask] = useState(null)
+  const [isCloseEdit, setIsCloseEdit] = useState(true)
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-    const { boardId } = useParams()
-    const { groupId } = useParams()
-    const { taskId } = useParams()
+  const { boardId } = useParams()
+  const { groupId } = useParams()
+  const { taskId } = useParams()
 
-    useEffect(() => {
-        if (!task) {
-            loadTaskAsync()
-            console.log('loadTaskAsync');
-        }
-        // setIsCloseEdit(false)
-    }, [isCloseEdit])
+  console.log('task:', task)
 
-    useEffect(() => {
-        loadTaskAsync()
-    }, [])
 
-    const loadTaskAsync = async () => {
-        const taskFromSrevice = await dispatch(loadTask({ boardId, groupId, taskId }))
-        console.log(taskFromSrevice);
-        setTask(taskFromSrevice)
+  useEffect(() => {
+    if (!task) {
+      loadTaskAsync()
+      console.log('loadTaskAsync')
     }
+    // setIsCloseEdit(false)
+  }, [isCloseEdit])
 
-    const onGoBack = () => {
-        navigate(`/board/${boardId}`)
-    }
+  useEffect(() => {
+    loadTaskAsync()
+  }, [])
 
-    const onDetailsClick = (ev) => {
-        ev.stopPropagation()
-        setIsCloseEdit(!isCloseEdit)
-    }
+  const loadTaskAsync = async () => {
+    const taskFromSrevice = await dispatch(loadTask({ boardId, groupId, taskId }))
+    console.log(taskFromSrevice)
+    setTask(taskFromSrevice)
+  }
 
-    if (!task) return <h1>Loading task...</h1>
+  const onGoBack = () => {
+    navigate(`/board/${boardId}`)
+  }
 
-    return <section className="task-details" onClick={onGoBack}>
-        <div className="task-details-container" onClick={onDetailsClick}>
-            <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
+  const onDetailsClick = (ev) => {
+    ev.stopPropagation()
+    setIsCloseEdit(!isCloseEdit)
+  }
 
-            <div>
+  if (!task) return <h1>Loading task...</h1>
 
-                {task?.style && <TaskDetailsCover cover={task.style} />}
-                {task?.title && <TaskDetailsTitle title={task.title} />}
+  return <section className="task-details" onClick={onGoBack}>
+    <div className="task-details-container" onClick={onDetailsClick}>
+      <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
 
-                <div className="main-task">
-                    {task && <TaskDetailsInfo task={task} />}
-                    {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
-                    {task?.attachments && <TaskDetailsAttachments task={task}  />}
-                    {task.checklists?.length && <ChecklistList checklists={task.checklists} />}
-                    {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
-                </div>
+      <div>
 
-                <div className="side-task">
-                    <TaskDetailsSideTask task={task} />
-                </div>
-            </div>
+        {task?.style && <TaskDetailsCover cover={task.style} />}
+        {task?.title && <TaskDetailsTitle title={task.title} />}
+
+        <div className="main-task">
+          {task && <TaskDetailsInfo task={task} />}
+          {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
+          {task?.attachments && <TaskDetailsAttachments task={task} />}
+          {task.checklists?.length && <ChecklistList checklists={task.checklists} />}
+          {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
         </div>
 
-    </section >
+        <div className="side-task">
+          <TaskDetailsSideTask task={task} />
+        </div>
+      </div>
+    </div>
+
+  </section >
 }
 
 function mapStateToProps(state) {
-    return {
-        task: state.boardModule.task
-    }
+  return {
+    task: state.boardModule.task
+  }
 }
 
 export const TaskDetails = connect(mapStateToProps)(_TaskDetails)
