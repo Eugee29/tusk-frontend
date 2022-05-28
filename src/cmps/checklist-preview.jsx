@@ -6,7 +6,7 @@ import { TodoList } from './todo-list'
 export const ChecklistPreview = ({ checklist, onUpdateChecklist }) => {
 
   const numOfDone = checklist.todos.reduce((count, todo) => todo.isDone ? count + 1 : count, 0)
-  const progress = (numOfDone / checklist.todos.length) * 100
+  const progress = parseInt((numOfDone / checklist.todos.length) * 100)
 
   return (
     <li className='checklist-preview'>
