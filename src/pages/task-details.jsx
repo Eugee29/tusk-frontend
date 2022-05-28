@@ -40,7 +40,6 @@ const _TaskDetails = () => {
     dispatch(updateBoard({ ...board, tasks: updatedTasks }))
   }
 
-
   useEffect(() => {
     if (!task) {
       loadTaskAsync()
@@ -75,15 +74,14 @@ const _TaskDetails = () => {
       <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
 
       <div>
-
-        {task?.style && <TaskDetailsCover cover={task.style} />}
+        {task?.style && <TaskDetailsCover task={task} />}
         {task?.title && <TaskDetailsTitle title={task.title} />}
 
         <div className="main-task">
           {task && <TaskDetailsInfo task={task} />}
           {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
           {task?.attachments && <TaskDetailsAttachments task={task} />}
-          {task.checklists?.length && <ChecklistList onUpdateTask={onUpdateTask} task={task} />}
+          {task.checklists?.length && <ChecklistList checklists={task.checklists} />}
           {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
         </div>
 
