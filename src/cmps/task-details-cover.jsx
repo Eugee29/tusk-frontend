@@ -21,7 +21,7 @@ export function TaskDetailsCover({ task }) {
             <button onClick={onOpenModal}>Cover</button>
          </div>}
 
-         {isOpen && task && <Modal task={task}></Modal>}
+         {isOpen && task && <Modal task={task} category={'Cover'}></Modal>}
 
       </header>
 

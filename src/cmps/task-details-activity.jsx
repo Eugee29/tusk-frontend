@@ -74,7 +74,7 @@ function _TaskDetailsActivity({ task, isCloseEdit }) {
 
             <div className="user-container">
                <div className="member">
-                  <span className="label"> {`X`}{`X`}</span>
+                  <span className="label"> {``}{``}</span>
                </div>
             </div>
 

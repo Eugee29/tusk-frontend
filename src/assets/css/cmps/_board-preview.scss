@@ -1,3 +1,4 @@
+
 .board-section-list-item {
    margin: 0 2% 2% 0;
    padding: 0;
@@ -27,10 +28,6 @@
       text-decoration: none;
       border-radius: 3px;
       display: block;
-
-      :hover {
-         font-size: rem(16px);
-      }
    }
 
    .board-tile-details {
@@ -68,6 +65,7 @@
    display: block;
 }
 
+
 .board-tile-details-sub-container {
    align-items: baseline;
    display: flex;
@@ -81,7 +79,8 @@
       margin-left: 4px;
       overflow: hidden;
       position: relative;
-      right: -4px;
+      right: 8px;
+      top: -1px;
 
       .board-tile-options-star-icon {
          bottom: 0;
@@ -107,29 +106,37 @@
          opacity: 1;
          right: 0;
          top: 0;
-         // transition-duration: .15s;
-         // transition-property: color,background,opacity,transform,width,margin;
-         // width: 0;
 
+         .boardlist-icon{
+            color: $brand-clr10;    
+            svg {
+                height: 14px;
+                width: 14px;
+            }
+         }
+         
          :hover {
             color: $font-clr1;
-            // background-image: url(../../imgs/star.svg);
          }
 
-         .starred {
-            color: $brand-clr10;
-         }
       }
-      
    }
+
 }
 
 .board-tile:hover .board-tile-options-star-icon {
-   margin-right: 6px;
+   margin-right: 13px;
    opacity: 1;
-   width: 18px;
-   font-size: rem(13px);
+   // width: 18px;
+   // font-size: rem(13px);
 
+   .boardlist-icon{
+      color: #fff;    
+      svg {
+          height: 14px;
+          width: 14px;
+      }
+   }
 }
 
 .board-list .starred-container .star-icon {
@@ -140,3 +147,4 @@
    opacity: 1;
    width: 17px;
 }
+  
