@@ -14,11 +14,16 @@ import { TaskDetailsAttachments } from '../cmps/task-details-attachments.jsx'
 import { TaskDetailsActivity } from '../cmps/task-details-activity.jsx'
 import { TaskDetailsSideTask } from '../cmps/task-details-side-task.jsx'
 import { ChecklistList } from '../cmps/checklist-list.jsx'
+import { boardService } from '../services/board.service.js'
+import { useSelector } from 'react-redux'
+
+import { updateBoard } from '../store/board/board.action.js'
 
 const _TaskDetails = () => {
 
   const [task, setTask] = useState(null)
   const [isCloseEdit, setIsCloseEdit] = useState(true)
+  const board = useSelector(({ boardModule }) => boardModule.board)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -27,7 +32,13 @@ const _TaskDetails = () => {
   const { groupId } = useParams()
   const { taskId } = useParams()
 
-  console.log('task:', task)
+  console.log('board:', board)
+
+  const onUpdateTask = (taskToUpdate) => {
+    const { tasks } = board
+    const updatedTasks = tasks.map(task => task.id === taskToUpdate.id ? taskToUpdate : task)
+    dispatch(updateBoard({ ...board, tasks: updatedTasks }))
+  }
 
 
   useEffect(() => {
@@ -72,7 +83,7 @@ const _TaskDetails = () => {
           {task && <TaskDetailsInfo task={task} />}
           {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
           {task?.attachments && <TaskDetailsAttachments task={task} />}
-          {task.checklists?.length && <ChecklistList checklists={task.checklists} />}
+          {task.checklists?.length && <ChecklistList onUpdateTask={onUpdateTask} task={task} />}
           {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
         </div>
 

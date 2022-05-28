@@ -2,15 +2,16 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { ChecklistPreview } from './checklist-preview'
 
-export const ChecklistList = ({ checklists }) => {
+export const ChecklistList = ({ task, onUpdateTask }) => {
 
+  const { checklists } = task
   // const boardFromStore = useSelector(({ boardModule }) => boardModule.board)
   // const [board, setBoard] = useState(boardFromStore)
 
   // console.log(board)
+  const onUpdateChecklists = (checklistsToUpdate) => {
 
-  const onUpdateBoard = () => {
-
+    onUpdateTask()
   }
 
   return (
