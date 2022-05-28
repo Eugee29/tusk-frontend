@@ -88,7 +88,7 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
 
               {task.members && task.members.length && (!task.style.bgColor) && (!task.style.imgURL)
                 && <div className='member-img-container'>
-                  {task.members.map((member) => <a key={member._id} className="member-img"> <img src={member.imgUrl} alt="" /> </a>)}
+                  {task.members.map((member) => <a key={member._id} className="member-img"> <img src={member.imgURL} alt="" /> </a>)}
                 </div>}
             </div>
 
