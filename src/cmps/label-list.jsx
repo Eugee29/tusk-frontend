@@ -4,13 +4,12 @@ import { useState } from 'react'
 
 import { boardService } from '../services/board.service'
 
-export function LabelList({ labelIds }) {
+export function LabelList({ labelIds, toggleLabels, isOpen }) {
 
   const { boardId } = useParams()
 
   const [boardLabels, setBoardLabels] = useState()
   const [taskLabels, setTaskLabels] = useState(labelIds)
-  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     ; (async () => {
@@ -39,7 +38,7 @@ export function LabelList({ labelIds }) {
 
   const onToggleLabel = (ev) => {
     ev.stopPropagation()
-    setIsOpen(!isOpen)
+    toggleLabels()
   }
 
   return <section className="label-list">
