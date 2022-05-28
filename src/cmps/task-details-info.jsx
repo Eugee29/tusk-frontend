@@ -44,7 +44,7 @@ function _TaskDetailsInfo({ task }) {
          {/* Members */}
          <div className="task-card-info" >
             <h3 className="task-member-title">Members</h3>
-            {task.memberIds?.map((member, idx) =>
+            {task.members?.map((member, idx) =>
                <a key={member._id} className="member">{`${initials(member)[0]}${initials(member)[1]}`}<span ></span></a>)}
             <a className="members-add-button round "><span >+</span></a>
          </div>

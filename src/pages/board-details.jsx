@@ -16,37 +16,37 @@ import { useDispatch } from 'react-redux'
 
 export const BoardDetails = () => {
 
-  const { boardId } = useParams()
-  const [board, setBoard] = useState(null)
-  const dispatch = useDispatch()
+   const { boardId } = useParams()
+   const [board, setBoard] = useState(null)
+   const dispatch = useDispatch()
 
-  useEffect(() => {
-    loadBoard()
+   useEffect(() => {
+      loadBoard()
 
-  }, [])
+   }, [])
 
-  const loadBoard = async () => {
-    const board = await boardService.getById(boardId)
-    setBoard(board)
-    dispatch(saveBoard(board))
-  }
+   const loadBoard = async () => {
+      const board = await boardService.getById(boardId)
+      setBoard(board)
+      dispatch(saveBoard(board))
+   }
 
-  const onUpdateBoard = async (groups) => {
-    await dispatch(updateBoard({ ...board, groups }))
-  }
+   const onUpdateBoard = async (groups) => {
+      await dispatch(updateBoard({ ...board, groups }))
+   }
 
-  if (!board) return <h1>Loading..</h1>
-  return (
+   if (!board) return <h1>Loading..</h1>
+   return (
 
-    <main className='board-details'>
-      <BoardHeader board={board} />
-      <GroupList groups={board.groups} onUpdateBoard={onUpdateBoard} />
+      <main className='board-details' style={{ backgroundImage: `url(${board.style.bgImg})` }}>
+         <BoardHeader board={board} />
+         <GroupList groups={board.groups} onUpdateBoard={onUpdateBoard} />
 
-      <Routes>
-        <Route path=":groupId/:taskId" element={<TaskDetails />} />
-      </Routes>
-    </main>
-  )
+         <Routes>
+            <Route path=":groupId/:taskId" element={<TaskDetails />} />
+         </Routes>
+      </main>
+   )
 }
 
 // function mapStateToProps(state) {
