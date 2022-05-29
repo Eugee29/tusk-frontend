@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState, useRef } from 'react'
 
 import { AiOutlineUser } from 'react-icons/ai'
 import { BiLabel } from 'react-icons/bi'
@@ -7,7 +7,15 @@ import { FiClock } from 'react-icons/fi'
 import { GrAttachment } from 'react-icons/gr'
 import { IoMdBrowsers } from 'react-icons/io'
 
-export function TaskDetailsSideTask({ cover }) {
+import { Modal } from "./modal"
+
+export function TaskDetailsSideTask({ task }) {
+
+   const [isOpen, setIsOpen] = useState(false)
+
+   const onOpenModal = () => {
+      setIsOpen(!isOpen)
+   }
 
    return (
       <section className="side-task">
@@ -50,13 +58,16 @@ export function TaskDetailsSideTask({ cover }) {
                   <span className="">Attachment</span>
                </a>
 
-               <a className="sidebar-button" href="#" title="Cover">
+               <a className="sidebar-button" onClick={onOpenModal} href="#" title="Cover">
                   <span className="sidebar-icon"><IoMdBrowsers /></span>
                   <span className="">Cover</span>
                </a>
 
             </div>
          </div>
+
+         {isOpen && task && <Modal task={task} category={'Cover'}></Modal>}
+
       </section>
 
    )
