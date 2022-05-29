@@ -2,11 +2,16 @@ import { FiCheckSquare } from 'react-icons/fi'
 import { ProgressBar } from 'react-bootstrap'
 
 import { TodoList } from './todo-list'
+import { useState } from 'react'
 
 export const ChecklistPreview = ({ checklist, updateChecklist }) => {
 
+  const [hideChecked, setHideChecked] = useState(false)
+
   const numOfDone = checklist.todos.reduce((count, todo) => todo.isDone ? count + 1 : count, 0)
   const progress = parseInt((numOfDone / checklist.todos.length) * 100)
+
+  // const checklistToShow = hideChecked? checklist.todos.filter(todo=>)
 
   return (
     <li className='checklist-preview'>

@@ -52,9 +52,9 @@ export const GroupPreview = ({ group, index, toggleLabels, isOpen }) => {
           {...provided.draggableProps}>
           <section className={`group-preview ${snapshot.isDragging && !snapshot.isDropAnimating ? 'tilted' : ''}`}>
 
-          <div className="group-title-container">
-            <textarea className="group-title" defaultValue={titleText} scols="30" rows="10" onChange={handleChange} onBlur={updateTitle}></textarea>
-            <button className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
+            <div className="group-title-container" {...provided.dragHandleProps}>
+              <textarea className="group-title" defaultValue={titleText} scols="30" rows="10" onChange={handleChange} onBlur={updateTitle}></textarea>
+              <button className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
             </div>
 
             <TaskList key={group.id} groupId={group.id} tasks={group.tasks} toggleLabels={toggleLabels} isOpen={isOpen} isAddCardOpen={isAddCardOpen} toggleAddCard={toggleAddCard} />
