@@ -13,7 +13,7 @@ import { Draggable } from 'react-beautiful-dnd'
 import { TaskList } from './task-list'
 
 
-export const GroupPreview = ({ group, index, toggleLabels, isOpen }) => {
+export const GroupPreview = ({ group, index, toggleLabels, isOpen, onUpdateBoard }) => {
 
   const params = useParams()
   const dispatch = useDispatch()
@@ -29,11 +29,9 @@ export const GroupPreview = ({ group, index, toggleLabels, isOpen }) => {
 
   const toggleAddCard = () => {
     setIsAddCardOpen(!isAddCardOpen)
-    console.log(isAddCardOpen)
   }
 
   const updateTitle = async () => {
-    console.log(group.id)
     const groupToUpdate = board.groups.find(currGroup => currGroup.id === group.id)
     const { groups } = board
     const updatedGroup = { ...groupToUpdate, title: titleText }
@@ -57,7 +55,7 @@ export const GroupPreview = ({ group, index, toggleLabels, isOpen }) => {
               <button className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
             </div>
 
-            <TaskList key={group.id} groupId={group.id} tasks={group.tasks} toggleLabels={toggleLabels} isOpen={isOpen} isAddCardOpen={isAddCardOpen} toggleAddCard={toggleAddCard} />
+            <TaskList key={group.id} groupId={group.id} tasks={group.tasks} toggleLabels={toggleLabels} isOpen={isOpen} isAddCardOpen={isAddCardOpen} toggleAddCard={toggleAddCard} onUpdateBoard={onUpdateBoard}/>
 
             {!isAddCardOpen && <div className="add-btn-container">
               <button className="add-btn" onClick={toggleAddCard}> <AiOutlinePlus /> Add a card</button>

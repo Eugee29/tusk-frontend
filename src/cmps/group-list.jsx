@@ -45,7 +45,7 @@ export const GroupList = (props) => {
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {groups.map((group, index) => <GroupPreview key={group.id} group={group} index={index} toggleLabels={toggleLabels} isOpen={isOpen} />)}
+            {groups.map((group, index) => <GroupPreview key={group.id} group={group} index={index} toggleLabels={toggleLabels} isOpen={isOpen} onUpdateBoard={props.onUpdateBoard}/>)}
             {provided.placeholder}
           </section>
         )}
