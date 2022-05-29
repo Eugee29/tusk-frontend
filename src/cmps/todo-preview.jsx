@@ -59,6 +59,7 @@ export const TodoPreview = (props) => {
           onBlur={onUpdateTodo}
           ref={textRef}
           style={{ height: calcHeight(todo.title) }}
+
         >
         </textarea>
         <div className='controls'>
