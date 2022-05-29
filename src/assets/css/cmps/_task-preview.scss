@@ -1,4 +1,4 @@
-.task-preview{
+.task-preview {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -28,14 +28,29 @@
 
         .icon-container {
             display: flex;
-        align-items: center;
-        gap: 2px;
+            align-items: center;
+            gap: 10px;
+
+            .icon-num-container {
+                display: flex;
+            align-items: center;
+            gap: 5px;
+
+                .attachment-icon {
+                    height: 12px;
+                    width: 12px;
+                }
+            }
+
+            span {
+                font-size: 12px;
+                line-height: 10px
+            }
         }
 
-        span {
-            font-size: 12px;
-            line-height: 10px
-        };
+        
+
+        ;
 
         .member-img-container {
 
@@ -43,32 +58,32 @@
 
             .member {
                 @include task-member-button(tomato)
-             }
-    
-             .member-img {
-            
-                img {
-                cursor: pointer;
-                float: left;
-                border-radius: 50%;
-                text-transform: uppercase;
-                width: 32px;
-                height: 32px;
-                display: flex;
-                justify-content: center;
-                align-content: center;
-                align-items: center;
-                object-fit: cover;
             }
-             
+
+            .member-img {
+
+                img {
+                    cursor: pointer;
+                    float: left;
+                    border-radius: 50%;
+                    text-transform: uppercase;
+                    width: 32px;
+                    height: 32px;
+                    display: flex;
+                    justify-content: center;
+                    align-content: center;
+                    align-items: center;
+                    object-fit: cover;
+                }
+
                 span {
-                   line-height: 30px;
+                    line-height: 30px;
                 }
-             
+
                 &:hover {
-                   opacity: 0.8;
+                    opacity: 0.8;
                 }
-             }
+            }
         }
     }
 
@@ -96,7 +111,7 @@
         &:hover {
             background-color: $brand-clr8;
             opacity: 1;
-            
+
         }
 
         .btn-icon {
@@ -123,4 +138,3 @@
     }
 
 }
-

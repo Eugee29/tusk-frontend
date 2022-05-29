@@ -76,9 +76,9 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
                 {task.description && (!task.style.bgColor) && (!task.style.imgURL)
                   && <MdOutlineSubject />}
                 {task.checklists && task.checklists.length && (!task.style.bgColor) && (!task.style.imgURL)
-                  && <React.Fragment> <IoMdCheckboxOutline /> <span> {getChecklistLength()} </span> </React.Fragment>}
+                  && <div className='icon-num-container'> <IoMdCheckboxOutline /> <span> {getChecklistLength()} </span> </div>}
                 {task.attachments && task.attachments.length && (!task.style.bgColor) && (!task.style.imgURL)
-                  && <React.Fragment> <ImAttachment /> <span> {task.attachments.length} </span> </React.Fragment>}
+                  && <div className='icon-num-container'><ImAttachment className='attachment-icon'/> <span> {task.attachments.length} </span> </div> }
                 
                 {task.dueDate && (!task.style.bgColor) && (!task.style.imgURL)
                   && <React.Fragment> 
