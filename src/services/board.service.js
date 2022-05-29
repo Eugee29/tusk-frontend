@@ -6776,7 +6776,7 @@ const board11 = {
 // storageService.post(STORAGE_KEY, board1)
 // storageService.post(STORAGE_KEY, board2)
 // storageService.post(STORAGE_KEY, board3)
-// storageService.post(STORAGE_KEY, board4)
+storageService.post(STORAGE_KEY, board4)
 // storageService.post(STORAGE_KEY, board5)
 // storageService.post(STORAGE_KEY, board6)
 // storageService.post(STORAGE_KEY, board7)
