@@ -23,7 +23,6 @@ export const TodoPreview = (props) => {
     props.updateTodo(todo)
     setIsEdit(false)
     textRef.current.blur()
-    console.log('updated')
   }
 
   const onDiscardChanges = (e) => {

@@ -120,16 +120,9 @@
       resize: none;
       cursor: pointer;
       color: $brand-clr4;
-
       white-space: pre-wrap;
-      // overflow: hidden;
-      // overflow-wrap: break-word;
       overflow: hidden;
       overflow-wrap: break-word;
-      // word-wrap: break-word;
-
-      // overflow-wrap: break-word;
-      // word-break: break-word;
 
       &:focus {
         margin-top: -6px;
