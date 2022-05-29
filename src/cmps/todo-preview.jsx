@@ -51,7 +51,7 @@ export const TodoPreview = (props) => {
 
       <div className={`title-container ${isEdit ? 'edit' : ''}`} onClick={() => { if (!isEdit) textRef.current.focus() }}>
         <textarea
-          className={`todo-title ${props.todo.isDone ? 'crossed' : ''}`}
+          className={`todo-title ${props.todo.isDone && !isEdit ? 'crossed' : ''}`}
           value={todo.title}
           onChange={handleChange}
           onClick={(e) => e.target.select()}
