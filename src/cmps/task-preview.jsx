@@ -62,9 +62,9 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
 
   return (
     <Draggable draggableId={task.id} index={index} type='TASK' >
-      {provided => (
+      {(provided, snapshot) => (
         <div className='task-preview-handle' {...provided.draggableProps} {...provided.dragHandleProps}>
-          <section className={getTaskClass()} onClick={onOpenDetails} ref={provided.innerRef} style={getTaskStyle()}  >
+          <section className={`${getTaskClass()} ${snapshot.isDragging && !snapshot.isDropAnimating ? 'tilted' : ''}`} onClick={onOpenDetails} ref={provided.innerRef} style={getTaskStyle()}  >
             {task.labelIds.length && (!task.style.bgColor) && (!task.style.imgURL) && <LabelList labelIds={task.labelIds} toggleLabels={toggleLabels} isOpen={isOpen} />}
             <div className='task-title-container'>
               <h2 className='task-title'> {task.title} </h2>
@@ -78,12 +78,12 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
                 {task.checklists && task.checklists.length && (!task.style.bgColor) && (!task.style.imgURL)
                   && <div className='icon-num-container'> <IoMdCheckboxOutline /> <span> {getChecklistLength()} </span> </div>}
                 {task.attachments && task.attachments.length && (!task.style.bgColor) && (!task.style.imgURL)
-                  && <div className='icon-num-container'><ImAttachment className='attachment-icon'/> <span> {task.attachments.length} </span> </div> }
-                
+                  && <div className='icon-num-container'><ImAttachment className='attachment-icon' /> <span> {task.attachments.length} </span> </div>}
+
                 {task.dueDate && (!task.style.bgColor) && (!task.style.imgURL)
-                  && <React.Fragment> 
-                      {/* //TIME// */}
-                    </React.Fragment>}
+                  && <React.Fragment>
+                    {/* //TIME// */}
+                  </React.Fragment>}
               </div>
 
               {task.members && task.members.length && (!task.style.bgColor) && (!task.style.imgURL)
