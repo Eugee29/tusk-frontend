@@ -44,6 +44,10 @@
     width: 100%;
     cursor: pointer;
 
+    .controls {
+      align-self: start;
+    }
+
 
     &.edit {
       .controls {
@@ -148,9 +152,11 @@
     }
 
     .menu-container {
+
       opacity: 0;
       height: 100%;
       width: 20px;
+      padding: 2px;
       border-radius: 3px;
 
       &:hover {
