@@ -75,7 +75,7 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
           {!task.style.isCover && task.style.imgURL && <img className='task-img-container' src={task.style.imgURL} alt="..." />}
             
             <div className='task-info'>
-            {task.labelIds.length && (!task.style.isCover) && <LabelList labelIds={task.labelIds} toggleLabels={toggleLabels} isOpen={isOpen} />}
+            {!!task.labelIds.length && (!task.style.isCover) && <LabelList labelIds={task.labelIds} toggleLabels={toggleLabels} isOpen={isOpen} />}
             <div className='task-title-container'>
               <h2 className='task-title'> {task.title} </h2>
             </div>
@@ -85,9 +85,9 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
               <div className='icon-container'>
                 {task.description && (!task.style.bgColor) && (!task.style.imgURL)
                   && <MdOutlineSubject />}
-                {task.checklists && task.checklists.length && (!task.style.isCover)
+                {task.checklists && !!task.checklists.length && (!task.style.isCover)
                   && <div className='icon-num-container'> <IoMdCheckboxOutline /> <span> {getChecklistLength()} </span> </div>}
-                {task.attachments && task.attachments.length && (!task.style.isCover)
+                {task.attachments && !!task.attachments.length && (!task.style.isCover)
                   && <div className='icon-num-container'><ImAttachment className='attachment-icon' /> <span> {task.attachments.length} </span> </div>}
 
                 {task.dueDate && (!task.style.isCover)
@@ -96,7 +96,7 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
                   </React.Fragment>}
               </div>
 
-              {task.members && task.members.length && (!task.style.isCover)
+              {task.members && !!task.members.length && (!task.style.isCover)
                 && <div className='member-img-container'>
                   {task.members.map((member) => <a key={member._id} className="member-img"> <img src={member.imgURL} alt="" /> </a>)}
                 </div>}

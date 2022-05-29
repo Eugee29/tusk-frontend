@@ -33,6 +33,7 @@ export const BoardDetails = () => {
 
    const onUpdateBoard = async (groups) => {
       await dispatch(updateBoard({ ...board, groups }))
+      setBoard({...board, groups})
    }
 
    if (!board) return <h1>Loading..</h1>

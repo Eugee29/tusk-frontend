@@ -107,6 +107,7 @@ export function updateBoard(board) {
           type: 'UPDATE_BOARD',
           board
         })
+        saveBoard(board)
         // dispatch(getActionUpdateBoard(savedBoard))
         // showSuccessMsg('Board updated')
         return savedBoard

@@ -13,7 +13,7 @@ export const boardService = {
   getById,
   save,
   remove,
-  getEmptyBoard,
+  getEmptyTask,
   subscribe,
   unsubscribe,
   getTask
@@ -61,12 +61,27 @@ async function save(board) {
   return savedBoard
 }
 
-function getEmptyBoard() {
+function getEmptyTask(title) {
   return {
-    vendor: 'Susita-' + (Date.now() % 1000),
-    price: utilService.getRandomIntInclusive(1000, 9000),
+    id: utilService.makeId(),
+    createdAt: Date.now(),
+    archivedAt: null,
+    title,
+    description: "",
+    checklists: [],
+    members: [],
+    "labelIds": [],
+    "dueDate": null,
+    "byMember": {
+      "_id": "u102",
+      "username": "Eranavichzer",
+      "fullName": "Eran Avichzer",
+      "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+    },
+    "style": {}
   }
 }
+
 
 function subscribe(listener) {
   boardChannel.addEventListener('message', listener)
