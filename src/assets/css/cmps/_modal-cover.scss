@@ -18,8 +18,10 @@
          border-radius: 3px;
          position: relative;
 
-         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
-         filter: none;
+         &.focus {
+            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
+            filter: none;
+         } 
 
          .background {
             background-size: cover;
@@ -82,8 +84,11 @@
          position: relative;
          background-size: cover;
          background-position: center;
-         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
-         filter: none;
+
+         &.focus {
+            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
+            filter: none;
+         }  
 
          .lines {
             position: absolute;
@@ -145,8 +150,11 @@
          overflow: hidden;
          white-space: nowrap;
 
-         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
-         filter: none;
+         &.focus {
+            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
+            filter: none;
+         }  
+
 
          h3 {
             color: #FFFFFF;
@@ -206,6 +214,11 @@
          &:hover {
             filter: saturate(85%) brightness(85%);
          }
+
+         &:focus {
+            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
+            filter: none;
+         }  
       }
    }
 }

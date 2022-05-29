@@ -1,4 +1,3 @@
-
 const board0 = {
    "_id": "b101",
    "title": "Building Tusk",
@@ -6,6 +5,7 @@ const board0 = {
    "createdAt": 1653046611000,
    "isStarred": true,
    "createdBy": {
+<<<<<<< HEAD
      "_id": "u101",
      "fullName": "Tal Ofer",
      "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
@@ -1697,12 +1697,14 @@ const board2 = {
    "createdAt": 1653046611000,
    "isStarred": true,
    "createdBy": {
+=======
+>>>>>>> e9504fa3f82c5ea652a2c7b1939ef42942954310
       "_id": "u101",
       "fullName": "Tal Ofer",
       "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
    },
    "style": {
-      "bgImg": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x1920/6050bf159b3284fab6b86983f7a11186/photo-1608335688606-411d1e0f20f5.jpg"
+      "bgImg": "https://mages.edu.sg/wp-content/uploads/2021/02/Anatomy-of-a-full-stack-developer-Everything-you-need-to-know.jpg"
    },
    "labels": [
       {
@@ -1750,7 +1752,11 @@ const board2 = {
       {
          "_id": "u103",
          "fullName": "Uri Gruda",
+<<<<<<< HEAD
          "imgURL": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
+=======
+         "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+>>>>>>> e9504fa3f82c5ea652a2c7b1939ef42942954310
       }
    ],
    "groups": [
@@ -1929,7 +1935,11 @@ const board2 = {
                   "_id": "u103",
                   "userName": "Urigruda",
                   "fullName": "Uri Gruda",
+<<<<<<< HEAD
                   "imgURL": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
+=======
+                  "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+>>>>>>> e9504fa3f82c5ea652a2c7b1939ef42942954310
                },
                "style": {
                   "bgColor": "#e6574c",
@@ -1965,7 +1975,11 @@ const board2 = {
                   {
                      "_id": "u103",
                      "fullName": "Uri Gruda",
+<<<<<<< HEAD
                      "imgURL": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
+=======
+                     "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+>>>>>>> e9504fa3f82c5ea652a2c7b1939ef42942954310
                   }
                ],
                "labelIds": [
@@ -2007,15 +2021,19 @@ const board2 = {
                   "_id": "u103",
                   "userName": "Urigruda",
                   "fullName": "Uri Gruda",
+<<<<<<< HEAD
                   "imgURL": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
+=======
+                  "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+>>>>>>> e9504fa3f82c5ea652a2c7b1939ef42942954310
                },
                "style": {
-                  "bgColor": "#2579bd",
+                  "bgColor": "\"#2579bd\"",
                   "isCover": true
                }
             },
             {
-               "id": "t107",
+               "id": "t1022227",
                "createdAt": 1653523200000,
                "archivedAt": null,
                "title": "npm Install",
@@ -2054,7 +2072,7 @@ const board2 = {
          ]
       },
       {
-         "id": "g103",
+         "id": "g1032222",
          "title": "Style",
          "archivedAt": null,
          "tasks": [
@@ -2171,7 +2189,429 @@ const board2 = {
                }
             }
          ]
+      },
+      {
+         "id": "g103",
+         "title": "Backend",
+         "archivedAt": null,
+         "tasks": [
+            {
+               "id": "t1109",
+               "createdAt": 1643133011000,
+               "archivedAt": null,
+               "title": "Setup server",
+               "description": "Behold, a task!",
+               "attachments": [
+                  {
+                     "id": "a10112",
+                     "createdAt": 1643183411000,
+                     "fileUrl": "https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/content/cover_image_file/cover_image/687457/retina_1708x683_staging.toptal.net_javascript_emulating-react-jsx-in-vanilla-javascript-816eafe06505b888585d08474f2166e7.png"
+                  }
+               ],
+               "members": [
+                  {
+                     "_id": "u101",
+                     "fullName": "Tal Ofer",
+                     "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+                  },
+                  {
+                     "_id": "u103",
+                     "fullName": "Uri Gruda",
+                     "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+                  }
+               ],
+               "labelIds": [
+                  "l105",
+                  "l102",
+                  "l104"
+               ],
+               "dueDate": 1643696000000,
+               "byMember": {
+                  "_id": "u102",
+                  "username": "Eranavichzer",
+                  "fullName": "Eran Avichzer",
+                  "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+               },
+               "style": {}
+            },
+            {
+               "id": "t10222",
+               "createdAt": 1643523200000,
+               "archivedAt": null,
+               "title": "Get MongoDB",
+               "description": "",
+               "members": [
+                  {
+                     "_id": "u102",
+                     "fullName": "Eran Avichzer",
+                     "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+                  },
+                  {
+                     "_id": "u103",
+                     "fullName": "Uri Gruda"
+                  }
+               ],
+               "labelIds": [
+                  "l101",
+                  "l102"
+               ],
+               "byMember": {
+                  "_id": "u103",
+                  "userName": "Urigruda",
+                  "fullName": "Uri Gruda",
+                  "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+               },
+               "style": {
+                  "imgURL": "https://g.foolcdn.com/art/companylogos/square/mdb.png",
+                  "isCover": true
+               }
+            },
+            {
+               "id": "t107",
+               "createdAt": 1653523200000,
+               "archivedAt": null,
+               "title": "Create backend services",
+               "members": [
+                  {
+                     "_id": "u101",
+                     "fullName": "Tal Ofer",
+                     "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+                  },
+                  {
+                     "_id": "u102",
+                     "fullName": "Eran Avichzer",
+                     "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+                  },
+                  {
+                     "_id": "u103",
+                     "fullName": "Uri Gruda"
+                  }
+               ],
+               "labelIds": [
+                  "l103"
+               ],
+               "dueDate": 1654214400000,
+               "byMember": {
+                  "_id": "u101",
+                  "username": "Talofer",
+                  "fullName": "Tal Ofer",
+                  "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+               },
+               "style": {
+                  "bgColor": "#63be53",
+                  "isCover": false
+               },
+               "description": ""
+            }
+         ]
+      },
+      {
+         "id": "g10123",
+         "title": "Done",
+         "archivedAt": null,
+         "tasks": [
+            {
+               "id": "t99101",
+               "createdAt": 1653133011000,
+               "archivedAt": null,
+               "title": "A very important task",
+               "description": "Attention! This task is very important",
+               "checklists": [
+                  {
+                     "id": "c12201",
+                     "title": "A nice checklist",
+                     "todos": [
+                        {
+                           "id": "t51115",
+                           "title": "A nice todo",
+                           "isDone": true
+                        },
+                        {
+                           "id": "t5222211",
+                           "title": "There's a second one",
+                           "isDone": false
+                        },
+                        {
+                           "id": "t52222211",
+                           "title": "And a third one",
+                           "isDone": false
+                        },
+                        {
+                           "id": "t52232211",
+                           "title": "This one is my favorite",
+                           "isDone": true
+                        }
+                     ]
+                  },
+                  {
+                     "id": "c12222201",
+                     "title": "Some todos",
+                     "todos": [
+                        {
+                           "id": "t51sd115",
+                           "title": "Hello World",
+                           "isDone": true
+                        },
+                        {
+                           "id": "t522sd2211",
+                           "title": "ABCDEFGHIJKLMNOPQRSTUVWXYZ this is a very very very very very very looooooooooooooooooooooooooooooooooooooooong todo!!",
+                           "isDone": true
+                        },
+                        {
+                           "id": "t5222dd2211",
+                           "title": "short",
+                           "isDone": true
+                        }
+                     ]
+                  }
+               ],
+               "attachments": [
+                  {
+                     "id": "a1we01",
+                     "createdAt": 1653183411000,
+                     "fileUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3IeeUtGb2ElOQTdNKsdxVUHNg0FigDXZcw&usqp=CAU"
+                  },
+                  {
+                     "id": "a1we33301",
+                     "createdAt": 1653183411000,
+                     "fileUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP3IeeUtGb2ElOQTdNKsdxVUHNg0FigDXZcw&usqp=CAU"
+                  }
+               ],
+               "memberIds": [
+                  {
+                     "_id": "u101",
+                     "fullName": "Tal Ofer"
+                  }
+               ],
+               "labelIds": [
+                  "l101",
+                  "l102"
+               ],
+               "dueDate": 1653696000000,
+               "byMember": {
+                  "_id": "u102",
+                  "username": "Eranavichzer",
+                  "fullName": "Eran Avichzer",
+                  "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+               },
+               "style": {
+                  "imgURL": "https://laughingsquid.com/wp-content/uploads/Hansoloprofilethumb.jpg",
+                  "isCover": true
+               }
+            },
+            {
+               "id": "t10fsdfssdf8",
+               "createdAt": 1653523200000,
+               "archivedAt": null,
+               "title": "Do a very urgent thing",
+               "description": "It is very urgent",
+               "checklists": [
+                  {
+                     "id": "c10dfdsd2",
+                     "title": "Services",
+                     "todos": [
+                        {
+                           "id": "t51asd8",
+                           "title": "util",
+                           "isDone": true
+                        },
+                        {
+                           "id": "t519asd",
+                           "title": "board",
+                           "isDone": false
+                        }
+                     ]
+                  }
+               ],
+               "members": [
+                  {
+                     "_id": "u102",
+                     "fullName": "Eran Avichzer",
+                     "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+                  },
+                  {
+                     "_id": "u103",
+                     "fullName": "Uri Gruda"
+                  }
+               ],
+               "labelIds": [
+                  "l105",
+                  "l102",
+                  "l104"
+               ],
+               "dueDate": 1654041600000,
+               "byMember": {
+                  "_id": "u102",
+                  "username": "Eranavichzer",
+                  "fullName": "Eran Avichzer",
+                  "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+               },
+               "style": {
+                  "bgImg": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Fvector-art%2F2239403-right-here-right-now-neon-signs-style-text-vector&psig=AOvVaw39u7IYBKqDHWJjV-eGZjy-&ust=1653853913661000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCOjTm4r8gvgCFQAAAAAdAAAAABAN"
+               }
+            },
+            {
+               "id": "t1xs03",
+               "createdAt": 1653523200000,
+               "archivedAt": null,
+               "title": "Mark something as done",
+               "description": "I know it seems hard but do try.",
+               "members": [
+                  {
+                     "_id": "u101",
+                     "fullName": "Tal Ofer",
+                     "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+                  },
+                  {
+                     "_id": "u102",
+                     "fullName": "Eran Avichzer",
+                     "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+                  },
+                  {
+                     "_id": "u103",
+                     "fullName": "Uri Gruda"
+                  }
+               ],
+               "labelIds": [
+                  "l103"
+               ],
+               "dueDate": 1654214400000,
+               "byMember": {
+                  "_id": "u101",
+                  "username": "Talofer",
+                  "fullName": "Tal Ofer",
+                  "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+               },
+               "style": {}
+            },
+            {
+               "id": "t1czxczx04",
+               "createdAt": 1653436800000,
+               "archivedAt": null,
+               "title": "Design a logo",
+               "description": "Writing guidelines and plans",
+               "members": [
+                  {
+                     "_id": "u101",
+                     "fullName": "Tal Ofer",
+                     "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+                  },
+                  {
+                     "_id": "u102",
+                     "fullName": "Eran Avichzer",
+                     "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+                  },
+                  {
+                     "_id": "u103",
+                     "fullName": "Uri Gruda"
+                  }
+               ],
+               "labelIds": [
+                  "l103",
+                  "l101"
+               ],
+               "dueDate": 1653868800000,
+               "byMember": {
+                  "_id": "u103",
+                  "userName": "Urigruda",
+                  "fullName": "Uri Gruda",
+                  "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
+               },
+               "style": {
+                  "bgColor": "#e6574c",
+                  "isCover": true
+               }
+            }
+         ]
+      },
+      {
+         "id": "g1012234",
+         "title": "Code helpers",
+         "archivedAt": null,
+         "tasks": []
       }
+   ],
+   "activities": [
+      {
+         "id": "a101",
+         "txt": "Moved \"Create a logo\" to done",
+         "createdAt": 1653214400000,
+         "byMember": {
+            "_id": "u101",
+            "fullName": "Tal Ofer",
+            "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+         },
+         "task": {
+            "id": "t101",
+            "title": "Cut 5 scenes to fit budget"
+         }
+      }
+   ]
+}
+const board2 = {
+   "_id": "b102",
+   "title": "Planning Your Day",
+   "archivedAt": null,
+   "createdAt": 1653046611000,
+   "isStarred": true,
+   "createdBy": {
+      "_id": "u101",
+      "fullName": "Tal Ofer",
+      "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+   },
+   "style": {
+      "bgImg": "https://trello-backgrounds.s3.amazonaws.com/SharedBackground/1280x1920/6050bf159b3284fab6b86983f7a11186/photo-1608335688606-411d1e0f20f5.jpg"
+   },
+   "labels": [
+      {
+         "id": "l101",
+         "title": "I'm on it",
+         "color": "#63be53"
+      },
+      {
+         "id": "l102",
+         "title": "",
+         "color": "#eed62b"
+      },
+      {
+         "id": "l103",
+         "title": "",
+         "color": "#fa9e30"
+      },
+      {
+         "id": "l104",
+         "title": "Important",
+         "color": "#e6574c"
+      },
+      {
+         "id": "l105",
+         "title": "",
+         "color": "#c374df"
+      },
+      {
+         "id": "l106",
+         "title": "Budget",
+         "color": "#2579bd"
+      }
+   ],
+   "members": [
+      {
+         "_id": "u101",
+         "fullName": "Tal Ofer",
+         "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
+      },
+      {
+         "_id": "u102",
+         "fullName": "Eran Avichzer",
+         "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+      },
+      {
+         "_id": "u103",
+         "fullName": "Uri Gruda",
+         "imgURL": "https://48hills.org/wp-content/uploads/2021/03/Buff-Garfield.jpg"
+      }
+   ],
+   "groups": [
    ],
    "activities": [
       {
@@ -2254,6 +2694,7 @@ const board3 = {
       }
    ],
    "groups": [
+<<<<<<< HEAD
       {
          "id": "g101",
          "title": "Setup",
@@ -2672,6 +3113,9 @@ const board3 = {
             }
          ]
       }
+=======
+
+>>>>>>> e9504fa3f82c5ea652a2c7b1939ef42942954310
    ],
    "activities": [
       {
@@ -2754,6 +3198,7 @@ const board4 = {
       }
    ],
    "groups": [
+<<<<<<< HEAD
       {
          "id": "g101",
          "title": "Setup",
@@ -3172,6 +3617,9 @@ const board4 = {
             }
          ]
       }
+=======
+
+>>>>>>> e9504fa3f82c5ea652a2c7b1939ef42942954310
    ],
    "activities": [
       {
@@ -3254,6 +3702,7 @@ const board5 = {
       }
    ],
    "groups": [
+<<<<<<< HEAD
       {
          "id": "g101",
          "title": "Setup",
@@ -3672,6 +4121,9 @@ const board5 = {
             }
          ]
       }
+=======
+
+>>>>>>> e9504fa3f82c5ea652a2c7b1939ef42942954310
    ],
    "activities": [
       {
@@ -3754,6 +4206,7 @@ const board6 = {
       }
    ],
    "groups": [
+<<<<<<< HEAD
       {
          "id": "g101",
          "title": "Setup",
@@ -4172,6 +4625,9 @@ const board6 = {
             }
          ]
       }
+=======
+
+>>>>>>> e9504fa3f82c5ea652a2c7b1939ef42942954310
    ],
    "activities": [
       {
@@ -4254,6 +4710,7 @@ const board7 = {
       }
    ],
    "groups": [
+<<<<<<< HEAD
       {
          "id": "g101",
          "title": "Setup",
@@ -4672,6 +5129,9 @@ const board7 = {
             }
          ]
       }
+=======
+
+>>>>>>> e9504fa3f82c5ea652a2c7b1939ef42942954310
    ],
    "activities": [
       {
@@ -4754,6 +5214,7 @@ const board8 = {
       }
    ],
    "groups": [
+<<<<<<< HEAD
       {
          "id": "g101",
          "title": "Setup",
@@ -5172,6 +5633,9 @@ const board8 = {
             }
          ]
       }
+=======
+
+>>>>>>> e9504fa3f82c5ea652a2c7b1939ef42942954310
    ],
    "activities": [
       {
@@ -5254,6 +5718,7 @@ const board9 = {
       }
    ],
    "groups": [
+<<<<<<< HEAD
       {
          "id": "g101",
          "title": "Setup",
@@ -5672,6 +6137,9 @@ const board9 = {
             }
          ]
       }
+=======
+
+>>>>>>> e9504fa3f82c5ea652a2c7b1939ef42942954310
    ],
    "activities": [
       {
@@ -5754,6 +6222,7 @@ const board10 = {
       }
    ],
    "groups": [
+<<<<<<< HEAD
       {
          "id": "g101",
          "title": "Setup",
@@ -6172,6 +6641,9 @@ const board10 = {
             }
          ]
       }
+=======
+
+>>>>>>> e9504fa3f82c5ea652a2c7b1939ef42942954310
    ],
    "activities": [
       {
@@ -6254,6 +6726,7 @@ const board11 = {
       }
    ],
    "groups": [
+<<<<<<< HEAD
       {
          "id": "g101",
          "title": "Setup",
@@ -6672,6 +7145,8 @@ const board11 = {
             }
          ]
       }
+=======
+>>>>>>> e9504fa3f82c5ea652a2c7b1939ef42942954310
    ],
    "activities": [
       {
@@ -6690,19 +7165,3 @@ const board11 = {
       }
    ]
 }
-
-
-// storageService.post(STORAGE_KEY, board0)
-// storageService.post(STORAGE_KEY, board1)
-// storageService.post(STORAGE_KEY, board2)
-// storageService.post(STORAGE_KEY, board3)
-// storageService.post(STORAGE_KEY, board4)
-// storageService.post(STORAGE_KEY, board5)
-// storageService.post(STORAGE_KEY, board6)
-// storageService.post(STORAGE_KEY, board7)
-// storageService.post(STORAGE_KEY, board8)
-// storageService.post(STORAGE_KEY, board9)
-// storageService.post(STORAGE_KEY, board10)
-// storageService.post(STORAGE_KEY, board11)
-
-   

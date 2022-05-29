@@ -1,6 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 
 export const ModalCover = ({ task }) => {
+
+   const [isToggleFocusSizeLeft, setIsToggleFocusSizeLeft] = useState(false)
+   const [isToggleFocusSizeRight, setIsToggleFocusSizeRight] = useState(true)
+   
+   const [isToggleFocusTextcColorLeft, setIsToggleFocusTextcColorLeft] = useState(false)
+   const [isToggleFocusTextcColorRight, setIsToggleFocusTextcColorRight] = useState(true)
+
+   const onFocusSize = (side) => {
+      if (side === 'left') {
+         setIsToggleFocusSizeLeft(true)
+         setIsToggleFocusSizeRight(false)
+      } else {
+         setIsToggleFocusSizeLeft(false)
+         setIsToggleFocusSizeRight(true)
+      }
+   }
+
+   const onFocusTextcColor = (side) => {
+      if (side === 'left') {
+         setIsToggleFocusTextcColorLeft(true)
+         setIsToggleFocusTextcColorRight(false)
+      } else {
+         setIsToggleFocusTextcColorLeft(false)
+         setIsToggleFocusTextcColorRight(true)
+      }
+   }
+
+   const focusSizeLeft = isToggleFocusSizeLeft ? 'focus' : ''
+   const focusSizeRight = isToggleFocusSizeRight ? 'focus' : ''
+
+   const focusTextcColorLeft = isToggleFocusTextcColorLeft ? 'focus' : ''
+   const focusTextcColorRight = isToggleFocusTextcColorRight ? 'focus' : ''
 
    if (!task) { return }
 
@@ -10,9 +42,8 @@ export const ModalCover = ({ task }) => {
          <div className="size-section">
             <h3 className="label">Size</h3>
             <div className="box-container">
-               <div className="box-half">
+               <div className={`${focusSizeLeft} box-half` } onClick={ () => onFocusSize('left')} >
                   <div className="background" style={{ backgroundImage: `url('${task.style.imgURL}')` }}></div>
-
                   <div className="lines">
                      <div className="lines_1"></div>
                      <div className="lines_2"></div>
@@ -24,7 +55,7 @@ export const ModalCover = ({ task }) => {
                   </div>
                </div>
 
-               <div className="box-full" style={{ backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${task.style.imgURL}')` }}>
+               <div className={`${focusSizeRight} box-full` } onClick={ () => onFocusSize('right')} style={{ backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${task.style.imgURL}')` }}>
 
                   <div className="lines">
                      <div className="lines_1"></div>
@@ -35,18 +66,18 @@ export const ModalCover = ({ task }) => {
             </div>
          </div>
 
-         <div className="textcolor-section">
+         { isToggleFocusSizeRight && <div className="textcolor-section">
             <h3 className="label">Text color</h3>
             <div className="box-container">
-               <div className="box-full" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${task.style.imgURL}')` }}>
+               <div className={`${focusTextcColorLeft} box-full` } onClick={ () => onFocusTextcColor('left')} style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${task.style.imgURL}')` }}>
                   <h3>{task.title}</h3>
                </div>
-               <div className="box-full" style={{ backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${task.style.imgURL}')` }}>
+               <div className={`${focusTextcColorRight} box-full` } onClick={ () => onFocusTextcColor('right')} style={{ backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${task.style.imgURL}')` }}>
                   <h3 className="dark">{task.title}</h3>
                </div>
 
             </div>
-         </div>
+         </div>}
 
          <div className="colors-section">
             <h3 className="label">Colors</h3>
@@ -83,7 +114,7 @@ export const ModalCover = ({ task }) => {
                </div>
                <div className="box-full" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653496905343-b1fc1277e3fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDV8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></div>
                <div className="box-full" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1652543549421-ea252bd209f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDR8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></div>
-               <div className="box-full" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1652543549421-ea252bd209f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDR8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></div>
+               <div className="box-full" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653450283266-c788c2ca4ab2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDN8MzE3MDk5fHx8fHwyfHwxNjUzODAwNzQ5&ixlib=rb-1.2.1&q=80&w=200')` }}></div>
                <div className="box-full" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653419831613-56ed2a1c8ea8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></div>
                <div className="box-full" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653592328269-09c14b3628f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></div>
             </div>
