@@ -24,7 +24,7 @@ export const ChecklistPreview = ({ checklist, updateChecklist }) => {
     console.log('value:', value)
     const numberOfLineBreaks = (value.match(/\n/g) || []).length
     // min-height + lines x line-height + padding + border
-    const newHeight = 20 + numberOfLineBreaks * 20
+    const newHeight = 56 + numberOfLineBreaks * 20
     return newHeight
   }
 
