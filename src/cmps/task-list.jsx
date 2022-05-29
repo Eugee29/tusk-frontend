@@ -12,7 +12,7 @@ import { boardService } from '../services/board.service'
 export const TaskList = ({ tasks, groupId, isOpen, toggleLabels, isAddCardOpen, toggleAddCard, onUpdateBoard }) => {
 
   const dispatch = useDispatch()
-  
+
   const board = useSelector(({ boardModule }) => boardModule.board)
   const [cardText, setCardText] = useState('')
   // const [currTasks, setCurrTasks] = useState(tasks)
@@ -39,7 +39,7 @@ export const TaskList = ({ tasks, groupId, isOpen, toggleLabels, isAddCardOpen, 
   }
 
   // console.log(currTasks)
-  
+
   return (
     // Setting each task list to be a droppable area only for other tasks
     <Droppable droppableId={groupId} type='TASK'>
@@ -53,10 +53,13 @@ export const TaskList = ({ tasks, groupId, isOpen, toggleLabels, isAddCardOpen, 
               <button className='add-btn' onClick={onAddCard}>Add card</button>
               <button className='x-btn' onClick={toggleAddCard}> <IoMdClose className='x-icon' /> </button>
             </div>
-          </div>}
+          </div>
+          }
         </div>
       )
+
       }
     </Droppable >
   )
 }
+
