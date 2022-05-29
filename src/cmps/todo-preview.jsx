@@ -20,13 +20,14 @@ export const TodoPreview = (props) => {
   }
 
   const onUpdateTodo = (e) => {
+    props.updateTodo(todo)
     setIsEdit(false)
     textRef.current.blur()
-    props.updateTodo(todo)
     console.log('updated')
   }
 
-  const onDiscardChanges = () => {
+  const onDiscardChanges = (e) => {
+    console.log(e)
     setIsEdit(false)
     textRef.current.blur()
     setTodo(props.todo)
