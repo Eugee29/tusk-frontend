@@ -1,10 +1,11 @@
 import { connect, useSelector } from 'react-redux'
 
 import { ModalCover } from './modal-cover'
+import { ModalMember } from './modal-member'
 
 import { CgClose } from 'react-icons/cg'
 
-const _Modal = ({task, category}) => {
+const _Modal = ({task, category, board, onToggleMember }) => {
 
    return (
       <div className="nice-popup">
@@ -16,6 +17,7 @@ const _Modal = ({task, category}) => {
          <main className="main-modal">
 
            { category === 'Cover' && <ModalCover task={task}/>}
+           { category === 'Members' && <ModalMember task={task} board={board} onToggleMember={onToggleMember} />}
 
          </main>
 

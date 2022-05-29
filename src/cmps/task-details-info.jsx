@@ -1,27 +1,38 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { connect, useSelector } from 'react-redux'
+import { connect, useSelector, useDispatch } from 'react-redux'
+import { updateBoard } from '../store/board/board.action.js'
 
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
 
+import { Modal } from "./modal"
+
 function _TaskDetailsInfo({ task }) {
-   //memberIds, labelIds, dueDate
+
+   const dispatch = useDispatch()
 
    const { board } = useSelector((storeState) => storeState.boardModule)
 
+   const [isOpen, setIsOpen] = useState(false)
    const [isCompleteDate, setIsCompleteDate] = useState(false)
-
-   const initials = (member) => ([...member.fullName])
 
    useEffect(() => {
       onLabels()
    }, [])
 
-   const onToggleComplete = (value, ev) => {
-      // ev.preventDefault()
-      // ev.stopPropagation()
-      setIsCompleteDate(value)
-
+   const onToggleMember = async (board) => {
+      const updatedBoard = await dispatch(updateBoard(board))
+      console.log('onToggleMember', updatedBoard);
    }
+
+   const onToggleComplete = (value, ev) => {
+      setIsCompleteDate(value)
+   }
+
+   const onOpenModal = () => {
+      setIsOpen(!isOpen)
+   }
+
+   const initials = (member) => ([...member.fullName])
 
    const onLabels = (label) => { return board.labels.filter(boardLabel => boardLabel.id === label)[0] }
 
@@ -44,9 +55,12 @@ function _TaskDetailsInfo({ task }) {
          {/* Members */}
          <div className="task-card-info" >
             <h3 className="task-member-title">Members</h3>
-            {task.members?.map((member, idx) =>
-               <a key={member._id} className="member">{`${initials(member)[0]}${initials(member)[1]}`}<span ></span></a>)}
-            <a className="members-add-button round "><span >+</span></a>
+            {task.members?.map((member, idx) => (
+               member?.imgURL
+                  ? <a key={member._id} className="member-img" style={{ backgroundImage: `url('${member.imgURL}')` }}> </a>
+                  : <a key={member._id} className="member">{`${initials(member)[0]}${initials(member)[1]}`}</a>
+            ))}
+            <a className="members-add-button round " onClick={onOpenModal}><span >+</span></a>
          </div>
 
          {/* Labels */}
@@ -60,16 +74,13 @@ function _TaskDetailsInfo({ task }) {
          {/* Due date */}
          <div className="task-card-info">
             <h3 className="task-member-title">Due date</h3>
-
             <div className="date-container">
-
                <div className="date-complete-button">
                   {isCompleteDate
                      ? <ImCheckboxChecked onClick={() => onToggleComplete(false)} className='checkbox checked' />
                      : <ImCheckboxUnchecked onClick={() => onToggleComplete(true)} className='checkbox unchecked' />
                   }
                </div>
-
                <div className="date">
                   <button className="button-date" type="button">
                      <span className="dispaly-date">{displayDate}</span>
@@ -84,11 +95,10 @@ function _TaskDetailsInfo({ task }) {
                      </span>
                   </button>
                </div>
-
             </div>
-
          </div>
 
+         {isOpen && board && <Modal task={task} board={board} onToggleMember={onToggleMember} category={'Members'}></Modal>}
 
       </section>
    )
