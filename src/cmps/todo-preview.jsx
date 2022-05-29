@@ -4,13 +4,15 @@ import { VscClose } from 'react-icons/vsc'
 import { useRef, useState } from 'react'
 
 export const TodoPreview = (props) => {
-  const [isEdit, setIsEdit] = useState(false)
   const [todo, setTodo] = useState(props.todo)
   const textRef = useRef()
+  const [isEdit, setIsEdit] = useState(false)
+
 
   const onCheck = () => {
     const newTodo = { ...props.todo, isDone: !props.todo.isDone }
     props.updateTodo(newTodo)
+    setTodo(newTodo)
   }
 
   const handleChange = ({ target }) => {
@@ -21,6 +23,13 @@ export const TodoPreview = (props) => {
     setIsEdit(false)
     textRef.current.blur()
     props.updateTodo(todo)
+  }
+
+  const onDiscardChanges = () => {
+    setIsEdit(false)
+    textRef.current.blur()
+    console.log(props.todo)
+    setTodo(props.todo)
   }
 
   const calcHeight = (value) => {
@@ -49,13 +58,13 @@ export const TodoPreview = (props) => {
           onFocus={() => setIsEdit(true)}
           onBlur={onUpdateTodo}
           ref={textRef}
-          style={{ height: calcHeight(todo.title) }}>
+          style={{ height: calcHeight(todo.title) }}
+        >
         </textarea>
-        {/* {!isEdit && <span className={`todo-title ${todo.isDone ? 'crossed' : ''}`} role='textbox' onClick={() => setIsEdit(true)}>{todo.title}</span>} */}
         <div className='controls'>
           <div className='btn-container' onMouseDown={e => e.preventDefault()}>
             <button className='save' onClick={onUpdateTodo}>Save</button>
-            <button className='close-container'><VscClose className='close' /></button>
+            <button className='discard-container' onClick={onDiscardChanges}><VscClose className='discard' /></button>
           </div>
           <div className='menu-container' onMouseDown={e => e.preventDefault()}>
             <BsThreeDots className='menu' />
