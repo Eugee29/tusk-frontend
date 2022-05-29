@@ -88,10 +88,7 @@ const _TaskDetails = () => {
           {task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
           {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
         </div>
-
-        <div className="side-task">
-          <TaskDetailsSideTask task={task} />
-        </div>
+        <TaskDetailsSideTask task={task} />
       </div>
     </div>
 
