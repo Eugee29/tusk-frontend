@@ -854,7 +854,7 @@ const board2 = {
    "title": "Planning Your Day",
    "archivedAt": null,
    "createdAt": 1653046611000,
-   "isStarred": true,
+   "isStarred": false,
    "createdBy": {
       "_id": "u101",
       "fullName": "Tal Ofer",
@@ -1102,7 +1102,7 @@ const board5 = {
    "title": "Daily Task Management",
    "archivedAt": null,
    "createdAt": 1653046611000,
-   "isStarred": true,
+   "isStarred": false,
    "createdBy": {
       "_id": "u101",
       "fullName": "Tal Ofer",
@@ -1268,7 +1268,7 @@ const board7 = {
    "title": "Product Roadmap Template",
    "archivedAt": null,
    "createdAt": 1653046611000,
-   "isStarred": false,
+   "isStarred": true,
    "createdBy": {
       "_id": "u101",
       "fullName": "Tal Ofer",
