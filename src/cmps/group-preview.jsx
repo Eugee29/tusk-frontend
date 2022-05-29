@@ -14,9 +14,7 @@ export const GroupPreview = ({ group, index, toggleLabels, isOpen }) => {
         <div ref={provided.innerRef}
           {...provided.draggableProps}>
           <section className={`group-preview ${snapshot.isDragging && !snapshot.isDropAnimating ? 'tilted' : ''}`}
-
           >
-
             {/* Setting this CMP to be a handle for draggable item by spreading provided.dragHandleProps */}
             <div className="group-title-container"
               {...provided.dragHandleProps}
