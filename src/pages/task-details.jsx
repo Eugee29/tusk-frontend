@@ -34,16 +34,16 @@ const _TaskDetails = () => {
   const { taskId } = useParams()
 
 
-  const onUpdateTask = async (taskToUpdate) => {
+  const updateTask = async (taskToUpdate) => {
     const group = board.groups.find(group => group.id === params.groupId)
     const { tasks } = group
     const updatedTasks = tasks.map(task => task.id === taskToUpdate.id ? taskToUpdate : task)
     const updatedGroup = { ...group, tasks: updatedTasks }
     const updatedGroups = board.groups.map(group => group.id === updatedGroup.id ? updatedGroup : group)
     const updatedBoard = { ...board, groups: updatedGroups }
-    // setTask(taskToUpdate) ENABLE WHEN CONNECTING TO BACKEND FOR BETTER USER EXPERIENCE
+    setTask(taskToUpdate)
     await dispatch(updateBoard(updatedBoard))
-    loadTaskAsync()
+    // loadTaskAsync()
   }
 
   useEffect(() => {
@@ -58,6 +58,7 @@ const _TaskDetails = () => {
 
   const loadTaskAsync = async () => {
     const taskFromService = await dispatch(loadTask({ boardId, groupId, taskId }))
+    console.log(taskFromService)
     setTask(taskFromService)
   }
 
@@ -84,13 +85,10 @@ const _TaskDetails = () => {
           {task && <TaskDetailsInfo task={task} />}
           {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
           {task?.attachments && <TaskDetailsAttachments task={task} />}
-          {task.checklists?.length && <ChecklistList task={task} onUpdateTask={onUpdateTask} />}
+          {task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
           {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
         </div>
-
-        <div className="side-task">
-          <TaskDetailsSideTask task={task} />
-        </div>
+        <TaskDetailsSideTask task={task} />
       </div>
     </div>
 

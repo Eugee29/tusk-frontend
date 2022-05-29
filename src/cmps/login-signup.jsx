@@ -26,7 +26,7 @@ export const LoginSignup = ({ type }) => {
       <hr />
       <footer>
         <Link to='/'>Back home</Link>
-        <Link to={type === 'login' ? '/signup' : '/login'}>{type === 'login' ? 'Log in' : 'Sign up'}</Link>
+        <Link to={type === 'login' ? '/signup' : '/login'}>{type === 'login' ? 'Sign up' : 'Log in'}</Link>
       </footer>
     </div >
   )

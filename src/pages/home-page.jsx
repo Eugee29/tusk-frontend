@@ -1,8 +1,10 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import hero from '../assets/imgs/hero.png'
 
 export const HomePage = () => {
+
+  const navigate = useNavigate()
 
   return (
     <main className='home-page' >
@@ -17,16 +19,16 @@ export const HomePage = () => {
               From high rises to the home office, the way your team works is unique—accomplish it all with Tusk.
             </p>
             <form>
-              <input type='email' placeholder='Email' />
-              <button>Sign up-it's free!</button>
+              {/* <input type='email' placeholder='Email' /> */}
+              <button type='button' onClick={() => navigate('/workspace')}>Let's get started</button>
             </form>
-            <small>or <Link to="/workspace">Continue as Guest</Link></small>
+            {/* <small>or <Link to="/workspace">Continue as Guest</Link></small> */}
           </section>
           <div className='hero-img'>
             <img src={hero} alt='hero.png' />
           </div>
         </div>
       </div>
-    </main>
+    </main >
   )
 }
