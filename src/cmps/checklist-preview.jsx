@@ -3,7 +3,7 @@ import { ProgressBar } from 'react-bootstrap'
 
 import { TodoList } from './todo-list'
 
-export const ChecklistPreview = ({ checklist, onUpdateChecklist }) => {
+export const ChecklistPreview = ({ checklist, updateChecklist }) => {
 
   const numOfDone = checklist.todos.reduce((count, todo) => todo.isDone ? count + 1 : count, 0)
   const progress = parseInt((numOfDone / checklist.todos.length) * 100)
@@ -29,7 +29,7 @@ export const ChecklistPreview = ({ checklist, onUpdateChecklist }) => {
         <h4 className='progress'>{progress}%</h4>
         <ProgressBar now={progress} variant={progress === 100 ? 'green' : 'blue'} className='progress-bar'></ProgressBar>
       </div>
-      {checklist.todos?.length && <TodoList checklist={checklist} onUpdateChecklist={onUpdateChecklist} />}
+      {checklist.todos?.length && <TodoList checklist={checklist} updateChecklist={updateChecklist} />}
       <div className='btn-container'>
         <button>Add an item</button>
       </div>
