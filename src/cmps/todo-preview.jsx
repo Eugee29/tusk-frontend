@@ -19,16 +19,16 @@ export const TodoPreview = (props) => {
     setTodo({ ...todo, title: target.value })
   }
 
-  const onUpdateTodo = () => {
+  const onUpdateTodo = (e) => {
     setIsEdit(false)
     textRef.current.blur()
     props.updateTodo(todo)
+    console.log('updated')
   }
 
   const onDiscardChanges = () => {
     setIsEdit(false)
     textRef.current.blur()
-    console.log(props.todo)
     setTodo(props.todo)
   }
 
@@ -56,7 +56,7 @@ export const TodoPreview = (props) => {
           onChange={handleChange}
           onClick={(e) => e.target.select()}
           onFocus={() => setIsEdit(true)}
-          onBlur={onUpdateTodo}
+          onBlur={() => setIsEdit(false)}
           ref={textRef}
           style={{ height: calcHeight(todo.title) }}
 

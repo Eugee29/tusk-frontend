@@ -11,7 +11,9 @@ export const ChecklistPreview = ({ checklist, updateChecklist }) => {
   const numOfDone = checklist.todos.reduce((count, todo) => todo.isDone ? count + 1 : count, 0)
   const progress = parseInt((numOfDone / checklist.todos.length) * 100)
 
-  // const checklistToShow = hideChecked? checklist.todos.filter(todo=>)
+  const TodosToShow = hideChecked ? checklist.todos.filter(todo => !todo.isDone) : checklist.todos
+  const numOfChecked = checklist.todos.length - TodosToShow.length
+  checklist = { ...checklist, todos: TodosToShow }
 
   return (
     <li className='checklist-preview'>
@@ -23,7 +25,7 @@ export const ChecklistPreview = ({ checklist, updateChecklist }) => {
           <h3 className='title'>{checklist.title}</h3>
           <div className='header-btn-container'>
             <div className='inner-btn-container'>
-              {progress != 0 && <button>Hide checked items</button>}
+              {progress != 0 && <button onClick={() => setHideChecked(!hideChecked)}>{hideChecked ? `Show checked items (${numOfChecked})` : 'Hide checked items'}</button>}
               <button>Delete</button>
             </div>
           </div>
