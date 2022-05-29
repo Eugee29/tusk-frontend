@@ -24,11 +24,15 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
 
   const getTaskStyle = () => {
     if (task.style) {
-      if (task.style.imgURL) {
+      if (task.style.imgURL && task.style.isCover) {
         return { backgroundImage: `url(${task.style.imgURL})` }
       }
       if (task.style.bgColor) {
-        return { backgroundColor: `${task.style.bgColor}` }
+        if (!task.style.isCover) {
+          return { borderTop: `32px solid ${task.style.bgColor}` }
+        } else {
+          return { backgroundColor: `${task.style.bgColor}` }
+        }
       }
 
     } else {
@@ -38,10 +42,14 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
 
   const getTaskClass = () => {
     if (task.style) {
-      if (task.style.bgColor) {
+      if (task.style.bgColor && task.style.isCover) {
         return 'task-preview styled'
-      } else if (task.style.imgURL) {
+      } else if (task.style.bgColor && !task.style.isCover) {
+        return 'task-preview color-header'
+      } else if (task.style.imgURL && task.style.isCover) {
         return 'task-preview styled img'
+      } else if (task.style.imgURL && !task.style.isCover) {
+        return 'task-preview img-header'
       }
       return 'task-preview'
     }
@@ -59,13 +67,15 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
     return doneTodos.length
   }
 
-
   return (
     <Draggable draggableId={task.id} index={index} type='TASK' >
       {provided => (
         <div className='task-preview-handle' {...provided.draggableProps} {...provided.dragHandleProps}>
           <section className={getTaskClass()} onClick={onOpenDetails} ref={provided.innerRef} style={getTaskStyle()}  >
-            {task.labelIds.length && (!task.style.bgColor) && (!task.style.imgURL) && <LabelList labelIds={task.labelIds} toggleLabels={toggleLabels} isOpen={isOpen} />}
+          {!task.style.isCover && task.style.imgURL && <img className='task-img-container' src={task.style.imgURL} alt="..." />}
+            
+            <div className='task-info'>
+            {task.labelIds.length && (!task.style.isCover) && <LabelList labelIds={task.labelIds} toggleLabels={toggleLabels} isOpen={isOpen} />}
             <div className='task-title-container'>
               <h2 className='task-title'> {task.title} </h2>
             </div>
@@ -75,23 +85,23 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
               <div className='icon-container'>
                 {task.description && (!task.style.bgColor) && (!task.style.imgURL)
                   && <MdOutlineSubject />}
-                {task.checklists && task.checklists.length && (!task.style.bgColor) && (!task.style.imgURL)
+                {task.checklists && task.checklists.length && (!task.style.isCover)
                   && <div className='icon-num-container'> <IoMdCheckboxOutline /> <span> {getChecklistLength()} </span> </div>}
-                {task.attachments && task.attachments.length && (!task.style.bgColor) && (!task.style.imgURL)
-                  && <div className='icon-num-container'><ImAttachment className='attachment-icon'/> <span> {task.attachments.length} </span> </div> }
-                
-                {task.dueDate && (!task.style.bgColor) && (!task.style.imgURL)
-                  && <React.Fragment> 
-                      {/* //TIME// */}
-                    </React.Fragment>}
+                {task.attachments && task.attachments.length && (!task.style.isCover)
+                  && <div className='icon-num-container'><ImAttachment className='attachment-icon' /> <span> {task.attachments.length} </span> </div>}
+
+                {task.dueDate && (!task.style.isCover)
+                  && <React.Fragment>
+                    {/* //TIME// */}
+                  </React.Fragment>}
               </div>
 
-              {task.members && task.members.length && (!task.style.bgColor) && (!task.style.imgURL)
+              {task.members && task.members.length && (!task.style.isCover)
                 && <div className='member-img-container'>
                   {task.members.map((member) => <a key={member._id} className="member-img"> <img src={member.imgURL} alt="" /> </a>)}
                 </div>}
             </div>
-
+            </div>
             <button className='edit-btn'> <RiPencilLine className='btn-icon' /> </button>
           </section>
         </div>

@@ -17,6 +17,20 @@
     box-shadow: 0 1px 0 #091e4240;
     color: $brand-clr6;
 
+    &.img-header {
+        padding: 0;
+
+        .task-info {
+            padding: 10px;
+        } 
+    }
+
+    img {
+        height: 160px;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+    }
+
     &:hover button {
         opacity: 0.7;
     }
@@ -124,6 +138,11 @@
         font-size: 16px;
         font-weight: 500;
         flex-direction: row;
+
+        .task-info {
+            display: flex;
+            align-items: flex-end;
+        }
 
         .task-title-container {
             align-self: flex-end;
