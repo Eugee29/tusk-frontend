@@ -14,7 +14,7 @@ import { TaskList } from './task-list'
 
 
 export const GroupPreview = ({ group, index, toggleLabels, isOpen }) => {
-  
+
   const params = useParams()
   const dispatch = useDispatch()
 
@@ -35,9 +35,9 @@ export const GroupPreview = ({ group, index, toggleLabels, isOpen }) => {
   const updateTitle = async () => {
     console.log(group.id)
     const groupToUpdate = board.groups.find(currGroup => currGroup.id === group.id)
-    const {groups} = board
-    const updatedGroup = {...groupToUpdate, title: titleText}
-    const updatedGroups = groups.map(thisGroup => thisGroup.id === updatedGroup.id ? updatedGroup : thisGroup )
+    const { groups } = board
+    const updatedGroup = { ...groupToUpdate, title: titleText }
+    const updatedGroups = groups.map(thisGroup => thisGroup.id === updatedGroup.id ? updatedGroup : thisGroup)
     const updatedBoard = { ...board, groups: updatedGroups }
     // setTask(taskToUpdate) ENABLE WHEN CONNECTING TO BACKEND FOR BETTER USER EXPERIENCE
     await dispatch(updateBoard(updatedBoard))
@@ -47,26 +47,24 @@ export const GroupPreview = ({ group, index, toggleLabels, isOpen }) => {
   return (
     // Setting each group to be draggable with the Draggable CMP
     <Draggable draggableId={group.id} index={index} type='GROUP'>
-      {provided => (
-        <section className="group-preview"
-          ref={provided.innerRef}
-          {...provided.draggableProps}
-        >
-          {/* Setting this CMP to be a handle for draggable item by spreading provided.dragHandleProps */}
-          <div className="group-title-container"
-            {...provided.dragHandleProps}
-          >
+      {(provided, snapshot) => (
+        <div ref={provided.innerRef}
+          {...provided.draggableProps}>
+          <section className={`group-preview ${snapshot.isDragging && !snapshot.isDropAnimating ? 'tilted' : ''}`}>
+
+          <div className="group-title-container">
             <textarea className="group-title" defaultValue={titleText} scols="30" rows="10" onChange={handleChange} onBlur={updateTitle}></textarea>
             <button className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
-          </div>
+            </div>
 
-          <TaskList key={group.id} groupId={group.id} tasks={group.tasks} toggleLabels={toggleLabels} isOpen={isOpen} isAddCardOpen={isAddCardOpen} toggleAddCard={toggleAddCard}/>
+            <TaskList key={group.id} groupId={group.id} tasks={group.tasks} toggleLabels={toggleLabels} isOpen={isOpen} isAddCardOpen={isAddCardOpen} toggleAddCard={toggleAddCard} />
 
-          {!isAddCardOpen && <div className="add-btn-container">
-            <button className="add-btn" onClick={toggleAddCard}> <AiOutlinePlus /> Add a card</button>
-          </div>}
+            {!isAddCardOpen && <div className="add-btn-container">
+              <button className="add-btn" onClick={toggleAddCard}> <AiOutlinePlus /> Add a card</button>
+            </div>}
 
-        </section>
+          </section>
+        </div>
       )}
     </Draggable >
   )

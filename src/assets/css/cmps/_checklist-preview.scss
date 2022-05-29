@@ -15,7 +15,7 @@
 
     .icon-container {
       position: absolute;
-      left: -47px;
+      left: -41px;
       width: 2rem;
       height: 2rem;
       padding: 7px;
@@ -27,19 +27,12 @@
       }
     }
 
-    // .check-square {
-    //   position: absolute;
-    //   width: 20px;
-    //   height: 20px;
-    // }
-
     .inner-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
       height: 100%;
       width: 100%;
-      // width: 512px;
 
 
       .title {
@@ -75,7 +68,7 @@
     margin-bottom: 6px;
 
     .progress {
-      font-size: rem(10px);
+      font-size: rem(11px);
       color: $clr3;
       text-align: center;
       width: 32px;

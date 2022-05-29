@@ -69,9 +69,9 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
 
   return (
     <Draggable draggableId={task.id} index={index} type='TASK' >
-      {provided => (
+      {(provided, snapshot) => (
         <div className='task-preview-handle' {...provided.draggableProps} {...provided.dragHandleProps}>
-          <section className={getTaskClass()} onClick={onOpenDetails} ref={provided.innerRef} style={getTaskStyle()}  >
+          <section className={`${getTaskClass()} ${snapshot.isDragging && !snapshot.isDropAnimating ? 'tilted' : ''}`} onClick={onOpenDetails} ref={provided.innerRef} style={getTaskStyle()}  >
           {!task.style.isCover && task.style.imgURL && <img className='task-img-container' src={task.style.imgURL} alt="..." />}
             
             <div className='task-info'>

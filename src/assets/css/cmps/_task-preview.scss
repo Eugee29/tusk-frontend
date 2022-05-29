@@ -1,159 +1,151 @@
 .task-preview {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-height: 56px;
-    background-color: #fff;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-    margin-bottom: 0;
-    padding-bottom: 8px;
-    padding: 10px;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-bottom: 8px;
-    max-width: 300px;
-    box-shadow: 0 1px 0 #091e4240;
-    color: $brand-clr6;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 56px;
+  background-color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-bottom: 0;
+  padding-bottom: 8px;
+  padding: 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-bottom: 8px;
+  max-width: 300px;
+  box-shadow: 0 1px 0 #091e4240;
+  color: $brand-clr6;
 
-    &.img-header {
-        padding: 0;
 
-        .task-info {
-            padding: 10px;
-        } 
+  &:hover .edit-button {
+    opacity: 0.7;
+  }
+
+  .member-img-container {
+
+    align-self: flex-end;
+
+    .member {
+      @include task-member-button(tomato)
     }
 
-    img {
-        height: 160px;
-        border-top-right-radius: 3px;
-        border-top-left-radius: 3px;
+    .member-img {
+
+      img {
+        cursor: pointer;
+        float: left;
+        border-radius: 50%;
+        text-transform: uppercase;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        object-fit: cover;
+      }
+
+      span {
+        line-height: 30px;
+      }
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .task-icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .icon-num-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .attachment-icon {
+      height: 12px;
+      width: 12px;
+    }
+
+
+    .lines-icon {
+      color: darken($color: $brand-clr11, $amount: 10%);
+      height: 15px;
+      width: 15px;
+      margin-top: 8px;
+    }
+
+    span {
+      font-size: 12px;
+      line-height: 10px
     }
 
     &:hover button {
-        opacity: 0.7;
+      opacity: 0.7;
     }
 
-    .task-icon-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+  }
 
-        .icon-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+  &.img-header {
+    padding: 0;
 
-            .icon-num-container {
-                display: flex;
-            align-items: center;
-            gap: 5px;
-
-                .attachment-icon {
-                    height: 12px;
-                    width: 12px;
-                }
-            }
-
-            span {
-                font-size: 12px;
-                line-height: 10px
-            }
-        }
-
-        
-
-        ;
-
-        .member-img-container {
-
-            align-self: flex-end;
-
-            .member {
-                @include task-member-button(tomato)
-            }
-
-            .member-img {
-
-                img {
-                    cursor: pointer;
-                    float: left;
-                    border-radius: 50%;
-                    text-transform: uppercase;
-                    width: 32px;
-                    height: 32px;
-                    display: flex;
-                    justify-content: center;
-                    align-content: center;
-                    align-items: center;
-                    object-fit: cover;
-                }
-
-                span {
-                    line-height: 30px;
-                }
-
-                &:hover {
-                    opacity: 0.8;
-                }
-            }
-        }
+    .task-info {
+      padding: 10px;
     }
 
-    .lines-icon {
-        color: darken($color: $brand-clr11, $amount: 10%);
-        height: 15px;
-        width: 15px;
-        margin-top: 8px;
+    img {
+      height: 160px;
+      border-top-right-radius: 3px;
+      border-top-left-radius: 3px;
+    }
+  }
+
+  .edit-btn {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    top: 3px;
+    right: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(255, 255, 255);
+    opacity: 0;
+
+    &:hover {
+      background-color: $brand-clr8;
+      opacity: 1;
+    }
+  }
+
+  &.styled {
+    font-size: 16px;
+    font-weight: 500;
+    flex-direction: row;
+
+    &.img {
+      min-height: 260px;
+      background-size: cover;
+      box-shadow: inset 0px -40px 20px 0px rgba(234, 234, 234, 0.856);
     }
 
-    .edit-btn {
-        position: absolute;
-        height: 25px;
-        width: 25px;
-        top: 3px;
-        right: 3px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        border-radius: 3px;
-        background-color: rgb(255, 255, 255);
-        opacity: 0;
-
-        &:hover {
-            background-color: $brand-clr8;
-            opacity: 1;
-
-        }
-
-        .btn-icon {
-            height: 1.8rem;
-            width: 1.8rem;
-        }
+    .task-info {
+      display: flex;
+      align-items: flex-end;
     }
 
-    &.styled {
-        font-size: 16px;
-        font-weight: 500;
-        flex-direction: row;
-
-        .task-info {
-            display: flex;
-            align-items: flex-end;
-        }
-
-        .task-title-container {
-            align-self: flex-end;
-            z-index: 20;
-        }
-
-        &.img {
-            min-height: 260px;
-            background-size: cover;
-            box-shadow: inset 0px -40px 20px 0px rgba(234, 234, 234, 0.856);
-        }
+    .task-title-container {
+      align-self: flex-end;
+      z-index: 20;
     }
 
+
+  }
 }

@@ -2,9 +2,13 @@
   display: flex;
   height: calc(100% - 94px);
   padding-right: 2px;
+  height: calc(100% - 102px);
+  margin-bottom: 8px;
   overflow-y: hidden;
   overflow-x: auto;
-  padding-bottom: 20px;
+  padding-bottom: 8px;
+  padding-left: 1rem;
+  padding-right: 1rem;
 
   .group-title {
     padding: 10px;
@@ -12,10 +16,12 @@
 
   &::-webkit-scrollbar {
 
-    height: 10px;
+    height: 12px;
   }
 
   &::-webkit-scrollbar-track {
+    margin-left: 4rem;
+    margin-right: 4rem;
     border-radius: 3px;
     background-color: #dadbe21c;
   }
