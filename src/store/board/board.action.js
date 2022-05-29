@@ -99,23 +99,20 @@ export function addBoard(board) {
   }
 }
 
-export function updateBoard(board) {
-  return (dispatch) => {
-    return boardService.save(board)
-      .then(savedBoard => {
-        dispatch({
-          type: 'UPDATE_BOARD',
-          board
-        })
-        saveBoard(board)
-        // dispatch(getActionUpdateBoard(savedBoard))
-        // showSuccessMsg('Board updated')
-        return savedBoard
+export const updateBoard = (board) => {
+  return async dispatch => {
+    try {
+      const savedBoard = await boardService.save(board)
+      dispatch({
+        type: 'UPDATE_BOARD',
+        board: savedBoard
       })
-      .catch(err => {
-        // showErrorMsg('Cannot update board')
-        console.log('Cannot save board', err)
-      })
+      saveBoard(savedBoard)
+      return savedBoard
+
+    } catch (err) {
+      console.log('Cannot save board', err)
+    }
   }
 }
 

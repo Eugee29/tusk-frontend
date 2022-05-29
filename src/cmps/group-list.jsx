@@ -1,40 +1,35 @@
 import { useState } from 'react'
-import { Droppable } from 'react-beautiful-dnd'
-import { DragDropContext } from 'react-beautiful-dnd'
+import { Droppable, DragDropContext } from 'react-beautiful-dnd'
 import { GroupPreview } from "./group-preview"
 
-export const GroupList = (props) => {
-  const [groups, setGroups] = useState(props.groups)
+export const GroupList = ({ board, onUpdateBoard }) => {
 
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleLabels = () => {
-    console.log('arrived')
     setIsOpen(!isOpen)
   }
 
   const handleOnDragEnd = ({ destination, source, type }) => {
     if (!destination) return
-
-    const groupsCopy = [...groups]
-
+    const groupsCopy = [...board.groups]
     if (type === 'TASK') {
       const destinationGroup = groupsCopy.find(group => group.id === destination.droppableId)
       const sourceGroup = groupsCopy.find(group => group.id === source.droppableId)
       const task = sourceGroup.tasks.splice(source.index, 1)[0]
       destinationGroup.tasks.splice(destination.index, 0, task)
     }
-
     if (type === 'GROUP') {
       const group = groupsCopy.splice(source.index, 1)[0]
       groupsCopy.splice(destination.index, 0, group)
     }
-
-
-    props.onUpdateBoard(groupsCopy)
-    setGroups(groupsCopy)
+    onUpdateBoard({ ...board, groups: groupsCopy })
   }
 
+  const onUpdateGroup = (groupToUpdate) => {
+    const updatedGroups = board.groups.map(group => group.id === groupToUpdate.id ? groupToUpdate : group)
+    onUpdateBoard({ ...board, groups: updatedGroups })
+  }
 
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -45,7 +40,7 @@ export const GroupList = (props) => {
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {groups.map((group, index) => <GroupPreview key={group.id} group={group} index={index} toggleLabels={toggleLabels} isOpen={isOpen} onUpdateBoard={props.onUpdateBoard}/>)}
+            {board.groups.map((group, index) => <GroupPreview key={group.id} group={group} index={index} toggleLabels={toggleLabels} isOpen={isOpen} onUpdateGroup={onUpdateGroup} />)}
             {provided.placeholder}
           </section>
         )}

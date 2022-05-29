@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState, useRef } from 'react'
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useOutletContext, useParams } from "react-router-dom"
 import { connect } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { VscClose } from 'react-icons/vsc'
@@ -19,48 +19,73 @@ import { useSelector } from 'react-redux'
 
 import { updateBoard } from '../store/board/board.action.js'
 
-const _TaskDetails = () => {
+export const TaskDetails = () => {
 
-  const [task, setTask] = useState(null)
+  const { boardId, groupId, taskId } = useParams()
+  const { board, onUpdateBoard } = useOutletContext()
+
+  const group = board.groups.find(group => group.id === groupId)
+  const task = group.tasks.find(task => task.id === taskId)
+
   const [isCloseEdit, setIsCloseEdit] = useState(true)
-  const params = useParams()
-  const board = useSelector(({ boardModule }) => boardModule.board)
+  // const [board, setBoard] = useState(null)
+  // const board = useSelector(({ boardModule }) => boardModule.board)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { boardId } = useParams()
-  const { groupId } = useParams()
-  const { taskId } = useParams()
-
-
   const updateTask = async (taskToUpdate) => {
-    const group = board.groups.find(group => group.id === params.groupId)
+
+    const group = board.groups.find(group => group.id === groupId)
     const { tasks } = group
     const updatedTasks = tasks.map(task => task.id === taskToUpdate.id ? taskToUpdate : task)
     const updatedGroup = { ...group, tasks: updatedTasks }
     const updatedGroups = board.groups.map(group => group.id === updatedGroup.id ? updatedGroup : group)
     const updatedBoard = { ...board, groups: updatedGroups }
-    setTask(taskToUpdate)
-    await dispatch(updateBoard(updatedBoard))
+
+    onUpdateBoard(updatedBoard)
+    // setTask(taskToUpdate)
+    // await dispatch(updateBoard(updatedBoard))
     // loadTaskAsync()
   }
 
-  useEffect(() => {
-    if (!task) {
-      loadTaskAsync()
-    }
-  }, [isCloseEdit])
+  // useEffect(() => {
+  //   loadBoard()
+  // }, [])
 
-  useEffect(() => {
-    loadTaskAsync()
-  }, [])
+  // useEffect(() => {
+  //   loadTask()
+  // }, [board])
 
-  const loadTaskAsync = async () => {
-    const taskFromService = await dispatch(loadTask({ boardId, groupId, taskId }))
-    console.log(taskFromService)
-    setTask(taskFromService)
-  }
+  // const loadBoard = async () => {
+  //   const board = await boardService.getById(boardId)
+  //   setBoard(board)
+  // const group = boardFromService.groups.find(group => group.id === groupId)
+  // const task = group.tasks.find(task => task.id === taskId)
+  // setTask(task)
+  // }
+
+  // const loadTask = () => {
+  //   const group = board.groups.find(group => group.id === groupId)
+  //   const task = group.tasks.find(task => task.id === taskId)
+  //   setTask(task)
+  // }
+
+  // useEffect(() => {
+  //   if (!task) {
+  //     loadTaskAsync()
+  //   }
+  // }, [isCloseEdit])
+
+  // useEffect(() => {
+  //   loadTaskAsync()
+  // }, [])
+
+  // const loadTaskAsync = async () => {
+  //   const taskFromService = await dispatch(loadTask({ boardId, groupId, taskId }))
+  //   console.log(taskFromService)
+  //   setTask(taskFromService)
+  // }
 
   const onGoBack = () => {
     navigate(`/board/${boardId}`)
@@ -95,10 +120,10 @@ const _TaskDetails = () => {
   </section >
 }
 
-function mapStateToProps(state) {
-  return {
-    task: state.boardModule.task
-  }
-}
+// function mapStateToProps(state) {
+//   return {
+//     task: state.boardModule.task
+//   }
+// }
 
-export const TaskDetails = connect(mapStateToProps)(_TaskDetails)
+// export const TaskDetails = connect(mapStateToProps)(_TaskDetails)
