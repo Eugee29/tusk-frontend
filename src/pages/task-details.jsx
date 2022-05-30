@@ -58,7 +58,7 @@ export const TaskDetails = () => {
           {task && <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />}
           {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
           {task?.attachments && <TaskDetailsAttachments task={task} />}
-          {task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
+          {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
           {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
         </div>
         <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />

@@ -50,6 +50,7 @@ function formatTimeToDM(time) {
 }
 function getPosition(element) {
   if (!element) return
-  const { top, left } = element.getBoundingClientRect()
+  let { top, left } = element.getBoundingClientRect()
+  // if (window.innerWidth - left < 304) left = left - 304
   return { top, left }
 }

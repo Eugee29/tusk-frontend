@@ -115,35 +115,10 @@
     }
 
     .todo-title {
-      width: 100%;
-      min-height: 20px;
-      padding: 0;
+      @include text-area-edit;
       flex-grow: 1;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       font-size: rem(14px);
       font-weight: 400;
-      border: none;
-      background: none;
-      resize: none;
-      cursor: pointer;
-      color: $brand-clr4;
-      white-space: pre-wrap;
-      overflow: hidden;
-      overflow-wrap: break-word;
-
-      &:focus {
-        margin-top: -6px;
-        padding: 8px 12px;
-        border-radius: 3px;
-        background-color: $clr8;
-        border: none;
-        box-shadow: inset 0 0 0 1px #091e4221;
-        outline: none;
-        overflow: hidden;
-        overflow-wrap: break-word;
-        min-height: rem(56px);
-        margin-bottom: 4px;
-      }
 
       &.crossed {
         text-decoration: line-through;

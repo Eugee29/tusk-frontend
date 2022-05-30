@@ -44,12 +44,16 @@ export const TodoPreview = (props) => {
 
   const onOpenModal = (e) => {
     e.stopPropagation()
-    dispatch(
-      setModal({
-        position: utilService.getPosition(menuRef.current),
-        category: 'todo-actions'
-
-      }))
+    dispatch(setModal({
+      position: utilService.getPosition(menuRef.current),
+      category: 'todo-actions',
+      title: 'Item actions',
+      props: {
+        checklist: props.checklist,
+        updateChecklist: props.updateChecklist,
+        todoId: props.todo.id
+      }
+    }))
   }
 
   return (
@@ -74,12 +78,12 @@ export const TodoPreview = (props) => {
           ref={textRef}
           style={{ height: calcHeight(todo.title) }}
         />
-        <div className='controls'>
-          <div className='btn-container' onMouseDown={e => e.preventDefault()}>
+        <div className='controls' >
+          <div className='btn-container' onMouseDown={e => e.preventDefault()} >
             <button className='save' onClick={onUpdateTodo}>Save</button>
             <button className='discard-container' onClick={onDiscardChanges}><VscClose className='discard' /></button>
           </div>
-          <div className='menu-container' ref={menuRef} onMouseDown={e => e.preventDefault()} onClick={onOpenModal} >
+          <div className='menu-container' onMouseDown={e => e.preventDefault()} onClick={onOpenModal} ref={menuRef}>
             <BsThreeDots className='menu' />
           </div>
         </div>
