@@ -3,26 +3,28 @@ import { BsThreeDots } from 'react-icons/bs'
 import { VscClose } from 'react-icons/vsc'
 import { useEffect, useRef, useState } from 'react'
 import { Modal } from '../cmps/modal'
+import { useDispatch } from 'react-redux'
+import { toggleModal } from '../store/app/app.actions'
+import { utilService } from '../services/util.service'
 
 export const TodoPreview = (props) => {
   const [todo, setTodo] = useState(props.todo)
   const textRef = useRef()
   const [isEdit, setIsEdit] = useState(false)
+  const dispatch = useDispatch()
   // const [menuPos, setMenuPos] = useState(null)
 
   var position
 
 
-  useEffect(() => { position = getPosition() }, [])
+  // useEffect(() => { position = getPosition() }, [])
 
   const menuRef = useRef()
 
-  const getPosition = () => {
-    if (!menuRef.current) return
-    const { top, left } = menuRef.current.getBoundingClientRect()
-    console.log(top, left)
-    return { top: top, left: left }
-  }
+  // function getPosition(element) {
+  //   const { top, left } = element.getBoundingClientRect()
+  //   return { top: top, left: left }
+  // }
 
   const onCheck = () => {
     const newTodo = { ...props.todo, isDone: !props.todo.isDone }
@@ -82,7 +84,7 @@ export const TodoPreview = (props) => {
             <button className='save' onClick={onUpdateTodo}>Save</button>
             <button className='discard-container' onClick={onDiscardChanges}><VscClose className='discard' /></button>
           </div>
-          <div className='menu-container' onMouseDown={e => e.preventDefault()} ref={menuRef} /*onClick={(e) => { e.stopPropagation(); props.setModalPos(getPosition()) }}*/>
+          <div className='menu-container' onMouseDown={e => e.preventDefault()} ref={menuRef} onClick={(e) => { e.stopPropagation(); dispatch(toggleModal({ position: { ...utilService.getPosition(menuRef.current) } })) }} /*onClick={(e) => { e.stopPropagation(); props.setModalPos(getPosition()) }}*/>
             <BsThreeDots className='menu' />
           </div>
         </div>

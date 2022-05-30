@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import './assets/css/main.scss'
 
 import { AppHeader } from './cmps/app-header'
+import { Modal } from './cmps/modal'
 
 import { HomePage } from './pages/home-page'
 import { LoginSignupPage } from './pages/login-signup-page'
@@ -15,6 +16,7 @@ export function RootCmp() {
   return (
     <div >
       <AppHeader />
+      <Modal />
       <main className='main-layout'>
         <Routes>
           <Route path='/' element={<HomePage />} />

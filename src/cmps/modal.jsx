@@ -12,10 +12,14 @@ import { IoIosArrowBack } from 'react-icons/io'
 
 export const Modal = ({ task, category, board, editLabel, updateTask, onToggleMember, onToggleLabel, onLabelCreate, onBackTolabel, onCloseModalLabel, onCreatelLabel, onChangeLabel, onCloseModal, /*position*/ }) => {
 
-  // position.top += 30
+  const { modal } = useSelector(({ appModule }) => appModule)
+  console.log(modal)
+
+  if (!modal) return
+  // modal.position.top += 30
 
   return (
-    <div className="nice-popup" /*style={{ ...position }}*/>
+    <div className="nice-popup" style={{ ...modal.position }}>
       <header>
         {category === 'Create label' && <button onClick={onBackTolabel} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
         {category === 'Change label' && <button onClick={onBackTolabel} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
