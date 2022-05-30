@@ -1,33 +1,45 @@
 import React, { useEffect, useState, useRef } from 'react'
+import { useDispatch } from 'react-redux'
 
+import { utilService } from '../services/util.service'
+import { setModal } from '../store/app/app.actions'
 import { Modal } from "./modal"
 
 export function TaskDetailsCover({ task }) {
 
-   const [isOpen, setIsOpen] = useState(false)
+  const buttonRef = useRef()
+  const dispatch = useDispatch()
+  const [isOpen, setIsOpen] = useState(false)
+  const [modalName, setModalName] = useState('')
 
-   const onOpenModal = () => {
-      setIsOpen(!isOpen)
-   }
+  const onOpenModal = () => {
+    setIsOpen(!isOpen)
+  }
 
-   const onCloseModal = () => {
-      setIsOpen(false)
-   }
-   
-   return (
-      <header>
+  const onCloseModal = () => {
+    setIsOpen(false)
+  }
 
-         {task?.style?.bgColor && <div className="task-details-cover color" style={{ backgroundColor: `${task.style.bgColor}` }}>
-            <button onClick={onOpenModal}>Cover</button>
-         </div>}
+  const onOpenModalDynamic = (name) => {
+    if (!name) setModalName('')
+    if (name === modalName) setModalName('')
+    else setModalName(name)
+  }
 
-         {task?.style?.imgURL && <div className="task-details-cover img " style={{ backgroundImage: `url('${task.style.imgURL}')` }}>
-            <button onClick={onOpenModal}>Cover</button>
-         </div>}
+  return (
+    <header>
 
-         {isOpen && task && <Modal task={task} onCloseModal={onCloseModal} category={'Cover'}></Modal>}
+      {task?.style?.bgColor && <div className="task-details-cover color" style={{ backgroundColor: `${task.style.bgColor}` }}>
+        <button ref={buttonRef} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ position: utilService.getPosition(buttonRef.current) })) }}>Cover</button>
+      </div>}
 
-      </header>
+      {task?.style?.imgURL && <div className="task-details-cover img " style={{ backgroundImage: `url('${task.style.imgURL}')` }}>
+        <button ref={buttonRef} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ position: utilService.getPosition(buttonRef.current) })) }}>Cover</button>
+      </div>}
 
-   )
+      {modalName && <Modal task={task} onOpenModalDynamic={onOpenModalDynamic} category={modalName}></Modal>}
+
+    </header>
+
+  )
 }

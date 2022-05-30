@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 // import { BsCheck2 } from 'react-icons/bs'
 // import { Modal } from "./modal"
 
-export const ModalLabelCreate = ({ task, board, onLabelCreate, onBackTolabel }) => {
+export const ModalLabelCreate = ({ task, board, onUpdateBoard, onOpenModalDynamic }) => {
 
    const [labelName, setLabelName] = useState('')
    const [color, setcolor] = useState('')
@@ -18,7 +18,7 @@ export const ModalLabelCreate = ({ task, board, onLabelCreate, onBackTolabel }) 
 
    useEffect(() => {
       if (!firstLoad.current) firstLoad.current = true
-      else onLabelCreate(updatedBoard)
+      else onUpdateBoard(updatedBoard)
    }, [updatedBoard])
 
    if (!task) return
@@ -27,7 +27,7 @@ export const ModalLabelCreate = ({ task, board, onLabelCreate, onBackTolabel }) 
    const onToggle = () => {
       board.labels.push({id: makeid(3), title: labelName , color: color})
       setupdatedBoard(board)
-      onBackTolabel()
+      onOpenModalDynamic('Labels')
    }
 
    const onPickColor = (color) => {
@@ -69,10 +69,8 @@ export const ModalLabelCreate = ({ task, board, onLabelCreate, onBackTolabel }) 
 
             <button onClick={onToggle}>Create</button>
          </div>
-
       </div>
    )
-
 }
 
 function makeid(length) {
