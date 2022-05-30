@@ -1,5 +1,7 @@
 import React, { useRef } from 'react'
 
+import { useSelector } from 'react-redux'
+
 import { ModalCover } from './modal-cover'
 import { ModalMember } from './modal-member'
 import { ModalLabel } from './modal-label'
@@ -8,27 +10,29 @@ import { ModalLabelChange } from './modal-label-change'
 
 import { CgClose } from 'react-icons/cg'
 import { IoIosArrowBack } from 'react-icons/io'
+import { useDispatch } from 'react-redux'
+import { setModal } from '../store/app/app.actions'
 
 export const Modal = ({ task, category, pos, board, onUpdateBoard, updateTask, onOpenModalDynamic }) => {
 
-  //  const editLabel = useRef('')
-
-  //  const changeEditLabel = (label) => {
-  //     editLabel.current = label
-  //     onOpenModalDynamic('Change label')
-  //  }
-
-  // switch (category) {
-  //   case 'Cover':
-  //     pos.top += 50
-  //     break
-
-  //   default:
-  //     break
-  // }
-
   const { modal } = useSelector(({ appModule }) => appModule)
-  console.log(modal)
+  const dispatch = useDispatch()
+  const editLabel = useRef('')
+
+  const changeEditLabel = (label) => {
+    editLabel.current = label
+    onOpenModalDynamic('Change label')
+  }
+
+  switch (category) {
+    case 'Cover':
+      pos.top += 50
+      break
+
+    default:
+      break
+  }
+
 
   if (!modal) return
   // modal.position.top += 30
@@ -39,7 +43,7 @@ export const Modal = ({ task, category, pos, board, onUpdateBoard, updateTask, o
         {category === 'Create label' && <button onClick={() => onOpenModalDynamic('Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
         {category === 'Change label' && <button onClick={() => onOpenModalDynamic('Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
         <div className="label">{category}</div>
-        <button className="sidebar-icon-right" onClick={() => onOpenModalDynamic()}><span ><CgClose /></span></button>
+        <button className="sidebar-icon-right" onClick={() => dispatch(setModal(null))}><span ><CgClose /></span></button>
       </header>
 
       <main className="main-modal">

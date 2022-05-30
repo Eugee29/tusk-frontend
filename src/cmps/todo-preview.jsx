@@ -4,7 +4,7 @@ import { VscClose } from 'react-icons/vsc'
 import { useEffect, useRef, useState } from 'react'
 import { Modal } from '../cmps/modal'
 import { useDispatch } from 'react-redux'
-import { toggleModal } from '../store/app/app.actions'
+import { setModal } from '../store/app/app.actions'
 import { utilService } from '../services/util.service'
 
 export const TodoPreview = (props) => {
@@ -84,7 +84,7 @@ export const TodoPreview = (props) => {
             <button className='save' onClick={onUpdateTodo}>Save</button>
             <button className='discard-container' onClick={onDiscardChanges}><VscClose className='discard' /></button>
           </div>
-          <div className='menu-container' onMouseDown={e => e.preventDefault()} ref={menuRef} onClick={(e) => { e.stopPropagation(); dispatch(toggleModal({ position: { ...utilService.getPosition(menuRef.current) } })) }} /*onClick={(e) => { e.stopPropagation(); props.setModalPos(getPosition()) }}*/>
+          <div className='menu-container' onMouseDown={e => e.preventDefault()} ref={menuRef} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ position: utilService.getPosition(menuRef.current), hello: 'hello' })) }} /*onClick={(e) => { e.stopPropagation(); props.setModalPos(getPosition()) }}*/>
             <BsThreeDots className='menu' />
           </div>
         </div>

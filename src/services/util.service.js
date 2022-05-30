@@ -42,11 +42,5 @@ function delay(ms = 1500) {
 function getPosition(element) {
   if (!element) return
   const { top, left } = element.getBoundingClientRect()
-  return { top: top, left: left }
-}
-
-function getPosition(element) {
-  if (!element) return
-  const { top, left } = element.getBoundingClientRect()
-  return { top: top, left: left }
+  return { top, left }
 }
