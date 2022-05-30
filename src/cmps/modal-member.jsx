@@ -5,6 +5,8 @@ import { BsCheck2 } from 'react-icons/bs'
 
 export const ModalMember = ({ task, board, onToggleMember, updateTask }) => {
 
+  console.log(board)
+
   const { groupId, taskId } = useParams()
 
   const firstLoad = useRef(false)

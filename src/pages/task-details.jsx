@@ -57,7 +57,7 @@ export const TaskDetails = () => {
         {task?.title && <TaskDetailsTitle title={task.title} />}
 
         <div className="main-task">
-          {task && <TaskDetailsInfo task={task} updateTask={updateTask} />}
+          {task && <TaskDetailsInfo board={board} task={task} updateTask={updateTask} />}
           {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
           {task?.attachments && <TaskDetailsAttachments task={task} />}
           {task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
@@ -65,6 +65,7 @@ export const TaskDetails = () => {
         </div>
         <TaskDetailsSideTask task={task} />
       </div>
+    </div>
 
   </section >
 }
