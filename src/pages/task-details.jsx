@@ -14,10 +14,10 @@ import { TaskDetailsAttachments } from '../cmps/task-details-attachments.jsx'
 import { TaskDetailsActivity } from '../cmps/task-details-activity.jsx'
 import { TaskDetailsSideTask } from '../cmps/task-details-side-task.jsx'
 import { ChecklistList } from '../cmps/checklist-list.jsx'
-import { boardService } from '../services/board.service.js'
-import { useSelector } from 'react-redux'
+// import { boardService } from '../services/board.service.js'
+// import { useSelector } from 'react-redux'
 
-import { updateBoard } from '../store/board/board.action.js'
+// import { updateBoard } from '../store/board/board.action.js'
 
 export const TaskDetails = () => {
 
@@ -31,7 +31,7 @@ export const TaskDetails = () => {
   // const [board, setBoard] = useState(null)
   // const board = useSelector(({ boardModule }) => boardModule.board)
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const updateTask = async (taskToUpdate) => {
@@ -107,7 +107,7 @@ export const TaskDetails = () => {
         {task?.title && <TaskDetailsTitle title={task.title} />}
 
         <div className="main-task">
-          {task && <TaskDetailsInfo task={task} />}
+          {task && <TaskDetailsInfo task={task} updateTask={updateTask} />}
           {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
           {task?.attachments && <TaskDetailsAttachments task={task} />}
           {task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
@@ -119,11 +119,3 @@ export const TaskDetails = () => {
 
   </section >
 }
-
-// function mapStateToProps(state) {
-//   return {
-//     task: state.boardModule.task
-//   }
-// }
-
-// export const TaskDetails = connect(mapStateToProps)(_TaskDetails)
