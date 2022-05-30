@@ -65,7 +65,6 @@ export const TaskDetails = () => {
         </div>
         <TaskDetailsSideTask task={task} />
       </div>
-    </div>
 
   </section >
 }

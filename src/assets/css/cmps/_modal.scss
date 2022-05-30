@@ -39,7 +39,31 @@
          text-align: center;
       }
 
-      button {
+      .sidebar-icon-left {
+         grid-column: 1/4;
+         grid-row: 1;
+         background: transparent;
+         border: none;
+         color: #6b778c;
+         cursor: pointer;
+         margin: 0;
+         padding: 0;
+         z-index: 2;
+         outline: none;
+         height: auto;
+         width: 10px;
+         color: currentcolor;
+         display: inline-block;
+         fill: rgb(255, 255, 255);
+         flex-shrink: 0;
+         line-height: 1;
+         border-radius: 3px;
+         box-sizing: border-box;
+         display: inline-block;
+         line-height: 20px;
+      }
+
+      .sidebar-icon-right {
          grid-column: 3;
          grid-row: 1;
          background: transparent;
