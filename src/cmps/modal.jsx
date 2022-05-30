@@ -9,7 +9,7 @@ import { ModalLabelChange } from './modal-label-change'
 import { CgClose } from 'react-icons/cg'
 import { IoIosArrowBack } from 'react-icons/io'
 
-export const Modal = ({ task, category, board, onUpdateBoard, updateTask, onOpenModalDynamic }) => {
+export const Modal = ({ task, category, pos, board, onUpdateBoard, updateTask, onOpenModalDynamic }) => {
 
    const editLabel = useRef('')
 
@@ -18,8 +18,16 @@ export const Modal = ({ task, category, board, onUpdateBoard, updateTask, onOpen
       onOpenModalDynamic('Change label')
    }
 
+   switch (category) {
+      case 'Cover':
+         pos.top += 50 
+         break;
+   
+      default:
+         break;
+   }
    return (
-      <div className="nice-popup">
+      <div className="nice-popup" style={{...pos}}>
          <header>
             {category === 'Create label' && <button onClick={() => onOpenModalDynamic('Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
             {category === 'Change label' && <button onClick={() => onOpenModalDynamic('Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}

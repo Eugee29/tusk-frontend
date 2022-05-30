@@ -2,7 +2,8 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
-    delay
+    delay,
+    getPosition
 }
 
 function makeId(length = 6) {
@@ -38,3 +39,8 @@ function delay(ms = 1500) {
     })
 }
 
+function getPosition(element) {
+    if (!element) return 
+    const { top, left } = element.getBoundingClientRect()
+    return { top: top, left: left }
+  }

@@ -26,8 +26,7 @@ export const TaskDetails = () => {
 
    const [isCloseEdit, setIsCloseEdit] = useState(true)
 
-   const [modalName, setModalName] = useState('')
-   const [position, setPosition] = useState('')
+   const [modal, setModal] = useState(null)
 
    const updateTask = async (taskToUpdate) => {
       const group = board.groups.find(group => group.id === groupId)
@@ -49,19 +48,21 @@ export const TaskDetails = () => {
    }
 
    const onOpenModalDynamic = (name) => {
-      if (!name) setModalName('')
-      if (name === modalName) setModalName('')
-      else setModalName(name)
+      if (!name) setModal('')
+      if (name === modal) setModal('')
+      else setModal(name)
    }
 
    if (!task) return <h1>Loading task...</h1>
+
+   console.log('modal', modal);
 
    return <section className="task-details" onClick={onGoBack}>
       <div className="task-details-container" onClick={onDetailsClick}>
          <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
 
          <div>
-            {task?.style && <TaskDetailsCover task={task} />}
+            {task?.style && <TaskDetailsCover task={task} setModal={setModal}/>}
             {task?.title && <TaskDetailsTitle title={task.title} />}
 
             <div className="main-task">
@@ -75,7 +76,7 @@ export const TaskDetails = () => {
          </div>
       </div>
 
-      {modalName && <Modal task={task} board={board} updateTask={updateTask} onUpdateBoard={onUpdateBoard} onOpenModalDynamic={onOpenModalDynamic} category={modalName}></Modal>}
+      {modal && <Modal task={task} board={board} updateTask={updateTask} onUpdateBoard={onUpdateBoard} onOpenModalDynamic={onOpenModalDynamic} {...modal} ></Modal>}
 
    </section >
 }

@@ -25,6 +25,7 @@ export function RootCmp() {
             <Route path=':groupId/:taskId' element={<TaskDetails />} />
           </Route>
         </Routes>
+        
       </main>
     </div>
   )
