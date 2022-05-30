@@ -1,4 +1,4 @@
-export const UserLogin = () => {
+export const LoginForm = () => {
   return (
     <form className='user-login'>
       <h1>Log in to Tusk</h1>

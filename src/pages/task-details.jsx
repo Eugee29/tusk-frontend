@@ -14,6 +14,7 @@ import { TaskDetailsAttachments } from '../cmps/task-details-attachments.jsx'
 import { TaskDetailsActivity } from '../cmps/task-details-activity.jsx'
 import { TaskDetailsSideTask } from '../cmps/task-details-side-task.jsx'
 import { ChecklistList } from '../cmps/checklist-list.jsx'
+import { Modal } from '../cmps/modal'
 
 export const TaskDetails = () => {
 
@@ -25,6 +26,7 @@ export const TaskDetails = () => {
   const task = group.tasks.find(task => task.id === taskId)
 
   const [isCloseEdit, setIsCloseEdit] = useState(true)
+  const [modalPos, setModalPos] = useState(null)
 
   const updateTask = async (taskToUpdate) => {
     const group = board.groups.find(group => group.id === groupId)
@@ -37,12 +39,14 @@ export const TaskDetails = () => {
   }
 
 
+
   const onGoBack = () => {
     navigate(`/board/${boardId}`)
   }
 
   const onDetailsClick = (ev) => {
     ev.stopPropagation()
+    // setModalPos(null)
     setIsCloseEdit(!isCloseEdit)
   }
 
@@ -60,12 +64,13 @@ export const TaskDetails = () => {
           {task && <TaskDetailsInfo board={board} task={task} updateTask={updateTask} />}
           {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
           {task?.attachments && <TaskDetailsAttachments task={task} />}
-          {task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
+          {task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} setModalPos={setModalPos} />}
           {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
         </div>
         <TaskDetailsSideTask task={task} />
       </div>
     </div>
 
+    {/* {modalPos && <Modal position={modalPos} />} */}
   </section >
 }

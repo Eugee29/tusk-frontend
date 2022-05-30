@@ -10,10 +10,12 @@ import { ModalLabelChange } from './modal-label-change'
 import { CgClose } from 'react-icons/cg'
 import { IoIosArrowBack } from 'react-icons/io'
 
-export const Modal = ({ task, category, board, editLabel, updateTask, onToggleMember, onToggleLabel, onLabelCreate, onBackTolabel, onCloseModalLabel, onCreatelLabel, onChangeLabel, onCloseModal }) => {
+export const Modal = ({ task, category, board, editLabel, updateTask, onToggleMember, onToggleLabel, onLabelCreate, onBackTolabel, onCloseModalLabel, onCreatelLabel, onChangeLabel, onCloseModal, /*position*/ }) => {
+
+  // position.top += 30
 
   return (
-    <div className="nice-popup">
+    <div className="nice-popup" /*style={{ ...position }}*/>
       <header>
         {category === 'Create label' && <button onClick={onBackTolabel} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
         {category === 'Change label' && <button onClick={onBackTolabel} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
