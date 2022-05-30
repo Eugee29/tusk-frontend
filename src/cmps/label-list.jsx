@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { boardService } from '../services/board.service'
 
-export function LabelList({ labelIds, toggleLabels, isOpen }) {
+export function LabelList({ labelIds, toggleLabels, isLabelsOpen }) {
 
   const { boardId } = useParams()
 
@@ -32,7 +32,7 @@ export function LabelList({ labelIds, toggleLabels, isOpen }) {
   }
 
   const getLabelClass = () => {
-    const className = (isOpen) ? 'label open' : 'label close'
+    const className = (isLabelsOpen) ? 'label open' : 'label close'
     return className
   }
 

@@ -8,7 +8,7 @@ import { Draggable } from 'react-beautiful-dnd'
 
 import { TaskList } from './task-list'
 
-export const GroupPreview = ({ group, index, toggleLabels, isOpen, onUpdateGroup }) => {
+export const GroupPreview = ({ group, index, toggleLabels, isLabelsOpen, onUpdateGroup }) => {
 
   const params = useParams()
   const [titleText, setTitleText] = useState(group.title)
@@ -39,7 +39,7 @@ export const GroupPreview = ({ group, index, toggleLabels, isOpen, onUpdateGroup
               <button className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
             </div>
 
-            <TaskList key={group.id} group={group} toggleLabels={toggleLabels} isOpen={isOpen} isAddCardOpen={isAddCardOpen} toggleAddCard={toggleAddCard} onUpdateGroup={onUpdateGroup} />
+            <TaskList key={group.id} group={group} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} isAddCardOpen={isAddCardOpen} toggleAddCard={toggleAddCard} onUpdateGroup={onUpdateGroup} />
 
             {!isAddCardOpen && <div className="add-btn-container">
               <button className="add-btn" onClick={toggleAddCard}> <AiOutlinePlus /> Add a card</button>

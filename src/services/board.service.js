@@ -14,6 +14,7 @@ export const boardService = {
   save,
   remove,
   getEmptyTask,
+  getEmptyGroup,
   subscribe,
   unsubscribe,
   getTask
@@ -82,6 +83,14 @@ function getEmptyTask(title) {
   }
 }
 
+function getEmptyGroup(title) {
+  return {
+    id: utilService.makeId(),
+    title,
+    archivedAt: null,
+    tasks: []
+  }
+}
 
 function subscribe(listener) {
   boardChannel.addEventListener('message', listener)
