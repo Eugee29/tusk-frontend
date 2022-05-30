@@ -1,6 +1,6 @@
 import { TodoPreview } from './todo-preview'
 
-export const TodoList = ({ checklist, updateChecklist, setModalPos }) => {
+export const TodoList = ({ checklist, updateChecklist }) => {
 
   const { todos } = checklist
 
@@ -11,7 +11,7 @@ export const TodoList = ({ checklist, updateChecklist, setModalPos }) => {
 
   return (
     <ul className='todo-list'>
-      {todos.map(todo => <TodoPreview key={todo.id} todo={todo} updateTodo={updateTodo} setModalPos={setModalPos} />)}
+      {todos.map(todo => <TodoPreview key={todo.id} todo={todo} updateChecklist={updateChecklist} checklist={checklist} updateTodo={updateTodo} />)}
     </ul>
   )
 }

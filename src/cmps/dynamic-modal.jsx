@@ -1,20 +1,20 @@
 import React, { useRef } from 'react'
-
 import { useSelector } from 'react-redux'
-
 import { ModalCover } from './modal-cover'
 import { ModalMember } from './modal-member'
 import { ModalLabel } from './modal-label'
 import { ModalLabelCreate } from './modal-label-create'
 import { ModalLabelChange } from './modal-label-change'
-
 import { CgClose } from 'react-icons/cg'
-import { IoIosArrowBack } from 'react-icons/io'
 import { useDispatch } from 'react-redux'
 import { setModal } from '../store/app/app.actions'
 import { utilService } from '../services/util.service'
 
 // import { ModalGroupActions } from './modal-group-actions'
+import { TodoActions } from './todo-actions'
+import { ChecklistDelete } from './checklist-delete'
+
+import { IoIosArrowBack } from 'react-icons/io'
 
 export const DynamicModal = () => {
 
@@ -77,13 +77,16 @@ export const DynamicModal = () => {
                onUpdateBoard={modal.onUpdateBoard}
             />
          break
-      // case 'Group actions':
-      //   modal.position.top += 28
-      //   cmp =
-      //     <ModalGroupActions
-      //       groupId={modal.groupId}
-      //     />
-      //   break
+         case 'todo-actions':
+            modal.position.top += 30
+            cmp =
+              <TodoActions {...modal.props} />
+            break
+          case 'checklist-delete':
+            modal.position.top += 40
+            cmp =
+              <ChecklistDelete {...modal.props} />
+            break
       default:
          break
    }
@@ -106,3 +109,6 @@ export const DynamicModal = () => {
       </div>)
 
 }
+
+
+
