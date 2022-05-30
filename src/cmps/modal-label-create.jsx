@@ -1,16 +1,22 @@
 import React, { useEffect, useState, useRef, useParam } from 'react'
 import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { utilService } from '../services/util.service'
+import { setModal } from '../store/app/app.actions'
 
 // import { BsCheck2 } from 'react-icons/bs'
 // import { Modal } from "./modal"
 
-export const ModalLabelCreate = ({ task, board, onUpdateBoard, onOpenModalDynamic }) => {
+export const ModalLabelCreate = ({ task, board, onUpdateBoard, updateTask }) => {
 
    const [labelName, setLabelName] = useState('')
    const [color, setcolor] = useState('')
    const [updatedBoard, setupdatedBoard] = useState(board)
    const searchInput = useRef(null);
    const firstLoad = useRef(false)
+   const buttonRef = useRef()
+
+   const dispatch = useDispatch()
 
    useEffect(() => {
       // searchInput.current.focus();
@@ -27,7 +33,7 @@ export const ModalLabelCreate = ({ task, board, onUpdateBoard, onOpenModalDynami
    const onToggle = () => {
       board.labels.push({id: makeid(3), title: labelName , color: color})
       setupdatedBoard(board)
-      onOpenModalDynamic('Labels')
+      onModal('Labels')
    }
 
    const onPickColor = (color) => {
@@ -38,6 +44,11 @@ export const ModalLabelCreate = ({ task, board, onUpdateBoard, onOpenModalDynami
       setLabelName(target.value)
       // setfilterMembers(updatedBoard.members.filter(member => member.fullName.toLowerCase().includes(target.value.toLowerCase())))
    }
+
+   const onModal = (category) => {
+      dispatch(setModal({ category, title: category, task, updateTask, board, onUpdateBoard, position: utilService.getPosition(buttonRef.current) }))
+   }
+
    console.log('board', board);
 
    return (

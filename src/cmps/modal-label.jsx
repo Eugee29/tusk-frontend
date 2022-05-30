@@ -1,30 +1,23 @@
 import React, { useEffect, useState, useRef, useParam } from 'react'
+import { useDispatch } from 'react-redux'
+import { utilService } from '../services/util.service'
+import { setModal } from '../store/app/app.actions'
 import { useParams } from 'react-router-dom'
 
 import { BsCheck2 } from 'react-icons/bs'
 import { BsPencil } from 'react-icons/bs'
-import { Modal } from "./dynamic-modal"
 
-export const ModalLabel = ({ task, board, onOpenModalDynamic, changeEditLabel, updateTask }) => {
+export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, updateTask }) => {
 
   const { groupId, taskId } = useParams()
-
   const [labelName, setLabelName] = useState('')
   const [searchLabel, setSearchLabel] = useState('')
 
-  // const [updatedBoard, setupdatedBoard] = useState(board)
-  // const [updatedLabels, setupdatedLabels] = useState(board.labels)
-
-  // const [searchMember, setSearchMember] = useState('')
-  // const [filterMembers, setfilterMembers] = useState(board.members)
-
+  const buttonRef = useRef()
   const searchInput = useRef(null)
   const firstLoad = useRef(false)
 
-  // useEffect(() => {
-  //    if (!firstLoad.current) firstLoad.current = true
-  //    else onToggleLabel(updatedBoard)
-  // }, [updatedBoard])
+  const dispatch = useDispatch()
 
   useEffect(() => {
     // searchInput.current.focus();
@@ -36,32 +29,19 @@ export const ModalLabel = ({ task, board, onOpenModalDynamic, changeEditLabel, u
   const onToggle = (id) => {
     const taskLabelIdx = task.labelIds.findIndex(taskLabel => taskLabel === id)
     const boardLabelIdx = board.labels.findIndex(boardLabel => boardLabel.id === id)
-    // const groupIdx = board.groups.findIndex(group => group.id === groupId)
-    // const taskIdx = board.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
-
-    console.log('taskLabelIdx', taskLabelIdx)
-
     const updatedLabelsTask = taskLabelIdx >= 0
       ? task.labelIds.splice(taskLabelIdx, 1)
       : task.labelIds.push(board.labels[boardLabelIdx].id)
     updateTask(task)
-
-    // const updatedGroups = board.groups[groupIdx].tasks[taskIdx] = task
-    // setupdatedBoard({ ...updatedBoard, groups: board.groups })
-  }
-
-  // const onCreateLabel = () => {
-  //    onCreatelLabel()
-  //    onCloseModalLabel()
-  // }
-
-  const onEditLabel = (editLabel) => {
-    changeEditLabel(editLabel)
   }
 
   const handleChange = ({ target }) => {
     setSearchLabel(target.value)
     // setfilterMembers(updatedBoard.members.filter(member => member.fullName.toLowerCase().includes(target.value.toLowerCase())))
+  }
+
+  const onModal = (category) => {
+    dispatch(setModal({ category, title: category, task, board, onUpdateBoard, position: utilService.getPosition(buttonRef.current) }))
   }
 
   return (
@@ -81,12 +61,12 @@ export const ModalLabel = ({ task, board, onOpenModalDynamic, changeEditLabel, u
                 <span className="label-txt" >{`${label.title}`}</span>
                 {task?.labelIds && task.labelIds.some(taskLabel => taskLabel === label.id) && <span className='label-icon' ><BsCheck2 /></span>}
               </span>
-              <span className='label-icon pencil' onClick={() => { onEditLabel(label) }}  ><BsPencil /></span>
+              <span className='label-icon pencil' ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Change label'); changeEditLabel(label) }} ><BsPencil /></span>
             </li>
           ))}
         </ul>
 
-        <span className="btn" onClick={() => onOpenModalDynamic('Create label')}>Create a new label</span>
+        <span className="btn" ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Create label') }}>Create a new label</span>
         <div className="hr"></div>
       </div>
 

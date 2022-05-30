@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useRef, useParam } from 'react'
 import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { utilService } from '../services/util.service'
+import { setModal } from '../store/app/app.actions'
 
 // import { BsCheck2 } from 'react-icons/bs'
 
-export const ModalLabelChange = ({ task, board, editLabel, onBackTolabel, onUpdateBoard, onOpenModalDynamic }) => {
+export const ModalLabelChange = ({ task, board, editLabel, updateTask, onUpdateBoard }) => {
 
    const { groupId, taskId } = useParams()
    const [updatedBoard, setupdatedBoard] = useState(board)
@@ -11,9 +14,12 @@ export const ModalLabelChange = ({ task, board, editLabel, onBackTolabel, onUpda
    const [color, setcolor] = useState(editLabel.color)
    const searchInput = useRef(null);
    const firstLoad = useRef(false)
-   
+   const buttonRef = useRef()
+
+   const dispatch = useDispatch()
+
    useEffect(() => {
-      searchInput.current.focus();
+      // searchInput.current.focus();
    }, [])
 
    if (!editLabel) return
@@ -31,8 +37,8 @@ export const ModalLabelChange = ({ task, board, editLabel, onBackTolabel, onUpda
       ev.preventDefault()
       const boardLabelIdx = board.labels.findIndex(boardLabel => boardLabel.id === editLabel.id)
       board.labels[boardLabelIdx] = { id: editLabel.id, title: labelName, color: color }
+      onModal('Labels')
       onUpdateBoard(board)
-      onOpenModalDynamic('Labels')
    }
 
    const onDelete = (ev) => {
@@ -52,10 +58,8 @@ export const ModalLabelChange = ({ task, board, editLabel, onBackTolabel, onUpda
             }
          }
       }
-
-      console.log('board label delete', board);
+      onModal('Labels')
       onUpdateBoard(board)
-      onBackTolabel()
    }
 
    const onPickColor = (color) => {
@@ -66,6 +70,11 @@ export const ModalLabelChange = ({ task, board, editLabel, onBackTolabel, onUpda
       setLabelName(target.value)
       // setfilterMembers(updatedBoard.members.filter(member => member.fullName.toLowerCase().includes(target.value.toLowerCase())))
    }
+
+   const onModal = (category) => {
+      dispatch(setModal({ category, title: category, task, updateTask, board, onUpdateBoard, position: utilService.getPosition(buttonRef.current) }))
+   }
+
    console.log('board', board);
 
    return (

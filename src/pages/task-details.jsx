@@ -15,54 +15,58 @@ import { setModal } from '../store/app/app.actions.js'
 
 export const TaskDetails = () => {
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const { boardId, groupId, taskId } = useParams()
-  const { board, onUpdateBoard } = useOutletContext()
+   const navigate = useNavigate()
+   const dispatch = useDispatch()
+   const { boardId, groupId, taskId } = useParams()
+   const { board, onUpdateBoard } = useOutletContext()
 
-  const group = board.groups.find(group => group.id === groupId)
-  const task = group.tasks.find(task => task.id === taskId)
+   const group = board.groups.find(group => group.id === groupId)
+   const task = group.tasks.find(task => task.id === taskId)
 
-  // ?
-  const [isCloseEdit, setIsCloseEdit] = useState(true)
+   // ?
+   const [isCloseEdit, setIsCloseEdit] = useState(true)
 
-  const updateTask = async (taskToUpdate) => {
-    const group = board.groups.find(group => group.id === groupId)
-    const { tasks } = group
-    const updatedTasks = tasks.map(task => task.id === taskToUpdate.id ? taskToUpdate : task)
-    const updatedGroup = { ...group, tasks: updatedTasks }
-    const updatedGroups = board.groups.map(group => group.id === updatedGroup.id ? updatedGroup : group)
-    const updatedBoard = { ...board, groups: updatedGroups }
-    onUpdateBoard(updatedBoard)
-  }
+   const updateTask = async (taskToUpdate) => {
+      const group = board.groups.find(group => group.id === groupId)
+      const { tasks } = group
+      const updatedTasks = tasks.map(task => task.id === taskToUpdate.id ? taskToUpdate : task)
+      const updatedGroup = { ...group, tasks: updatedTasks }
+      const updatedGroups = board.groups.map(group => group.id === updatedGroup.id ? updatedGroup : group)
+      const updatedBoard = { ...board, groups: updatedGroups }
+      onUpdateBoard(updatedBoard)
+   }
 
-  const onGoBack = () => {
-    dispatch(setModal(null))
-    navigate(`/board/${boardId}`)
-  }
+   const onGoBack = () => {
+      dispatch(setModal(null))
+      navigate(`/board/${boardId}`)
+   }
 
-  const onDetailsClick = (ev) => {
-    ev.stopPropagation()
-    dispatch(setModal(null))
-  }
+   const onDetailsClick = (ev) => {
+      ev.stopPropagation()
+      dispatch(setModal(null))
+   }
 
-  if (!task) return <h1>Loading task...</h1>
+   if (!task) return <h1>Loading task...</h1>
 
-  return <section className="task-details" onClick={onGoBack}>
-    <div className="task-details-container" onClick={onDetailsClick}>
-      <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
-      <div>
-        {task?.style && <TaskDetailsCover task={task} setModal={setModal} />}
-        {task?.title && <TaskDetailsTitle title={task.title} />}
-        <div className="main-task">
-          {task && <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />}
-          {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
-          {task?.attachments && <TaskDetailsAttachments task={task} />}
-          {task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
-          {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
-        </div>
-        <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
+   return <section className="task-details" onClick={onGoBack}>
+      <div className="task-details-container" onClick={onDetailsClick}>
+         <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
+         <div>
+
+            {task?.style && <TaskDetailsCover task={task} setModal={setModal} />}
+            {task?.title && <TaskDetailsTitle title={task.title} />}
+
+            <div className="main-task">
+               {task && <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />}
+               {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
+               {task?.attachments && <TaskDetailsAttachments task={task} />}
+               {task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
+               {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
+            </div>
+
+            <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
+            
+         </div>
       </div>
-    </div>
-  </section >
+   </section >
 }
