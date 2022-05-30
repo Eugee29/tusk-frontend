@@ -1,30 +1,17 @@
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
 import { BsThreeDots } from 'react-icons/bs'
 import { VscClose } from 'react-icons/vsc'
-import { useEffect, useRef, useState } from 'react'
-import { Modal } from '../cmps/modal'
+import { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setModal } from '../store/app/app.actions'
 import { utilService } from '../services/util.service'
 
 export const TodoPreview = (props) => {
   const [todo, setTodo] = useState(props.todo)
-  const textRef = useRef()
   const [isEdit, setIsEdit] = useState(false)
   const dispatch = useDispatch()
-  // const [menuPos, setMenuPos] = useState(null)
-
-  var position
-
-
-  // useEffect(() => { position = getPosition() }, [])
-
+  const textRef = useRef()
   const menuRef = useRef()
-
-  // function getPosition(element) {
-  //   const { top, left } = element.getBoundingClientRect()
-  //   return { top: top, left: left }
-  // }
 
   const onCheck = () => {
     const newTodo = { ...props.todo, isDone: !props.todo.isDone }
@@ -51,13 +38,23 @@ export const TodoPreview = (props) => {
 
   const calcHeight = (value) => {
     const numberOfLineBreaks = (value.match(/\n/g) || []).length
-    // min-height + lines x line-height + padding + border
     const newHeight = 20 + numberOfLineBreaks * 20
     return newHeight
   }
 
+  const onOpenModal = (e) => {
+    e.stopPropagation()
+    dispatch(
+      setModal({
+        position: utilService.getPosition(menuRef.current),
+        category: 'todo-actions'
+
+      }))
+  }
+
   return (
     <li className='todo-preview'>
+
       <div className='checkbox-container' onClick={onCheck}>
         {props.todo.isDone ?
           <ImCheckboxChecked className='checkbox checked' />
@@ -76,15 +73,13 @@ export const TodoPreview = (props) => {
           onBlur={() => setIsEdit(false)}
           ref={textRef}
           style={{ height: calcHeight(todo.title) }}
-
-        >
-        </textarea>
+        />
         <div className='controls'>
           <div className='btn-container' onMouseDown={e => e.preventDefault()}>
             <button className='save' onClick={onUpdateTodo}>Save</button>
             <button className='discard-container' onClick={onDiscardChanges}><VscClose className='discard' /></button>
           </div>
-          <div className='menu-container' onMouseDown={e => e.preventDefault()} ref={menuRef} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ position: utilService.getPosition(menuRef.current), hello: 'hello' })) }} /*onClick={(e) => { e.stopPropagation(); props.setModalPos(getPosition()) }}*/>
+          <div className='menu-container' ref={menuRef} onMouseDown={e => e.preventDefault()} onClick={onOpenModal} >
             <BsThreeDots className='menu' />
           </div>
         </div>

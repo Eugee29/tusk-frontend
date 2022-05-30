@@ -28,6 +28,8 @@ export const Modal = ({ task, category, pos, board, onUpdateBoard, updateTask, o
     case 'Cover':
       pos.top += 50
       break
+    case 'todo-actions':
+
 
     default:
       break

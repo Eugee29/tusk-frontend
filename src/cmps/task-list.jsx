@@ -8,16 +8,16 @@ import { boardService } from '../services/board.service'
 
 export const TaskList = ({ group, isLabelsOpen, toggleLabels, isAddCardOpen, toggleAddCard, onUpdateGroup }) => {
   const [cardText, setCardText] = useState('')
-  
+
   const handleChange = (ev) => {
     setCardText(ev.target.value)
   }
 
-  const onAddCard = async () => {
+  const onAddCard = () => {
     toggleAddCard()
     if (!cardText) return
     // ?
-    const taskToAdd = await boardService.getEmptyTask(cardText)
+    const taskToAdd = boardService.getEmptyTask(cardText)
     addCard(taskToAdd)
   }
 
@@ -26,7 +26,7 @@ export const TaskList = ({ group, isLabelsOpen, toggleLabels, isAddCardOpen, tog
     const updatedGroup = { ...group, tasks: updatedTasks }
     onUpdateGroup(updatedGroup)
   }
-  
+
 
   return (
     // Setting each task list to be a droppable area only for other tasks
