@@ -12,24 +12,56 @@ function _TaskDetailsInfo({ task }) {
 
    const { board } = useSelector((storeState) => storeState.boardModule)
 
-   const [isOpen, setIsOpen] = useState(false)
+   const [isOpenMember, setIsOpenMember] = useState(false)
+   const [isOpenLabel, setIsOpenLabel] = useState(false)
+   const [isOpenLabelCreate, setIsOpenLabelCreate] = useState(false)
+   const [isOpenLabelChange, setIsOpenLabelChange] = useState(false)
    const [isCompleteDate, setIsCompleteDate] = useState(false)
+   const [editLabel, seteditLabel] = useState('')
 
    useEffect(() => {
       onLabels()
    }, [])
 
-   const onToggleMember = async (board) => {
+   const onToggle = async (board) => {
       const updatedBoard = await dispatch(updateBoard(board))
-      console.log('onToggleMember', updatedBoard);
+      console.log('onToggle', updatedBoard);
    }
 
    const onToggleComplete = (value, ev) => {
       setIsCompleteDate(value)
    }
 
-   const onOpenModal = () => {
-      setIsOpen(!isOpen)
+   const onOpenModalMember = () => {
+      setIsOpenMember(!isOpenMember)
+   }
+
+   const onOpenModalLabel = () => {
+      setIsOpenLabel(!isOpenLabel)
+   }
+
+   const onCreatelLabel = () => {
+      setIsOpenLabelCreate(!isOpenLabelCreate)
+      setIsOpenLabelChange(false)
+   }
+
+   const onChangeLabel = (label) => {
+      seteditLabel(label)
+      setIsOpenLabelChange(!isOpenLabelChange)
+      setIsOpenLabelCreate(false)
+   }
+
+   const onBackTolabel = () => {
+      setIsOpenLabelCreate(false)
+      setIsOpenLabelChange(false)
+      setIsOpenLabel(true)
+   }
+
+   const onCloseModal = () => {
+      setIsOpenMember(false)
+      setIsOpenLabel(false)
+      setIsOpenLabelCreate(false)
+      setIsOpenLabelChange(false)
    }
 
    const initials = (member) => ([...member.fullName])
@@ -49,6 +81,7 @@ function _TaskDetailsInfo({ task }) {
    // console.log('statusDatess', Date.now())
    // console.log('statusDatess', now.setHours(23, 59, 59, 59))
 
+   
    return (
       <section className="task-details-info" >
 
@@ -60,7 +93,7 @@ function _TaskDetailsInfo({ task }) {
                   ? <a key={member._id} className="member-img" style={{ backgroundImage: `url('${member.imgURL}')` }}> </a>
                   : <a key={member._id} className="member">{`${initials(member)[0]}${initials(member)[1]}`}</a>
             ))}
-            <a className="members-add-button round " onClick={onOpenModal}><span >+</span></a>
+            <a className="members-add-button round " onClick={onOpenModalMember}><span >+</span></a>
          </div>
 
          {/* Labels */}
@@ -68,7 +101,7 @@ function _TaskDetailsInfo({ task }) {
             <h3 className="task-member-title">Labels</h3>
             {task.labelIds.map(label =>
                <a key={label} className="label" style={{ backgroundColor: `${onLabels(label).color}` }}><span>{onLabels(label).title}</span></a>)}
-            <a className="members-add-button "><span >+</span></a>
+            <a className="members-add-button " onClick={onOpenModalLabel}><span >+</span></a>
          </div>
 
          {/* Due date */}
@@ -98,7 +131,10 @@ function _TaskDetailsInfo({ task }) {
             </div>
          </div>
 
-         {isOpen && board && <Modal task={task} board={board} onToggleMember={onToggleMember} category={'Members'}></Modal>}
+         {isOpenMember && board && <Modal task={task} board={board} onCloseModal={onCloseModal} onToggleMember={onToggle} category={'Members'}></Modal>}
+         {isOpenLabel && board && <Modal task={task} board={board} onCloseModal={onCloseModal}  onToggleLabel={onToggle} onChangeLabel={onChangeLabel} onCreatelLabel={onCreatelLabel} onCloseModalLabel={onOpenModalLabel} category={'Labels'}></Modal>}
+         {isOpenLabelCreate && board && <Modal task={task} board={board} onCloseModal={onCloseModal} onLabelCreate={onToggle}  onBackTolabel={onBackTolabel} onCloseModalLabel={onOpenModalLabel} category={'Create label'}></Modal>}
+         {isOpenLabelChange && board && <Modal task={task} editLabel={editLabel} board={board} onCloseModal={onCloseModal} onLabelCreate={onToggle}  onBackTolabel={onBackTolabel} onCloseModalLabel={onOpenModalLabel} category={'Change label'}></Modal>}
 
       </section>
    )

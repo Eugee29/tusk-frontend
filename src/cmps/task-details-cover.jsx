@@ -9,6 +9,10 @@ export function TaskDetailsCover({ task }) {
    const onOpenModal = () => {
       setIsOpen(!isOpen)
    }
+
+   const onCloseModal = () => {
+      setIsOpen(false)
+   }
    
    return (
       <header>
@@ -21,7 +25,7 @@ export function TaskDetailsCover({ task }) {
             <button onClick={onOpenModal}>Cover</button>
          </div>}
 
-         {isOpen && task && <Modal task={task} category={'Cover'}></Modal>}
+         {isOpen && task && <Modal task={task} onCloseModal={onCloseModal} category={'Cover'}></Modal>}
 
       </header>
 
