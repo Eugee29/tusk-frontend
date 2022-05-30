@@ -45,3 +45,8 @@ function getPosition(element) {
   return { top: top, left: left }
 }
 
+function getPosition(element) {
+  if (!element) return
+  const { top, left } = element.getBoundingClientRect()
+  return { top: top, left: left }
+}
