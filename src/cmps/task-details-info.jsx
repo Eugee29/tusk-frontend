@@ -6,7 +6,7 @@ import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
 
 import { Modal } from "./modal"
 
-function _TaskDetailsInfo({ task }) {
+function _TaskDetailsInfo({ task, updateTask }) {
 
    const dispatch = useDispatch()
 
@@ -18,6 +18,7 @@ function _TaskDetailsInfo({ task }) {
    const [isOpenLabelChange, setIsOpenLabelChange] = useState(false)
    const [isCompleteDate, setIsCompleteDate] = useState(false)
    const [editLabel, seteditLabel] = useState('')
+   const [isOpen, setIsOpen] = useState(false)
 
    useEffect(() => {
       onLabels()
@@ -64,6 +65,10 @@ function _TaskDetailsInfo({ task }) {
       setIsOpenLabelChange(false)
    }
 
+   const onOpenModal = () => {
+      setIsOpen(!isOpen)
+    }
+
    const initials = (member) => ([...member.fullName])
 
    const onLabels = (label) => { return board.labels.filter(boardLabel => boardLabel.id === label)[0] }
@@ -81,7 +86,6 @@ function _TaskDetailsInfo({ task }) {
    // console.log('statusDatess', Date.now())
    // console.log('statusDatess', now.setHours(23, 59, 59, 59))
 
-   
    return (
       <section className="task-details-info" >
 
@@ -104,40 +108,40 @@ function _TaskDetailsInfo({ task }) {
             <a className="members-add-button " onClick={onOpenModalLabel}><span >+</span></a>
          </div>
 
-         {/* Due date */}
-         <div className="task-card-info">
-            <h3 className="task-member-title">Due date</h3>
-            <div className="date-container">
-               <div className="date-complete-button">
-                  {isCompleteDate
-                     ? <ImCheckboxChecked onClick={() => onToggleComplete(false)} className='checkbox checked' />
-                     : <ImCheckboxUnchecked onClick={() => onToggleComplete(true)} className='checkbox unchecked' />
-                  }
-               </div>
-               <div className="date">
-                  <button className="button-date" type="button">
-                     <span className="dispaly-date">{displayDate}</span>
-                     <span className={`status-date ${statusDate}`} >{statusDate}</span>
-                     <span className="arrow-date">
-                        <span className="arrow-sub-date" role="img" aria-label="DownIcon">
-                           <svg width="16" height="16" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M11.2929 16.7071L4.22185 9.63606C3.83132 9.24554 3.83132 8.61237 4.22185 8.22185C4.61237 7.83133 5.24554 7.83133 5.63606 8.22185L12 14.5858L18.364 8.22185C18.7545 7.83132 19.3877 7.83132 19.7782 8.22185C20.1687 8.61237 20.1687 9.24554 19.7782 9.63606L12.7071 16.7071C12.3166 17.0977 11.6834 17.0977 11.2929 16.7071Z" fill="currentColor">
-                              </path>
-                           </svg>
+            {/* Due date */}
+            <div className="task-card-info">
+               <h3 className="task-member-title">Due date</h3>
+               <div className="date-container">
+                  <div className="date-complete-button">
+                     {isCompleteDate
+                        ? <ImCheckboxChecked onClick={() => onToggleComplete(false)} className='checkbox checked' />
+                        : <ImCheckboxUnchecked onClick={() => onToggleComplete(true)} className='checkbox unchecked' />
+                     }
+                  </div>
+                  <div className="date">
+                     <button className="button-date" type="button">
+                        <span className="dispaly-date">{displayDate}</span>
+                        <span className={`status-date ${statusDate}`} >{statusDate}</span>
+                        <span className="arrow-date">
+                           <span className="arrow-sub-date" role="img" aria-label="DownIcon">
+                              <svg width="16" height="16" role="presentation" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                 <path d="M11.2929 16.7071L4.22185 9.63606C3.83132 9.24554 3.83132 8.61237 4.22185 8.22185C4.61237 7.83133 5.24554 7.83133 5.63606 8.22185L12 14.5858L18.364 8.22185C18.7545 7.83132 19.3877 7.83132 19.7782 8.22185C20.1687 8.61237 20.1687 9.24554 19.7782 9.63606L12.7071 16.7071C12.3166 17.0977 11.6834 17.0977 11.2929 16.7071Z" fill="currentColor">
+                                 </path>
+                              </svg>
+                           </span>
                         </span>
-                     </span>
-                  </button>
+                     </button>
+                  </div>
                </div>
             </div>
-         </div>
 
-         {isOpenMember && board && <Modal task={task} board={board} onCloseModal={onCloseModal} onToggleMember={onToggle} category={'Members'}></Modal>}
-         {isOpenLabel && board && <Modal task={task} board={board} onCloseModal={onCloseModal}  onToggleLabel={onToggle} onChangeLabel={onChangeLabel} onCreatelLabel={onCreatelLabel} onCloseModalLabel={onOpenModalLabel} category={'Labels'}></Modal>}
-         {isOpenLabelCreate && board && <Modal task={task} board={board} onCloseModal={onCloseModal} onLabelCreate={onToggle}  onBackTolabel={onBackTolabel} onCloseModalLabel={onOpenModalLabel} category={'Create label'}></Modal>}
-         {isOpenLabelChange && board && <Modal task={task} editLabel={editLabel} board={board} onCloseModal={onCloseModal} onLabelCreate={onToggle}  onBackTolabel={onBackTolabel} onCloseModalLabel={onOpenModalLabel} category={'Change label'}></Modal>}
+   { isOpenMember && board && <Modal task={task} board={board} updateTask={updateTask} onCloseModal={onCloseModal} onToggleMember={onToggle} category={'Members'}></Modal> }
+   { isOpenLabel && board && <Modal task={task} board={board} onCloseModal={onCloseModal} onToggleLabel={onToggle} onChangeLabel={onChangeLabel} onCreatelLabel={onCreatelLabel} onCloseModalLabel={onOpenModalLabel} category={'Labels'}></Modal> }
+   { isOpenLabelCreate && board && <Modal task={task} board={board} onCloseModal={onCloseModal} onLabelCreate={onToggle} onBackTolabel={onBackTolabel} onCloseModalLabel={onOpenModalLabel} category={'Create label'}></Modal> }
+   { isOpenLabelChange && board && <Modal task={task} editLabel={editLabel} board={board} onCloseModal={onCloseModal} onLabelCreate={onToggle} onBackTolabel={onBackTolabel} onCloseModalLabel={onOpenModalLabel} category={'Change label'}></Modal> }
 
-      </section>
-   )
+    </section >
+  )
 }
 
 function mapStateToProps(state) {

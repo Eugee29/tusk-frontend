@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 56px;
+  min-height: 20px;
   background-color: #fff;
   font-size: 14px;
   font-weight: 400;
@@ -18,7 +18,7 @@
   color: $brand-clr6;
 
 
-  &:hover .edit-button {
+  &:hover .edit-btn {
     opacity: 0.7;
   }
 
@@ -60,6 +60,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    .icon-container {
+      display: flex;
+      gap: 10px;
+      color: $font-clr3
+    }
 
     .icon-num-container {
       display: flex;
@@ -129,6 +135,7 @@
     font-size: 16px;
     font-weight: 500;
     flex-direction: row;
+    min-height: 56px;
 
     &.img {
       min-height: 260px;

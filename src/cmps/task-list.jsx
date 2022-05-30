@@ -1,31 +1,51 @@
 import { Droppable } from 'react-beautiful-dnd'
 import { TaskPreview } from './task-preview'
-import { useRef, useState } from 'react'
-import { useEffect } from 'react'
-
-import { BsThreeDots } from 'react-icons/bs'
+import { useState } from 'react'
 import { IoMdClose } from 'react-icons/io'
 
-export const TaskList = ({ tasks, groupId, isOpen, toggleLabels, isAddCardOpen, toggleAddCard }) => {
+// ?
+import { boardService } from '../services/board.service'
 
-   return (
-      // Setting each task list to be a droppable area only for other tasks
-      <Droppable droppableId={groupId} type='TASK'>
-         {provided => (
-            <div className='task-list' {...provided.droppableProps} ref={provided.innerRef}>
-               {tasks.map((task, index) => <TaskPreview key={task.id} groupId={groupId} task={task} index={index} toggleLabels={toggleLabels} isOpen={isOpen} />)}
-               {provided.placeholder}
-               {isAddCardOpen && <div className="add-card-container">
-                  <textarea autoFocus onBlur={toggleAddCard} placeholder='Enter a title for this card...'></textarea>
-                  <div className='btn-container'>
-                     <button className='add-btn'>Add card</button>
-                     <button className='x-btn' onClick={toggleAddCard}> <IoMdClose className='x-icon' /> </button>
-                  </div>
-               </div>}
+export const TaskList = ({ group, isOpen, toggleLabels, isAddCardOpen, toggleAddCard, onUpdateGroup }) => {
+  const [cardText, setCardText] = useState('')
+  const handleChange = (ev) => {
+    setCardText(ev.target.value)
+  }
+
+  const onAddCard = async () => {
+    toggleAddCard()
+    if (!cardText) return
+    // ?
+    const taskToAdd = await boardService.getEmptyTask(cardText)
+    addCard(taskToAdd)
+  }
+
+  const addCard = async (taskToAdd) => {
+    const updatedTasks = [...group.tasks, taskToAdd]
+    const updatedGroup = { ...group, tasks: updatedTasks }
+    onUpdateGroup(updatedGroup)
+  }
+
+  return (
+    // Setting each task list to be a droppable area only for other tasks
+    <Droppable droppableId={group.id} type='TASK'>
+      {provided => (
+        <div className='task-list' {...provided.droppableProps} ref={provided.innerRef}>
+          {group.tasks.map((task, index) => <TaskPreview key={task.id} groupId={group.id} task={task} index={index} toggleLabels={toggleLabels} isOpen={isOpen} />)}
+          {provided.placeholder}
+          {isAddCardOpen && <div className="add-card-container">
+            <textarea autoFocus onBlur={onAddCard} placeholder='Enter a title for this card...' onChange={handleChange}></textarea>
+            <div className='btn-container'>
+              <button className='add-btn' onClick={onAddCard}>Add card</button>
+              <button className='x-btn' onClick={toggleAddCard}> <IoMdClose className='x-icon' /> </button>
             </div>
-         )
-         }
-      </Droppable >
-   )
+          </div>
+          }
+        </div>
+      )
+
+      }
+    </Droppable >
+  )
 }
 

@@ -10,7 +10,7 @@ import { ModalLabelChange } from './modal-label-change'
 import { CgClose } from 'react-icons/cg'
 import { IoIosArrowBack } from 'react-icons/io'
 
-const _Modal = ({ task, category, board, editLabel, onToggleMember, onToggleLabel, onLabelCreate, onBackTolabel, onCloseModalLabel, onCreatelLabel, onChangeLabel, onCloseModal }) => {
+const _Modal = ({ task, category, board, editLabel, updateTask, onToggleMember, onToggleLabel, onLabelCreate, onBackTolabel, onCloseModalLabel, onCreatelLabel, onChangeLabel, onCloseModal }) => {
 
    return (
       <div className="nice-popup">
@@ -24,7 +24,7 @@ const _Modal = ({ task, category, board, editLabel, onToggleMember, onToggleLabe
          <main className="main-modal">
 
             {category === 'Cover' && <ModalCover task={task} />}
-            {category === 'Members' && <ModalMember task={task} board={board} onToggleMember={onToggleMember} onCloseModalLabel={onCloseModalLabel}/>}
+            {category === 'Members' && <ModalMember task={task} updateTask={updateTask} board={board} onToggleMember={onToggleMember} onCloseModalLabel={onCloseModalLabel} />}
             {category === 'Labels' && <ModalLabel task={task} board={board} onToggleLabel={onToggleLabel} onChangeLabel={onChangeLabel} onCreatelLabel={onCreatelLabel} onCloseModalLabel={onCloseModalLabel} />}
             {category === 'Create label' && <ModalLabelCreate task={task} board={board} onLabelCreate={onLabelCreate} onBackTolabel={onBackTolabel} onCloseModalLabel={onCloseModalLabel} />}
             {category === 'Change label' && <ModalLabelChange editLabel={editLabel} task={task} board={board} onLabelCreate={onLabelCreate} onBackTolabel={onBackTolabel} onCloseModalLabel={onCloseModalLabel} />}
