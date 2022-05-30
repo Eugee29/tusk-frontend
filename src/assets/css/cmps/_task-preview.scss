@@ -25,6 +25,8 @@
   .member-img-container {
 
     align-self: flex-end;
+    display: flex;
+    gap:3px;
 
     .member {
       @include task-member-button(tomato)

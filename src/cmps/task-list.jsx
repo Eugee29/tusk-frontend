@@ -6,8 +6,9 @@ import { IoMdClose } from 'react-icons/io'
 // ?
 import { boardService } from '../services/board.service'
 
-export const TaskList = ({ group, isOpen, toggleLabels, isAddCardOpen, toggleAddCard, onUpdateGroup }) => {
+export const TaskList = ({ group, isLabelsOpen, toggleLabels, isAddCardOpen, toggleAddCard, onUpdateGroup }) => {
   const [cardText, setCardText] = useState('')
+  
   const handleChange = (ev) => {
     setCardText(ev.target.value)
   }
@@ -20,18 +21,19 @@ export const TaskList = ({ group, isOpen, toggleLabels, isAddCardOpen, toggleAdd
     addCard(taskToAdd)
   }
 
-  const addCard = async (taskToAdd) => {
+  const addCard = (taskToAdd) => {
     const updatedTasks = [...group.tasks, taskToAdd]
     const updatedGroup = { ...group, tasks: updatedTasks }
     onUpdateGroup(updatedGroup)
   }
+  
 
   return (
     // Setting each task list to be a droppable area only for other tasks
     <Droppable droppableId={group.id} type='TASK'>
       {provided => (
         <div className='task-list' {...provided.droppableProps} ref={provided.innerRef}>
-          {group.tasks.map((task, index) => <TaskPreview key={task.id} groupId={group.id} task={task} index={index} toggleLabels={toggleLabels} isOpen={isOpen} />)}
+          {group.tasks.map((task, index) => <TaskPreview key={task.id} groupId={group.id} task={task} index={index} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} />)}
           {provided.placeholder}
           {isAddCardOpen && <div className="add-card-container">
             <textarea autoFocus onBlur={onAddCard} placeholder='Enter a title for this card...' onChange={handleChange}></textarea>

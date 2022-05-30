@@ -5,7 +5,7 @@
   flex-direction: column;
   padding: 0 .25rem;
   margin: 0 .25rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.65rem;;
   overflow-y: auto;
   overflow-x: hidden;
 
@@ -45,7 +45,7 @@
       border: none;
       background-color: lighten($brand-clr1, 5%);
       color: #ffff;
-      transition: background-color 0.2s;
+      transition: background-color 0.07s;
       font-size: 100;
 
       &:hover {

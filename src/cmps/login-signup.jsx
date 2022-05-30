@@ -1,5 +1,5 @@
-import { UserLogin } from './user-login'
-import { UserSignup } from './user-signup'
+import { LoginForm } from './login-form'
+import { SignupForm } from './signup-form'
 import { Link, useNavigate } from 'react-router-dom'
 export const LoginSignup = ({ type }) => {
 
@@ -9,10 +9,10 @@ export const LoginSignup = ({ type }) => {
 
   switch (type) {
     case 'login':
-      cmp = <UserLogin />
+      cmp = <LoginForm />
       break
     case 'signup':
-      cmp = <UserSignup />
+      cmp = <SignupForm />
       break
   }
 

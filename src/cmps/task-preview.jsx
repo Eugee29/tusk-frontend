@@ -10,7 +10,7 @@ import { ImAttachment } from 'react-icons/im'
 
 import { LabelList } from './label-list'
 
-export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
+export const TaskPreview = ({ task, groupId, index, toggleLabels, isLabelsOpen }) => {
   const navigate = useNavigate()
   const onOpenDetails = (ev) => {
     ev.stopPropagation()
@@ -67,7 +67,7 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isOpen }) => {
           <section className={`${getTaskClass()} ${snapshot.isDragging && !snapshot.isDropAnimating ? 'tilted' : ''}`} onClick={onOpenDetails} ref={provided.innerRef} style={getTaskStyle()}  >
             {!task.style.isCover && task.style.imgURL && <img className='task-img-container' src={task.style.imgURL} alt="..." />}
             <div className='task-info'>
-              {!!task.labelIds.length && (!task.style.isCover) && <LabelList labelIds={task.labelIds} toggleLabels={toggleLabels} isOpen={isOpen} />}
+              {!!task.labelIds.length && (!task.style.isCover) && <LabelList labelIds={task.labelIds} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} />}
 
               <div className='task-title-container'>
                 <h2 className='task-title'> {task.title} </h2>

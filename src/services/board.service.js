@@ -14,9 +14,11 @@ export const boardService = {
   save,
   remove,
   getEmptyTask,
+  getEmptyGroup,
   subscribe,
   unsubscribe,
-  getTask
+  getTask,
+  getEmptyTodo,
 
 }
 window.cs = boardService
@@ -70,15 +72,32 @@ function getEmptyTask(title) {
     description: "",
     checklists: [],
     members: [],
-    "labelIds": [],
-    "dueDate": null,
-    "byMember": {
-      "_id": "u102",
-      "username": "Eranavichzer",
-      "fullName": "Eran Avichzer",
-      "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+    labelIds: [],
+    dueDate: null,
+    byMember: {
+    _id: "u102",
+    username: "Eranavichzer",
+    fullName: "Eran Avichzer",
+    imgURL: "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
     },
-    "style": {}
+    style: {}
+  }
+}
+
+function getEmptyGroup(title) {
+  return {
+    id: utilService.makeId(),
+    title,
+    archivedAt: null,
+    tasks: []
+  }
+}
+
+function getEmptyTodo() {
+  return {
+    id: utilService.makeId(),
+    isDone: false,
+    title: ''
   }
 }
 

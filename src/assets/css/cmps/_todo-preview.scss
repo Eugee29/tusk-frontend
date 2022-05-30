@@ -152,7 +152,7 @@
     }
 
     .menu-container {
-
+      position: relative;
       opacity: 0;
       height: 100%;
       width: 20px;
@@ -168,6 +168,8 @@
         width: 100%;
         color: $clr3;
       }
+
+
     }
 
     .btn-container {
@@ -187,5 +189,12 @@
     .menu-container {
       opacity: initial;
     }
+  }
+
+  .nice-popup {
+    position: fixed;
+    // transform: translate(100%, 0%);
+    left: 0;
+    top: 30px;
   }
 }
