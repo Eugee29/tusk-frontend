@@ -14,13 +14,10 @@ import { TaskDetailsAttachments } from '../cmps/task-details-attachments.jsx'
 import { TaskDetailsActivity } from '../cmps/task-details-activity.jsx'
 import { TaskDetailsSideTask } from '../cmps/task-details-side-task.jsx'
 import { ChecklistList } from '../cmps/checklist-list.jsx'
-// import { boardService } from '../services/board.service.js'
-// import { useSelector } from 'react-redux'
-
-// import { updateBoard } from '../store/board/board.action.js'
 
 export const TaskDetails = () => {
 
+  const navigate = useNavigate()
   const { boardId, groupId, taskId } = useParams()
   const { board, onUpdateBoard } = useOutletContext()
 
@@ -28,64 +25,17 @@ export const TaskDetails = () => {
   const task = group.tasks.find(task => task.id === taskId)
 
   const [isCloseEdit, setIsCloseEdit] = useState(true)
-  // const [board, setBoard] = useState(null)
-  // const board = useSelector(({ boardModule }) => boardModule.board)
-
-  // const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const updateTask = async (taskToUpdate) => {
-
     const group = board.groups.find(group => group.id === groupId)
     const { tasks } = group
     const updatedTasks = tasks.map(task => task.id === taskToUpdate.id ? taskToUpdate : task)
     const updatedGroup = { ...group, tasks: updatedTasks }
     const updatedGroups = board.groups.map(group => group.id === updatedGroup.id ? updatedGroup : group)
     const updatedBoard = { ...board, groups: updatedGroups }
-
     onUpdateBoard(updatedBoard)
-    // setTask(taskToUpdate)
-    // await dispatch(updateBoard(updatedBoard))
-    // loadTaskAsync()
   }
 
-  // useEffect(() => {
-  //   loadBoard()
-  // }, [])
-
-  // useEffect(() => {
-  //   loadTask()
-  // }, [board])
-
-  // const loadBoard = async () => {
-  //   const board = await boardService.getById(boardId)
-  //   setBoard(board)
-  // const group = boardFromService.groups.find(group => group.id === groupId)
-  // const task = group.tasks.find(task => task.id === taskId)
-  // setTask(task)
-  // }
-
-  // const loadTask = () => {
-  //   const group = board.groups.find(group => group.id === groupId)
-  //   const task = group.tasks.find(task => task.id === taskId)
-  //   setTask(task)
-  // }
-
-  // useEffect(() => {
-  //   if (!task) {
-  //     loadTaskAsync()
-  //   }
-  // }, [isCloseEdit])
-
-  // useEffect(() => {
-  //   loadTaskAsync()
-  // }, [])
-
-  // const loadTaskAsync = async () => {
-  //   const taskFromService = await dispatch(loadTask({ boardId, groupId, taskId }))
-  //   console.log(taskFromService)
-  //   setTask(taskFromService)
-  // }
 
   const onGoBack = () => {
     navigate(`/board/${boardId}`)
