@@ -1,5 +1,4 @@
-import { connect, useSelector } from 'react-redux'
-import React, { useEffect, useState, useRef, useParam } from 'react'
+import React, { useRef } from 'react'
 
 import { ModalCover } from './modal-cover'
 import { ModalMember } from './modal-member'
@@ -10,35 +9,33 @@ import { ModalLabelChange } from './modal-label-change'
 import { CgClose } from 'react-icons/cg'
 import { IoIosArrowBack } from 'react-icons/io'
 
-export const Modal = ({ task, category, board, editLabel, updateTask, onToggleMember, onToggleLabel, onLabelCreate, onBackTolabel, onCloseModalLabel, onCreatelLabel, onChangeLabel, onCloseModal }) => {
+export const Modal = ({ task, category, board, onUpdateBoard, updateTask, onOpenModalDynamic }) => {
 
-  return (
-    <div className="nice-popup">
-      <header>
-        {category === 'Create label' && <button onClick={onBackTolabel} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
-        {category === 'Change label' && <button onClick={onBackTolabel} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
-        <div className="label">{category}</div>
-        <button className="sidebar-icon-right" onClick={onCloseModal}><span ><CgClose /></span></button>
-      </header>
+   const editLabel = useRef('')
 
-      <main className="main-modal">
+   const changeEditLabel = (label) => {
+      editLabel.current = label
+      onOpenModalDynamic('Change label')
+   }
 
-        {category === 'Cover' && <ModalCover task={task} />}
-        {category === 'Members' && <ModalMember task={task} updateTask={updateTask} board={board} onToggleMember={onToggleMember} onCloseModalLabel={onCloseModalLabel} />}
-        {category === 'Labels' && <ModalLabel task={task} board={board} onToggleLabel={onToggleLabel} onChangeLabel={onChangeLabel} onCreatelLabel={onCreatelLabel} onCloseModalLabel={onCloseModalLabel} />}
-        {category === 'Create label' && <ModalLabelCreate task={task} board={board} onLabelCreate={onLabelCreate} onBackTolabel={onBackTolabel} onCloseModalLabel={onCloseModalLabel} />}
-        {category === 'Change label' && <ModalLabelChange editLabel={editLabel} task={task} board={board} onLabelCreate={onLabelCreate} onBackTolabel={onBackTolabel} onCloseModalLabel={onCloseModalLabel} />}
+   return (
+      <div className="nice-popup">
+         <header>
+            {category === 'Create label' && <button onClick={() => onOpenModalDynamic('Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
+            {category === 'Change label' && <button onClick={() => onOpenModalDynamic('Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
+            <div className="label">{category}</div>
+            <button className="sidebar-icon-right" onClick={() => onOpenModalDynamic()}><span ><CgClose /></span></button>
+         </header>
 
-      </main>
+         <main className="main-modal">
 
-    </div>)
+            {category === 'Cover' && <ModalCover task={task} />}
+            {category === 'Members' && <ModalMember task={task} updateTask={updateTask} board={board} />}
+            {category === 'Labels' && <ModalLabel task={task} updateTask={updateTask} board={board} onOpenModalDynamic={onOpenModalDynamic} changeEditLabel={changeEditLabel} />}
+            {category === 'Create label' && <ModalLabelCreate task={task} board={board} onUpdateBoard={onUpdateBoard} onOpenModalDynamic={onOpenModalDynamic} />}
+            {category === 'Change label' && <ModalLabelChange task={task} board={board} editLabel={editLabel.current} onOpenModalDynamic={onOpenModalDynamic} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />}
+         </main>
+
+      </div>)
 
 }
-
-// function mapStateToProps(state) {
-//    return {
-//       board: state.boardModule.board
-//    }
-// }
-
-// export const Modal = connect(mapStateToProps)(_Modal)

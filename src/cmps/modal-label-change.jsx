@@ -3,44 +3,58 @@ import { useParams } from 'react-router-dom'
 
 // import { BsCheck2 } from 'react-icons/bs'
 
-export const ModalLabelChange = ({ task, board, editLabel, onLabelCreate, onBackTolabel }) => {
+export const ModalLabelChange = ({ task, board, editLabel, onBackTolabel, onUpdateBoard, onOpenModalDynamic }) => {
 
    const { groupId, taskId } = useParams()
-
+   const [updatedBoard, setupdatedBoard] = useState(board)
    const [labelName, setLabelName] = useState(editLabel.title)
    const [color, setcolor] = useState(editLabel.color)
-
-   const [updatedBoard, setupdatedBoard] = useState(board)
    const searchInput = useRef(null);
    const firstLoad = useRef(false)
-
+   
    useEffect(() => {
-      console.log('editLabel', editLabel);
       searchInput.current.focus();
    }, [])
 
-   useEffect(() => {
-      if (!firstLoad.current) firstLoad.current = true
-      else onLabelCreate(updatedBoard)
-   }, [updatedBoard])
-
+   if (!editLabel) return
    if (!task) return
    if (!board) return
 
+   console.log(editLabel);
+
+   // useEffect(() => {
+   //    if (!firstLoad.current) firstLoad.current = true
+   //    else onUpdateBoard(updatedBoard)
+   // }, [updatedBoard])
+
    const onToggle = (ev) => {
       ev.preventDefault()
-      const boardLabelIdx = board.labels.findIndex(boardLabel=> boardLabel.id === editLabel.id)
+      const boardLabelIdx = board.labels.findIndex(boardLabel => boardLabel.id === editLabel.id)
       board.labels[boardLabelIdx] = { id: editLabel.id, title: labelName, color: color }
-      setupdatedBoard(board)
-      onBackTolabel()
+      onUpdateBoard(board)
+      onOpenModalDynamic('Labels')
    }
 
    const onDelete = (ev) => {
       ev.preventDefault()
-      const boardLabelIdx = board.labels.findIndex(boardLabel=> boardLabel.id === editLabel.id)
+      const boardLabelIdx = board.labels.findIndex(boardLabel => boardLabel.id === editLabel.id)
       board.labels.splice(boardLabelIdx, 1)
-      console.log(board.labels);
-      setupdatedBoard(board)
+
+      for (let i = 0; i < board.groups.length; i++) {
+         const group = board.groups[i]
+         for (let j = 0; j < group.tasks.length; j++) {
+            const groupTask = group.tasks[j]
+            for (let k = 0; k < groupTask.labelIds.length; k++) {
+               const labelId = groupTask.labelIds[k]
+               if (labelId === editLabel.id) {
+                  groupTask.labelIds.splice(k, 1)
+               }
+            }
+         }
+      }
+
+      console.log('board label delete', board);
+      onUpdateBoard(board)
       onBackTolabel()
    }
 
@@ -82,7 +96,7 @@ export const ModalLabelChange = ({ task, board, editLabel, onLabelCreate, onBack
             </div>
 
             <button onClick={onToggle}>Save</button>
-            <button /*onClick={onDelete}*/ className="delete" >Delete</button>
+            <button onClick={onDelete} className="delete" >Delete</button>
          </div>
 
       </div>

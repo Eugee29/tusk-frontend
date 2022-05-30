@@ -1,8 +1,7 @@
 
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate, useOutletContext, useParams } from "react-router-dom"
-import { connect } from 'react-redux'
-import { useDispatch } from 'react-redux'
+
 import { VscClose } from 'react-icons/vsc'
 
 import { loadTask } from '../store/board/board.action.js'
@@ -14,58 +13,69 @@ import { TaskDetailsAttachments } from '../cmps/task-details-attachments.jsx'
 import { TaskDetailsActivity } from '../cmps/task-details-activity.jsx'
 import { TaskDetailsSideTask } from '../cmps/task-details-side-task.jsx'
 import { ChecklistList } from '../cmps/checklist-list.jsx'
+import { Modal } from '../cmps/modal.jsx'
 
 export const TaskDetails = () => {
 
-  const navigate = useNavigate()
-  const { boardId, groupId, taskId } = useParams()
-  const { board, onUpdateBoard } = useOutletContext()
+   const navigate = useNavigate()
+   const { boardId, groupId, taskId } = useParams()
+   const { board, onUpdateBoard } = useOutletContext()
 
-  const group = board.groups.find(group => group.id === groupId)
-  const task = group.tasks.find(task => task.id === taskId)
+   const group = board.groups.find(group => group.id === groupId)
+   const task = group.tasks.find(task => task.id === taskId)
 
-  const [isCloseEdit, setIsCloseEdit] = useState(true)
+   const [isCloseEdit, setIsCloseEdit] = useState(true)
 
-  const updateTask = async (taskToUpdate) => {
-    const group = board.groups.find(group => group.id === groupId)
-    const { tasks } = group
-    const updatedTasks = tasks.map(task => task.id === taskToUpdate.id ? taskToUpdate : task)
-    const updatedGroup = { ...group, tasks: updatedTasks }
-    const updatedGroups = board.groups.map(group => group.id === updatedGroup.id ? updatedGroup : group)
-    const updatedBoard = { ...board, groups: updatedGroups }
-    onUpdateBoard(updatedBoard)
-  }
+   const [modalName, setModalName] = useState('')
+   const [position, setPosition] = useState('')
 
+   const updateTask = async (taskToUpdate) => {
+      const group = board.groups.find(group => group.id === groupId)
+      const { tasks } = group
+      const updatedTasks = tasks.map(task => task.id === taskToUpdate.id ? taskToUpdate : task)
+      const updatedGroup = { ...group, tasks: updatedTasks }
+      const updatedGroups = board.groups.map(group => group.id === updatedGroup.id ? updatedGroup : group)
+      const updatedBoard = { ...board, groups: updatedGroups }
+      onUpdateBoard(updatedBoard)
+   }
 
-  const onGoBack = () => {
-    navigate(`/board/${boardId}`)
-  }
+   const onGoBack = () => {
+      navigate(`/board/${boardId}`)
+   }
 
-  const onDetailsClick = (ev) => {
-    ev.stopPropagation()
-    setIsCloseEdit(!isCloseEdit)
-  }
+   const onDetailsClick = (ev) => {
+      ev.stopPropagation()
+      setIsCloseEdit(!isCloseEdit)
+   }
 
-  if (!task) return <h1>Loading task...</h1>
+   const onOpenModalDynamic = (name) => {
+      if (!name) setModalName('')
+      if (name === modalName) setModalName('')
+      else setModalName(name)
+   }
 
-  return <section className="task-details" onClick={onGoBack}>
-    <div className="task-details-container" onClick={onDetailsClick}>
-      <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
+   if (!task) return <h1>Loading task...</h1>
 
-      <div>
-        {task?.style && <TaskDetailsCover task={task} />}
-        {task?.title && <TaskDetailsTitle title={task.title} />}
+   return <section className="task-details" onClick={onGoBack}>
+      <div className="task-details-container" onClick={onDetailsClick}>
+         <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
 
-        <div className="main-task">
-          {task && <TaskDetailsInfo board={board} task={task} updateTask={updateTask} />}
-          {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
-          {task?.attachments && <TaskDetailsAttachments task={task} />}
-          {task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
-          {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
-        </div>
-        <TaskDetailsSideTask task={task} />
+         <div>
+            {task?.style && <TaskDetailsCover task={task} />}
+            {task?.title && <TaskDetailsTitle title={task.title} />}
+
+            <div className="main-task">
+               {task && <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />}
+               {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
+               {task?.attachments && <TaskDetailsAttachments task={task} />}
+               {task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
+               {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
+            </div>
+            <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
+         </div>
       </div>
-    </div>
 
-  </section >
+      {modalName && <Modal task={task} board={board} updateTask={updateTask} onUpdateBoard={onUpdateBoard} onOpenModalDynamic={onOpenModalDynamic} category={modalName}></Modal>}
+
+   </section >
 }
