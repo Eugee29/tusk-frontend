@@ -5,30 +5,30 @@ import { ModalMember } from './modal-member'
 
 import { CgClose } from 'react-icons/cg'
 
-const _Modal = ({task, category, board, onToggleMember }) => {
+const _Modal = ({ task, category, board, onToggleMember, updateTask }) => {
 
-   return (
-      <div className="nice-popup">
-         <header>
-            <div className="label">{category}</div>
-            <button><span className="sidebar-icon"><CgClose /></span></button>
-         </header>
+  return (
+    <div className="nice-popup">
+      <header>
+        <div className="label">{category}</div>
+        <button><span className="sidebar-icon"><CgClose /></span></button>
+      </header>
 
-         <main className="main-modal">
+      <main className="main-modal">
 
-           { category === 'Cover' && <ModalCover task={task}/>}
-           { category === 'Members' && <ModalMember task={task} board={board} onToggleMember={onToggleMember} />}
+        {category === 'Cover' && <ModalCover task={task} />}
+        {category === 'Members' && <ModalMember updateTask={updateTask} task={task} board={board} onToggleMember={onToggleMember} />}
 
-         </main>
+      </main>
 
-      </div>)
+    </div>)
 
 }
 
 function mapStateToProps(state) {
-   return {
-      board: state.boardModule.board
-   }
+  return {
+    board: state.boardModule.board
+  }
 }
 
 export const Modal = connect(mapStateToProps)(_Modal)
