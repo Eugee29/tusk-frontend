@@ -3,6 +3,7 @@ export const utilService = {
   makeLorem,
   getRandomIntInclusive,
   delay,
+  formatTimeToDM,
   getPosition
 }
 
@@ -39,6 +40,14 @@ function delay(ms = 1500) {
   })
 }
 
+function formatTimeToDM(time) {
+  var date = new Date(time)
+  var month = date.getMonth(date)
+  var day = date.getDay(date)
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+  return `${monthNames[month]} ${day}`
+}
 function getPosition(element) {
   if (!element) return
   const { top, left } = element.getBoundingClientRect()

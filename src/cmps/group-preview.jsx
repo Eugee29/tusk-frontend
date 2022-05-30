@@ -1,14 +1,21 @@
-import React from "react"
+import React, { useRef } from "react"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
+
+import { utilService } from "../services/util.service"
+import { setModal } from '../store/app/app.actions'
 
 import { BsThreeDots } from 'react-icons/bs'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { Draggable } from 'react-beautiful-dnd'
 
+
 import { TaskList } from './task-list'
+import { useDispatch } from "react-redux"
 
 export const GroupPreview = ({ group, index, toggleLabels, isLabelsOpen, onUpdateGroup }) => {
+  const dispatch = useDispatch()
+  const buttonRef = useRef()
 
   const params = useParams()
   const [titleText, setTitleText] = useState(group.title)
@@ -25,6 +32,12 @@ export const GroupPreview = ({ group, index, toggleLabels, isLabelsOpen, onUpdat
     const updatedGroup = { ...group, title: titleText }
     onUpdateGroup(updatedGroup)
   }
+  
+  const openModal = (ev) => {
+    ev.stopPropagation()
+    dispatch(setModal({ position: utilService.getPosition(buttonRef.current), groupId: group.id, category: 'Group actions'}))
+  }
+
 
   return (
     // Setting each group to be draggable with the Draggable CMP
@@ -36,7 +49,7 @@ export const GroupPreview = ({ group, index, toggleLabels, isLabelsOpen, onUpdat
 
             <div className="group-title-container" {...provided.dragHandleProps}>
               <textarea className="group-title" defaultValue={titleText} scols="30" rows="10" onChange={handleChange} onBlur={updateTitle}></textarea>
-              <button className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
+              <button ref={buttonRef} onClick={openModal} className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
             </div>
 
             <TaskList key={group.id} group={group} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} isAddCardOpen={isAddCardOpen} toggleAddCard={toggleAddCard} onUpdateGroup={onUpdateGroup} />

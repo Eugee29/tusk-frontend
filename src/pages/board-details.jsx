@@ -33,7 +33,7 @@ export const BoardDetails = () => {
 
   return (
     <main className='board-details' style={{ backgroundImage: `url(${board.style.bgImg})` }}>
-      <BoardHeader board={board} />
+      <BoardHeader board={board} onUpdateBoard={onUpdateBoard} />
       <GroupList board={board} onUpdateBoard={onUpdateBoard} />
       <Outlet context={{ onUpdateBoard, board }} />
     </main>

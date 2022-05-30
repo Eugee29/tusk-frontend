@@ -3,6 +3,9 @@ import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import { useNavigate } from 'react-router-dom'
 
+import { utilService } from '../services/util.service'
+
+import { FiClock } from 'react-icons/fi'
 import { RiPencilLine } from 'react-icons/ri'
 import { MdOutlineSubject } from 'react-icons/md'
 import { IoMdCheckboxOutline } from 'react-icons/io'
@@ -75,16 +78,17 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isLabelsOpen }
 
               <div className='task-icon-container'>
                 <div className='icon-container'>
+                {task.dueDate && (!task.style.isCover)
+                    && <div className='icon-time-container'>
+                      <FiClock /> <span> {utilService.formatTimeToDM(task.dueDate)} </span>
+                    </div>
+                  }
                   {task.description && (!task.style.bgColor) && (!task.style.imgURL)
                     && <MdOutlineSubject />}
                   {task.checklists && !!task.checklists.length && (!task.style.isCover)
                     && <div className='icon-num-container'> <IoMdCheckboxOutline /> <span> {getChecklistLength()} </span> </div>}
                   {task.attachments && !!task.attachments.length && (!task.style.isCover)
                     && <div className='icon-num-container'><ImAttachment className='attachment-icon' /> <span> {task.attachments.length} </span> </div>}
-                  {task.dueDate && (!task.style.isCover)
-                    && <React.Fragment>
-                      {/* //TIME// */}
-                    </React.Fragment>}
                 </div>
                 {task.members && !!task.members.length && (!task.style.isCover)
                   && <div className='member-img-container'>

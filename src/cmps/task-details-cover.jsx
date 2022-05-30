@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import { utilService } from '../services/util.service'
 import { setModal } from '../store/app/app.actions'
-import { Modal } from "./modal"
+// import { Modal } from "./modal"
 
 export function TaskDetailsCover({ task }) {
 
@@ -37,7 +37,7 @@ export function TaskDetailsCover({ task }) {
         <button ref={buttonRef} onClick={(e) => { e.stopPropagation(); dispatch(setModal({ position: utilService.getPosition(buttonRef.current) })) }}>Cover</button>
       </div>}
 
-      {modalName && <Modal task={task} onOpenModalDynamic={onOpenModalDynamic} category={modalName}></Modal>}
+      {/* {modalName && <Modal task={task} onOpenModalDynamic={onOpenModalDynamic} category={modalName}></Modal>} */}
 
     </header>
 
