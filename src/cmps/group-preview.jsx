@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
 
@@ -9,6 +9,8 @@ import { Draggable } from 'react-beautiful-dnd'
 import { TaskList } from './task-list'
 
 export const GroupPreview = ({ group, index, toggleLabels, isLabelsOpen, onUpdateGroup }) => {
+
+  const buttonRef = useRef()
 
   const params = useParams()
   const [titleText, setTitleText] = useState(group.title)
@@ -36,7 +38,7 @@ export const GroupPreview = ({ group, index, toggleLabels, isLabelsOpen, onUpdat
 
             <div className="group-title-container" {...provided.dragHandleProps}>
               <textarea className="group-title" defaultValue={titleText} scols="30" rows="10" onChange={handleChange} onBlur={updateTitle}></textarea>
-              <button className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
+              <button ref={buttonRef} className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
             </div>
 
             <TaskList key={group.id} group={group} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} isAddCardOpen={isAddCardOpen} toggleAddCard={toggleAddCard} onUpdateGroup={onUpdateGroup} />

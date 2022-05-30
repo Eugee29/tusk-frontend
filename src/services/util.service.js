@@ -2,7 +2,8 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
-    delay
+    delay,
+    formatTimeToDM
 }
 
 function makeId(length = 6) {
@@ -38,3 +39,11 @@ function delay(ms = 1500) {
     })
 }
 
+function formatTimeToDM(time) {
+    var date = new Date(time)
+    var month = date.getMonth(date)
+    var day = date.getDay(date)
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    return `${monthNames[month]} ${day}`
+}

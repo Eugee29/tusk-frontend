@@ -1,12 +1,33 @@
-import { AiOutlineStar } from 'react-icons/ai'
+import { useState } from 'react'
+import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 
-export function BoardHeader({ board }) {
+export function BoardHeader({ board, onUpdateBoard }) {
+
+  const [isStarred, setIsStarred] = useState(board.isStarred)
+
+  const onToggleStar = async () => {
+    await setIsStarred(!isStarred)
+    updateBoard()
+  }
+
+  const updateBoard = () => {
+    const newBoard = {...board, isStarred: !isStarred}
+    console.log(newBoard)
+    onUpdateBoard(newBoard)
+  }
+
+  const getStarClass = () => {
+    const className = isStarred ? 'star-btn full' : 'star-btn outline'
+    return className
+  }
 
   return <section className="board-header">
     <div className='left-container'>
       <h1> {board.title} </h1>
-      <button> <AiOutlineStar className='icon star-icon' /> </button>
+      <button onClick={onToggleStar} className={getStarClass()}> 
+      {isStarred ? <AiFillStar className='star-icon' /> : <AiOutlineStar className='star-icon' />}
+      </button>
       {board.members && !!board.members.length
         && <div className='member-img-container'>
           {board.members.map((member) => <a key={member._id} className="member-img"> <img src={member.imgURL} alt="" /> </a>)}
