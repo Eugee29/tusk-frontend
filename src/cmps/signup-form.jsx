@@ -1,4 +1,4 @@
-export const UserSignup = () => {
+export const SignupForm = () => {
   return (
     <form className='user-signup'>
       <h1>Sign up for your account</h1>

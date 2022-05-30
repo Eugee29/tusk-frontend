@@ -20,7 +20,8 @@ export const BoardDetails = () => {
   const loadBoard = async () => {
     const board = await boardService.getById(params.boardId)
     setBoard(board)
-    dispatch(saveBoard(board))
+
+    // dispatch(saveBoard(board))
   }
 
   const onUpdateBoard = async (board) => {

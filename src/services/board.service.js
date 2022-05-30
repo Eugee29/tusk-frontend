@@ -17,7 +17,8 @@ export const boardService = {
   getEmptyGroup,
   subscribe,
   unsubscribe,
-  getTask
+  getTask,
+  getEmptyTodo,
 
 }
 window.cs = boardService
@@ -91,6 +92,15 @@ function getEmptyGroup(title) {
     tasks: []
   }
 }
+
+function getEmptyTodo() {
+  return {
+    id: utilService.makeId(),
+    isDone: false,
+    title: ''
+  }
+}
+
 
 function subscribe(listener) {
   boardChannel.addEventListener('message', listener)

@@ -1,13 +1,28 @@
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
 import { BsThreeDots } from 'react-icons/bs'
 import { VscClose } from 'react-icons/vsc'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { Modal } from '../cmps/modal'
 
 export const TodoPreview = (props) => {
   const [todo, setTodo] = useState(props.todo)
   const textRef = useRef()
   const [isEdit, setIsEdit] = useState(false)
+  // const [menuPos, setMenuPos] = useState(null)
 
+  var position
+
+
+  useEffect(() => { position = getPosition() }, [])
+
+  const menuRef = useRef()
+
+  const getPosition = () => {
+    if (!menuRef.current) return
+    const { top, left } = menuRef.current.getBoundingClientRect()
+    console.log(top, left)
+    return { top: top, left: left }
+  }
 
   const onCheck = () => {
     const newTodo = { ...props.todo, isDone: !props.todo.isDone }
@@ -49,7 +64,7 @@ export const TodoPreview = (props) => {
         }
       </div>
 
-      <div className={`title-container ${isEdit ? 'edit' : ''}`} onClick={() => { if (!isEdit) textRef.current.focus() }}>
+      <div className={`title-container ${isEdit ? 'edit' : ''}`}>
         <textarea
           className={`todo-title ${props.todo.isDone && !isEdit ? 'crossed' : ''}`}
           value={todo.title}
@@ -67,11 +82,12 @@ export const TodoPreview = (props) => {
             <button className='save' onClick={onUpdateTodo}>Save</button>
             <button className='discard-container' onClick={onDiscardChanges}><VscClose className='discard' /></button>
           </div>
-          <div className='menu-container' onMouseDown={e => e.preventDefault()}>
+          <div className='menu-container' onMouseDown={e => e.preventDefault()} ref={menuRef} /*onClick={(e) => { e.stopPropagation(); props.setModalPos(getPosition()) }}*/>
             <BsThreeDots className='menu' />
           </div>
         </div>
       </div>
+      {/* {menuPos && <Modal position={menuPos} />} */}
     </li >
   )
 }
