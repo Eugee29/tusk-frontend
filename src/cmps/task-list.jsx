@@ -24,7 +24,15 @@ export const TaskList = ({ group, isLabelsOpen, toggleLabels, isAddCardOpen, tog
   const addCard = (taskToAdd) => {
     const updatedTasks = [...group.tasks, taskToAdd]
     const updatedGroup = { ...group, tasks: updatedTasks }
-    onUpdateGroup(updatedGroup)
+    const activity = {
+      actionType: 'add task',
+      task: {
+        id: taskToAdd.id,
+        title: taskToAdd.title
+      },
+      groupTitle: group.title
+    }
+    onUpdateGroup(updatedGroup, activity)
   }
 
 

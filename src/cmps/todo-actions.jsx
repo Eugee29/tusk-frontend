@@ -7,7 +7,7 @@ export const TodoActions = ({ checklist, updateChecklist, todoId }) => {
 
   const onDeleteTodo = () => {
     dispatch(setModal(null))
-    const updatedTodos = checklist.todos.filter(todo => todo.id != todoId)
+    const updatedTodos = checklist.todos.filter(todo => todo.id !== todoId)
     const updatedChecklist = { ...checklist, todos: updatedTodos }
     updateChecklist(updatedChecklist)
   }

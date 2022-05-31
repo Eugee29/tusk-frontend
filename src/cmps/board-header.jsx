@@ -2,17 +2,20 @@ import { useState } from 'react'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 
+// import { SideMenu } from './side-menu'
+
 export function BoardHeader({ board, onUpdateBoard }) {
 
   const [isStarred, setIsStarred] = useState(board.isStarred)
+  const [isMenuOpened, setIsMenuOpened] = useState(false)
 
-  const onToggleStar = async () => {
-    await setIsStarred(!isStarred)
+  const onToggleStar = () => {
+    setIsStarred(!isStarred)
     updateBoard()
   }
 
   const updateBoard = () => {
-    const newBoard = {...board, isStarred: !isStarred}
+    const newBoard = { ...board, isStarred: !isStarred }
     console.log(newBoard)
     onUpdateBoard(newBoard)
   }
@@ -22,11 +25,20 @@ export function BoardHeader({ board, onUpdateBoard }) {
     return className
   }
 
+  const onToggleMenu = () => {
+    setIsMenuOpened(!isMenuOpened)
+  }
+
+  const getMenuClass = () => {
+    const className = isMenuOpened ? 'side-menu opened' : 'side-menu closed'
+    return className
+  }
+
   return <section className="board-header">
     <div className='left-container'>
       <h1> {board.title} </h1>
-      <button onClick={onToggleStar} className={getStarClass()}> 
-      {isStarred ? <AiFillStar className='star-icon' /> : <AiOutlineStar className='star-icon' />}
+      <button onClick={onToggleStar} className={getStarClass()}>
+        {isStarred ? <AiFillStar className='star-icon' /> : <AiOutlineStar className='star-icon' />}
       </button>
       {board.members && !!board.members.length
         && <div className='member-img-container'>
@@ -34,7 +46,8 @@ export function BoardHeader({ board, onUpdateBoard }) {
         </div>}
     </div>
     <div className='right-container'>
-      <button className='show-menu'> <BiDotsHorizontalRounded className='icon' /> Show menu </button>
+      {!isMenuOpened && <button className='show-menu' onClick={onToggleMenu}> <BiDotsHorizontalRounded className='icon' /> Show menu </button>}
+      {/* <SideMenu dynamicClass={getMenuClass()} onToggleMenu={onToggleMenu} board={board} /> */}
     </div>
 
 

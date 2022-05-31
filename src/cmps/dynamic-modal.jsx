@@ -15,6 +15,7 @@ import { ChecklistDelete } from './checklist-delete'
 import { ChecklistAdd } from './checklist-add'
 
 import { IoIosArrowBack } from 'react-icons/io'
+// import { ModalGroupActions } from './modal-group-actions'
 
 export const DynamicModal = () => {
 
@@ -40,7 +41,6 @@ export const DynamicModal = () => {
     if (position.top + modalRef.current.offsetHeight > window.innerHeight) {
       position.top += window.innerHeight - position.top - (modalRef.current.offsetHeight) * 1.25
     }
-
     if (position.left + modalRef.current.offsetWidth > window.innerWidth) {
       position.left += window.innerWidth - position.left - (modalRef.current.offsetWidth) * 1.25
     }
@@ -48,11 +48,22 @@ export const DynamicModal = () => {
   }
 
 
+  //  if (!modal) return
+
+
+
+  //  const onModal = (category) => {
+  //     dispatch(setModal({ category, title: category, task: modal.task, board: modal.board, onUpdateBoard: modal.onUpdateBoard, position: utilService.getPosition(buttonRef.current) }))
+  //   }
+
+
+
+
   const changeEditLabel = (label) => {
     editLabel.current = label
   }
 
-  console.log('editLabel.current', editLabel.current)
+  // console.log('editLabel.current', editLabel.current)
 
   if (!modal) return
 
@@ -117,11 +128,84 @@ export const DynamicModal = () => {
       break
   }
 
+  // }
+
+  // switch (modal.category) {
+  //   case 'Cover':
+  //     cmp =
+  //       <ModalCover
+  //         task={modal.task}
+  //       />
+  //     break
+  //   case 'Members':
+  //     // modal.position.top = 142
+  //     cmp =
+  //       <ModalMember
+  //         task={modal.task}
+  //         updateTask={modal.updateTask}
+  //         board={modal.board}
+  //       />
+  //     break
+  //   case 'Labels':
+  //     cmp =
+  //       <ModalLabel
+  //         task={modal.task}
+  //         updateTask={modal.updateTask}
+  //         board={modal.board}
+  //         changeEditLabel={changeEditLabel}
+  //       />
+  //     break
+  //   case 'Create label':
+  //     cmp =
+  //       <ModalLabelCreate
+  //         task={modal.task}
+  //         board={modal.board}
+  //         onUpdateBoard={modal.onUpdateBoard}
+  //         changeEditLabel={modal.onUpdateBoard}
+  //       />
+  //     break
+  //   case 'Change label':
+  //     cmp =
+  //       <ModalLabelChange
+  //         task={modal.task}
+  //         board={modal.board}
+  //         editLabel={editLabel.current}
+  //         updateTask={modal.updateTask}
+  //         onUpdateBoard={modal.onUpdateBoard}
+  //       />
+  // break
+  // case 'todo-actions':
+  //   modal.position.top += 30
+  //   cmp =
+  //     <TodoActions {...modal.props} />
+  //   break
+  // case 'checklist-delete':
+  //   modal.position.top += 40
+  //   cmp =
+  //     <ChecklistDelete {...modal.props} />
+  //   break
+  // case 'checklist-add':
+  //   cmp =
+  //     <ChecklistAdd {...modal.props} />
+  //   break
+
+  // case 'Group actions':
+  //   modal.position.top += 28
+  //   cmp =
+  //     <ModalGroupActions onUpdateBoard={modal.onUpdateBoard} group={modal.group} boardId={modal.boardId} />
+  //   break
+
+  //   default:
+  //     break
+  // }
+
   const onModal = (category) => {
     const position = utilService.getPosition(buttonRef.current)
     position.left -= 12 // PADDING
     dispatch(setModal({ category, title: category, task: modal.task, board: modal.board, onUpdateBoard: modal.onUpdateBoard, position }))
   }
+
+  console.log(position)
 
   return (
     <div className="dynamic-modal" style={{ ...position }} ref={modalRef}>
@@ -134,7 +218,8 @@ export const DynamicModal = () => {
       <main className="main-modal" >
         {cmp}
       </main>
-    </div>)
+    </div>
+  )
 
 }
 
