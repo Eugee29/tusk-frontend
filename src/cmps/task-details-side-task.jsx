@@ -1,4 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
+import { useDispatch } from 'react-redux'
+import { utilService } from '../services/util.service'
+import { setModal } from '../store/app/app.actions'
 
 import { AiOutlineUser } from 'react-icons/ai'
 import { BiLabel } from 'react-icons/bi'
@@ -6,29 +9,29 @@ import { BsCheck2Square } from 'react-icons/bs'
 import { FiClock } from 'react-icons/fi'
 import { GrAttachment } from 'react-icons/gr'
 import { IoMdBrowsers } from 'react-icons/io'
-import { useDispatch } from 'react-redux'
-import { utilService } from '../services/util.service'
 
-import { setModal } from '../store/app/app.actions'
 
 
 // import { Modal } from "./modal"
 
 export function TaskDetailsSideTask({ task, board, updateTask, onUpdateBoard }) {
 
-  const [modalName, setModalName] = useState('')
+  const membersRef = useRef()
+  const labelsRef = useRef()
+  const checklistRef = useRef()
+  const datesRef = useRef()
+  const attachmentRef = useRef()
+  const coverRef = useRef()
+
   const dispatch = useDispatch()
 
-  const checklistRef = useRef()
-
-  const onOpenModalDynamic = (name) => {
-    if (!name) setModalName('')
-    if (name === modalName) setModalName('')
-    else setModalName(name)
-  }
+  // const onModal = (category) => {
+  //   dispatch(setModal({ category, title: category, task, updateTask, board, onUpdateBoard, position: utilService.getPosition(buttonRef.current) }))
+  // }
 
   const onOpenModal = (e, modal) => {
     e.stopPropagation()
+    modal.position.top += 32 + 6 // BUTTON SIZE + PADDING
     dispatch(setModal(modal))
   }
 
@@ -49,31 +52,31 @@ export function TaskDetailsSideTask({ task, board, updateTask, onUpdateBoard }) 
 
         <div className="">
 
-          <a className="sidebar-button" onClick={() => onOpenModalDynamic('Members')} href="#" title="Members">
+          <a className="sidebar-button" ref={membersRef} onClick={(e) => onOpenModal(e, { category: 'Members', title: 'Members', task, updateTask, board, onUpdateBoard, position: utilService.getPosition(membersRef.current) })} title="Members">
             <span className="sidebar-icon"><AiOutlineUser /></span>
             <span className="">Members</span>
           </a>
 
-          <a className="sidebar-button" onClick={() => onOpenModalDynamic('Labels')} href="#" title="Labels">
+          <a className="sidebar-button" ref={labelsRef} onClick={(e) => onOpenModal(e, { category: 'Labels', title: 'Labels', task, updateTask, board, onUpdateBoard, position: utilService.getPosition(labelsRef.current) })} title="Labels">
             <span className="sidebar-icon"><BiLabel /></span>
             <span className="">Labels</span>
           </a>
 
-          <a className="sidebar-button" title="Checklist" ref={checklistRef} onClick={(e) => onOpenModal(e, { position: utilService.getPosition(checklistRef.current), title: 'Add checklist', category: 'checklist-add', props: { updateTask, task } })}>
+          <a className="sidebar-button" ref={checklistRef} onClick={(e) => onOpenModal(e, { position: utilService.getPosition(checklistRef.current), title: 'Add checklist', category: 'checklist-add', props: { updateTask, task } })} title='Checklist'>
             <span className="sidebar-icon"><BsCheck2Square /></span>
             <span className="">Checklist</span></a>
 
-          <a className="sidebar-button" href="#" title="Dates">
+          <a className="sidebar-button" ref={datesRef} onClick={(e) => onOpenModal(e, { category: 'Dates', title: 'Dates', task, updateTask, board, onUpdateBoard, position: utilService.getPosition(datesRef.current) })} title="Dates">
             <span className="sidebar-icon"><FiClock /></span>
             <span className="">Dates</span>
           </a>
 
-          <a className="sidebar-button" href="#" title="Attachment">
+          <a className="sidebar-button" ref={attachmentRef} onClick={(e) => onOpenModal(e, { category: 'Attachment', title: 'Attachment', task, updateTask, board, onUpdateBoard, position: utilService.getPosition(attachmentRef.current) })} title="Attachment">
             <span className="sidebar-icon"><GrAttachment /></span>
             <span className="">Attachment</span>
           </a>
 
-          <a className="sidebar-button" onClick={() => onOpenModalDynamic('Cover')} href="#" title="Cover">
+          <a className="sidebar-button" ref={coverRef} onClick={(e) => onOpenModal(e, { category: 'Cover', title: 'Cover', task, updateTask, board, onUpdateBoard, position: utilService.getPosition(coverRef.current) })} title="Cover">
             <span className="sidebar-icon"><IoMdBrowsers /></span>
             <span className="">Cover</span>
           </a>
@@ -81,9 +84,8 @@ export function TaskDetailsSideTask({ task, board, updateTask, onUpdateBoard }) 
         </div>
       </div>
 
-      {/* {modalName && <Modal task={task} board={board} updateTask={updateTask} onUpdateBoard={onUpdateBoard} onOpenModalDynamic={onOpenModalDynamic} category={modalName}></Modal>} */}
 
-    </section >
+    </section>
 
   )
 }

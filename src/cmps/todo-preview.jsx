@@ -44,8 +44,10 @@ export const TodoPreview = (props) => {
 
   const onOpenModal = (e) => {
     e.stopPropagation()
+    const position = utilService.getPosition(menuRef.current)
+    position.top += 30
     dispatch(setModal({
-      position: utilService.getPosition(menuRef.current),
+      position,
       category: 'todo-actions',
       title: 'Item actions',
       props: {

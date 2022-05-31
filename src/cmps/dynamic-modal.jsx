@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { ModalCover } from './modal-cover'
 import { ModalMember } from './modal-member'
@@ -8,23 +8,56 @@ import { ModalLabelChange } from './modal-label-change'
 import { CgClose } from 'react-icons/cg'
 import { useDispatch } from 'react-redux'
 import { setModal } from '../store/app/app.actions'
+import { utilService } from '../services/util.service'
+
 import { TodoActions } from './todo-actions'
 import { ChecklistDelete } from './checklist-delete'
 import { ChecklistAdd } from './checklist-add'
 
+import { IoIosArrowBack } from 'react-icons/io'
 
 export const DynamicModal = () => {
 
   const { modal } = useSelector(({ appModule }) => appModule)
+  const [position, setPosition] = useState(null)
   const dispatch = useDispatch()
   const editLabel = useRef('')
-  var cmp
+  const buttonRef = useRef()
+
+  const modalRef = useRef()
+
+  useEffect(() => {
+    adjustPosition()
+    window.addEventListener('resize', adjustPosition)
+    return () => window.removeEventListener('resize', adjustPosition)
+  }, [modal])
+
+  const adjustPosition = (ev) => {
+    if (!modal) return setPosition(null)
+    const { position } = modal
+    if (position.top + modalRef.current.offsetHeight > window.innerHeight) {
+      position.top += window.innerHeight - position.top - (modalRef.current.offsetHeight) * 1.25
+    }
+
+    if (position.left + modalRef.current.offsetWidth > window.innerWidth) {
+      position.left += window.innerWidth - position.left - (modalRef.current.offsetWidth) * 1.25
+    }
+    setPosition(position)
+  }
+
+
+  const changeEditLabel = (label) => {
+    editLabel.current = label
+  }
+
+  console.log('editLabel.current', editLabel.current)
 
   if (!modal) return
 
+  var cmp
+
   switch (modal.category) {
     case 'Cover':
-      modal.position.top += 50
       cmp =
         <ModalCover
           task={modal.task}
@@ -44,8 +77,7 @@ export const DynamicModal = () => {
           task={modal.task}
           updateTask={modal.updateTask}
           board={modal.board}
-          onOpenModalDynamic={modal.onOpenModalDynamic}
-          changeEditLabel={modal.changeEditLabel}
+          changeEditLabel={changeEditLabel}
         />
       break
     case 'Create label':
@@ -54,7 +86,7 @@ export const DynamicModal = () => {
           task={modal.task}
           board={modal.board}
           onUpdateBoard={modal.onUpdateBoard}
-          onOpenModalDynamic={modal.onOpenModalDynamic}
+          changeEditLabel={modal.onUpdateBoard}
         />
       break
     case 'Change label':
@@ -63,40 +95,44 @@ export const DynamicModal = () => {
           task={modal.task}
           board={modal.board}
           editLabel={editLabel.current}
-          onOpenModalDynamic={modal.onOpenModalDynamic}
           updateTask={modal.updateTask}
           onUpdateBoard={modal.onUpdateBoard}
         />
       break
     case 'todo-actions':
-      modal.position.top += 30
       cmp =
         <TodoActions {...modal.props} />
       break
     case 'checklist-delete':
-      modal.position.top += 32 + 6 // BUTTON SIZE + PADDING
       cmp =
         <ChecklistDelete {...modal.props} />
       break
     case 'checklist-add':
-      modal.position.top += 32 + 6 // BUTTON SIZE + PADDING
       cmp =
-        < ChecklistAdd {...modal.props} />
+        <ChecklistAdd {...modal.props} />
+      break
     default:
       break
   }
 
+  const onModal = (category) => {
+    dispatch(setModal({ category, title: category, task: modal.task, board: modal.board, onUpdateBoard: modal.onUpdateBoard, position: utilService.getPosition(buttonRef.current) }))
+  }
 
   return (
-    <div className="dynamic-modal" style={{ ...modal.position }}>
-      <header>
+    <div className="dynamic-modal" style={{ ...position }} ref={modalRef}>
+      <header >
+        {modal.category === 'Create label' && <button ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Labels') }} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
+        {modal.category === 'Change label' && <button ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Labels') }} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
         <div className="label">{modal.title ? modal.title : modal.category}</div>
         <button className="sidebar-icon-right" onClick={() => dispatch(setModal(null))}><span ><CgClose /></span></button>
       </header>
-
-      <main className="main-modal">
+      <main className="main-modal" >
         {cmp}
       </main>
     </div>)
 
 }
+
+
+

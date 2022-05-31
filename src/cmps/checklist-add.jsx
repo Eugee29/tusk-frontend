@@ -18,6 +18,7 @@ export const ChecklistAdd = ({ updateTask, task }) => {
   }
 
   const onAddChecklist = (e) => {
+    if (!task.checklists) task.checklists = []
     e.preventDefault()
     dispatch(setModal(null))
     const newChecklist = boardService.getEmptyChecklist()

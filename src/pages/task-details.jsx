@@ -34,6 +34,7 @@ export const TaskDetails = () => {
     const updatedGroups = board.groups.map(group => group.id === updatedGroup.id ? updatedGroup : group)
     const updatedBoard = { ...board, groups: updatedGroups }
     onUpdateBoard(updatedBoard)
+    return updatedBoard
   }
 
   const onGoBack = () => {
@@ -52,8 +53,10 @@ export const TaskDetails = () => {
     <div className="task-details-container" onClick={onDetailsClick}>
       <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
       <div>
+
         {task?.style && <TaskDetailsCover task={task} setModal={setModal} />}
         {task?.title && <TaskDetailsTitle title={task.title} />}
+
         <div className="main-task">
           {task && <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />}
           {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
@@ -61,7 +64,9 @@ export const TaskDetails = () => {
           {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
           {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
         </div>
+
         <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
+
       </div>
     </div>
   </section >
