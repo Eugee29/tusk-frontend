@@ -13,9 +13,10 @@ import { Draggable } from 'react-beautiful-dnd'
 import { TaskList } from './task-list'
 import { useDispatch } from "react-redux"
 
-export const GroupPreview = ({ group, index, toggleLabels, isLabelsOpen, onUpdateGroup }) => {
+export const GroupPreview = ({ group, index, toggleLabels, isLabelsOpen, onUpdateGroup, onUpdateBoard }) => {
   const dispatch = useDispatch()
   const buttonRef = useRef()
+  const {boardId} = useParams()
 
   const params = useParams()
   const [titleText, setTitleText] = useState(group.title)
@@ -35,7 +36,7 @@ export const GroupPreview = ({ group, index, toggleLabels, isLabelsOpen, onUpdat
   
   const openModal = (ev) => {
     ev.stopPropagation()
-    dispatch(setModal({ position: utilService.getPosition(buttonRef.current), groupId: group.id, category: 'Group actions'}))
+    dispatch(setModal({ position: utilService.getPosition(buttonRef.current), category: 'Group actions', title: 'List actions', onUpdateBoard, boardId, group}))
   }
 
 

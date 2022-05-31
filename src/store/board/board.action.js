@@ -5,7 +5,6 @@ import { store } from '../../store/store.js'
 
 // import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
 
-
 socketService.off('on-any-change')
 socketService.on('on-any-change', async (msg) => {
    console.log('Socket msg: ', msg);

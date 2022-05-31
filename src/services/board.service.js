@@ -15,6 +15,7 @@ export const boardService = {
    getEmptyTodo,
    getEmptyTask,
    getEmptyGroup,
+   getEmptyChecklist
 }
 
 //Request (Rest:GET) all Data from Backend
@@ -94,9 +95,17 @@ function getEmptyGroup(title) {
 }
 
 function getEmptyTodo() {
-   return {
-      id: utilService.makeId(),
-      isDone: false,
-      title: ''
-   }
+  return {
+    id: utilService.makeId(),
+    isDone: false,
+    title: ''
+  }
+}
+
+function getEmptyChecklist() {
+  return {
+    id: utilService.makeId(),
+    title: '',
+    todos: []
+  }
 }

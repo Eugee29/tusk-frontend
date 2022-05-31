@@ -18,7 +18,6 @@ const rootReducer = combineReducers({
   //  reviewModule: reviewReducer,
 })
 
-
 // export const store = createStore(rootReducer, applyMiddleware(thunk))
 // window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__();
 // Lets wire up thunk and also redux-dev-tools:

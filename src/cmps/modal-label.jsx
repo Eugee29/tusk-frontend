@@ -14,7 +14,7 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
   const [labelName, setLabelName] = useState('')
   const [searchLabel, setSearchLabel] = useState('')
 
-  const buttonRef = useRef()
+  const modalRef = useRef()
   const searchInput = useRef(null)
   const firstLoad = useRef(false)
 
@@ -43,11 +43,14 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
   }
 
   const onModal = (category) => {
-    dispatch(setModal({ category, title: category, task, board, onUpdateBoard, position: utilService.getPosition(buttonRef.current) }))
+    const position = utilService.getPosition(modalRef.current)
+    position.left -= 12 // MODAL PADDING
+    position.top -= 40 + 8 // TITLE SIZE + MARGIN
+    dispatch(setModal({ category, title: category, task, board, onUpdateBoard, position }))
   }
 
   return (
-    <div className="label-section">
+    <div className="label-section" ref={modalRef}>
 
       <div className="search-box">
         <input ref={searchInput} type="text" name='search' placeholder="Search label..." value={searchLabel} onChange={handleChange} />
@@ -63,12 +66,12 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
                 <span className="label-txt" >{`${label.title}`}</span>
                 {task?.labelIds && task.labelIds.some(taskLabel => taskLabel === label.id) && <span className='label-icon' ><BsCheck2 /></span>}
               </span>
-              <span className='label-icon pencil' ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Change label'); changeEditLabel(label) }} ><BsPencil /></span>
+              <span className='label-icon pencil' onClick={(ev) => { ev.stopPropagation(); onModal('Change label'); changeEditLabel(label) }} ><BsPencil /></span>
             </li>
           ))}
         </ul>
 
-        <span className="btn" ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Create label') }}>Create a new label</span>
+        <span className="btn" ref={modalRef} onClick={(ev) => { ev.stopPropagation(); onModal('Create label') }}>Create a new label</span>
         <div className="hr"></div>
       </div>
 
