@@ -20,7 +20,7 @@ export const BoardDetails = () => {
 
   useEffect(() => {
     loadBoard()
-  }, [boards])
+  }, [])
 
   const loadBoard = async () => {
     const board = await boardService.getById(params.boardId)
