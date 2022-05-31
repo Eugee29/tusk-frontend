@@ -30,14 +30,14 @@ export const BoardDetails = () => {
 
   const onUpdateBoard = async (board, activity) => {
     let newBoard
-    if (activity) {
-      // newBoard = addActivity(board, activity)
-      await dispatch(updateBoard(newBoard))
-      setBoard(newBoard)
-    } else {
-      await dispatch(updateBoard(board))
-      setBoard(board)
-    }
+    // if (activity) {
+    //   newBoard = addActivity(board, activity)
+    //   await dispatch(updateBoard(newBoard))
+    //   setBoard(newBoard)
+    // } else {
+    await dispatch(updateBoard(board))
+    setBoard(board)
+    // }
   }
 
   // const addActivity = (board, activity) => {
