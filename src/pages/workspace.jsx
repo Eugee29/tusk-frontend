@@ -15,10 +15,10 @@ const _Workspace = () => {
    const dispatch = useDispatch()
 
    useEffect(() => {
-      loadBoradsAsync()
+      loadBoardsAsync()
    }, [])
 
-   const loadBoradsAsync = async () => {
+   const loadBoardsAsync = async () => {
       const boardsFromSrevice = await dispatch(loadBoards())
       console.log('boardsFromSrevice', boardsFromSrevice);
       setBoards(boardsFromSrevice)
