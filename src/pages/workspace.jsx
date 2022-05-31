@@ -10,37 +10,37 @@ import { useSelector } from 'react-redux'
 
 const _Workspace = () => {
 
-   const [boards, setBoards] = useState(null)
-   const { boards: boardsFromStore } = useSelector((storeState) => storeState.boardModule )
-   const dispatch = useDispatch()
+  const [boards, setBoards] = useState(null)
+  const { boards: boardsFromStore } = useSelector((storeState) => storeState.boardModule)
+  const dispatch = useDispatch()
 
-   useEffect(() => {
-      loadBoradsAsync()
-   }, [])
+  useEffect(() => {
+    loadBoardsAsync()
+  }, [])
 
-   const loadBoradsAsync = async () => {
-      const boardsFromSrevice = await dispatch(loadBoards())
-      console.log('boardsFromSrevice', boardsFromSrevice);
-      setBoards(boardsFromSrevice)
-   }
+  const loadBoardsAsync = async () => {
+    const boardsFromSrevice = await dispatch(loadBoards())
+    console.log('boardsFromSrevice', boardsFromSrevice)
+    setBoards(boardsFromSrevice)
+  }
 
-   const onUpdateBoard = async (board) => {
-      await dispatch(updateBoard(board))
-      setBoards(boardsFromStore)
-   }
+  const onUpdateBoard = async (board) => {
+    await dispatch(updateBoard(board))
+    setBoards(boardsFromStore)
+  }
 
-   return (
-      <main className='workspace'>
-         { boards && <BoardList boards={boardsFromStore} onUpdateBoard={ onUpdateBoard} />}
-      </main>
-   )
+  return (
+    <main className='workspace'>
+      {boards && <BoardList boards={boardsFromStore} onUpdateBoard={onUpdateBoard} />}
+    </main>
+  )
 }
 
 function mapStateToProps(state) {
-   return {
-      boards: state.boardModule.boards
-      // boards: state.boardBackModule.boards
-   }
+  return {
+    boards: state.boardModule.boards
+    // boards: state.boardBackModule.boards
+  }
 }
 
 export const Workspace = connect(mapStateToProps)(_Workspace)

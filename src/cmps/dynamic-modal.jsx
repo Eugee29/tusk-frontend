@@ -28,9 +28,9 @@ export const DynamicModal = () => {
 
   const modalRef = useRef()
 
-   const changeEditLabel = (label) => {
-      editLabel.current = label
-   }
+  const changeEditLabel = (label) => {
+    editLabel.current = label
+  }
 
   useEffect(() => {
     adjustPosition()
@@ -99,7 +99,7 @@ export const DynamicModal = () => {
           onUpdateBoard={modal.onUpdateBoard}
         />
       break
-      case 'Create label':
+    case 'Create label':
       cmp =
         <ModalLabelCreate
           task={modal.task}

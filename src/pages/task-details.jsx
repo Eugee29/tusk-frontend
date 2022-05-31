@@ -34,7 +34,7 @@ export const TaskDetails = () => {
     const updatedGroups = board.groups.map(group => group.id === updatedGroup.id ? updatedGroup : group)
     const updatedBoard = { ...board, groups: updatedGroups }
     onUpdateBoard(updatedBoard)
-    return updatedBoard
+    // return updatedBoard
   }
 
   const onGoBack = () => {
