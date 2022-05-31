@@ -29,10 +29,12 @@ export const DynamicModal = () => {
   useEffect(() => {
     adjustPosition()
     window.addEventListener('resize', adjustPosition)
-    return () => window.removeEventListener('resize', adjustPosition)
+
   }, [modal])
 
-  const adjustPosition = (ev) => {
+  useEffect((() => { return () => window.removeEventListener('resize', adjustPosition) }), [])
+
+  const adjustPosition = () => {
     if (!modal) return setPosition(null)
     const { position } = modal
     if (position.top + modalRef.current.offsetHeight > window.innerHeight) {
@@ -116,7 +118,9 @@ export const DynamicModal = () => {
   }
 
   const onModal = (category) => {
-    dispatch(setModal({ category, title: category, task: modal.task, board: modal.board, onUpdateBoard: modal.onUpdateBoard, position: utilService.getPosition(buttonRef.current) }))
+    const position = utilService.getPosition(buttonRef.current)
+    position.left -= 12 // PADDING
+    dispatch(setModal({ category, title: category, task: modal.task, board: modal.board, onUpdateBoard: modal.onUpdateBoard, position }))
   }
 
   return (
