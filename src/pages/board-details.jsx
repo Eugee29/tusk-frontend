@@ -3,7 +3,7 @@ import { Outlet, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import { boardService } from '../services/board.service.js'
-// import { activityService } from '../services/activity.service.js'
+import { activityService } from '../services/activity.service.js'
 import { setModal } from '../store/app/app.actions'
 import { updateBoard } from '../store/board/board.action.js'
 
@@ -30,20 +30,20 @@ export const BoardDetails = () => {
 
   const onUpdateBoard = async (board, activity) => {
     let newBoard
-    // if (activity) {
-    //   newBoard = addActivity(board, activity)
-    //   await dispatch(updateBoard(newBoard))
-    //   setBoard(newBoard)
-    // } else {
-    await dispatch(updateBoard(board))
-    setBoard(board)
-    // }
+    if (activity) {
+      newBoard = addActivity(board, activity)
+      await dispatch(updateBoard(newBoard))
+      setBoard(newBoard)
+    } else {
+      await dispatch(updateBoard(board))
+      setBoard(board)
+    }
   }
 
-  // const addActivity = (board, activity) => {
-  //   const newBoard = activityService.getActivityUpdatedBoard(board, activity)
-  //   return newBoard
-  // }
+  const addActivity = (board, activity) => {
+    const newBoard = activityService.getActivityUpdatedBoard(board, activity)
+    return newBoard
+  }
 
   const closeModal = () => {
     dispatch(setModal(null))
