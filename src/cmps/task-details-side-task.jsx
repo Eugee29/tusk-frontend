@@ -6,17 +6,30 @@ import { BsCheck2Square } from 'react-icons/bs'
 import { FiClock } from 'react-icons/fi'
 import { GrAttachment } from 'react-icons/gr'
 import { IoMdBrowsers } from 'react-icons/io'
+import { useDispatch } from 'react-redux'
+import { utilService } from '../services/util.service'
+
+import { setModal } from '../store/app/app.actions'
+
 
 // import { Modal } from "./modal"
 
 export function TaskDetailsSideTask({ task, board, updateTask, onUpdateBoard }) {
 
   const [modalName, setModalName] = useState('')
+  const dispatch = useDispatch()
+
+  const checklistRef = useRef()
 
   const onOpenModalDynamic = (name) => {
     if (!name) setModalName('')
     if (name === modalName) setModalName('')
     else setModalName(name)
+  }
+
+  const onOpenModal = (e, modal) => {
+    e.stopPropagation()
+    dispatch(setModal(modal))
   }
 
   return (
@@ -46,7 +59,7 @@ export function TaskDetailsSideTask({ task, board, updateTask, onUpdateBoard }) 
             <span className="">Labels</span>
           </a>
 
-          <a className="sidebar-button" href="#" title="Checklist">
+          <a className="sidebar-button" title="Checklist" ref={checklistRef} onClick={(e) => onOpenModal(e, { position: utilService.getPosition(checklistRef.current), title: 'Add checklist', category: 'checklist-add', props: { updateTask, task } })}>
             <span className="sidebar-icon"><BsCheck2Square /></span>
             <span className="">Checklist</span></a>
 
@@ -70,7 +83,7 @@ export function TaskDetailsSideTask({ task, board, updateTask, onUpdateBoard }) 
 
       {/* {modalName && <Modal task={task} board={board} updateTask={updateTask} onUpdateBoard={onUpdateBoard} onOpenModalDynamic={onOpenModalDynamic} category={modalName}></Modal>} */}
 
-    </section>
+    </section >
 
   )
 }

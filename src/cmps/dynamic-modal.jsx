@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux'
 import { setModal } from '../store/app/app.actions'
 import { TodoActions } from './todo-actions'
 import { ChecklistDelete } from './checklist-delete'
+import { ChecklistAdd } from './checklist-add'
 
 
 export const DynamicModal = () => {
@@ -73,10 +74,14 @@ export const DynamicModal = () => {
         <TodoActions {...modal.props} />
       break
     case 'checklist-delete':
-      modal.position.top += 40
+      modal.position.top += 32 + 6 // BUTTON SIZE + PADDING
       cmp =
         <ChecklistDelete {...modal.props} />
       break
+    case 'checklist-add':
+      modal.position.top += 32 + 6 // BUTTON SIZE + PADDING
+      cmp =
+        < ChecklistAdd {...modal.props} />
     default:
       break
   }

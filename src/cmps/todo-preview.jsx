@@ -88,7 +88,6 @@ export const TodoPreview = (props) => {
           </div>
         </div>
       </div>
-      {/* {menuPos && <Modal position={menuPos} />} */}
     </li >
   )
 }
