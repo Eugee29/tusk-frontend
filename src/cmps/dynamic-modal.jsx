@@ -99,13 +99,9 @@ export const DynamicModal = () => {
           onUpdateBoard={modal.onUpdateBoard}
         />
       break
-      case 'Create label':
+      case 'Create board':
       cmp =
-        <ModalLabelCreate
-          task={modal.task}
-          board={modal.board}
-          onUpdateBoard={modal.onUpdateBoard}
-          changeEditLabel={modal.onUpdateBoard}
+        <ModalCreateBoard
         />
       break
     case 'todo-actions':

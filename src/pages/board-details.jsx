@@ -33,11 +33,11 @@ export const BoardDetails = () => {
     let newBoard
     if (activity) {
       newBoard = addActivity(board, activity)
-      await dispatch(updateBoard(newBoard))
       setBoard(newBoard)
+      await dispatch(updateBoard(newBoard))
     } else {
-      await dispatch(updateBoard(board))
       setBoard(board)
+      await dispatch(updateBoard(board))
     }
   }
 
