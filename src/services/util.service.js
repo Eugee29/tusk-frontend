@@ -51,6 +51,10 @@ function formatTimeToDM(time) {
 function getPosition(element) {
   if (!element) return
   let { top, left } = element.getBoundingClientRect()
+  // console.log('top', top)
+  // console.log(element.offsetHeight)
+  // console.log('innerHeight', window.innerHeight)
+  // if (top + 700 > window.innerHeight) return { top, left, transform: 'translateY(-60%)' }
   // if (window.innerWidth - left < 304) left = left - 304
   return { top, left }
 }

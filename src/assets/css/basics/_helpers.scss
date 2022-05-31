@@ -1,3 +1,11 @@
 .tilted {
   transform: rotate(5deg);
 }
+
+.btn-primary {
+  @include nice-btn;
+}
+
+.btn-secondary {
+  @include nice-btn($brand-clr8, $brand-clr4);
+}

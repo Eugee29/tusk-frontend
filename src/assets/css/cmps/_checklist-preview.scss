@@ -31,8 +31,114 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      // height: 2rem;
       width: 100%;
+
+      .title-editor {
+        min-height: 36px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 6px 0;
+        width: 100%;
+        cursor: pointer;
+
+        .controls {
+          align-self: start;
+        }
+
+
+
+        .controls {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          height: 32px;
+
+          .menu-container {
+            opacity: initial;
+            padding: 8px 10px;
+            width: 36px;
+
+            .menu {
+              width: 16px;
+              height: 16px;
+            }
+          }
+
+          .btn-container {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            height: 100%;
+
+            button {
+              height: 100%;
+              border: none;
+              border-radius: 3px;
+              padding: 6px 12px;
+            }
+
+            .save {
+              background-color: $brand-clr2;
+              color: $font-clr1;
+              margin: 0;
+              margin-inline-end: 4px;
+              transition: background-color .085s;
+
+              &:hover {
+                background-color: $brand-clr1;
+              }
+            }
+
+            .discard-container {
+              height: 100%;
+              margin: 0;
+              padding: 2px;
+              background: none;
+
+              .discard {
+                width: 100%;
+                height: 100%;
+                color: $clr10;
+
+                &:hover {
+                  color: $brand-clr4;
+                }
+              }
+            }
+          }
+        }
+
+        textarea {
+          @include text-area-edit;
+          flex-grow: 1;
+          font-size: rem(16px);
+          font-weight: 700;
+        }
+
+        .menu-container {
+          position: relative;
+          opacity: 0;
+          height: 100%;
+          width: 20px;
+          padding: 2px;
+          border-radius: 3px;
+
+          &:hover {
+            background-color: $clr9;
+          }
+
+          .menu {
+            height: 100%;
+            width: 100%;
+            color: $clr3;
+          }
+
+
+        }
+
+      }
 
 
       .title {
@@ -55,8 +161,9 @@
         }
 
         button {
-          @include btn3;
           margin-inline-start: .5rem;
+          padding-left: rem(12px);
+          padding-right: rem(12px);
         }
       }
 
@@ -101,7 +208,6 @@
 
 
     .open-add {
-      @include btn3;
       margin: .5rem 0;
     }
 
