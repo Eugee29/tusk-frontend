@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef, useParam } from 'react'
+import { socketService } from '../services/socket.service.js'
 import { useDispatch } from 'react-redux'
 import { utilService } from '../services/util.service'
 import { setModal } from '../store/app/app.actions'
@@ -33,6 +34,7 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
       ? task.labelIds.splice(taskLabelIdx, 1)
       : task.labelIds.push(board.labels[boardLabelIdx].id)
     updateTask(task)
+    socketService.emit('emit-any-change', 'Toggle label')
   }
 
   const handleChange = ({ target }) => {

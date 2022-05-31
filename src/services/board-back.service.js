@@ -1,69 +1,110 @@
-import { httpService } from './http.service'
-import { utilService } from './util.service.js'
 
-const axios = require('axios').default;
+import { storageService } from './async-storage.service.js'
+import { utilService } from './util.service.js'
+import { userService } from './user.service.js'
+// import { getActionRemoveBoard, getActionAddBoard, getActionUpdateBoard } from '../store/board/board.action.js'
+
+const STORAGE_KEY = 'board'
+const boardChannel = new BroadcastChannel('boardChannel')
+// const listeners = []
 
 export const boardService = {
    query,
    getById,
    save,
    remove,
-   getEmptyBoard
+   getEmptyTask,
+   getEmptyGroup,
+   subscribe,
+   unsubscribe,
+   getTask,
+   getEmptyTodo,
+
+}
+window.cs = boardService
+
+function query() {
+   return storageService.query(STORAGE_KEY)
 }
 
-//Request (Rest:GET) all Data from Backend
-
-async function query(filterBy = {}) {
-   try {
-      // return await httpService.get('board/', { params:  filterBy  })
-      return await httpService.get('board/', { filterBy })
-   } catch (err) {
-      console.log('cant get boards!');
-      throw err
-   }
+function getById(boardId) {
+   return storageService.get(STORAGE_KEY, boardId)
+   // return axios.get(`/api/board/${boardId}`)
 }
 
-// Request (Rest:GET) get a Bug from Backend
-async function getById(boardId) {
-   try {
-      return await httpService.get(`board/${boardId}`)
-   } catch (err) {
-      console.log('cant get board by id!');
-      throw err
-   }
+function getTask(ids) {
+   return storageService.getTask(STORAGE_KEY, ids)
+   // return axios.get(`/api/board/${boardId}`)
 }
 
-// Request (Rest:DELETE) delete a Bug from Backend
 async function remove(boardId) {
-   try {
-      return await httpService.delete(`board/${boardId}`)
-   } catch (err) {
-      console.log('cant delete board');
-      throw err
-   }
+   // return new Promise((resolve, reject) => {
+   //     setTimeout(reject, 2000)
+   // })
+   // return Promise.reject('Not now!');
+   await storageService.remove(STORAGE_KEY, boardId)
+   // boardChannel.postMessage(getActionRemoveBoard(boardId))
 }
 
-// Request (Rest:PUT & POST) update or add new Bug from Backend
 async function save(board) {
-   try {
-      if (board._id) {
-         return await httpService.put(`board/${board._id}`, board)
-      } else {
-         return await httpService.post(`board/`, board)
-      }
-   } catch (err) {
-      console.log('cant save board');
-      throw err
+   // debugger
+   var savedBoard
+
+   if (board._id) {
+      savedBoard = await storageService.put(STORAGE_KEY, board)
+      // boardChannel.postMessage(getActionUpdateBoard(savedBoard))
+
+   } else {
+      // Later, owner is set by the backend
+      board.owner = userService.getLoggedinUser()
+      savedBoard = await storageService.post(STORAGE_KEY, board)
+      // boardChannel.postMessage(getActionAddBoard(savedBoard))
+   }
+   return savedBoard
+}
+
+function getEmptyTask(title) {
+   return {
+      id: utilService.makeId(),
+      createdAt: Date.now(),
+      archivedAt: null,
+      title,
+      description: "",
+      checklists: [],
+      members: [],
+      labelIds: [],
+      dueDate: null,
+      byMember: {
+         _id: "u102",
+         username: "Eranavichzer",
+         fullName: "Eran Avichzer",
+         imgURL: "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+      },
+      style: {}
    }
 }
 
-function getEmptyBoard() {
+function getEmptyGroup(title) {
    return {
-      name: 'Board No:' + (Date.now() % 1000),
-      img: utilService.getRandomIntInclusive(0, 13),
-      price: utilService.getRandomIntInclusive(50, 150),
-      labels: ["Doll", "Battery Powered", "Baby"],
-      createdAt: Date.now() - utilService.getRandomIntInclusive(10000000, 1000000000),
-      inStock: utilService.getRandomIntInclusive(1, 10) <= 5 ? true : false
+      id: utilService.makeId(),
+      title,
+      archivedAt: null,
+      tasks: []
    }
+}
+
+function getEmptyTodo() {
+   return {
+      id: utilService.makeId(),
+      isDone: false,
+      title: ''
+   }
+}
+
+function subscribe(listener) {
+   boardChannel.addEventListener('message', listener)
+}
+
+function unsubscribe(listener) {
+   boardChannel.removeEventListener('message', listener)
 }

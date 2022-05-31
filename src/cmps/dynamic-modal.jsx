@@ -5,6 +5,8 @@ import { ModalMember } from './modal-member'
 import { ModalLabel } from './modal-label'
 import { ModalLabelCreate } from './modal-label-create'
 import { ModalLabelChange } from './modal-label-change'
+import { ModalCreateBoard } from './modal-create-board'
+
 import { CgClose } from 'react-icons/cg'
 import { useDispatch } from 'react-redux'
 import { setModal } from '../store/app/app.actions'
@@ -26,7 +28,7 @@ export const DynamicModal = () => {
    var cmp
 
    const changeEditLabel = (label) => {
-     editLabel.current = label
+      editLabel.current = label
    }
 
    console.log('editLabel.current', editLabel.current);
@@ -77,23 +79,28 @@ export const DynamicModal = () => {
                onUpdateBoard={modal.onUpdateBoard}
             />
          break
-         case 'todo-actions':
-            modal.position.top += 30
-            cmp =
-              <TodoActions {...modal.props} />
-            break
-          case 'checklist-delete':
-            modal.position.top += 40
-            cmp =
-              <ChecklistDelete {...modal.props} />
-            break
+      case 'Create board':
+         cmp =
+            <ModalCreateBoard
+            />
+         break
+      case 'todo-actions':
+         modal.position.top += 30
+         cmp =
+            <TodoActions {...modal.props} />
+         break
+      case 'checklist-delete':
+         modal.position.top += 40
+         cmp =
+            <ChecklistDelete {...modal.props} />
+         break
       default:
          break
    }
 
    const onModal = (category) => {
       dispatch(setModal({ category, title: category, task: modal.task, board: modal.board, onUpdateBoard: modal.onUpdateBoard, position: utilService.getPosition(buttonRef.current) }))
-    }
+   }
 
    return (
       <div className="dynamic-modal" style={{ ...modal.position }}>

@@ -12,7 +12,6 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
    const dispatch = useDispatch()
 
    const [isCompleteDate, setIsCompleteDate] = useState(false)
-   const [modalName, setModalName] = useState('')
 
    useEffect(() => {
       onLabels()
@@ -20,12 +19,6 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
 
    const onToggleComplete = (value, ev) => {
       setIsCompleteDate(value)
-   }
-
-   const onOpenModalDynamic = (name) => {
-      if (!name) setModalName('')
-      if (name === modalName) setModalName('')
-      else setModalName(name)
    }
 
    const onModal = (category) => {

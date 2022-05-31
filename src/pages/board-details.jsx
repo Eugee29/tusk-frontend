@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { boardService } from '../services/board.service.js'
 import { updateBoard, saveBoard } from '../store/board/board.action.js'
@@ -12,10 +12,11 @@ export const BoardDetails = () => {
   const params = useParams()
   const [board, setBoard] = useState(null)
   const dispatch = useDispatch()
+  const { boards } = useSelector(({ boardModule }) => boardModule)
 
   useEffect(() => {
     loadBoard()
-  }, [])
+  }, [boards])
 
   const loadBoard = async () => {
     const board = await boardService.getById(params.boardId)

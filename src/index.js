@@ -10,11 +10,11 @@ import { RootCmp } from './root-cmp'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
-  <Provider store={store}>
-    <Router>
-      <RootCmp />
-    </Router>
-  </Provider>
+   <Provider store={store}>
+      <Router>
+         <RootCmp />
+      </Router>
+   </Provider>
 )
 
 // If you want your app to work offline and load faster, you can change

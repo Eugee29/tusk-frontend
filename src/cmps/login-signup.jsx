@@ -1,33 +1,51 @@
+import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+
 import { LoginForm } from './login-form'
 import { SignupForm } from './signup-form'
-import { Link, useNavigate } from 'react-router-dom'
+
+import { onLogin, onLogout, onSignup } from '../store/user/user.action.js'
+
 export const LoginSignup = ({ type }) => {
 
-  const navigate = useNavigate()
+   const dispatch = useDispatch()
+   const navigate = useNavigate()
 
-  var cmp
+   const signup = async (credentials) => {
+      await dispatch(onSignup(credentials))
+      navigate('/workspace')
+      // console.log('LoginSignup', credentials);
+   }
 
-  switch (type) {
-    case 'login':
-      cmp = <LoginForm />
-      break
-    case 'signup':
-      cmp = <SignupForm />
-      break
-  }
+   const loginn = async (credentials) => {
+      await dispatch(onLogin(credentials))
+      navigate('/workspace')
 
-  return (
-    <div className='login-signup'>
-      {cmp}
-      <div className='login-method'>
-        <div>OR</div>
-        <button onClick={() => navigate('/workspace')}>Continue as Guest</button>
-      </div>
-      <hr />
-      <footer>
-        <Link to='/'>Back home</Link>
-        <Link to={type === 'login' ? '/signup' : '/login'}>{type === 'login' ? 'Sign up' : 'Log in'}</Link>
-      </footer>
-    </div >
-  )
+   }
+
+   var cmp
+
+   switch (type) {
+      case 'login':
+         cmp = <LoginForm onLogin={loginn}/>
+         break
+      case 'signup':
+         cmp = <SignupForm onSignup={signup} />
+         break
+   }
+
+   return (
+      <div className='login-signup'>
+         {cmp}
+         <div className='login-method'>
+            <div>OR</div>
+            <button onClick={() => navigate('/workspace')}>Continue as Guest</button>
+         </div>
+         <hr />
+         <footer>
+            <Link to='/'>Back home</Link>
+            <Link to={type === 'login' ? '/signup' : '/login'}>{type === 'login' ? 'Sign up' : 'Log in'}</Link>
+         </footer>
+      </div >
+   )
 }
