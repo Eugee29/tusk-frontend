@@ -63,6 +63,11 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isLabelsOpen }
     return doneTodos.length
   }
 
+  const getTimeStyle = () => {
+    const style = (task.dueDate > Date.now()) ? {backgroundColor: '', color: '#505f79'} : {backgroundColor: '#ec9488', color: '#ffff'}
+    return style 
+  }
+
   return (
     <Draggable draggableId={task.id} index={index} type='TASK' >
       {(provided, snapshot) => (
@@ -79,7 +84,7 @@ export const TaskPreview = ({ task, groupId, index, toggleLabels, isLabelsOpen }
               <div className='task-icon-container'>
                 <div className='icon-container'>
                 {task.dueDate && (!task.style.isCover)
-                    && <div className='icon-time-container'>
+                    && <div className='icon-time-container' style={getTimeStyle()}>
                       <FiClock /> <span> {utilService.formatTimeToDM(task.dueDate)} </span>
                     </div>
                   }
