@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
+import {SideMenu} from './side-menu'
 
-// import { SideMenu } from './side-menu'
 
 export function BoardHeader({ board, onUpdateBoard }) {
 
@@ -47,7 +47,7 @@ export function BoardHeader({ board, onUpdateBoard }) {
     </div>
     <div className='right-container'>
       {!isMenuOpened && <button className='show-menu' onClick={onToggleMenu}> <BiDotsHorizontalRounded className='icon' /> Show menu </button>}
-      {/* <SideMenu dynamicClass={getMenuClass()} onToggleMenu={onToggleMenu} board={board} /> */}
+      <SideMenu dynamicClass={getMenuClass()} onToggleMenu={onToggleMenu} board={board} />
     </div>
 
 
