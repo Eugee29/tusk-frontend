@@ -5,7 +5,8 @@ import { ModalMember } from './modal-member'
 import { ModalLabel } from './modal-label'
 import { ModalLabelCreate } from './modal-label-create'
 import { ModalLabelChange } from './modal-label-change'
-import {ModalGroupActions} from './modal-group-actions'
+import { ModalCreateBoard } from './modal-create-board'
+import { ModalGroupActions } from './modal-group-actions'
 import { CgClose } from 'react-icons/cg'
 import { useDispatch } from 'react-redux'
 import { setModal } from '../store/app/app.actions'
@@ -16,7 +17,6 @@ import { ChecklistDelete } from './checklist-delete'
 import { ChecklistAdd } from './checklist-add'
 
 import { IoIosArrowBack } from 'react-icons/io'
-// import { ModalGroupActions } from './modal-group-actions'
 
 export const DynamicModal = () => {
 
@@ -27,6 +27,10 @@ export const DynamicModal = () => {
   const buttonRef = useRef()
 
   const modalRef = useRef()
+
+   const changeEditLabel = (label) => {
+      editLabel.current = label
+   }
 
   useEffect(() => {
     adjustPosition()
@@ -47,24 +51,6 @@ export const DynamicModal = () => {
     }
     setPosition(position)
   }
-
-
-  //  if (!modal) return
-
-
-
-  //  const onModal = (category) => {
-  //     dispatch(setModal({ category, title: category, task: modal.task, board: modal.board, onUpdateBoard: modal.onUpdateBoard, position: utilService.getPosition(buttonRef.current) }))
-  //   }
-
-
-
-
-  const changeEditLabel = (label) => {
-    editLabel.current = label
-  }
-
-  // console.log('editLabel.current', editLabel.current)
 
   if (!modal) return
 
@@ -113,6 +99,11 @@ export const DynamicModal = () => {
           onUpdateBoard={modal.onUpdateBoard}
         />
       break
+      case 'Create board':
+      cmp =
+        <ModalCreateBoard
+        />
+      break
     case 'todo-actions':
       cmp =
         <TodoActions {...modal.props} />
@@ -139,8 +130,6 @@ export const DynamicModal = () => {
     position.left -= 12 // PADDING
     dispatch(setModal({ category, title: category, task: modal.task, board: modal.board, onUpdateBoard: modal.onUpdateBoard, position }))
   }
-
-  console.log(position)
 
   return (
     <div className="dynamic-modal" style={{ ...position }} ref={modalRef}>

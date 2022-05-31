@@ -1,14 +1,20 @@
 
-import React from 'react'
+import React, { useRef } from 'react'
+import { useDispatch } from 'react-redux'
+import { utilService } from '../services/util.service'
+import { setModal } from '../store/app/app.actions'
 
 import { BoardPreview } from './board-preview.jsx'
-
 import { HiOutlineStar } from 'react-icons/hi'
 import { FaRegClock } from 'react-icons/fa'
 
 export const BoardList = ({ boards, onUpdateBoard }) => {
 
-   const onAddBoard = () => {
+   const buttonRef = useRef()
+   const dispatch = useDispatch()
+
+   const onModal = (category) => {
+      dispatch(setModal({ category, title: category, position: utilService.getPosition(buttonRef.current) }))
    }
 
    const starredBoards = boards.filter(board => board.isStarred)
@@ -40,7 +46,7 @@ export const BoardList = ({ boards, onUpdateBoard }) => {
          <ul className="board-section-list">
             {unStarredBoards.map((board) => <BoardPreview board={board} onUpdateBoard={onUpdateBoard} key={board._id} />)}
 
-            <li className="board-section-list-item" onClick={() => { onAddBoard() }}>
+            <li className="board-section-list-item" ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Create board') }} >
                <div className="board-tile mod-add">
                   <p className='board-tile-details-center' >
                      <span>Create new board</span>

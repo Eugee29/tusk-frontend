@@ -4,8 +4,6 @@ import { connect } from 'react-redux'
 import { loadBoards, updateBoard } from '../store/board/board.action.js'
 // import { loadBoards, updateBoard } from '../store/actions/board-back.action.js'
 
-import { boardService } from '../services/board.service.js'
-
 import { BoardList } from '../cmps/board-list.jsx'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
@@ -22,6 +20,7 @@ const _Workspace = () => {
 
    const loadBoradsAsync = async () => {
       const boardsFromSrevice = await dispatch(loadBoards())
+      console.log('boardsFromSrevice', boardsFromSrevice);
       setBoards(boardsFromSrevice)
    }
 
@@ -43,9 +42,5 @@ function mapStateToProps(state) {
       // boards: state.boardBackModule.boards
    }
 }
-// const mapDispatchToProps = {
-//    loadBoards,
-//    updateBoard
-// }
 
 export const Workspace = connect(mapStateToProps)(_Workspace)
