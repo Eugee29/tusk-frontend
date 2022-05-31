@@ -31,7 +31,11 @@ export const GroupList = ({ board, onUpdateBoard }) => {
 
   const addGroup = (groupToAdd) => {
     const newBoard = { ...board, groups: [...board.groups, groupToAdd] }
-    onUpdateBoard(newBoard)
+    const activity = {
+      actionType: 'add group',
+      groupTitle: groupToAdd.title
+    }
+    onUpdateBoard(newBoard, activity)
   }
 
   const toggleIsAddGroupOpen = () => {
@@ -45,23 +49,33 @@ export const GroupList = ({ board, onUpdateBoard }) => {
 
   const handleOnDragEnd = ({ destination, source, type }) => {
     if (!destination) return
+    let activity
     const groupsCopy = [...board.groups]
     if (type === 'TASK') {
       const destinationGroup = groupsCopy.find(group => group.id === destination.droppableId)
       const sourceGroup = groupsCopy.find(group => group.id === source.droppableId)
       const task = sourceGroup.tasks.splice(source.index, 1)[0]
       destinationGroup.tasks.splice(destination.index, 0, task)
+
+      activity = {
+        actionType: 'move',
+        task: {
+          id: task.id,
+          title: task.title
+        },
+        groupTitle: destinationGroup.title
+      }
     }
     if (type === 'GROUP') {
       const group = groupsCopy.splice(source.index, 1)[0]
       groupsCopy.splice(destination.index, 0, group)
     }
-    onUpdateBoard({ ...board, groups: groupsCopy })
+    onUpdateBoard({ ...board, groups: groupsCopy }, activity)
   }
 
-  const onUpdateGroup = (groupToUpdate) => {
+  const onUpdateGroup = (groupToUpdate, activity) => {
     const updatedGroups = board.groups.map(group => group.id === groupToUpdate.id ? groupToUpdate : group)
-    onUpdateBoard({ ...board, groups: updatedGroups })
+    onUpdateBoard({ ...board, groups: updatedGroups }, activity)
   }
 
   return (
@@ -73,7 +87,7 @@ export const GroupList = ({ board, onUpdateBoard }) => {
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {board.groups.map((group, index) => <GroupPreview key={group.id} group={group} index={index} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} onUpdateGroup={onUpdateGroup} />)}
+            {board.groups.map((group, index) => <GroupPreview key={group.id} group={group} index={index} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} onUpdateGroup={onUpdateGroup} onUpdateBoard={onUpdateBoard} />)}
             {provided.placeholder}
 
             <div className={getAddGroupClass()}>

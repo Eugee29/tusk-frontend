@@ -2,12 +2,15 @@ import { useState } from 'react'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 
+import {SideMenu} from './side-menu'
+
 export function BoardHeader({ board, onUpdateBoard }) {
 
   const [isStarred, setIsStarred] = useState(board.isStarred)
+  const [isMenuOpened, setIsMenuOpened] = useState(false)
 
-  const onToggleStar = async () => {
-    await setIsStarred(!isStarred)
+  const onToggleStar = () => {
+    setIsStarred(!isStarred)
     updateBoard()
   }
 
@@ -19,6 +22,15 @@ export function BoardHeader({ board, onUpdateBoard }) {
 
   const getStarClass = () => {
     const className = isStarred ? 'star-btn full' : 'star-btn outline'
+    return className
+  }
+
+  const onToggleMenu = () => {
+    setIsMenuOpened(!isMenuOpened)
+  }
+
+  const getMenuClass = () => {
+    const className = isMenuOpened ? 'side-menu opened' : 'side-menu closed' 
     return className
   }
 
@@ -34,7 +46,8 @@ export function BoardHeader({ board, onUpdateBoard }) {
         </div>}
     </div>
     <div className='right-container'>
-      <button className='show-menu'> <BiDotsHorizontalRounded className='icon' /> Show menu </button>
+      {!isMenuOpened && <button className='show-menu' onClick={onToggleMenu}> <BiDotsHorizontalRounded className='icon' /> Show menu </button>}
+      <SideMenu dynamicClass={getMenuClass()} onToggleMenu={onToggleMenu} board={board} />
     </div>
 
 

@@ -15,6 +15,7 @@ import { TodoActions } from './todo-actions'
 import { ChecklistDelete } from './checklist-delete'
 
 import { IoIosArrowBack } from 'react-icons/io'
+import { ModalGroupActions } from './modal-group-actions'
 
 export const DynamicModal = () => {
 
@@ -87,6 +88,12 @@ export const DynamicModal = () => {
             cmp =
               <ChecklistDelete {...modal.props} />
             break
+         case 'Group actions':
+            modal.position.top += 28
+            cmp = 
+            <ModalGroupActions onUpdateBoard={modal.onUpdateBoard} group={modal.group} boardId={modal.boardId}/>
+            break
+
       default:
          break
    }
