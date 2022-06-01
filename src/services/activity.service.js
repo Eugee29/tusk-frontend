@@ -8,11 +8,8 @@ export const activityService = {
 }
 
 function getActivityUpdatedBoard(board, activity) {
-    //activity = {task?: *TASKID*, action: {actionType, element}}
-
     // const byMember = getMember() // WHEN WE HAVE USERS
     const byMember = { fullName: 'Guest' }
-    console.log(activity.actionType)
 
     let isComment = false
     if (activity.actionType === 'comment') isComment = true
@@ -42,22 +39,20 @@ function getActivityText(activity, board, onToggleMenu) {
     const linkPath = (activity.group) ? `/board/${board._id}/${activity.group.id}/${activity.task.id}` : null
     let text
 
-    console.log(activity)
-
     switch (activity.actionType) {
         case 'delete task':
-            text = ['deleted', <Link to={linkPath} onClick={onToggleMenu}> {activity.task.title} </Link>]
+            text = ['deleted', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
             break
 
         case 'add task':
-            text = ['added', <Link to={linkPath} onClick={onToggleMenu}> {activity.task.title} </Link>, `to ${activity.group.title}`]
+            text = ['added', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
             break
 
         case 'move':
-            text = ['moved', <Link to={linkPath} onClick={onToggleMenu}> {activity.task.title} </Link>, `to ${activity.group.title}`]
+            text = ['moved', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
             break
         case 'comment':
-            text = ['on', <Link to={linkPath} onClick={onToggleMenu}> {activity.task.title} </Link>]
+            text = ['on', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
             break
         case 'delete group':
             text = [`deleted list ${activity.group.title}`]
@@ -69,12 +64,10 @@ function getActivityText(activity, board, onToggleMenu) {
         default:
             text = null
     }
-    console.log(text)
     return text
 }
 
 function getTaskActivities(taskId, board) {
     const taskActivities = board.activities.filter(activity => activity.task.id === taskId)
-    console.log(taskActivities)
     // return taskActivities
 }

@@ -49,6 +49,14 @@
     display: flex;
     align-items: flex-start;
 
+    a {
+      color: $font-clr2;
+
+      &:active {
+        color: $font-clr2
+      }
+    }
+
     .activity-info {
       display: flex;
       flex-direction: column;

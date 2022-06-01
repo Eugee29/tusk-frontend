@@ -15,11 +15,9 @@ export function BoardHeader({ board, onUpdateBoard }) {
     setIsStarred(!isStarred)
     updateBoard()
   }
-
-  const updateBoard = () => {
-    const newBoard = { ...board, isStarred: !isStarred }
-    console.log(newBoard)
-    onUpdateBoard(newBoard)
+  
+  const onToggleMenu = () => {
+    setIsMenuOpened(!isMenuOpened)
   }
 
   const getStarClass = () => {
@@ -27,14 +25,17 @@ export function BoardHeader({ board, onUpdateBoard }) {
     return className
   }
 
-  const onToggleMenu = () => {
-    setIsMenuOpened(!isMenuOpened)
-  }
-
   const getMenuClass = () => {
     const className = isMenuOpened ? 'side-menu opened' : 'side-menu closed'
     return className
   }
+
+  const updateBoard = () => {
+    const newBoard = { ...board, isStarred: !isStarred }
+    // console.log(newBoard)
+    onUpdateBoard(newBoard)
+  }
+
 
   return <section className="board-header">
     <div className='left-container'>
