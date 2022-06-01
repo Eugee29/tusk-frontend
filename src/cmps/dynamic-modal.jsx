@@ -18,6 +18,7 @@ import { ModalLabel } from './modal/modal-label'
 import { TodoActions } from './modal/todo-actions'
 import { ChecklistDelete } from './modal/checklist-delete'
 import { ChecklistAdd } from './modal/checklist-add'
+import { AttachmentAdd } from './modal/attachment-add.jsx'
 
 
 export const DynamicModal = () => {
@@ -52,7 +53,7 @@ export const DynamicModal = () => {
       position.top = (window.innerHeight / 2) - (modalRef.current.offsetHeight / 2)
     }
     if (position.left + modalRef.current.offsetWidth >= window.innerWidth) {
-      position.left = window.innerWidth - modalRef.current.offsetWidth
+      position.left = window.innerWidth - modalRef.current.offsetWidth - 5
     }
 
     setPosition(position)
@@ -120,6 +121,10 @@ export const DynamicModal = () => {
     case 'checklist-add':
       cmp =
         <ChecklistAdd {...modal.props} />
+      break
+    case 'attachment-add':
+      cmp =
+        <AttachmentAdd {...modal.props} />
       break
     case 'Group actions':
       cmp =

@@ -44,31 +44,31 @@ export function TaskDetailsSideTask({ task, board, updateTask, onUpdateBoard }) 
 
         <div className="">
 
-          <a className="sidebar-button" ref={membersRef} onClick={(e) => onOpenModal(e, { element: membersRef.current, category: 'Members', title: 'Members', task, updateTask, board, onUpdateBoard })} title="Members">
+          <a className="sidebar-button" ref={membersRef} onClick={(ev) => onOpenModal(ev, { element: membersRef.current, category: 'Members', title: 'Members', task, updateTask, board, onUpdateBoard })} title="Members">
             <span className="sidebar-icon"><AiOutlineUser /></span>
             <span className="">Members</span>
           </a>
 
-          <a className="sidebar-button" ref={labelsRef} onClick={(e) => onOpenModal(e, { element: labelsRef.current, category: 'Labels', title: 'Labels', task, updateTask, board, onUpdateBoard })} title="Labels">
+          <a className="sidebar-button" ref={labelsRef} onClick={(ev) => onOpenModal(ev, { element: labelsRef.current, category: 'Labels', title: 'Labels', task, updateTask, board, onUpdateBoard })} title="Labels">
             <span className="sidebar-icon"><BiLabel /></span>
             <span className="">Labels</span>
           </a>
 
-          <a className="sidebar-button" ref={checklistRef} onClick={(e) => onOpenModal(e, { element: checklistRef.current, title: 'Add checklist', category: 'checklist-add', props: { updateTask, task } })} title='Checklist'>
+          <a className="sidebar-button" ref={checklistRef} onClick={(ev) => onOpenModal(ev, { element: checklistRef.current, category: 'checklist-add', title: 'Add checklist', props: { updateTask, task } })} title='Checklist'>
             <span className="sidebar-icon"><BsCheck2Square /></span>
             <span className="">Checklist</span></a>
 
-          <a className="sidebar-button" ref={datesRef} onClick={(e) => onOpenModal(e, { element: datesRef.current, category: 'Dates', title: 'Dates', task, updateTask, board, onUpdateBoard })} title="Dates">
+          <a className="sidebar-button" ref={datesRef} onClick={(ev) => onOpenModal(ev, { element: datesRef.current, category: 'Dates', title: 'Dates', task, updateTask, board, onUpdateBoard })} title="Dates">
             <span className="sidebar-icon"><FiClock /></span>
             <span className="">Dates</span>
           </a>
 
-          <a className="sidebar-button" ref={attachmentRef} onClick={(e) => onOpenModal(e, { element: attachmentRef.current, category: 'Attachment', title: 'Attachment', task, updateTask, board, onUpdateBoard })} title="Attachment">
+          <a className="sidebar-button" ref={attachmentRef} onClick={(ev) => onOpenModal(ev, { element: attachmentRef.current, category: 'attachment-add', title: 'Attach from...' })} title="Attachment">
             <span className="sidebar-icon"><GrAttachment /></span>
             <span className="">Attachment</span>
           </a>
 
-          <a className="sidebar-button" ref={coverRef} onClick={(e) => onOpenModal(e, { element: coverRef.current, category: 'Cover', title: 'Cover', task, updateTask, board, onUpdateBoard })} title="Cover">
+          <a className="sidebar-button" ref={coverRef} onClick={(ev) => onOpenModal(ev, { element: coverRef.current, category: 'Cover', title: 'Cover', task, updateTask, board, onUpdateBoard })} title="Cover">
             <span className="sidebar-icon"><IoMdBrowsers /></span>
             <span className="">Cover</span>
           </a>
