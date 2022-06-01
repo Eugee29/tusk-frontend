@@ -63,7 +63,7 @@ export function TaskDetailsSideTask({ task, board, updateTask, onUpdateBoard }) 
             <span className="">Dates</span>
           </a>
 
-          <a className="sidebar-button" ref={attachmentRef} onClick={(ev) => onOpenModal(ev, { element: attachmentRef.current, category: 'attachment-add', title: 'Attach from...' })} title="Attachment">
+          <a className="sidebar-button" ref={attachmentRef} onClick={(ev) => onOpenModal(ev, { element: attachmentRef.current, category: 'attachment-add', title: 'Attach from...', props: { updateTask, task } })} title="Attachment">
             <span className="sidebar-icon"><GrAttachment /></span>
             <span className="">Attachment</span>
           </a>

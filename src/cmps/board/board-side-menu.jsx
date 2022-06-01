@@ -1,6 +1,3 @@
-import { utilService } from '../../services/util.service'
-import { activityService } from '../../services/activity.service'
-
 import { IoMdClose } from 'react-icons/io'
 import { ActivityList } from '../activity-list'
 

@@ -28,9 +28,9 @@ export const TaskDetails = () => {
 
   const [isCloseEdit, setIsCloseEdit] = useState(true)
 
-  const updateTask = async (taskToUpdate) => {
-    const taskIdx = group.tasks.findIndex(task => task.id === taskToUpdate.id)
-    group.tasks[taskIdx] = taskToUpdate
+  const updateTask = async (updatedTask) => {
+    const taskIdx = group.tasks.findIndex(task => task.id === updatedTask.id)
+    group.tasks[taskIdx] = updatedTask
     onUpdateBoard(board)
   }
 
@@ -43,8 +43,6 @@ export const TaskDetails = () => {
     ev.stopPropagation()
     dispatch(setModal(null))
   }
-
-  console.log(board)
 
   return (
     <section className="task-details" onClick={onGoBack}>
@@ -59,7 +57,7 @@ export const TaskDetails = () => {
             {task.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
             {task.attachments && <TaskDetailsAttachments task={task} />}
             {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
-            <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} board={board}/>
+            <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} board={board} />
           </div>
           <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
         </div>

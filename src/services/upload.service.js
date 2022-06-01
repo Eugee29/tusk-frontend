@@ -1,22 +1,21 @@
+import axios from 'axios'
+
 export const uploadService = {
   uploadImg
 }
-function uploadImg(ev) {
-  const CLOUD_NAME = "dcwibf9o5"
-  const UPLOAD_PRESET = "vt0iqgff"
-  const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
+async function uploadImg(ev) {
+  const CLOUD_NAME = 'tusk'
+  const UPLOAD_PRESET = 'sg0rbgo0'
+  const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/auto/upload`
 
-  const formData = new FormData();
-  formData.append('upload_preset', UPLOAD_PRESET);
+  const formData = new FormData()
+  formData.append('upload_preset', UPLOAD_PRESET)
   formData.append('file', ev.target.files[0])
 
-  return fetch(UPLOAD_URL, {
-    method: 'POST',
-    body: formData
-  })
-    .then(res => res.json())
-    .then(res => {
-      return res
-    })
-    .catch(err => console.error(err))
+  try {
+    const res = await axios.post(UPLOAD_URL, formData)
+    return res.data
+  } catch (err) {
+    throw err
+  }
 }
