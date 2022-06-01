@@ -55,7 +55,7 @@ export const TaskDetails = () => {
       <div>
 
         {task?.style && <TaskDetailsCover task={task} setModal={setModal} />}
-        {task?.title && <TaskDetailsTitle title={task.title} />}
+        {task?.title && <TaskDetailsTitle title={task.title} board={board}/>}
 
         <div className="main-task">
           {task && <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />}

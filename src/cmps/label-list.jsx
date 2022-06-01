@@ -4,24 +4,29 @@ import { useState } from 'react'
 
 import { boardService } from '../services/board.service'
 
-export function LabelList({ labelIds, toggleLabels, isLabelsOpen }) {
-
+export function LabelList({ labelIds, board, toggleLabels, isLabelsOpen }) {
 
   const { boardId } = useParams()
 
   const [boardLabels, setBoardLabels] = useState()
   const [taskLabels, setTaskLabels] = useState(labelIds)
 
-  useEffect(() => {
-    ; (async () => {
-      const board = await getBoard(boardId)
-      setBoardLabels(board.labels)
-    })()
-  }, [])
+  // useEffect(() => {
+  //   ; (async () => {
+  //     const board = await getBoard(boardId)
+  //     setBoardLabels(board.labels)
+  //   })()
+  // }, [])
 
-  const getBoard = async (boardId) => {
-    return await boardService.getById(boardId)
-  }
+  // const getBoard = async (boardId) => {
+  //   return await boardService.getById(boardId)
+  // }
+
+  useEffect(() => {
+    setBoardLabels(board.labels)
+    // console.log('LabelList', labelIds);
+    setTaskLabels(labelIds)
+  }, [labelIds])
 
   const getLabelValueById = (type, labelId) => {
     if (!boardLabels) return

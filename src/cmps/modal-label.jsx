@@ -38,7 +38,7 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
 
       setTaskLabels(updatedLabelList)
       updateTask({ ...task, labelIds: updatedLabelList })
-      socketService.emit('emit-any-change', 'Toggle label')
+      // socketService.emit('emit-any-change', 'Toggle label')
    }
 
    const handleChange = ({ target }) => {
