@@ -15,9 +15,16 @@ export function BoardHeader({ board, onUpdateBoard }) {
     setIsStarred(!isStarred)
     updateBoard()
   }
+<<<<<<< HEAD
   
   const onToggleMenu = () => {
     setIsMenuOpened(!isMenuOpened)
+=======
+
+  const updateBoard = () => {
+    const newBoard = { ...board, isStarred: !isStarred }
+    onUpdateBoard(newBoard)
+>>>>>>> 2a53f7f24b1441bc6467671e6d2ece28861ad23d
   }
 
   const getStarClass = () => {

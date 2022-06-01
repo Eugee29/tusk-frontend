@@ -46,7 +46,7 @@ export const GroupPreview = ({ group, index, toggleLabels, board, isLabelsOpen, 
           <section className={`group-preview ${snapshot.isDragging && !snapshot.isDropAnimating ? 'tilted' : ''}`}>
 
             <div className="group-title-container" {...provided.dragHandleProps}>
-              <textarea className="group-title" defaultValue={titleText} scols="30" rows="10" onChange={handleChange} onBlur={updateTitle}></textarea>
+              <textarea className="group-title" defaultValue={titleText} scols="30" rows="10" onChange={handleChange} onBlur={updateTitle} ></textarea>
               <button ref={buttonRef} onClick={onOpenModal} className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
             </div>
 
