@@ -1,46 +1,40 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { connect } from 'react-redux'
-
-import { loadBoards, updateBoard } from '../store/board/board.action.js'
-// import { loadBoards, updateBoard } from '../store/actions/board-back.action.js'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { BoardList } from '../cmps/board-list.jsx'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
+import { loadBoards, updateBoard } from '../store/board/board.action.js'
 
-const _Workspace = () => {
+export const Workspace = () => {
 
-  const [boards, setBoards] = useState(null)
-  const { boards: boardsFromStore } = useSelector((storeState) => storeState.boardModule)
-  const dispatch = useDispatch()
+   const [boards, setBoards] = useState(null)
+   // const { boards: boardsFromStore } = useSelector((storeState) => storeState.boardModule)
+   const dispatch = useDispatch()
 
    useEffect(() => {
       loadBoardsAsync()
    }, [])
 
    const loadBoardsAsync = async () => {
-      const boardsFromSrevice = await dispatch(loadBoards())
-      console.log('boardsFromSrevice', boardsFromSrevice);
-      setBoards(boardsFromSrevice)
+      const boardsFromService = await dispatch(loadBoards())
+      console.log('boardsFromSrevice', boardsFromService);
+      setBoards(boardsFromService)
    }
 
-  const onUpdateBoard = async (board) => {
-    await dispatch(updateBoard(board))
-    setBoards(boardsFromStore)
-  }
+   const onUpdateBoard = async (updatedBoard) => {
+      console.log('updatedBoard', updatedBoard);
 
-  return (
-    <main className='workspace'>
-      {boards && <BoardList boards={boardsFromStore} onUpdateBoard={onUpdateBoard} />}
-    </main>
-  )
+      const savedBoard = await dispatch(updateBoard(updatedBoard))
+      const boardIdx = boards.findIndex(board => board._id === updatedBoard._id)
+      setBoards(...boards, [boards[boardIdx] = updatedBoard])
+
+      console.log('savedBoard', savedBoard);
+      console.log(boardIdx);
+      console.log('new board', boards);
+   }
+
+   return (
+      <main className='workspace'>
+         {boards && <BoardList boards={boards} onUpdateBoard={onUpdateBoard} />}
+      </main>
+   )
 }
-
-function mapStateToProps(state) {
-  return {
-    boards: state.boardModule.boards
-    // boards: state.boardBackModule.boards
-  }
-}
-
-export const Workspace = connect(mapStateToProps)(_Workspace)

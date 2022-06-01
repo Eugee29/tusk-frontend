@@ -53,15 +53,7 @@ export function updateBoard(boardToSave) {
     return async (dispatch) => {
       const savedBoard = await boardService.save(boardToSave)
       dispatch({ type: 'UPDATE_BOARD', board: savedBoard })
-
-      // showSuccessMsg('Board updated')
-
-      // socketService.off('add-member')
-      // socketService.on('add-member', (msg) => {
-      //    console.log('******SOCKET*****');
-      //    console.log(msg);
-      // })
-
+      return savedBoard
     }
   } catch (err) {
     console.log('cannot edit board', err)
