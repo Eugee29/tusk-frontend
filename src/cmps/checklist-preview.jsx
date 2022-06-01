@@ -144,7 +144,6 @@ export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updat
             </form>
         }
       </div>
-
     </li >
   )
 }
