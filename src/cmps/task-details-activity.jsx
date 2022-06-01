@@ -33,7 +33,7 @@ function _TaskDetailsActivity({ task, isCloseEdit }) {
    }
 
    const enableButton = isTypeComment ? 'enableButton' : ''
-   const initials = (member) => ([...member.fullName])
+   const initials = (member) => ([...member.fullname])
 
    
 
@@ -74,7 +74,7 @@ function _TaskDetailsActivity({ task, isCloseEdit }) {
             </div>
 
             <div className="activity-container">
-               <span className="member" >{activity.byMember.fullName}</span>
+               <span className="member" >{activity.byMember.fullname}</span>
                <span > {activity.txt}</span>
             </div>
 

@@ -43,7 +43,6 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
 
   const handleChange = ({ target }) => {
     setSearchLabel(target.value)
-    // setfilterMembers(updatedBoard.members.filter(member => member.fullName.toLowerCase().includes(target.value.toLowerCase())))
   }
 
   const onOpenModal = (category) => {

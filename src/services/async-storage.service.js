@@ -17,7 +17,7 @@ const board0 = {
    "isStarred": true,
    "createdBy": {
       "_id": "u101",
-      "fullName": "Tal Ofer",
+      "fullname": "Tal Ofer",
       "username": "talofer",
       "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
@@ -60,19 +60,19 @@ const board0 = {
    "members": [
       {
          "_id": "u101",
-         "fullName": "Tal Ofer",
+         "fullname": "Tal Ofer",
          "username": "talofer",
          "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
       },
       {
          "_id": "u102",
-         "fullName": "Eran Avichzer",
+         "fullname": "Eran Avichzer",
          "username": "eranavichzer",
          "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
       },
       {
          "_id": "u103",
-         "fullName": "Uri Gruda",
+         "fullname": "Uri Gruda",
          "username": "urigruda",
          "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
       }
@@ -117,7 +117,7 @@ const board0 = {
                "members": [
                   {
                      "_id": "u101",
-                     "fullName": "Tal Ofer",
+                     "fullname": "Tal Ofer",
                      "username": "talofer",
                      "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
                   }
@@ -130,7 +130,7 @@ const board0 = {
                "byMember": {
                   "_id": "u102",
                   "username": "Eranavichzer",
-                  "fullName": "Eran Avichzer",
+                  "fullname": "Eran Avichzer",
                   "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                },
                "style": {
@@ -165,14 +165,14 @@ const board0 = {
                "members": [
                   {
                      "_id": "u102",
-                     "fullName": "Eran Avichzer",
+                     "fullname": "Eran Avichzer",
                      "username": "eranavichzer",
                      "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
 
                   },
                   {
                      "_id": "u103",
-                     "fullName": "Uri Gruda",
+                     "fullname": "Uri Gruda",
                      "username": "urigruda",
                      "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png",
 
@@ -187,7 +187,7 @@ const board0 = {
                "byMember": {
                   "_id": "u102",
                   "username": "Eranavichzer",
-                  "fullName": "Eran Avichzer",
+                  "fullname": "Eran Avichzer",
                   "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                },
                "style": {}
@@ -201,20 +201,20 @@ const board0 = {
                "members": [
                   {
                      "_id": "u101",
-                     "fullName": "Tal Ofer",
+                     "fullname": "Tal Ofer",
                      "username": "talofer",
                      "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
                   },
                   {
                      "_id": "u102",
-                     "fullName": "Eran Avichzer",
+                     "fullname": "Eran Avichzer",
                      "username": "eranavichzer",
                      "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                   },
                   {
                      "_id": "u103",
-                     "fullName": "Uri Gruda",
+                     "fullname": "Uri Gruda",
                      "username": "urigruda",
                      "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                   }
@@ -225,7 +225,7 @@ const board0 = {
                "dueDate": 1654214400000,
                "byMember": {
                   "_id": "u101",
-                  "fullName": "Tal Ofer",
+                  "fullname": "Tal Ofer",
                   "username": "talofer",
                   "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
@@ -244,20 +244,20 @@ const board0 = {
                "members": [
                   {
                      "_id": "u101",
-                     "fullName": "Tal Ofer",
+                     "fullname": "Tal Ofer",
                      "username": "talofer",
                      "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
                   },
                   {
                      "_id": "u102",
-                     "fullName": "Eran Avichzer",
+                     "fullname": "Eran Avichzer",
                      "username": "eranavichzer",
                      "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                   },
                   {
                      "_id": "u103",
-                     "fullName": "Uri Gruda",
+                     "fullname": "Uri Gruda",
                      "username": "urigruda",
                      "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                   }
@@ -270,7 +270,7 @@ const board0 = {
                "byMember": {
                   "_id": "u103",
                   "userName": "Urigruda",
-                  "fullName": "Uri Gruda",
+                  "fullname": "Uri Gruda",
                   "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                },
                "style": {
@@ -301,14 +301,14 @@ const board0 = {
                "members": [
                   {
                      "_id": "u101",
-                     "fullName": "Tal Ofer",
+                     "fullname": "Tal Ofer",
                      "username": "talofer",
                      "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
                   },
                   {
                      "_id": "u103",
-                     "fullName": "Uri Gruda",
+                     "fullname": "Uri Gruda",
                      "username": "urigruda",
                      "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                   }
@@ -322,7 +322,7 @@ const board0 = {
                "byMember": {
                   "_id": "u102",
                   "username": "Eranavichzer",
-                  "fullName": "Eran Avichzer",
+                  "fullname": "Eran Avichzer",
                   "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                },
                "style": {}
@@ -336,13 +336,13 @@ const board0 = {
                "members": [
                   {
                      "_id": "u102",
-                     "fullName": "Eran Avichzer",
+                     "fullname": "Eran Avichzer",
                      "username": "eranavichzer",
                      "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                   },
                   {
                      "_id": "u103",
-                     "fullName": "Uri Gruda",
+                     "fullname": "Uri Gruda",
                      "username": "urigruda",
                      "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                   }
@@ -354,7 +354,7 @@ const board0 = {
                "byMember": {
                   "_id": "u103",
                   "userName": "Urigruda",
-                  "fullName": "Uri Gruda",
+                  "fullname": "Uri Gruda",
                   "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                },
                "style": {
@@ -370,20 +370,20 @@ const board0 = {
                "members": [
                   {
                      "_id": "u101",
-                     "fullName": "Tal Ofer",
+                     "fullname": "Tal Ofer",
                      "username": "talofer",
                      "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
                   },
                   {
                      "_id": "u102",
-                     "fullName": "Eran Avichzer",
+                     "fullname": "Eran Avichzer",
                      "username": "eranavichzer",
                      "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                   },
                   {
                      "_id": "u103",
-                     "fullName": "Uri Gruda",
+                     "fullname": "Uri Gruda",
                      "username": "urigruda",
                      "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                   }
@@ -394,7 +394,7 @@ const board0 = {
                "dueDate": 1654214400000,
                "byMember": {
                   "_id": "u101",
-                  "fullName": "Tal Ofer",
+                  "fullname": "Tal Ofer",
                   "username": "talofer",
                   "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
@@ -472,7 +472,7 @@ const board0 = {
                "members": [
                   {
                      "_id": "u101",
-                     "fullName": "Tal Ofer",
+                     "fullname": "Tal Ofer",
                      "username": "talofer",
                      "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
@@ -486,7 +486,7 @@ const board0 = {
                "byMember": {
                   "_id": "u102",
                   "username": "Eranavichzer",
-                  "fullName": "Eran Avichzer",
+                  "fullname": "Eran Avichzer",
                   "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                },
                "style": {
@@ -502,13 +502,13 @@ const board0 = {
                "members": [
                   {
                      "_id": "u102",
-                     "fullName": "Eran Avichzer",
+                     "fullname": "Eran Avichzer",
                      "username": "eranavichzer",
                      "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                   },
                   {
                      "_id": "u103",
-                     "fullName": "Uri Gruda",
+                     "fullname": "Uri Gruda",
                      "username": "urigruda",
                      "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                   }
@@ -522,7 +522,7 @@ const board0 = {
                "byMember": {
                   "_id": "u102",
                   "username": "Eranavichzer",
-                  "fullName": "Eran Avichzer",
+                  "fullname": "Eran Avichzer",
                   "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                },
                "style": {
@@ -553,14 +553,14 @@ const board0 = {
                "members": [
                   {
                      "_id": "u101",
-                     "fullName": "Tal Ofer",
+                     "fullname": "Tal Ofer",
                      "username": "talofer",
                      "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
                   },
                   {
                      "_id": "u103",
-                     "fullName": "Uri Gruda",
+                     "fullname": "Uri Gruda",
                      "username": "urigruda",
                      "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                   }
@@ -574,7 +574,7 @@ const board0 = {
                "byMember": {
                   "_id": "u102",
                   "username": "Eranavichzer",
-                  "fullName": "Eran Avichzer",
+                  "fullname": "Eran Avichzer",
                   "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                },
                "style": {}
@@ -588,13 +588,13 @@ const board0 = {
                "members": [
                   {
                      "_id": "u102",
-                     "fullName": "Eran Avichzer",
+                     "fullname": "Eran Avichzer",
                      "username": "eranavichzer",
                      "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                   },
                   {
                      "_id": "u103",
-                     "fullName": "Uri Gruda",
+                     "fullname": "Uri Gruda",
                      "username": "urigruda",
                      "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                   }
@@ -606,7 +606,7 @@ const board0 = {
                "byMember": {
                   "_id": "u103",
                   "userName": "Urigruda",
-                  "fullName": "Uri Gruda",
+                  "fullname": "Uri Gruda",
                   "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                },
                "style": {
@@ -622,20 +622,20 @@ const board0 = {
                "members": [
                   {
                      "_id": "u101",
-                     "fullName": "Tal Ofer",
+                     "fullname": "Tal Ofer",
                      "username": "talofer",
                      "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
                   },
                   {
                      "_id": "u102",
-                     "fullName": "Eran Avichzer",
+                     "fullname": "Eran Avichzer",
                      "username": "eranavichzer",
                      "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                   },
                   {
                      "_id": "u103",
-                     "fullName": "Uri Gruda",
+                     "fullname": "Uri Gruda",
                      "username": "urigruda",
                      "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                   }
@@ -647,7 +647,7 @@ const board0 = {
                "byMember": {
                   "_id": "u101",
                   "username": "Talofer",
-                  "fullName": "Tal Ofer",
+                  "fullname": "Tal Ofer",
                   "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
                },
                "style": {
@@ -733,7 +733,7 @@ const board0 = {
                "members": [
                   {
                      "_id": "u101",
-                     "fullName": "Tal Ofer",
+                     "fullname": "Tal Ofer",
                      "username": "talofer",
                      "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
                   }
@@ -746,7 +746,7 @@ const board0 = {
                "byMember": {
                   "_id": "u102",
                   "username": "Eranavichzer",
-                  "fullName": "Eran Avichzer",
+                  "fullname": "Eran Avichzer",
                   "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                },
                "style": {
@@ -781,13 +781,13 @@ const board0 = {
                "members": [
                   {
                      "_id": "u102",
-                     "fullName": "Eran Avichzer",
+                     "fullname": "Eran Avichzer",
                      "username": "eranavichzer",
                      "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                   },
                   {
                      "_id": "u103",
-                     "fullName": "Uri Gruda",
+                     "fullname": "Uri Gruda",
                      "username": "urigruda",
                      "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                   }
@@ -801,7 +801,7 @@ const board0 = {
                "byMember": {
                   "_id": "u102",
                   "username": "Eranavichzer",
-                  "fullName": "Eran Avichzer",
+                  "fullname": "Eran Avichzer",
                   "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                },
                "style": {
@@ -817,20 +817,20 @@ const board0 = {
                "members": [
                   {
                      "_id": "u101",
-                     "fullName": "Tal Ofer",
+                     "fullname": "Tal Ofer",
                      "username": "talofer",
                      "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
                   },
                   {
                      "_id": "u102",
-                     "fullName": "Eran Avichzer",
+                     "fullname": "Eran Avichzer",
                      "username": "eranavichzer",
                      "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                   },
                   {
                      "_id": "u103",
-                     "fullName": "Uri Gruda",
+                     "fullname": "Uri Gruda",
                      "username": "urigruda",
                      "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                   }
@@ -841,7 +841,7 @@ const board0 = {
                "dueDate": 1654214400000,
                "byMember": {
                   "_id": "u101",
-                  "fullName": "Tal Ofer",
+                  "fullname": "Tal Ofer",
                   "username": "talofer",
                   "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
@@ -857,20 +857,20 @@ const board0 = {
                "members": [
                   {
                      "_id": "u101",
-                     "fullName": "Tal Ofer",
+                     "fullname": "Tal Ofer",
                      "username": "talofer",
                      "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
                   },
                   {
                      "_id": "u102",
-                     "fullName": "Eran Avichzer",
+                     "fullname": "Eran Avichzer",
                      "username": "eranavichzer",
                      "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
                   },
                   {
                      "_id": "u103",
-                     "fullName": "Uri Gruda",
+                     "fullname": "Uri Gruda",
                      "username": "urigruda",
                      "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                   }
@@ -883,7 +883,7 @@ const board0 = {
                "byMember": {
                   "_id": "u103",
                   "userName": "Urigruda",
-                  "fullName": "Uri Gruda",
+                  "fullname": "Uri Gruda",
                   "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
                },
                "style": {
@@ -907,7 +907,7 @@ const board0 = {
          "createdAt": 1653214400000,
          "byMember": {
             "_id": "u101",
-            "fullName": "Tal Ofer",
+            "fullname": "Tal Ofer",
             "username": "talofer",
             "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
          },
@@ -926,7 +926,7 @@ const board2 = {
    "isStarred": false,
    "createdBy": {
       "_id": "u101",
-   "fullName": "Tal Ofer",
+   "fullname": "Tal Ofer",
    "username": "talofer",
    "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
@@ -969,21 +969,21 @@ const board2 = {
    "members": [
       {
          "_id": "u101",
-         "fullName": "Tal Ofer",
+         "fullname": "Tal Ofer",
          "username": "talofer",
          "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
       },
       {
          "_id": "u102",
-         "fullName": "Eran Avichzer",
+         "fullname": "Eran Avichzer",
          "username": "eranavichzer",
          "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
 
       },
       {
          "_id": "u103",
-         "fullName": "Uri Gruda",
+         "fullname": "Uri Gruda",
          "username": "urigruda",
          "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
 
@@ -998,7 +998,7 @@ const board2 = {
          "createdAt": 1653214400000,
          "byMember": {
             "_id": "u101",
-            "fullName": "Tal Ofer",
+            "fullname": "Tal Ofer",
             "username": "talofer",
             "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
          },
@@ -1017,7 +1017,7 @@ const board3 = {
    "isStarred": true,
    "createdBy": {
       "_id": "u101",
-      "fullName": "Tal Ofer",
+      "fullname": "Tal Ofer",
       "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
    },
    "style": {
@@ -1058,21 +1058,21 @@ const board3 = {
    "members": [
       {
          "_id": "u101",
-         "fullName": "Tal Ofer",
+         "fullname": "Tal Ofer",
          "username": "talofer",
          "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
       },
       {
          "_id": "u102",
-         "fullName": "Eran Avichzer",
+         "fullname": "Eran Avichzer",
          "username": "eranavichzer",
          "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
 
       },
       {
          "_id": "u103",
-         "fullName": "Uri Gruda",
+         "fullname": "Uri Gruda",
          "username": "urigruda",
          "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
 
@@ -1088,7 +1088,7 @@ const board3 = {
          "createdAt": 1653214400000,
          "byMember": {
             "_id": "u101",
-            "fullName": "Tal Ofer",
+            "fullname": "Tal Ofer",
             "username": "talofer",
             "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
          },
@@ -1107,7 +1107,7 @@ const board4 = {
    "isStarred": true,
    "createdBy": {
       "_id": "u101",
-   "fullName": "Tal Ofer",
+   "fullname": "Tal Ofer",
    "username": "talofer",
    "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
@@ -1150,21 +1150,21 @@ const board4 = {
    "members": [
       {
          "_id": "u101",
-         "fullName": "Tal Ofer",
+         "fullname": "Tal Ofer",
          "username": "talofer",
          "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
       },
       {
          "_id": "u102",
-         "fullName": "Eran Avichzer",
+         "fullname": "Eran Avichzer",
          "username": "eranavichzer",
          "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
 
       },
       {
          "_id": "u103",
-         "fullName": "Uri Gruda",
+         "fullname": "Uri Gruda",
          "username": "urigruda",
          "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
 
@@ -1180,7 +1180,7 @@ const board4 = {
          "createdAt": 1653214400000,
          "byMember": {
             "_id": "u101",
-            "fullName": "Tal Ofer",
+            "fullname": "Tal Ofer",
             "username": "talofer",
             "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
          },
@@ -1199,7 +1199,7 @@ const board5 = {
    "isStarred": false,
    "createdBy": {
       "_id": "u101",
-   "fullName": "Tal Ofer",
+   "fullname": "Tal Ofer",
    "username": "talofer",
    "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
@@ -1242,21 +1242,21 @@ const board5 = {
    "members": [
       {
          "_id": "u101",
-         "fullName": "Tal Ofer",
+         "fullname": "Tal Ofer",
          "username": "talofer",
          "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
       },
       {
          "_id": "u102",
-         "fullName": "Eran Avichzer",
+         "fullname": "Eran Avichzer",
          "username": "eranavichzer",
          "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
 
       },
       {
          "_id": "u103",
-         "fullName": "Uri Gruda",
+         "fullname": "Uri Gruda",
          "username": "urigruda",
          "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
 
@@ -1272,7 +1272,7 @@ const board5 = {
          "createdAt": 1653214400000,
          "byMember": {
             "_id": "u101",
-            "fullName": "Tal Ofer",
+            "fullname": "Tal Ofer",
             "username": "talofer",
             "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
          },
@@ -1291,7 +1291,7 @@ const board6 = {
    "isStarred": false,
    "createdBy": {
       "_id": "u101",
-   "fullName": "Tal Ofer",
+   "fullname": "Tal Ofer",
    "username": "talofer",
    "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
@@ -1334,21 +1334,21 @@ const board6 = {
    "members": [
       {
          "_id": "u101",
-         "fullName": "Tal Ofer",
+         "fullname": "Tal Ofer",
          "username": "talofer",
          "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
       },
       {
          "_id": "u102",
-         "fullName": "Eran Avichzer",
+         "fullname": "Eran Avichzer",
          "username": "eranavichzer",
          "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
 
       },
       {
          "_id": "u103",
-         "fullName": "Uri Gruda",
+         "fullname": "Uri Gruda",
          "username": "urigruda",
          "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
 
@@ -1364,7 +1364,7 @@ const board6 = {
          "createdAt": 1653214400000,
          "byMember": {
             "_id": "u101",
-            "fullName": "Tal Ofer",
+            "fullname": "Tal Ofer",
             "username": "talofer",
             "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
          },
@@ -1383,7 +1383,7 @@ const board7 = {
    "isStarred": true,
    "createdBy": {
       "_id": "u101",
-   "fullName": "Tal Ofer",
+   "fullname": "Tal Ofer",
    "username": "talofer",
    "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
@@ -1426,21 +1426,21 @@ const board7 = {
    "members": [
       {
          "_id": "u101",
-         "fullName": "Tal Ofer",
+         "fullname": "Tal Ofer",
          "username": "talofer",
          "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
       },
       {
          "_id": "u102",
-         "fullName": "Eran Avichzer",
+         "fullname": "Eran Avichzer",
          "username": "eranavichzer",
          "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
 
       },
       {
          "_id": "u103",
-         "fullName": "Uri Gruda",
+         "fullname": "Uri Gruda",
          "username": "urigruda",
          "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
 
@@ -1456,7 +1456,7 @@ const board7 = {
          "createdAt": 1653214400000,
          "byMember": {
             "_id": "u101",
-            "fullName": "Tal Ofer",
+            "fullname": "Tal Ofer",
             "username": "talofer",
             "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
          },
@@ -1475,7 +1475,7 @@ const board8 = {
    "isStarred": false,
    "createdBy": {
       "_id": "u101",
-   "fullName": "Tal Ofer",
+   "fullname": "Tal Ofer",
    "username": "talofer",
    "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
@@ -1518,21 +1518,21 @@ const board8 = {
    "members": [
       {
          "_id": "u101",
-         "fullName": "Tal Ofer",
+         "fullname": "Tal Ofer",
          "username": "talofer",
          "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
       },
       {
          "_id": "u102",
-         "fullName": "Eran Avichzer",
+         "fullname": "Eran Avichzer",
          "username": "eranavichzer",
          "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
 
       },
       {
          "_id": "u103",
-         "fullName": "Uri Gruda",
+         "fullname": "Uri Gruda",
          "username": "urigruda",
          "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
 
@@ -1548,7 +1548,7 @@ const board8 = {
          "createdAt": 1653214400000,
          "byMember": {
             "_id": "u101",
-            "fullName": "Tal Ofer",
+            "fullname": "Tal Ofer",
             "username": "talofer",
             "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
          },
@@ -1567,7 +1567,7 @@ const board9 = {
    "isStarred": false,
    "createdBy": {
       "_id": "u101",
-   "fullName": "Tal Ofer",
+   "fullname": "Tal Ofer",
    "username": "talofer",
    "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
@@ -1610,21 +1610,21 @@ const board9 = {
    "members": [
       {
          "_id": "u101",
-         "fullName": "Tal Ofer",
+         "fullname": "Tal Ofer",
          "username": "talofer",
          "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
       },
       {
          "_id": "u102",
-         "fullName": "Eran Avichzer",
+         "fullname": "Eran Avichzer",
          "username": "eranavichzer",
          "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
 
       },
       {
          "_id": "u103",
-         "fullName": "Uri Gruda",
+         "fullname": "Uri Gruda",
          "username": "urigruda",
          "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
 
@@ -1640,7 +1640,7 @@ const board9 = {
          "createdAt": 1653214400000,
          "byMember": {
             "_id": "u101",
-            "fullName": "Tal Ofer",
+            "fullname": "Tal Ofer",
             "username": "talofer",
             "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
          },
@@ -1659,7 +1659,7 @@ const board10 = {
    "isStarred": false,
    "createdBy": {
       "_id": "u101",
-   "fullName": "Tal Ofer",
+   "fullname": "Tal Ofer",
    "username": "talofer",
    "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
@@ -1702,21 +1702,21 @@ const board10 = {
    "members": [
       {
          "_id": "u101",
-         "fullName": "Tal Ofer",
+         "fullname": "Tal Ofer",
          "username": "talofer",
          "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
       },
       {
          "_id": "u102",
-         "fullName": "Eran Avichzer",
+         "fullname": "Eran Avichzer",
          "username": "eranavichzer",
          "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
 
       },
       {
          "_id": "u103",
-         "fullName": "Uri Gruda",
+         "fullname": "Uri Gruda",
          "username": "urigruda",
          "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
 
@@ -1732,7 +1732,7 @@ const board10 = {
          "createdAt": 1653214400000,
          "byMember": {
             "_id": "u101",
-            "fullName": "Tal Ofer",
+            "fullname": "Tal Ofer",
             "username": "talofer",
             "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
          },
@@ -1751,7 +1751,7 @@ const board11 = {
    "isStarred": false,
    "createdBy": {
       "_id": "u101",
-   "fullName": "Tal Ofer",
+   "fullname": "Tal Ofer",
    "username": "talofer",
    "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
@@ -1794,21 +1794,21 @@ const board11 = {
    "members": [
       {
          "_id": "u101",
-         "fullName": "Tal Ofer",
+         "fullname": "Tal Ofer",
          "username": "talofer",
          "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
 
       },
       {
          "_id": "u102",
-         "fullName": "Eran Avichzer",
+         "fullname": "Eran Avichzer",
          "username": "eranavichzer",
          "imgURL": "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
 
       },
       {
          "_id": "u103",
-         "fullName": "Uri Gruda",
+         "fullname": "Uri Gruda",
          "username": "urigruda",
          "imgURL": "https://www.kindpng.com/picc/m/620-6209429_buff-garfield-hd-png-download.png"
 
@@ -1823,7 +1823,7 @@ const board11 = {
          "createdAt": 1653214400000,
          "byMember": {
             "_id": "u101",
-            "fullName": "Tal Ofer",
+            "fullname": "Tal Ofer",
             "username": "talofer",
             "imgURL": "https://i.pinimg.com/222x/33/75/d8/3375d8e988509961ae278462ed89c667.jpg"
          },

@@ -23,13 +23,9 @@ export const Workspace = () => {
    const onUpdateBoard = async (updatedBoard) => {
       console.log('updatedBoard', updatedBoard);
 
-      const savedBoard = await dispatch(updateBoard(updatedBoard))
-      const boardIdx = boards.findIndex(board => board._id === updatedBoard._id)
-      setBoards(...boards, [boards[boardIdx] = updatedBoard])
-
-      console.log('savedBoard', savedBoard);
-      console.log(boardIdx);
-      console.log('new board', boards);
+      await dispatch(updateBoard(updatedBoard))
+      const updatedBoards = boards.map( board => board._id === updatedBoard._id  ? updatedBoard : board)
+      setBoards(updatedBoards)
    }
 
    return (

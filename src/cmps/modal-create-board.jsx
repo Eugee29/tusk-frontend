@@ -36,6 +36,30 @@ export const ModalCreateBoard = () => {
 
   const onCreateBoard = async () => {
     if (!isEnabeld) return
+    const onCreateBoard = async () => {
+      if (!isEnabeld) return
+
+      const board = boardService.getEmptyBoard()
+      board.title = boardTitle
+      board.style = { bgImg: boardBg }
+      board.createdAt = Date.now()
+      board.isStarred = false
+      board.createdBy = {
+        _id: user._id,
+        fullname: user.fullname,
+        username: user.username,
+        imgURL: user.imgURL
+      }
+      board.members.push({
+        _id: user._id,
+        fullname: user.fullname,
+        username: user.username,
+        imgURL: user.imgURL
+      })
+      const newBoard = await dispatch(addBoard(board))
+      dispatch(setModal(''))
+      history(`/board/${newBoard._id}`)
+    }
 
     const board = boardService.getEmptyBoard()
     board.title = boardTitle

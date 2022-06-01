@@ -13,7 +13,7 @@ export const ModalMember = ({ task, board, updateTask }) => {
   if (!task) return
   if (!board) return
 
-  const initials = (member) => ([...member.fullName])
+  const initials = (member) => ([...member.fullname])
   const onToggle = (id) => {
     const taskMemberIdx = taskMembers.findIndex(taskMember => taskMember._id === id)
     const boardMemberIdx = board.members.findIndex(boardMember => boardMember._id === id)
@@ -31,7 +31,7 @@ export const ModalMember = ({ task, board, updateTask }) => {
 
   const handleChange = ({ target }) => {
     setSearchMember(target.value)
-    setfilterMembers(board.members.filter(member => member.fullName.toLowerCase().includes(target.value.toLowerCase())))
+    setfilterMembers(board.members.filter(member => member.fullname.toLowerCase().includes(target.value.toLowerCase())))
   }
 
   return (
@@ -50,7 +50,7 @@ export const ModalMember = ({ task, board, updateTask }) => {
               ? <li key={member._id} onClick={() => onToggle(member._id)}>
                 <a className='member-list'>
                   <span className="member-img" style={{ backgroundImage: `url('${member.imgURL}')` }}></span>
-                  <span className="member-txt" >{`${member.fullName} (${member.username})`}</span>
+                  <span className="member-txt" >{`${member.fullname} (${member.username.match(/^([^@]*)@/)[1]})`}</span>
                   {task?.members && taskMembers.some(taskMember => taskMember._id === member._id) && <span className='member-icon' ><BsCheck2 /></span>}
                 </a>
               </li>
@@ -58,7 +58,7 @@ export const ModalMember = ({ task, board, updateTask }) => {
               : <li key={member._id}>
                 <a className='member-list'>
                   <span className="member" >{`${initials(member)[0]}${initials(member)[1]}`}</span>
-                  <span className="member-txt" >{`${member.fullName} (${member.username})`}</span>
+                  <span className="member-txt" >{`${member.fullname} (${member.username})`}</span>
                   {task?.members && taskMembers.some(taskMember => taskMember._id === member._id) && <span className='member-icon' ><BsCheck2 /></span>}
                 </a>
               </li>

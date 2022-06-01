@@ -131,8 +131,6 @@ export const DynamicModal = () => {
     dispatch(setModal({ element: modal.element, category, title: category, task: modal.task, board: modal.board, onUpdateBoard: modal.onUpdateBoard }))
   }
 
-  console.log(modalPosition)
-
   return (
     <div className="dynamic-modal" style={{ ...modalPosition }} ref={modalRef}>
       <header >

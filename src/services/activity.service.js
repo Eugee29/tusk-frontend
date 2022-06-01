@@ -12,7 +12,7 @@ function getActivityUpdatedBoard(board, activity) {
 
     let actionTxt
     // const byMember = getMember() // WHEN WE HAVE USERS
-    const byMember = { fullName: 'Guest' }
+    const byMember = { fullname: 'Guest' }
 
     switch (activity.actionType) {
         case 'delete task':
@@ -40,7 +40,7 @@ function getActivityUpdatedBoard(board, activity) {
     const newActivity = {
         byMember: {
             //getMember. if (!member) ====>
-            fullName: 'Guest'
+            fullname: 'Guest'
         },
         createdAt: Date.now(),
         id: utilService.makeId(),
