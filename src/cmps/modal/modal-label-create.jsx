@@ -1,18 +1,18 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { setModal } from '../../store/app/app.actions'
 
 import { utilService } from '../../services/util.service.js'
 
 // import { BsCheck2 } from 'react-icons/bs'
-// import { Modal } from "./modal"
 
 export const ModalLabelCreate = ({ task, board, onUpdateBoard, updateTask }) => {
 
    const [labelName, setLabelName] = useState('')
    const [color, setColor] = useState('')
    const [updatedBoard, setUpdatedBoard] = useState(board)
+   const { modal } = useSelector(({ appModule }) => appModule)
 
    const searchInput = useRef(null)
    const firstLoad = useRef(false)
@@ -27,9 +27,8 @@ export const ModalLabelCreate = ({ task, board, onUpdateBoard, updateTask }) => 
 
    const onCreateLabel = () => {
       board.labels.push({ id: utilService.makeId(3), title: labelName, color: color })
-      console.log('board.labels', board.labels);
       setUpdatedBoard(board)
-      // onOpenModal('Labels')
+      onOpenModal('Labels')
    }
 
    const onPickColor = (color) => {
@@ -41,8 +40,7 @@ export const ModalLabelCreate = ({ task, board, onUpdateBoard, updateTask }) => 
    }
 
    const onOpenModal = (category) => {
-      debugger
-      dispatch(setModal({ element: buttonRef.current, category, title: category, task, updateTask, board, onUpdateBoard }))
+      dispatch(setModal({ element: modal.element, category, title: category, task, updateTask, board, onUpdateBoard }))
    }
 
    return (
