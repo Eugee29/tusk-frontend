@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { setModal } from '../../store/app/app.actions'
+
 import { utilService } from '../../services/util.service'
 
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
@@ -37,19 +38,10 @@ export const TodoPreview = (props) => {
     setTodo(props.todo)
   }
 
-  const calcHeight = (value) => {
-    const numberOfLineBreaks = (value.match(/\n/g) || []).length
-    const newHeight = 20 + numberOfLineBreaks * 20
-    return newHeight
-  }
-
   const onOpenModal = (e) => {
     e.stopPropagation()
-    const position = utilService.getPosition(menuRef.current)
-    position.top += 30
     dispatch(setModal({
       element: menuRef.current,
-      position,
       category: 'todo-actions',
       title: 'Item actions',
       props: {
@@ -62,7 +54,6 @@ export const TodoPreview = (props) => {
 
   return (
     <li className='todo-preview'>
-
       <div className='checkbox-container' onClick={onCheck}>
         {props.todo.isDone ?
           <ImCheckboxChecked className='checkbox checked' />
@@ -70,7 +61,6 @@ export const TodoPreview = (props) => {
           <ImCheckboxUnchecked className='checkbox unchecked' />
         }
       </div>
-
       <div className={`title-container ${isEdit ? 'edit' : ''}`}>
         <textarea
           className={`todo-title ${props.todo.isDone && !isEdit ? 'crossed' : ''}`}
@@ -80,7 +70,7 @@ export const TodoPreview = (props) => {
           onFocus={() => setIsEdit(true)}
           onBlur={() => setIsEdit(false)}
           ref={textRef}
-          style={{ height: calcHeight(todo.title) }}
+          style={{ height: utilService.calcTextareaHeight(todo.title, 20, 20) }}
         />
         <div className='controls' >
           <div className='btn-container' onMouseDown={e => e.preventDefault()} >

@@ -1,14 +1,31 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 
 import { CgCreditCard } from 'react-icons/cg'
 
-export function TaskDetailsTitle({ title, board }) {
+
+export function TaskDetailsTitle({ task, groupTitle, updateTask }) {
+
+  const [taskTitle, setTaskTitle] = useState(task.title)
+
+  const inputRef = useRef()
+
+  const handleChange = ({ target }) => {
+    setTaskTitle(target.value)
+  }
+
+  const onSaveTitle = (e) => {
+    e.preventDefault()
+    inputRef.current.blur()
+    updateTask({ ...task, title: taskTitle })
+  }
 
   return (
     <header className="task-details-title" >
-      <span className=""><CgCreditCard /></span>
-      <textarea className="main-title" name="" defaultValue={title} cols="30" rows="10"></textarea>
-      <div className="sub-title">in list<button>{board.title}</button></div>
+      <span><CgCreditCard /></span>
+      <form onSubmit={onSaveTitle}>
+        <input className="main-title" ref={inputRef} value={taskTitle} onChange={handleChange} onBlur={onSaveTitle} />
+      </form>
+      <div className="sub-title">in group<button>{groupTitle}</button></div>
     </header>
   )
 }
