@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom'
 import { BsCheck2 } from 'react-icons/bs'
 import { BsPencil } from 'react-icons/bs'
 
-export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, updateTask }) => {
+export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, updateTask, element }) => {
 
   const { groupId, taskId } = useParams()
   const [labelName, setLabelName] = useState('')
@@ -46,11 +46,8 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
     // setfilterMembers(updatedBoard.members.filter(member => member.fullName.toLowerCase().includes(target.value.toLowerCase())))
   }
 
-  const onModal = (category) => {
-    const position = utilService.getPosition(modalRef.current)
-    position.left -= 12 // MODAL PADDING
-    position.top -= 40 + 8 // TITLE SIZE + MARGIN
-    dispatch(setModal({ category, title: category, task, board, onUpdateBoard, position }))
+  const onOpenModal = (category) => {
+    dispatch(setModal({ element, category, title: category, task, updateTask, board, onUpdateBoard }))
   }
 
   return (
@@ -70,12 +67,12 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
                 <span className="label-txt" >{`${label.title}`}</span>
                 {taskLabels && taskLabels.some(taskLabel => taskLabel === label.id) && <span className='label-icon' ><BsCheck2 /></span>}
               </span>
-              <span className='label-icon pencil' onClick={(ev) => { ev.stopPropagation(); onModal('Change label'); changeEditLabel(label) }} ><BsPencil /></span>
+              <span className='label-icon pencil' onClick={(ev) => { ev.stopPropagation(); onOpenModal('Change label'); changeEditLabel(label) }} ><BsPencil /></span>
             </li>
           ))}
         </ul>
 
-        <span className="btn" ref={modalRef} onClick={(ev) => { ev.stopPropagation(); onModal('Create label') }}>Create a new label</span>
+        <span className="btn" ref={modalRef} onClick={(ev) => { ev.stopPropagation(); onOpenModal('Create label') }}>Create a new label</span>
         <div className="hr"></div>
       </div>
 

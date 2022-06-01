@@ -27,14 +27,9 @@ export const TaskDetails = () => {
   const [isCloseEdit, setIsCloseEdit] = useState(true)
 
   const updateTask = async (taskToUpdate) => {
-    const group = board.groups.find(group => group.id === groupId)
-    const { tasks } = group
-    const updatedTasks = tasks.map(task => task.id === taskToUpdate.id ? taskToUpdate : task)
-    const updatedGroup = { ...group, tasks: updatedTasks }
-    const updatedGroups = board.groups.map(group => group.id === updatedGroup.id ? updatedGroup : group)
-    const updatedBoard = { ...board, groups: updatedGroups }
-    onUpdateBoard(updatedBoard)
-    // return updatedBoard
+    const taskIdx = group.tasks.findIndex(task => task.id === taskToUpdate.id)
+    group.tasks[taskIdx] = taskToUpdate
+    onUpdateBoard(board)
   }
 
   const onGoBack = () => {
@@ -55,7 +50,7 @@ export const TaskDetails = () => {
       <div>
 
         {task?.style && <TaskDetailsCover task={task} setModal={setModal} />}
-        {task?.title && <TaskDetailsTitle title={task.title} board={board}/>}
+        {task?.title && <TaskDetailsTitle title={task.title} board={board} />}
 
         <div className="main-task">
           {task && <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />}

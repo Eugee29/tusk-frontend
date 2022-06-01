@@ -21,7 +21,7 @@ import { IoIosArrowBack } from 'react-icons/io'
 export const DynamicModal = () => {
 
   const { modal } = useSelector(({ appModule }) => appModule)
-  const [position, setPosition] = useState(null)
+  const [modalPosition, setModalPosition] = useState(null)
   const dispatch = useDispatch()
   const editLabel = useRef('')
   const buttonRef = useRef()
@@ -35,24 +35,25 @@ export const DynamicModal = () => {
   useEffect(() => {
     adjustPosition()
     window.addEventListener('resize', adjustPosition)
+    return () => window.removeEventListener('resize', adjustPosition)
+  }, [])
 
-  }, [modal])
+  useEffect(() => {
+    adjustPosition()
+  }, [modal.element])
 
-  useEffect((() => { return () => window.removeEventListener('resize', adjustPosition) }), [])
 
   const adjustPosition = () => {
-    if (!modal) return setPosition(null)
-    const { position } = modal
+    const position = utilService.getPosition(modal.element)
+    position.top += (modal.element.offsetHeight) * 1.25
     if (position.top + modalRef.current.offsetHeight > window.innerHeight) {
       position.top += window.innerHeight - position.top - (modalRef.current.offsetHeight) * 1.25
     }
     if (position.left + modalRef.current.offsetWidth > window.innerWidth) {
       position.left += window.innerWidth - position.left - (modalRef.current.offsetWidth) * 1.25
     }
-    setPosition(position)
+    setModalPosition(position)
   }
-
-  if (!modal) return
 
   var cmp
 
@@ -78,6 +79,7 @@ export const DynamicModal = () => {
           updateTask={modal.updateTask}
           board={modal.board}
           changeEditLabel={changeEditLabel}
+          element={modal.element}
         />
       break
     case 'Create label':
@@ -117,7 +119,6 @@ export const DynamicModal = () => {
         <ChecklistAdd {...modal.props} />
       break
     case 'Group actions':
-      modal.position.top += 28
       cmp =
         <ModalGroupActions onUpdateBoard={modal.onUpdateBoard} group={modal.group} boardId={modal.boardId} />
       break
@@ -125,17 +126,18 @@ export const DynamicModal = () => {
       break
   }
 
-  const onModal = (category) => {
-    const position = utilService.getPosition(buttonRef.current)
-    position.left -= 12 // PADDING
-    dispatch(setModal({ category, title: category, task: modal.task, board: modal.board, onUpdateBoard: modal.onUpdateBoard, position }))
+  const onOpenModal = (ev, category) => {
+    ev.stopPropagation()
+    dispatch(setModal({ element: modal.element, category, title: category, task: modal.task, board: modal.board, onUpdateBoard: modal.onUpdateBoard }))
   }
 
+  console.log(modalPosition)
+
   return (
-    <div className="dynamic-modal" style={{ ...position }} ref={modalRef}>
+    <div className="dynamic-modal" style={{ ...modalPosition }} ref={modalRef}>
       <header >
-        {modal.category === 'Create label' && <button ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Labels') }} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
-        {modal.category === 'Change label' && <button ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Labels') }} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
+        {modal.category === 'Create label' && <button ref={buttonRef} onClick={ev => onOpenModal(ev, 'Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
+        {modal.category === 'Change label' && <button ref={buttonRef} onClick={ev => onOpenModal(ev, 'Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
         <div className="label">{modal.title ? modal.title : modal.category}</div>
         <button className="sidebar-icon-right" onClick={() => dispatch(setModal(null))}><span ><CgClose /></span></button>
       </header>
