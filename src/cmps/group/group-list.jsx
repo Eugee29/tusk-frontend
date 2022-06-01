@@ -69,7 +69,8 @@ export const GroupList = ({ board, onUpdateBoard }) => {
         },
         group: {
           title: destinationGroup.title,
-          id: destinationGroup.id
+          id: destinationGroup.id,
+          sourceTitle: sourceGroup.title
         }
       }
     }
