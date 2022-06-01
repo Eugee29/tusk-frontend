@@ -37,7 +37,6 @@ function getActivityText(activity, board, onToggleMenu) {
   const linkPath = (activity.group) ? `/board/${board._id}/${activity.group.id}/${activity.task.id}` : null
   let text
 
-<<<<<<< HEAD
     switch (activity.actionType) {
         case 'delete task':
             text = ['deleted', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
@@ -69,39 +68,4 @@ function getActivityText(activity, board, onToggleMenu) {
 function getTaskActivities(taskId, board) {
     const taskActivities = board.activities.filter(activity => activity.task.id === taskId)
     // return taskActivities
-=======
-  switch (activity.actionType) {
-    case 'delete task':
-      text = ['deleted', <Link to={linkPath} onClick={onToggleMenu}> {activity.task.title} </Link>]
-      break
-
-    case 'add task':
-      text = ['added', <Link to={linkPath} onClick={onToggleMenu}> {activity.task.title} </Link>, `to ${activity.group.title}`]
-      break
-
-    case 'move':
-      text = ['moved', <Link to={linkPath} onClick={onToggleMenu}> {activity.task.title} </Link>, `to ${activity.group.title}`]
-      break
-    case 'comment':
-      text = ['on', <Link to={linkPath} onClick={onToggleMenu}> {activity.task.title} </Link>]
-      break
-    case 'delete group':
-      text = [`deleted list ${activity.group.title}`]
-      break
-    case 'add group':
-      text = [`added ${activity.group.title} to this board`]
-      break
-
-    default:
-      text = null
-  }
-  (text)
-  return text
-}
-
-function getTaskActivities(taskId, board) {
-  const taskActivities = board.activities.filter(activity => activity.task.id === taskId)
-    (taskActivities)
-  // return taskActivities
->>>>>>> 2a53f7f24b1441bc6467671e6d2ece28861ad23d
 }
