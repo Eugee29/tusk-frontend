@@ -7,31 +7,17 @@ import { setModal } from '../../store/app/app.actions'
 // import { BsCheck2 } from 'react-icons/bs'
 
 export const ModalLabelChange = ({ task, board, editLabel, updateTask, onUpdateBoard }) => {
-
-  const { groupId, taskId } = useParams()
-  const [updatedBoard, setupdatedBoard] = useState(board)
   const [labelName, setLabelName] = useState(editLabel.title)
-  const [color, setcolor] = useState(editLabel.color)
+  const [color, setColor] = useState(editLabel.color)
   const searchInput = useRef(null)
-  const firstLoad = useRef(false)
   const buttonRef = useRef()
 
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    // searchInput.current.focus();
-  }, [])
 
   if (!editLabel) return
   if (!task) return
   if (!board) return
-
-  console.log(editLabel)
-
-  // useEffect(() => {
-  //    if (!firstLoad.current) firstLoad.current = true
-  //    else onUpdateBoard(updatedBoard)
-  // }, [updatedBoard])
 
   const onToggle = (ev) => {
     ev.preventDefault()
@@ -63,7 +49,7 @@ export const ModalLabelChange = ({ task, board, editLabel, updateTask, onUpdateB
   }
 
   const onPickColor = (color) => {
-    setcolor(color)
+    setColor(color)
   }
 
   const handleChange = ({ target }) => {
@@ -74,7 +60,6 @@ export const ModalLabelChange = ({ task, board, editLabel, updateTask, onUpdateB
     dispatch(setModal({ element: buttonRef.current, category, title: category, task, updateTask, board, onUpdateBoard }))
   }
 
-  console.log('board', board)
 
   return (
     <div className="change-section">

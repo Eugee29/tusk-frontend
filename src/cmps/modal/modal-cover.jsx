@@ -8,9 +8,8 @@ export const ModalCover = ({ task }) => {
       setIsOnPreviewTextColor(bool)
    }
 
-   if (!task) { return }
+   //  if (!task) { return }
 
-   console.log('ModalCover', task);
    return (
       <React.Fragment>
 

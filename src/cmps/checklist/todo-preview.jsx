@@ -32,7 +32,6 @@ export const TodoPreview = (props) => {
   }
 
   const onDiscardChanges = (e) => {
-    console.log(e)
     setIsEdit(false)
     textRef.current.blur()
     setTodo(props.todo)
