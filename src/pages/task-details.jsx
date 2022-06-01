@@ -44,6 +44,8 @@ export const TaskDetails = () => {
     dispatch(setModal(null))
   }
 
+  console.log(board)
+
   return (
     <section className="task-details" onClick={onGoBack}>
       <div className="task-details-container" onClick={onDetailsClick}>
@@ -57,7 +59,7 @@ export const TaskDetails = () => {
             {task.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
             {task.attachments && <TaskDetailsAttachments task={task} />}
             {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
-            <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />
+            <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} board={board}/>
           </div>
           <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
         </div>

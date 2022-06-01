@@ -31,40 +31,56 @@ function getActivityUpdatedBoard(board, activity) {
   return newBoard
 }
 
-function getActivityText(activity, board, onToggleMenu) {
+function getActivityText(activity, board, diff) {
+  
+  let onToggleMenu, task
+  
+  if (typeof diff === ('function')) {
+    onToggleMenu = diff
+    task = false
+  } else {
+    task = diff
+    onToggleMenu = false
+  }
 
   const linkPath = (activity.task) ? `/board/${board._id}/${activity.group.id}/${activity.task.id}` : null
-  let text
+  let boardText, taskText
 
     switch (activity.actionType) {
         case 'delete task':
-            text = ['deleted', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
+            boardText = ['deleted', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
             break
 
         case 'add task':
-            text = ['added', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
+            boardText = ['added', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
             break
 
         case 'move':
-            text = ['moved', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
+            boardText = ['moved', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
+            taskText = [`moved this card from ${activity.group.sourceTitle} to ${activity.group.title}`]
             break
         case 'comment':
-            text = ['on', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
+            boardText = ['on', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
+            taskText = [null]
             break
         case 'delete group':
-            text = [`deleted list ${activity.group.title}`]
+            boardText = [`deleted list ${activity.group.title}`]
             break
         case 'add group':
-            text = [`added ${activity.group.title} to this board`]
+            boardText = [`added ${activity.group.title} to this board`]
             break
 
         default:
-            text = null
+            boardText = null
     }
-    return text
+    if (task) return taskText
+    else return boardText
 }
 
 function getTaskActivities(taskId, board) {
-    const taskActivities = board.activities.filter(activity => activity.task.id === taskId)
-    // return taskActivities
+  console.log(board.activities)
+    const taskActivities = board.activities.filter(activity => {
+      if (!activity.task) return false
+      else return activity.task.id === taskId})
+    return taskActivities
 }
