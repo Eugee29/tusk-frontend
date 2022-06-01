@@ -15,7 +15,8 @@ export const boardService = {
    getEmptyTodo,
    getEmptyTask,
    getEmptyGroup,
-   getEmptyChecklist
+   getEmptyChecklist,
+   getEmptyBoard
 }
 
 //Request (Rest:GET) all Data from Backend
@@ -95,17 +96,68 @@ function getEmptyGroup(title) {
 }
 
 function getEmptyTodo() {
-  return {
-    id: utilService.makeId(),
-    isDone: false,
-    title: ''
-  }
+   return {
+      id: utilService.makeId(),
+      isDone: false,
+      title: ''
+   }
 }
 
 function getEmptyChecklist() {
-  return {
-    id: utilService.makeId(),
-    title: '',
-    todos: []
-  }
+   return {
+      id: utilService.makeId(),
+      title: '',
+      todos: []
+   }
+}
+
+function getEmptyBoard() {
+   return {
+      "title": "",
+      "archivedAt": null,
+      "createdAt": 0,
+      "isStarred": false,
+      "createdBy": {
+         "_id": "",
+         "fullname": "",
+         "username": "",
+         "imgURL": ""
+      },
+      "style": {},
+      "labels": [
+         {
+            "id": "l101",
+            "title": "",
+            "color": "#63be53"
+         },
+         {
+            "id": "l102",
+            "title": "",
+            "color": "#eed62b"
+         },
+         {
+            "id": "l103",
+            "title": "",
+            "color": "#fa9e30"
+         },
+         {
+            "id": "l104",
+            "title": "",
+            "color": "#e6574c"
+         },
+         {
+            "id": "l105",
+            "title": "",
+            "color": "#c374df"
+         },
+         {
+            "id": "l106",
+            "title": "",
+            "color": "#2579bd"
+         }
+      ],
+      "members": [],
+      "groups": [],
+      "activities": []
+   }
 }

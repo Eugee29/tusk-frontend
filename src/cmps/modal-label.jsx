@@ -10,75 +10,75 @@ import { BsPencil } from 'react-icons/bs'
 
 export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, updateTask }) => {
 
-  const { groupId, taskId } = useParams()
-  const [labelName, setLabelName] = useState('')
-  const [searchLabel, setSearchLabel] = useState('')
+   const { groupId, taskId } = useParams()
+   const [labelName, setLabelName] = useState('')
+   const [searchLabel, setSearchLabel] = useState('')
 
-  const modalRef = useRef()
-  const searchInput = useRef(null)
-  const firstLoad = useRef(false)
+   const modalRef = useRef()
+   const searchInput = useRef(null)
+   const firstLoad = useRef(false)
 
-  const dispatch = useDispatch()
+   const dispatch = useDispatch()
 
-  useEffect(() => {
-    // searchInput.current.focus();
-  }, [])
+   useEffect(() => {
+      // searchInput.current.focus();
+   }, [])
 
-  if (!task) return
-  if (!board) return
+   if (!task) return
+   if (!board) return
 
-  const onToggle = (id) => {
-    const taskLabelIdx = task.labelIds.findIndex(taskLabel => taskLabel === id)
-    const boardLabelIdx = board.labels.findIndex(boardLabel => boardLabel.id === id)
-    const updatedLabelsTask = taskLabelIdx >= 0
-      ? task.labelIds.splice(taskLabelIdx, 1)
-      : task.labelIds.push(board.labels[boardLabelIdx].id)
-    updateTask(task)
-    socketService.emit('emit-any-change', 'Toggle label')
-  }
+   const onToggle = (id) => {
+      const taskLabelIdx = task.labelIds.findIndex(taskLabel => taskLabel === id)
+      const boardLabelIdx = board.labels.findIndex(boardLabel => boardLabel.id === id)
+      const updatedLabelsTask = taskLabelIdx >= 0
+         ? task.labelIds.splice(taskLabelIdx, 1)
+         : task.labelIds.push(board.labels[boardLabelIdx].id)
+      updateTask(task)
+      socketService.emit('emit-any-change', 'Toggle label')
+   }
 
-  const handleChange = ({ target }) => {
-    setSearchLabel(target.value)
-    // setfilterMembers(updatedBoard.members.filter(member => member.fullName.toLowerCase().includes(target.value.toLowerCase())))
-  }
+   const handleChange = ({ target }) => {
+      setSearchLabel(target.value)
+      // setfilterMembers(updatedBoard.members.filter(member => member.fullName.toLowerCase().includes(target.value.toLowerCase())))
+   }
 
-  const onModal = (category) => {
-    const position = utilService.getPosition(modalRef.current)
-    position.left -= 12 // MODAL PADDING
-    position.top -= 40 + 8 // TITLE SIZE + MARGIN
-    dispatch(setModal({ category, title: category, task, board, onUpdateBoard, position }))
-  }
+   const onModal = (category) => {
+      const position = utilService.getPosition(modalRef.current)
+      position.left -= 12 // MODAL PADDING
+      position.top -= 40 + 8 // TITLE SIZE + MARGIN
+      dispatch(setModal({ category, title: category, task, board, onUpdateBoard, position }))
+   }
 
-  return (
-    <div className="label-section" ref={modalRef}>
+   return (
+      <div className="label-section" ref={modalRef}>
 
-      <div className="search-box">
-        <input ref={searchInput} type="text" name='search' placeholder="Search label..." value={searchLabel} onChange={handleChange} />
+         <div className="search-box">
+            <input ref={searchInput} type="text" name='search' placeholder="Search label..." value={searchLabel} onChange={handleChange} />
+         </div>
+
+         <div className="label-box">
+            <h3 className="label">Labels</h3>
+
+            <ul >
+               {board.labels.map((label, idx) => (
+                  <li key={label.id} >
+                     <span onClick={() => onToggle(label.id)} className="label-color" style={{ backgroundColor: label.color }}>
+                        <span className="label-txt" >{`${label.title}`}</span>
+                        {task?.labelIds && task.labelIds.some(taskLabel => taskLabel === label.id) && <span className='label-icon' ><BsCheck2 /></span>}
+                     </span>
+                     <span className='label-icon pencil' onClick={(ev) => { ev.stopPropagation(); onModal('Change label'); changeEditLabel(label) }} ><BsPencil /></span>
+                  </li>
+               ))}
+            </ul>
+
+            <span className="btn" ref={modalRef} onClick={(ev) => { ev.stopPropagation(); onModal('Create label') }}>Create a new label</span>
+            <div className="hr"></div>
+         </div>
+
+
+
       </div>
-
-      <div className="label-box">
-        <h3 className="label">Labels</h3>
-
-        <ul >
-          {board.labels.map((label, idx) => (
-            <li key={label.id} >
-              <span onClick={() => onToggle(label.id)} className="label-color" style={{ backgroundColor: label.color }}>
-                <span className="label-txt" >{`${label.title}`}</span>
-                {task?.labelIds && task.labelIds.some(taskLabel => taskLabel === label.id) && <span className='label-icon' ><BsCheck2 /></span>}
-              </span>
-              <span className='label-icon pencil' onClick={(ev) => { ev.stopPropagation(); onModal('Change label'); changeEditLabel(label) }} ><BsPencil /></span>
-            </li>
-          ))}
-        </ul>
-
-        <span className="btn" ref={modalRef} onClick={(ev) => { ev.stopPropagation(); onModal('Create label') }}>Create a new label</span>
-        <div className="hr"></div>
-      </div>
-
-
-
-    </div>
-  )
+   )
 
 }
 

@@ -39,6 +39,7 @@ export function addBoard(board) {
          const savedBoard = await boardService.save(board)
          console.log('Added Board', savedBoard);
          dispatch({ type: 'ADD_BOARD', board: savedBoard })
+         return savedBoard
          // showSuccessMsg('Board added')
       }
    } catch (err) {
