@@ -1,7 +1,8 @@
 import svg1 from '../assets/svg/svg1.svg'
 import svg2 from '../assets/svg/svg2.svg'
 import logoDark from '../assets/imgs/logo-horizontal-dark.png'
-import { LoginSignup } from '../cmps/login-signup'
+
+import { LoginSignup } from '../cmps/login-signup/login-signup'
 
 export const LoginSignupPage = ({ type }) => {
   return (

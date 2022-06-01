@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { utilService } from '../services/util.service'
-import { setModal } from '../store/app/app.actions'
+
+import { setModal } from '../../store/app/app.actions'
 
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
 import { GrDown } from 'react-icons/gr'

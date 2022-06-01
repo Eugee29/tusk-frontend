@@ -1,22 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { ModalCover } from './modal-cover'
-import { ModalMember } from './modal-member'
-import { ModalLabel } from './modal-label'
-import { ModalLabelCreate } from './modal-label-create'
-import { ModalLabelChange } from './modal-label-change'
-import { ModalCreateBoard } from './modal-create-board'
-import { ModalGroupActions } from './modal-group-actions'
-import { CgClose } from 'react-icons/cg'
-import { useDispatch } from 'react-redux'
-import { setModal } from '../store/app/app.actions'
-import { utilService } from '../services/util.service'
-
-import { TodoActions } from './todo-actions'
-import { ChecklistDelete } from './checklist-delete'
-import { ChecklistAdd } from './checklist-add'
+import { useSelector, useDispatch } from 'react-redux'
 
 import { IoIosArrowBack } from 'react-icons/io'
+import { CgClose } from 'react-icons/cg'
+
+import { setModal } from '../store/app/app.actions'
+
+import { utilService } from '../services/util.service'
+
+import { ModalLabelCreate } from './modal/modal-label-create'
+import { ModalLabelChange } from './modal/modal-label-change'
+import { ModalCreateBoard } from './modal/modal-create-board'
+import { ModalGroupActions } from './modal/modal-group-actions'
+import { ModalCover } from './modal/modal-cover'
+import { ModalMember } from './modal/modal-member'
+import { ModalLabel } from './modal/modal-label'
+import { TodoActions } from './checklist/todo-actions'
+import { ChecklistDelete } from './checklist/checklist-delete'
+import { ChecklistAdd } from './checklist/checklist-add'
+
 
 export const DynamicModal = () => {
 
@@ -132,14 +134,14 @@ export const DynamicModal = () => {
   }
 
   return (
-    <div className="dynamic-modal" style={{ ...modalPosition }} ref={modalRef}>
+    <div className="dynamic-modal" style={{ ...modalPosition }} ref={modalRef} onClick={(e) => e.stopPropagation()}>
       <header >
         {modal.category === 'Create label' && <button ref={buttonRef} onClick={ev => onOpenModal(ev, 'Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
         {modal.category === 'Change label' && <button ref={buttonRef} onClick={ev => onOpenModal(ev, 'Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
         <div className="label">{modal.title ? modal.title : modal.category}</div>
-        <button className="sidebar-icon-right" onClick={() => dispatch(setModal(null))}><span ><CgClose /></span></button>
+        <button className="sidebar-icon-right" onClick={() => dispatch(setModal(null))}><span><CgClose /></span></button>
       </header>
-      <main className="main-modal" >
+      <main className="main-modal">
         {cmp}
       </main>
     </div>

@@ -10,15 +10,19 @@ import { LoginSignupPage } from './pages/login-signup-page'
 import { Workspace } from './pages/workspace'
 import { BoardDetails } from './pages/board-details'
 import { TaskDetails } from './pages/task-details'
+import { useDispatch } from 'react-redux'
+
+import { setModal } from './store/app/app.actions'
 
 import './assets/css/main.scss'
 
 export function RootCmp() {
 
   const { modal } = useSelector(({ appModule }) => appModule)
+  const dispatch = useDispatch()
 
   return (
-    <div>
+    <div onClick={() => dispatch(setModal(null))}>
       <AppHeader />
       {modal && <DynamicModal />}
       <main className='main-layout'>

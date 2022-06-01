@@ -1,14 +1,15 @@
-import { FiCheckSquare } from 'react-icons/fi'
+import { useRef, useState } from 'react'
 import { ProgressBar } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+
+import { boardService } from '../../services/board.service'
+
+import { setModal } from '../../store/app/app.actions'
+
+import { FiCheckSquare } from 'react-icons/fi'
+import { VscClose } from 'react-icons/vsc'
 
 import { TodoList } from './todo-list'
-import { useRef, useState } from 'react'
-import { boardService } from '../services/board.service'
-import { useDispatch } from 'react-redux'
-import { setModal } from '../store/app/app.actions'
-import { utilService } from '../services/util.service'
-
-import { VscClose } from 'react-icons/vsc'
 
 export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updateTask, task }) => {
 

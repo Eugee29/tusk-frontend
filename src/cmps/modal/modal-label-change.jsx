@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef, useParam } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { utilService } from '../services/util.service'
-import { setModal } from '../store/app/app.actions'
+import { utilService } from '../../services/util.service'
+import { setModal } from '../../store/app/app.actions'
 
 // import { BsCheck2 } from 'react-icons/bs'
 

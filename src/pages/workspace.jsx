@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import { BoardList } from '../cmps/board-list.jsx'
+import { BoardList } from '../cmps/board/board-list.jsx'
 import { loadBoards, updateBoard } from '../store/board/board.action.js'
 
 export const Workspace = () => {

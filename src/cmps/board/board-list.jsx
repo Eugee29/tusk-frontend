@@ -1,12 +1,15 @@
 
 import React, { useRef } from 'react'
 import { useDispatch } from 'react-redux'
-import { utilService } from '../services/util.service'
-import { setModal } from '../store/app/app.actions'
 
-import { BoardPreview } from './board-preview.jsx'
+import { utilService } from '../../services/util.service'
+
+import { setModal } from '../../store/app/app.actions'
+
 import { HiOutlineStar } from 'react-icons/hi'
 import { FaRegClock } from 'react-icons/fa'
+
+import { BoardPreview } from './board-preview.jsx'
 
 export const BoardList = ({ boards, onUpdateBoard }) => {
 

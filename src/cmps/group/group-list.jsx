@@ -6,7 +6,7 @@ import { GroupPreview } from "./group-preview"
 
 import { IoMdClose } from 'react-icons/io'
 import { AiOutlinePlus } from 'react-icons/ai'
-import { boardService } from '../services/board.service'
+import { boardService } from '../../services/board.service'
 
 export const GroupList = ({ board, onUpdateBoard }) => {
 
@@ -29,14 +29,14 @@ export const GroupList = ({ board, onUpdateBoard }) => {
     addGroup(groupToAdd)
   }
 
- 
+
   const addGroup = (groupToAdd) => {
     const newBoard = { ...board, groups: [...board.groups, groupToAdd] }
     const activity = {
       actionType: 'add group',
       group: {
-         id: groupToAdd.id,
-         title: groupToAdd.title
+        id: groupToAdd.id,
+        title: groupToAdd.title
       }
     }
     onUpdateBoard(newBoard, activity)
@@ -70,7 +70,7 @@ export const GroupList = ({ board, onUpdateBoard }) => {
         group: {
           title: destinationGroup.title,
           id: destinationGroup.id
-        } 
+        }
       }
     }
     if (type === 'GROUP') {
