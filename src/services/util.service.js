@@ -5,6 +5,7 @@ export const utilService = {
   delay,
   formatTimeToDM,
   getPosition,
+  calcTextareaHeight,
   getTimeAgo
 }
 
@@ -58,6 +59,11 @@ function getPosition(element) {
   // if (top + 700 > window.innerHeight) return { top, left, transform: 'translateY(-60%)' }
   // if (window.innerWidth - left < 304) left = left - 304
   return { top, left }
+}
+
+function calcTextareaHeight(value, minHeight, lineHeight) {
+  const numberOfLineBreaks = (value.match(/\n/g) || []).length
+  return minHeight + numberOfLineBreaks * lineHeight  // min-height + num + numOfLineBreaks * line-height
 }
 
 function getTimeAgo(timestamp, locale = 'en') {

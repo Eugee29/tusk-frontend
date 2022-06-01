@@ -11,13 +11,20 @@ import previewboard from '../../assets/imgs/previewboard.svg'
 
 export const ModalCreateBoard = () => {
 
-  const { user } = useSelector(({ userModule }) => userModule)
+  var { user } = useSelector(({ userModule }) => userModule)
   const [boardTitle, setBoardTitle] = useState('')
   const [boardBg, setBoardBg] = useState('')
   const [isEnabeld, setIsEnabeld] = useState(false)
 
   const dispatch = useDispatch()
   const history = useNavigate()
+
+  // if (!user) user = {
+  //   _id: 'guest',
+  //   fullname: 'Guest',
+  //   username: 'Guest',
+  //   imgURL: 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
+  // }
 
   const handleChange = ({ target }) => {
     setBoardTitle(target.value)

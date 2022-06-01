@@ -45,13 +45,16 @@ export const DynamicModal = () => {
 
   const adjustPosition = () => {
     const position = utilService.getPosition(modal.element)
-    position.top += (modal.element.offsetHeight) * 1.25
-    if (position.top + modalRef.current.offsetHeight > window.innerHeight) {
-      position.top += window.innerHeight - position.top - (modalRef.current.offsetHeight) * 1.25
+    position.top += (modal.element.offsetHeight) * 1.25 // Gives the modal some space from the button that triggered it.
+
+    // Centers the modal if it does not have enough space to open.
+    if (position.top + (modalRef.current.offsetHeight) * 1.25 >= window.innerHeight) {
+      position.top = (window.innerHeight / 2) - (modalRef.current.offsetHeight / 2)
     }
-    if (position.left + modalRef.current.offsetWidth > window.innerWidth) {
-      position.left += window.innerWidth - position.left - (modalRef.current.offsetWidth) * 1.25
+    if (position.left + modalRef.current.offsetWidth >= window.innerWidth) {
+      position.left = window.innerWidth - modalRef.current.offsetWidth
     }
+
     setPosition(position)
   }
 
@@ -87,8 +90,8 @@ export const DynamicModal = () => {
         <ModalLabelCreate
           task={modal.task}
           board={modal.board}
+          updateTask={modal.updateTask}
           onUpdateBoard={modal.onUpdateBoard}
-          changeEditLabel={modal.onUpdateBoard}
         />
       break
     case 'Change label':

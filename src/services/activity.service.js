@@ -12,7 +12,6 @@ function getActivityUpdatedBoard(board, activity) {
   let isComment = false
   if (activity.actionType === 'comment') isComment = true
 
-
   const newActivity = {
     byMember: {
       //getMember. if (!member) ====>
