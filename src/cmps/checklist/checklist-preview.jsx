@@ -3,6 +3,7 @@ import { ProgressBar } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 
 import { boardService } from '../../services/board.service'
+import { utilService } from '../../services/util.service'
 
 import { setModal } from '../../store/app/app.actions'
 
@@ -29,11 +30,6 @@ export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updat
   const numOfChecked = checklist.todos.length - todosToShow.length
   const filteredChecklist = { ...checklist, todos: todosToShow }
 
-  const calcHeight = (value) => {
-    const numberOfLineBreaks = (value.match(/\n/g) || []).length
-    const newHeight = 56 + numberOfLineBreaks * 20
-    return newHeight
-  }
 
   const handleChange = (e) => {
     setTodoTxt(e.target.value)
@@ -72,8 +68,6 @@ export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updat
   const handleTitleChange = (e) => {
     setChecklistTitle(e.target.value)
   }
-
-
 
   const deleteChecklist = () => {
     const updatedChecklists = checklists.filter(currChecklist => checklist.id !== currChecklist.id)
@@ -129,7 +123,7 @@ export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updat
               <textarea
                 className='todo-content'
                 placeholder='Add an item'
-                style={{ height: calcHeight(todoTxt) }}
+                style={{ height: utilService.calcTextareaHeight(todoTxt, 56, 20) }}
                 value={todoTxt}
                 onChange={handleChange}
                 onBlur={() => setIsAdding(false)}

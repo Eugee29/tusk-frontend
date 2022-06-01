@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { connect, useSelector } from 'react-redux'
 
-import { utilService } from '../../services/util.service'
+import { activityService } from '../../services/activity.service'
 
 import { GrList } from 'react-icons/gr'
+import { ActivityList } from '../activity-list'
 
-function _TaskDetailsActivity({ task, isCloseEdit }) {
-
-  const { activities } = useSelector((storeState) => storeState.boardModule.board)
+export function TaskDetailsActivity({ task, isCloseEdit, board }) {
+  const activities = activityService.getTaskActivities(task.id, board)
 
   const [isClickedComment, setIsClickedComment] = useState(null)
   const [isTypeComment, setIsTypeComment] = useState(false)
@@ -21,7 +21,6 @@ function _TaskDetailsActivity({ task, isCloseEdit }) {
   const onChangeComment = (ev) => {
     ev.stopPropagation()
     setIsClickedComment(true)
-    console.log(isClickedComment)
   }
 
   const handleChange = (ev) => {
@@ -35,9 +34,6 @@ function _TaskDetailsActivity({ task, isCloseEdit }) {
 
   const enableButton = isTypeComment ? 'enableButton' : ''
   const initials = (member) => ([...member.fullname])
-
-
-
 
   return (
     <section className="task-details-activity" >
@@ -66,34 +62,10 @@ function _TaskDetailsActivity({ task, isCloseEdit }) {
 
       </div>
 
-      {activities && activities.map(activity =>
-        <div key={activity.byMember._id} className="activity-list-container">
-          <div className="user-container">
-            <div className="member">
-              <span className="label"> {`${initials(activity.byMember)[0]}${initials(activity.byMember)[1]}`}</span>
-            </div>
-          </div>
-
-          <div className="activity-container">
-            <span className="member" >{activity.byMember.fullname}</span>
-            <span > {activity.txt}</span>
-          </div>
-
-          <div className="time-container">
-            {utilService.getTimeAgo(activity.createdAt)}
-          </div>
-        </div>)}
+      {activities && <ActivityList board={board} task={task} />}
 
 
 
     </section>
   )
 }
-
-function mapStateToProps(state) {
-  return {
-    board: state.boardModule.board
-  }
-}
-
-export const TaskDetailsActivity = connect(mapStateToProps)(_TaskDetailsActivity)
