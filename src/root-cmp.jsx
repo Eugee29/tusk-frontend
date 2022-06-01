@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react'
-
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { Routes, Route } from 'react-router-dom'
-
-import './assets/css/main.scss'
 
 import { AppHeader } from './cmps/app-header'
 import { DynamicModal } from './cmps/dynamic-modal'
@@ -12,7 +10,8 @@ import { LoginSignupPage } from './pages/login-signup-page'
 import { Workspace } from './pages/workspace'
 import { BoardDetails } from './pages/board-details'
 import { TaskDetails } from './pages/task-details'
-import { useSelector } from 'react-redux'
+
+import './assets/css/main.scss'
 
 export function RootCmp() {
 
@@ -32,7 +31,6 @@ export function RootCmp() {
             <Route path=':groupId/:taskId' element={<TaskDetails />} />
           </Route>
         </Routes>
-
       </main>
     </div>
   )
