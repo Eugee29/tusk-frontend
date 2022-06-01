@@ -4,19 +4,18 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { boardService } from '../services/board.service.js'
 import { activityService } from '../services/activity.service.js'
+import { socketService } from '../services/socket.service.js'
+
 import { setModal } from '../store/app/app.actions'
 import { updateBoard } from '../store/board/board.action.js'
 
 import { BoardHeader } from '../cmps/board-header.jsx'
 import { GroupList } from '../cmps/group-list.jsx'
-import { utilService } from '../services/util.service.js'
-import { type } from '@testing-library/user-event/dist/type'
-import { socketService } from '../services/socket.service.js'
 
 
 export const BoardDetails = () => {
-  const params = useParams()
   const [board, setBoard] = useState(null)
+  const params = useParams()
   const dispatch = useDispatch()
   const { boards } = useSelector(({ boardModule }) => boardModule)
 
@@ -27,8 +26,6 @@ export const BoardDetails = () => {
   const loadBoard = async () => {
     const board = await boardService.getById(params.boardId)
     setBoard(board)
-
-    // dispatch(saveBoard(board))
   }
 
   const onUpdateBoard = async (board, activity) => {
@@ -53,7 +50,7 @@ export const BoardDetails = () => {
     dispatch(setModal(null))
   }
 
-  if (!board) return <h1>Loading..</h1>
+  if (!board) return <h1>Loading...</h1>
 
   return (
     <main className='board-details' onClick={closeModal} style={{ background: board.style.bgImg.length > 10 ? `url(${board.style.bgImg})` : `${board.style.bgImg}` }}>

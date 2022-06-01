@@ -16,7 +16,7 @@ import { useDispatch } from "react-redux"
 export const GroupPreview = ({ group, index, toggleLabels, board, isLabelsOpen, onUpdateGroup, onUpdateBoard }) => {
   const dispatch = useDispatch()
   const buttonRef = useRef()
-  const {boardId} = useParams()
+  const { boardId } = useParams()
 
   const params = useParams()
   const [titleText, setTitleText] = useState(group.title)
@@ -33,10 +33,10 @@ export const GroupPreview = ({ group, index, toggleLabels, board, isLabelsOpen, 
     const updatedGroup = { ...group, title: titleText }
     onUpdateGroup(updatedGroup)
   }
-  
-  const openModal = (ev) => {
+
+  const onOpenModal = (ev) => {
     ev.stopPropagation()
-    dispatch(setModal({ position: utilService.getPosition(buttonRef.current), category: 'Group actions', title: 'List actions', onUpdateBoard, boardId, group}))
+    dispatch(setModal({ element: buttonRef.current, category: 'Group actions', title: 'List actions', onUpdateBoard, boardId, group }))
   }
 
   return (
@@ -49,7 +49,7 @@ export const GroupPreview = ({ group, index, toggleLabels, board, isLabelsOpen, 
 
             <div className="group-title-container" {...provided.dragHandleProps}>
               <textarea className="group-title" defaultValue={titleText} scols="30" rows="10" onChange={handleChange} onBlur={updateTitle}></textarea>
-              <button ref={buttonRef} onClick={openModal} className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
+              <button ref={buttonRef} onClick={onOpenModal} className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
             </div>
 
             <TaskList key={group.id} group={group} board={board} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} isAddCardOpen={isAddCardOpen} toggleAddCard={toggleAddCard} onUpdateGroup={onUpdateGroup} />

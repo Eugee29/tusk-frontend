@@ -60,11 +60,9 @@ export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updat
 
   const openDeleteModal = (e) => {
     e.stopPropagation()
-    const position = utilService.getPosition(deleteRef.current)
-    position.top += 32 + 6 // HEIGHT + PADDING
     dispatch(setModal({
+      element: deleteRef.current,
       category: 'checklist-delete',
-      position: position,
       title: `Delete ${checklist.title}?`,
       props: { deleteChecklist }
     }))
@@ -144,7 +142,6 @@ export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updat
             </form>
         }
       </div>
-
     </li >
   )
 }
