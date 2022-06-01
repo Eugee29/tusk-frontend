@@ -1,13 +1,13 @@
-.task-details-description {
+.task-details-desc {
    clear: both;
    margin-bottom: 24px;
    position: relative;
 
-   .description-title-container {
+   .desc-title-container {
       @include task-category()
    }
 
-   .description-body-container {
+   .desc-body-container {
       margin-bottom: 0;
       padding-bottom: 0;
       margin: 0 0 8px;
@@ -50,16 +50,37 @@
          flex-direction: row;
          margin-top: 8px;
          margin-left: 40px;
-         
+
          input {
             @include task-save();
-            float: left;
+            border-radius: 3px;
             margin: 0 4px 0 0;
+            float: left;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 400;
+
+            &:first-child {
+               background-color: #0079bf;
+               color: #fff;
+
+               &:hover {
+                  background-color: #026aa7;
+                  border: none;
+                  box-shadow: none;
+                  color: #fff;
+               }
+            }
+
+            &:last-child {
+               color: #172b4d;
+
+               &:hover {
+                  background-color: #091e4214;
+               }
+            }
          }
 
-         .cancel {
-            cursor: pointer;
-         }
       }
    }
 

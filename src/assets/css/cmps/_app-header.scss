@@ -131,7 +131,7 @@
       .user-img-container {
          cursor: pointer;
          .user-initial {
-            @include task-member-button(orange);
+            @include task-member-button(gray);
             margin: 0
          }
          .user-img {
