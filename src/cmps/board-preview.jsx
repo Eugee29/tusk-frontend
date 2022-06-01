@@ -38,7 +38,7 @@ export function BoardPreview({ board, onUpdateBoard }) {
    return (
       <li className="board-section-list-item ">
 
-         <div onClick={onclicked} className="board-tile" style={{ backgroundImage: `url(${board.style.bgImg})` }} >
+         <div onClick={onclicked} className="board-tile"  style={{ background: board.style.bgImg.length > 10 ? `url(${board.style.bgImg})` : `${board.style.bgImg}` }} >
 
             <span className="board-tile-fade"></span>
             <div className="board-tile-details">

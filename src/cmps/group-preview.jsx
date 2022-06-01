@@ -13,7 +13,7 @@ import { Draggable } from 'react-beautiful-dnd'
 import { TaskList } from './task-list'
 import { useDispatch } from "react-redux"
 
-export const GroupPreview = ({ group, index, toggleLabels, isLabelsOpen, onUpdateGroup, onUpdateBoard }) => {
+export const GroupPreview = ({ group, index, toggleLabels, board, isLabelsOpen, onUpdateGroup, onUpdateBoard }) => {
   const dispatch = useDispatch()
   const buttonRef = useRef()
   const {boardId} = useParams()
@@ -39,7 +39,6 @@ export const GroupPreview = ({ group, index, toggleLabels, isLabelsOpen, onUpdat
     dispatch(setModal({ position: utilService.getPosition(buttonRef.current), category: 'Group actions', title: 'List actions', onUpdateBoard, boardId, group}))
   }
 
-
   return (
     // Setting each group to be draggable with the Draggable CMP
     <Draggable draggableId={group.id} index={index} type='GROUP'>
@@ -53,7 +52,7 @@ export const GroupPreview = ({ group, index, toggleLabels, isLabelsOpen, onUpdat
               <button ref={buttonRef} onClick={openModal} className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
             </div>
 
-            <TaskList key={group.id} group={group} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} isAddCardOpen={isAddCardOpen} toggleAddCard={toggleAddCard} onUpdateGroup={onUpdateGroup} />
+            <TaskList key={group.id} group={group} board={board} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} isAddCardOpen={isAddCardOpen} toggleAddCard={toggleAddCard} onUpdateGroup={onUpdateGroup} />
 
             {!isAddCardOpen && <div className="add-btn-container">
               <button className="add-btn" onClick={toggleAddCard}> <AiOutlinePlus /> Add a card</button>

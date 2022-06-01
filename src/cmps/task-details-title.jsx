@@ -1,27 +1,15 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { connect, useSelector } from 'react-redux'
+import React from 'react'
 
-import card from '../assets/imgs/card.svg'
 import { CgCreditCard } from 'react-icons/cg'
 
-function _TaskDetailsTitle({ title }) {
+export function TaskDetailsTitle({ title, board }) {
 
-   const { board } = useSelector((storeState) => storeState.boardModule )
-
+   console.log('_TaskDetailsTitle', board);
    return (
       <header className="task-details-title" >
-         <span className=""><CgCreditCard/></span>
+         <span className=""><CgCreditCard /></span>
          <textarea className="main-title" name="" defaultValue={title} cols="30" rows="10"></textarea>
          <div className="sub-title">in list<button>{board.title}</button></div>
-
       </header>
    )
 }
-
-function mapStateToProps(state) {
-   return {
-      board: state.boardModule.board
-   }
-}
-
-export const TaskDetailsTitle = connect(mapStateToProps)(_TaskDetailsTitle)

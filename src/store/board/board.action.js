@@ -5,12 +5,14 @@ import { store } from '../../store/store.js'
 
 // import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
 
+;(() => {
 socketService.off('on-any-change')
 socketService.on('on-any-change', async (msg) => {
   console.log('Socket msg: ', msg)
   const boards = await boardService.query()
   store.dispatch({ type: 'SET_BOARDS', boards })
 })
+})()
 
 export function setBoard(board) {
   return (dispatch) => {
@@ -21,8 +23,6 @@ export function setBoard(board) {
 export function loadBoards() {
   try {
     return async (dispatch) => {
-      console.log('******SOCKET loadBoards*****')
-
       const boards = await boardService.query()
       console.log('Got Boards', boards)
       dispatch({ type: 'SET_BOARDS', boards })
@@ -37,12 +37,13 @@ export function addBoard(board) {
   try {
     return async (dispatch) => {
       const savedBoard = await boardService.save(board)
-      console.log('Added Board', savedBoard)
+      console.log('Added Board', savedBoard);
       dispatch({ type: 'ADD_BOARD', board: savedBoard })
+      return savedBoard
       // showSuccessMsg('Board added')
     }
   } catch (err) {
-    console.log('cannot add board', err)
+    console.log('cannot add board', err);
     // showErrorMsg('Cannot add board')
   }
 }

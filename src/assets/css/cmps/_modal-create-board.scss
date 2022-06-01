@@ -1,182 +1,26 @@
-.size-section {
-   .label {
-      @include task-sub-header()
-   }
+.create-board-preview {
+   display: flex;
+   justify-content: center;
+   padding-bottom: 8px;
 
-   .box-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      padding: 4px;
-      margin: 0 -4px;
-      overflow-x: hidden;
+   .preview-img {
+      width: 200px;
+      height: 120px;
+      background: none;
+      background-position: center center;
+      background-size: cover;
+      border-radius: 3px;
+      box-shadow: 0 7px 15px rgb(0 0 0 / 15%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-position: 50% !important;
+      background-size: cover !important;
 
-      .box-half {
-         height: 62px;
-         cursor: pointer;
-         background: #FFFFFF;
-         border-radius: 3px;
-         position: relative;
-
-         &.focus {
-            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
-            filter: none;
-         }
-
-         .background {
-            background-size: cover;
-            height: 28px;
-            border-radius: 3px 3px 0 0;
-
-         }
-
-         .lines {
-            padding: 6px 4px 4px 6px;
-            position: relative;
-
-            .lines_1 {
-               background: #6B778C;
-               height: 4px;
-               border-radius: 2px;
-               width: 122px;
-            }
-
-            .lines_2 {
-               background: #6B778C;
-               height: 4px;
-               border-radius: 2px;
-               width: 98px;
-               margin-top: 4px;
-            }
-
-            .lines_3 {
-               display: flex;
-               margin-top: 6px;
-
-               .lines_3_1,
-               .lines_3_2 {
-                  width: 16px;
-                  height: 6px;
-                  background: #6B778C;
-                  border-radius: 2px;
-                  margin-right: 2px;
-               }
-            }
-
-            .lines_4 {
-               position: absolute;
-               width: 10px;
-               height: 10px;
-               right: 4px;
-               bottom: 4px;
-               background: #6B778C;
-               border-radius: 5px;
-            }
-         }
-
-      }
-
-      .box-full {
-         height: 62px;
-         cursor: pointer;
-         background: #FFFFFF;
-         border-radius: 3px;
-         position: relative;
-         background-size: cover;
-         background-position: center;
-
-         &.focus {
-            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
-            filter: none;
-         }
-
-         .lines {
-            position: absolute;
-            bottom: 4px;
-            padding: 6px 4px 4px 6px;
-
-            .lines_1 {
-               background: #6B778C;
-               width: 116px;
-               height: 4px;
-               border-radius: 2px;
-            }
-
-            .lines_2 {
-               background: #6B778C;
-               width: 92px;
-               margin-top: 4px;
-               height: 4px;
-               border-radius: 2px;
-            }
-         }
-
-      }
-
-      :hover {
-         filter: saturate(85%) brightness(85%);
+      img {
+         border: 0;
       }
    }
-
-   .cover-btn {
-      @include button-link();
-      grid-column: 1 / -1;
-      text-align: center;
-   }
-}
-
-.textcolor-section {
-   .label {
-      @include task-sub-header()
-   }
-
-   .box-container {
-      display: grid;
-      gap: 10px;
-      padding: 4px;
-      margin: 0 -4px;
-      overflow-x: hidden;
-      grid-template-columns: 1fr 1fr;
-
-      .box-full {
-         height: 20px;
-         cursor: pointer;
-         background: #FFFFFF;
-         position: relative;
-         background-size: cover;
-         background-position: center;
-         padding: 6px 10px 6px 12px;
-         box-sizing: unset;
-         overflow: hidden;
-         white-space: nowrap;
-
-         &.focus {
-            box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
-            filter: none;
-         }
-
-
-         h3 {
-            color: #FFFFFF;
-            margin-bottom: 0;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-size: 14px;
-            line-height: 20px;
-            font-weight: 600;
-            margin: 0 0 8px;
-
-            &.dark {
-               color: #172b4d;
-            }
-         }
-      }
-
-      :hover {
-         filter: saturate(85%) brightness(85%);
-      }
-   }
-
 }
 
 .create-board-background {
@@ -214,6 +58,16 @@
          &:hover {
             filter: saturate(85%) brightness(85%);
          }
+   
+         &:focus {
+            filter: saturate(60%) brightness(60%);
+
+            &::after {
+               content: "✓";
+               color: white;
+
+            }
+         }
       }
 
    }
@@ -241,106 +95,108 @@
          &:hover {
             filter: saturate(85%) brightness(85%);
          }
+   
+         &:focus {
+            filter: saturate(60%) brightness(60%);
+
+            &::after {
+               content: "✓";
+               color: white;
+
+            }
+         }
       }
    }
 }
 
-
-
-.attachments-section {
-
+.create-board-title {
    .label {
       @include task-sub-header();
-      margin-top: 16px;
-      margin-bottom: 4px;
+      margin-top: 12px;
+      margin-bottom: 0px;
+
+      span {
+         color: #eb5a46;
+      }
    }
 
-   .box-container {
-      display: grid;
-      gap: 8px;
-      padding: 4px;
-      margin: 0 -4px;
-      overflow-x: hidden;
-      grid-template-columns: 1fr 1fr 1fr;
-      background-size: contain;
-
-      .box-full {
-         background-size: contain;
-         background-color: transparent;
-         margin: 0;
-         border-radius: 3px;
-         height: 72px;
+   .board-title {
+      input {
+         margin: 0 0 12px;
          width: 100%;
-         background-size: cover;
-         background-repeat: no-repeat;
-         background-position: center;
-         box-shadow: none;
-         height: 48px;
-         width: 88px;
+         background-color: #fafbfc;
+         border: none;
+         border-radius: 3px;
+         box-shadow: inset 0 0 0 2px #eb5a46;
+         box-sizing: border-box;
+         display: block;
+         line-height: 20px;
+         margin-bottom: 6px;
+         outline: none;
+         padding: 8px 12px;
+         transition-duration: 85ms;
+         transition-property: background-color, border-color, box-shadow;
+         transition-timing-function: ease;
+         color: #172b4d;
+         font-size: 14px;
+         font-weight: 400;
 
-         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #0079bf;
-         filter: none;
+         &:focus {
+            background-color: #fff;
+            box-shadow: inset 0 0 0 2px #0079bf;
+         }
+
+         &:hover {
+            box-shadow: inset 0 0 0 2px #eb5a46;
+            background-color: #ebecf0;
+         }
       }
 
-      :hover {
-         box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #5ba4cf;
-         filter: none;
+   }
+
+   .title-msg {
+      display: flex;
+      flex-direction: row;
+      margin-top: 4px;
+
+      span {
+         margin-right: 8px;
+      }
+
+      p {
+         margin: 0 0 8px;
+         color: #172b4d;
+         font-size: 14px;
+         line-height: 20px;
+         font-weight: 400;
       }
 
    }
 
    .cover-btn {
       @include button-link();
-      grid-column: 1 / -1;
       text-align: center;
-   }
-}
+      background-color: rgba(9, 30, 66, 0.04);
+      box-shadow: none;
+      border: none;
+      color: #a5adba;
+      cursor: not-allowed;
 
-.unsplash-section {
-
-   .label {
-      @include task-sub-header();
-      margin-top: 16px;
-      margin-bottom: 4px;
-   }
-
-   .box-container {
-      display: grid;
-      gap: 8px;
-      padding: 4px;
-      margin: 0 -4px;
-      overflow-x: hidden;
-      grid-template-columns: 1fr 1fr 1fr;
-      background-size: contain;
-
-      .box-full {
-         background-size: contain;
-         background-color: transparent;
-         margin: 0;
-         border-radius: 3px;
-         height: 72px;
-         width: 100%;
-         background-size: cover;
-         background-repeat: no-repeat;
-         background-position: center;
+      &.allowed {
+         background-color: #0079bf;
          box-shadow: none;
-         height: 48px;
-         width: 88px;
-         filter: none;
-      }
+         border: none;
+         color: #ffffff;
+         cursor: pointer;
 
-      :hover {
-         filter: saturate(85%) brightness(85%);
+         &:hover {
+            background-color: #026aa7;
+            box-shadow: none;
+            border: none;
+            color: #ffffff;
       }
 
    }
 
-   .cover-btn {
-      @include button-link();
-      grid-column: 1 / -1;
-      text-align: center;
-   }
 }
-
-
-
+}

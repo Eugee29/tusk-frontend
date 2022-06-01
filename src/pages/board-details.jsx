@@ -11,6 +11,8 @@ import { BoardHeader } from '../cmps/board-header.jsx'
 import { GroupList } from '../cmps/group-list.jsx'
 import { utilService } from '../services/util.service.js'
 import { type } from '@testing-library/user-event/dist/type'
+import { socketService } from '../services/socket.service.js'
+
 
 export const BoardDetails = () => {
   const params = useParams()
@@ -20,7 +22,7 @@ export const BoardDetails = () => {
 
   useEffect(() => {
     loadBoard()
-  }, [])
+  }, [boards])
 
   const loadBoard = async () => {
     const board = await boardService.getById(params.boardId)
@@ -39,6 +41,7 @@ export const BoardDetails = () => {
       setBoard(board)
       await dispatch(updateBoard(board))
     }
+    socketService.emit('emit-any-change', 'emit from onUpdateBoard')
   }
 
   const addActivity = (board, activity) => {
@@ -53,7 +56,7 @@ export const BoardDetails = () => {
   if (!board) return <h1>Loading..</h1>
 
   return (
-    <main className='board-details' onClick={closeModal} style={{ backgroundImage: `url(${board.style.bgImg})` }}>
+    <main className='board-details' onClick={closeModal} style={{ background: board.style.bgImg.length > 10 ? `url(${board.style.bgImg})` : `${board.style.bgImg}` }}>
       <BoardHeader board={board} onUpdateBoard={onUpdateBoard} />
       <GroupList board={board} onUpdateBoard={onUpdateBoard} />
       <Outlet context={{ onUpdateBoard, board }} />

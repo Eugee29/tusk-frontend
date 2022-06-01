@@ -26,7 +26,7 @@ export const ModalMember = ({ task, board, updateTask }) => {
 
     setTaskMembers(updatedTaskMembers)
     updateTask({ ...task, members: updatedTaskMembers })
-    socketService.emit('emit-any-change', 'Toggle member')
+    // socketService.emit('emit-any-change', 'Toggle member')
   }
 
   const handleChange = ({ target }) => {

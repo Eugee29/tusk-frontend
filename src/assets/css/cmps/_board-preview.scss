@@ -19,11 +19,10 @@
       width: 48%;
    }
 
-
    .board-tile {
       background-color: $brand-clr11;
-      background-position: 50%;
-      background-size: cover;
+      // background-position: 50%;
+      // background-size: cover;
       color: $font-clr1;
       line-height: 20px;
       padding: 8px;
@@ -31,6 +30,8 @@
       text-decoration: none;
       border-radius: 3px;
       display: block;
+      background-position: 50% !important;
+      background-size: cover !important;
    }
 
    .board-tile-details {
