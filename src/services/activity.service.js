@@ -8,15 +8,6 @@ export const activityService = {
 }
 
 function getActivityUpdatedBoard(board, activity) {
-<<<<<<< HEAD
-    // const byMember = getMember() // WHEN WE HAVE USERS
-    const byMember = { fullName: 'Guest' }
-=======
-  //activity = {task?: *TASKID*, action: {actionType, element}}
-
-  // const byMember = getMember() // WHEN WE HAVE USERS
-  const byMember = { fullName: 'Guest' }
->>>>>>> 2a53f7f24b1441bc6467671e6d2ece28861ad23d
 
   let isComment = false
   if (activity.actionType === 'comment') isComment = true
