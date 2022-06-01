@@ -15,15 +15,15 @@ import { ModalGroupActions } from './modal/modal-group-actions'
 import { ModalCover } from './modal/modal-cover'
 import { ModalMember } from './modal/modal-member'
 import { ModalLabel } from './modal/modal-label'
-import { TodoActions } from './checklist/todo-actions'
-import { ChecklistDelete } from './checklist/checklist-delete'
-import { ChecklistAdd } from './checklist/checklist-add'
+import { TodoActions } from './modal/todo-actions'
+import { ChecklistDelete } from './modal/checklist-delete'
+import { ChecklistAdd } from './modal/checklist-add'
 
 
 export const DynamicModal = () => {
 
   const { modal } = useSelector(({ appModule }) => appModule)
-  const [modalPosition, setModalPosition] = useState(null)
+  const [position, setPosition] = useState(null)
   const dispatch = useDispatch()
   const editLabel = useRef('')
   const buttonRef = useRef()
@@ -35,7 +35,6 @@ export const DynamicModal = () => {
   }
 
   useEffect(() => {
-    adjustPosition()
     window.addEventListener('resize', adjustPosition)
     return () => window.removeEventListener('resize', adjustPosition)
   }, [])
@@ -43,7 +42,6 @@ export const DynamicModal = () => {
   useEffect(() => {
     adjustPosition()
   }, [modal.element])
-
 
   const adjustPosition = () => {
     const position = utilService.getPosition(modal.element)
@@ -54,7 +52,7 @@ export const DynamicModal = () => {
     if (position.left + modalRef.current.offsetWidth > window.innerWidth) {
       position.left += window.innerWidth - position.left - (modalRef.current.offsetWidth) * 1.25
     }
-    setModalPosition(position)
+    setPosition(position)
   }
 
   var cmp
@@ -134,7 +132,7 @@ export const DynamicModal = () => {
   }
 
   return (
-    <div className="dynamic-modal" style={{ ...modalPosition }} ref={modalRef} onClick={(e) => e.stopPropagation()}>
+    <div className="dynamic-modal" style={{ ...position }} ref={modalRef} onClick={(e) => e.stopPropagation()}>
       <header >
         {modal.category === 'Create label' && <button ref={buttonRef} onClick={ev => onOpenModal(ev, 'Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
         {modal.category === 'Change label' && <button ref={buttonRef} onClick={ev => onOpenModal(ev, 'Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}

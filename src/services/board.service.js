@@ -7,16 +7,16 @@ import { utilService } from './util.service.js'
 const axios = require('axios').default
 
 export const boardService = {
-   query,
-   getById,
-   save,
-   remove,
-   // getTask,
-   getEmptyTodo,
-   getEmptyTask,
-   getEmptyGroup,
-   getEmptyChecklist,
-   getEmptyBoard
+  query,
+  getById,
+  save,
+  remove,
+  // getTask,
+  getEmptyTodo,
+  getEmptyTask,
+  getEmptyGroup,
+  getEmptyChecklist,
+  getEmptyBoard
 }
 
 //Request (Rest:GET) all Data from Backend
@@ -26,7 +26,7 @@ async function query(filterBy = {}) {
     // return await httpService.get('board/', { params:  filterBy  })
     return await httpService.get('board/', { filterBy })
   } catch (err) {
-    console.log('cant get boards!')
+    ('cant get boards!')
     throw err
   }
 }
@@ -36,7 +36,7 @@ async function getById(boardId) {
   try {
     return await httpService.get(`board/${boardId}`)
   } catch (err) {
-    console.log('cant get board by id!')
+    ('cant get board by id!')
     throw err
   }
 }
@@ -46,7 +46,7 @@ async function remove(boardId) {
   try {
     return await httpService.delete(`board/${boardId}`)
   } catch (err) {
-    console.log('cant delete board')
+    ('cant delete board')
     throw err
   }
 }
@@ -60,7 +60,7 @@ async function save(board) {
       return await httpService.post(`board/`, board)
     }
   } catch (err) {
-    console.log('cant save board')
+    ('cant save board')
     throw err
   }
 }
@@ -96,68 +96,68 @@ function getEmptyGroup(title) {
 }
 
 function getEmptyTodo() {
-   return {
-      id: utilService.makeId(),
-      isDone: false,
-      title: ''
-   }
+  return {
+    id: utilService.makeId(),
+    isDone: false,
+    title: ''
+  }
 }
 
 function getEmptyChecklist() {
-   return {
-      id: utilService.makeId(),
-      title: '',
-      todos: []
-   }
+  return {
+    id: utilService.makeId(),
+    title: '',
+    todos: []
+  }
 }
 
 function getEmptyBoard() {
-   return {
-      "title": "",
-      "archivedAt": null,
-      "createdAt": 0,
-      "isStarred": false,
-      "createdBy": {
-         "_id": "",
-         "fullname": "",
-         "username": "",
-         "imgURL": ""
+  return {
+    "title": "",
+    "archivedAt": null,
+    "createdAt": 0,
+    "isStarred": false,
+    "createdBy": {
+      "_id": "",
+      "fullname": "",
+      "username": "",
+      "imgURL": ""
+    },
+    "style": {},
+    "labels": [
+      {
+        "id": "l101",
+        "title": "",
+        "color": "#63be53"
       },
-      "style": {},
-      "labels": [
-         {
-            "id": "l101",
-            "title": "",
-            "color": "#63be53"
-         },
-         {
-            "id": "l102",
-            "title": "",
-            "color": "#eed62b"
-         },
-         {
-            "id": "l103",
-            "title": "",
-            "color": "#fa9e30"
-         },
-         {
-            "id": "l104",
-            "title": "",
-            "color": "#e6574c"
-         },
-         {
-            "id": "l105",
-            "title": "",
-            "color": "#c374df"
-         },
-         {
-            "id": "l106",
-            "title": "",
-            "color": "#2579bd"
-         }
-      ],
-      "members": [],
-      "groups": [],
-      "activities": []
-   }
+      {
+        "id": "l102",
+        "title": "",
+        "color": "#eed62b"
+      },
+      {
+        "id": "l103",
+        "title": "",
+        "color": "#fa9e30"
+      },
+      {
+        "id": "l104",
+        "title": "",
+        "color": "#e6574c"
+      },
+      {
+        "id": "l105",
+        "title": "",
+        "color": "#c374df"
+      },
+      {
+        "id": "l106",
+        "title": "",
+        "color": "#2579bd"
+      }
+    ],
+    "members": [],
+    "groups": [],
+    "activities": []
+  }
 }

@@ -8,7 +8,7 @@ export const SOCKET_EMIT_USER_WATCH = 'user-watch'
 export const SOCKET_EVENT_USER_UPDATED = 'user-updated'
 export const SOCKET_EVENT_REVIEW_ADDED = 'review-added'
 export const SOCKET_EVENT_REVIEW_ABOUT_YOU = 'review-about-you'
-export const SOCKET_EMIT_TYPE_MSG = 'type addMsg';
+export const SOCKET_EMIT_TYPE_MSG = 'type addMsg'
 
 export const SOCKET_EVENT_ADD_MEMBER = 'add-member'
 export const SOCKET_EMIT_EVENT_MEMBER_ADDED = 'event-add-member'
@@ -26,11 +26,11 @@ export const socketService = createSocketService()
 socketService.setup()
 
 function createSocketService() {
-  var socket = null;
+  var socket = null
   const socketService = {
     setup() {
       socket = io(baseUrl)
-      setTimeout(()=>{
+      setTimeout(() => {
         const user = userService.getLoggedinUser()
         if (user) this.login(user._id)
       }, 500)
@@ -39,7 +39,7 @@ function createSocketService() {
       socket.on(eventName, cb)
     },
     off(eventName, cb = null) {
-      if (!socket) return;
+      if (!socket) return
       if (!cb) socket.removeAllListeners(eventName)
       else socket.off(eventName, cb)
     },
@@ -61,7 +61,7 @@ function createSocketService() {
 }
 
 // Basic Tests
-// function cb(x) {console.log('Socket Test - Expected Puk, Actual:', x)}
+// function cb(x) {('Socket Test - Expected Puk, Actual:', x)}
 // socketService.on('baba', cb)
 // socketService.on('baba', cb)
 // socketService.on('baba', cb)

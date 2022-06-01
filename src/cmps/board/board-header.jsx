@@ -18,7 +18,6 @@ export function BoardHeader({ board, onUpdateBoard }) {
 
   const updateBoard = () => {
     const newBoard = { ...board, isStarred: !isStarred }
-    console.log(newBoard)
     onUpdateBoard(newBoard)
   }
 

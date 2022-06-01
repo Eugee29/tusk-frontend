@@ -11,20 +11,8 @@ export function LabelList({ labelIds, board, toggleLabels, isLabelsOpen }) {
   const [boardLabels, setBoardLabels] = useState()
   const [taskLabels, setTaskLabels] = useState(labelIds)
 
-  // useEffect(() => {
-  //   ; (async () => {
-  //     const board = await getBoard(boardId)
-  //     setBoardLabels(board.labels)
-  //   })()
-  // }, [])
-
-  // const getBoard = async (boardId) => {
-  //   return await boardService.getById(boardId)
-  // }
-
   useEffect(() => {
     setBoardLabels(board.labels)
-    // console.log('LabelList', labelIds);
     setTaskLabels(labelIds)
   }, [labelIds])
 
