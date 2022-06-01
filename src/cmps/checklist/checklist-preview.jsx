@@ -74,7 +74,6 @@ export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updat
   }
 
 
-
   const deleteChecklist = () => {
     const updatedChecklists = checklists.filter(currChecklist => checklist.id !== currChecklist.id)
     updateTask({ ...task, checklists: updatedChecklists })
