@@ -9,8 +9,8 @@ import { socketService } from '../services/socket.service.js'
 import { setModal } from '../store/app/app.actions'
 import { updateBoard } from '../store/board/board.action.js'
 
-import { BoardHeader } from '../cmps/board-header.jsx'
-import { GroupList } from '../cmps/group-list.jsx'
+import { BoardHeader } from '../cmps/board/board-header.jsx'
+import { GroupList } from '../cmps/group/group-list.jsx'
 
 
 export const BoardDetails = () => {

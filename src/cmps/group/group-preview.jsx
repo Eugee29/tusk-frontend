@@ -1,17 +1,15 @@
-import React, { useRef } from "react"
-import { useState } from "react"
+import React, { useRef, useState } from "react"
+import { useDispatch } from "react-redux"
 import { useParams } from "react-router-dom"
+import { Draggable } from 'react-beautiful-dnd'
 
-import { utilService } from "../services/util.service"
-import { setModal } from '../store/app/app.actions'
+import { setModal } from '../../store/app/app.actions'
 
 import { BsThreeDots } from 'react-icons/bs'
 import { AiOutlinePlus } from 'react-icons/ai'
-import { Draggable } from 'react-beautiful-dnd'
-
 
 import { TaskList } from './task-list'
-import { useDispatch } from "react-redux"
+
 
 export const GroupPreview = ({ group, index, toggleLabels, board, isLabelsOpen, onUpdateGroup, onUpdateBoard }) => {
   const dispatch = useDispatch()

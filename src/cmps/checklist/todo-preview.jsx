@@ -1,10 +1,12 @@
+import { useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
+
+import { setModal } from '../../store/app/app.actions'
+import { utilService } from '../../services/util.service'
+
 import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
 import { BsThreeDots } from 'react-icons/bs'
 import { VscClose } from 'react-icons/vsc'
-import { useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { setModal } from '../store/app/app.actions'
-import { utilService } from '../services/util.service'
 
 export const TodoPreview = (props) => {
   const [todo, setTodo] = useState(props.todo)

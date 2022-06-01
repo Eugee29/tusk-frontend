@@ -2,18 +2,19 @@
 import React, { useState, } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useOutletContext, useParams } from "react-router-dom"
+
 import { VscClose } from 'react-icons/vsc'
 
 import { setModal } from '../store/app/app.actions.js'
 
-import { TaskDetailsCover } from '../cmps/task-details-cover.jsx'
-import { TaskDetailsTitle } from '../cmps/task-details-title.jsx'
-import { TaskDetailsInfo } from '../cmps/task-details-info.jsx'
-import { TaskDetailsDescription } from '../cmps/task-details-description.jsx'
-import { TaskDetailsAttachments } from '../cmps/task-details-attachments.jsx'
-import { TaskDetailsActivity } from '../cmps/task-details-activity.jsx'
-import { TaskDetailsSideTask } from '../cmps/task-details-side-task.jsx'
-import { ChecklistList } from '../cmps/checklist-list.jsx'
+import { TaskDetailsCover } from '../cmps/task-details/task-details-cover.jsx'
+import { TaskDetailsTitle } from '../cmps/task-details/task-details-title.jsx'
+import { TaskDetailsInfo } from '../cmps/task-details/task-details-info.jsx'
+import { TaskDetailsDescription } from '../cmps/task-details/task-details-description.jsx'
+import { TaskDetailsAttachments } from '../cmps/task-details/task-details-attachments.jsx'
+import { TaskDetailsActivity } from '../cmps/task-details/task-details-activity.jsx'
+import { TaskDetailsSideTask } from '../cmps/task-details/task-details-side-task.jsx'
+import { ChecklistList } from '../cmps/checklist/checklist-list.jsx'
 
 export const TaskDetails = () => {
 

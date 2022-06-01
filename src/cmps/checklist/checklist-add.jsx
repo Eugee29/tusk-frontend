@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { boardService } from '../services/board.service'
+import { boardService } from '../../services/board.service'
 
-import { setModal } from '../store/app/app.actions'
+import { setModal } from '../../store/app/app.actions'
 
 export const ChecklistAdd = ({ updateTask, task }) => {
   const [title, setTitle] = useState('Checklist')

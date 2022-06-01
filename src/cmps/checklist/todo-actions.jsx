@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux'
-import { setModal } from '../store/app/app.actions'
+import { setModal } from '../../store/app/app.actions'
 
 export const TodoActions = ({ checklist, updateChecklist, todoId }) => {
 

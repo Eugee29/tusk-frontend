@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useParam } from 'react'
 
-import { socketService } from '../services/socket.service.js'
+import { socketService } from '../../services/socket.service.js'
 import { BsCheck2 } from 'react-icons/bs'
 
 export const ModalMember = ({ task, board, updateTask }) => {
