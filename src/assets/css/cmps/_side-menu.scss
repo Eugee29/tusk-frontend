@@ -1,155 +1,164 @@
 @keyframes open-menu {
-    0% {
-        right: -339px;
-    }
+  0% {
+    right: -339px;
+  }
 
-    100% {
-        right: 0%;
-    }
+  100% {
+    right: 0%;
+  }
 }
 
 @keyframes close-menu {
-    0% {
-        right: 0%;
-    }
+  0% {
+    right: 0%;
+  }
 
-    100% {
-        right: -339px;
-    }
+  100% {
+    right: -339px;
+  }
 }
 
 .side-menu {
-    position: absolute;
-    top: 44px;
-    width: 339px;
-    padding: 0px 4px;
-    height: calc(100vh - 44px);
-    background-color: #ffff;
-    z-index: 10000;
-    box-shadow: 0 8px 16px -4px #091e4240, 0 0 0 1px #091e4214;
+  position: absolute;
+  top: 44px;
+  width: 339px;
+  padding: 0px 4px;
+  height: calc(100vh - 44px);
+  background-color: #ffff;
+  z-index: 10000;
+  box-shadow: 0 8px 16px -4px #091e4240, 0 0 0 1px #091e4214;
+  display: flex;
+  flex-direction: column;
+
+  h3 {
+    color: $font-clr2;
+  }
+
+  .activities {
     display: flex;
     flex-direction: column;
+    gap: 17px;
+    overflow-y: auto;
+    height: 100%;
+    padding: 12px 6px;
+
+    @include custom-scrollbar
+  }
+
+  .activity {
+    display: flex;
+    align-items: flex-start;
+
+    .activity-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      flex: 11
+    }
 
     h3 {
-        color: $font-clr2;
+      line-height: 14px;
+
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+
+
+      span {
+        font-weight: 700;
+        color: black
+      }
     }
 
-    .activities {
-        padding: 0 6px;
-        display: flex; 
-        flex-direction: column;
-        gap: 17px;
+    .member-img {
+      flex: 1;
+      cursor: pointer;
+      float: left;
+      border-radius: 50%;
+      text-transform: uppercase;
+      aspect-ratio: 1/1;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      align-items: center;
+      object-fit: cover;
+      background-color: tomato;
+      margin-right: 8px;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
 
-    .activity {
-        display: flex;
-        align-items: flex-start;
-        
-        .activity-info {
-            display: flex;
-            flex-direction: column;
-            flex:11
-        }
+  }
 
-        h3 {
-            font-size: 14px;
-            font-weight: 400;
-            line-height: 20px;
+  .menu-title {
+    line-height: 20px;
+    margin: 14px 7px 0px 7px;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 600;
+    border-bottom: lighten($font-clr2, 60%) 1px solid;
+    // position: fixed;
+
+    h3 {
+      margin-bottom: 14px;
+    }
+  }
 
 
-            span {
-                font-weight: 700;
-                color: black
-            }
-        }
+  .x-btn {
+    display: flex;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    align-items: center;
+    border: none;
+    background-color: none;
+    height: 32px;
+    color: lighten($font-clr3, 5%);
 
-        .member-img {
-            flex: 1;
-            cursor: pointer;
-            float: left;
-            border-radius: 50%;
-            text-transform: uppercase;
-            aspect-ratio: 1/1;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            justify-content: center;
-            align-content: center;
-            align-items: center;
-            object-fit: cover;
-            margin-right: -5px;
-            background-color: tomato;
-            margin-right: 8px;
-
-            &:hover {
-                opacity: 0.8;
-            }
-        }
-
+    &:hover {
+      color: darken($font-clr3, 20%)
     }
 
-    .menu-title {
-        line-height: 20px;
-        margin: 14px 7px;
-        overflow: hidden;
-        text-align: center;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        font-weight: 600;
-        border-bottom: lighten($font-clr2, 60%) 1px solid;
-
-        h3 {
-            margin-bottom: 14px;
-        }
+    .x-icon {
+      height: 26px;
+      width: 26px;
     }
+  }
 
 
-    .x-btn {
-        display: flex;
-        position: absolute;
-        right: 6px;
-        top: 6px;
-        align-items: center;
-        border: none;
-        background-color: none;
-        height: 32px;
-        color: lighten($font-clr3, 5%);
+  &.closed {
+    right: -339px;
 
-        &:hover {
-            color: darken($font-clr3, 20%)
-        }
+    animation-name: close-menu;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-delay: 0s;
+    animation-direction: forwards;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+  }
 
-        .x-icon {
-            height: 26px;
-            width: 26px;
-        }
-    }
+  &.opened {
+    right: 0px;
+
+    animation-name: open-menu;
+    animation-duration: 0.3s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-out;
+    animation-delay: 0s;
+    animation-direction: forwards;
+    animation-play-state: running;
+    animation-fill-mode: forwards;
+  }
 
 
-    &.closed {
-        right: -339px;
-
-        animation-name: close-menu;
-        animation-duration: 0.3s;
-        animation-iteration-count: 1;
-        animation-timing-function: ease-out;
-        animation-delay: 0s;
-        animation-direction: forwards;
-        animation-play-state: running;
-        animation-fill-mode: forwards;
-    }
-
-    &.opened {
-        right: 0px;
-
-        animation-name: open-menu;
-        animation-duration: 0.3s;
-        animation-iteration-count: 1;
-        animation-timing-function: ease-out;
-        animation-delay: 0s;
-        animation-direction: forwards;
-        animation-play-state: running;
-        animation-fill-mode: forwards;
-    }
 
 }

@@ -6,6 +6,7 @@ import { boardService } from '../services/board.service'
 
 export function LabelList({ labelIds, toggleLabels, isLabelsOpen }) {
 
+
   const { boardId } = useParams()
 
   const [boardLabels, setBoardLabels] = useState()

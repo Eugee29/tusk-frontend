@@ -68,7 +68,9 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      color: $font-clr3
+      color: $font-clr3;
+      margin-top: 10px;
+      margin-left: -2px;
     }
 
     .icon-num-container {
@@ -85,9 +87,8 @@
       width: 65px;
       border-radius: 3px;
       padding: 0px 4px;
-      gap: 5px;
-      color: #ffff;
-      background-color: #ec9488;
+      // color: #ffff;
+      // background-color: #ec9488;
     }
 
     .attachment-icon {

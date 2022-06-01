@@ -1,3 +1,5 @@
+import { utilService } from '../services/util.service'
+
 import { IoMdClose } from 'react-icons/io'
 
 export function SideMenu({ onToggleMenu, dynamicClass, board }) {
@@ -11,7 +13,7 @@ export function SideMenu({ onToggleMenu, dynamicClass, board }) {
                     : <div className='member-img'> G </div>}
                 <div className='activity-info'>
                     <h3 className='activity-text'> <span>{activity.byMember.fullName}</span> {activity.txt} </h3>
-                    <h3 className='activity-time'> {activity.createdAt} </h3>
+                    <h3 className='activity-time'> {utilService.getTimeAgo(activity.createdAt)} </h3>
                 </div>
             </div>)}
         </div>
