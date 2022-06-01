@@ -11,7 +11,14 @@ export const ChecklistList = ({ task, updateTask }) => {
 
   return (
     <ul className='checklist-list'>
-      {checklists.map(checklist => <ChecklistPreview key={checklist.id} checklist={checklist} updateChecklist={updateChecklist} checklists={checklists} updateTask={updateTask} task={task} />)}
+      {checklists.map(checklist =>
+        <ChecklistPreview
+          key={checklist.id}
+          checklist={checklist}
+          updateChecklist={updateChecklist}
+          checklists={checklists}
+          updateTask={updateTask}
+          task={task} />)}
     </ul>
   )
 }

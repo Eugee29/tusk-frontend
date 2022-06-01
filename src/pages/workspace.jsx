@@ -6,35 +6,33 @@ import { loadBoards, updateBoard } from '../store/board/board.action.js'
 
 export const Workspace = () => {
 
-   const [boards, setBoards] = useState(null)
-   // const { boards: boardsFromStore } = useSelector((storeState) => storeState.boardModule)
-   const dispatch = useDispatch()
+  const [boards, setBoards] = useState(null)
+  // const { boards: boardsFromStore } = useSelector((storeState) => storeState.boardModule)
+  const dispatch = useDispatch()
 
-   useEffect(() => {
-      loadBoardsAsync()
-   }, [])
+  useEffect(() => {
+    loadBoardsAsync()
+  }, [])
 
-   const loadBoardsAsync = async () => {
-      const boardsFromService = await dispatch(loadBoards())
-      console.log('boardsFromSrevice', boardsFromService);
-      setBoards(boardsFromService)
-   }
+  const loadBoardsAsync = async () => {
+    const boardsFromService = await dispatch(loadBoards())
+    console.log('boardsFromSrevice', boardsFromService)
+    setBoards(boardsFromService)
+  }
 
-   const onUpdateBoard = async (updatedBoard) => {
-      console.log('updatedBoard', updatedBoard);
+  const onUpdateBoard = async (updatedBoard) => {
+    console.log('updatedBoard', updatedBoard)
 
-      const savedBoard = await dispatch(updateBoard(updatedBoard))
-      const boardIdx = boards.findIndex(board => board._id === updatedBoard._id)
-      setBoards(...boards, [boards[boardIdx] = updatedBoard])
+    await dispatch(updateBoard(updatedBoard))
+    const updatedBoards = boards.map(board => board._id === updatedBoard._id ? updatedBoard : board)
+    setBoards(updatedBoards)
+  }
 
-      console.log('savedBoard', savedBoard);
-      console.log(boardIdx);
-      console.log('new board', boards);
-   }
+  if (!boards) return <h1>Loading...</h1>
 
-   return (
-      <main className='workspace'>
-         {boards && <BoardList boards={boards} onUpdateBoard={onUpdateBoard} />}
-      </main>
-   )
+  return (
+    <main className='workspace'>
+      <BoardList boards={boards} onUpdateBoard={onUpdateBoard} />
+    </main>
+  )
 }

@@ -21,7 +21,7 @@ function getActivityUpdatedBoard(board, activity) {
     const newActivity = {
         byMember: {
             //getMember. if (!member) ====>
-            fullName: 'Guest'
+            fullname: 'Guest'
         },
         createdAt: Date.now(),
         id: utilService.makeId(),

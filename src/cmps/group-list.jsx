@@ -10,109 +10,111 @@ import { boardService } from '../services/board.service'
 
 export const GroupList = ({ board, onUpdateBoard }) => {
 
-   const [isLabelsOpen, setIsLabelsOpen] = useState(false)
-   const [isAddGroupOpen, setIsAddGroupOpen] = useState(false)
-   const [newGroupTitle, setNewGroupTitle] = useState('')
+  const [isLabelsOpen, setIsLabelsOpen] = useState(false)
+  const [isAddGroupOpen, setIsAddGroupOpen] = useState(false)
+  const [newGroupTitle, setNewGroupTitle] = useState('')
 
-   const handleChange = (ev) => {
-      setNewGroupTitle(ev.target.value)
-   }
+  const handleChange = (ev) => {
+    setNewGroupTitle(ev.target.value)
+  }
 
-   const toggleLabels = () => {
-      setIsLabelsOpen(!isLabelsOpen)
-   }
+  const toggleLabels = () => {
+    setIsLabelsOpen(!isLabelsOpen)
+  }
 
-   const onAddGroup = async () => {
-      toggleIsAddGroupOpen()
-      if (!newGroupTitle) return
-      const groupToAdd = await boardService.getEmptyGroup(newGroupTitle)
-      addGroup(groupToAdd)
-   }
+  const onAddGroup = async () => {
+    toggleIsAddGroupOpen()
+    if (!newGroupTitle) return
+    const groupToAdd = await boardService.getEmptyGroup(newGroupTitle)
+    addGroup(groupToAdd)
+  }
 
-   const addGroup = (groupToAdd) => {
-      const newBoard = { ...board, groups: [...board.groups, groupToAdd] }
-      const activity = {
-         actionType: 'add group',
-         group: {
-            id: groupToAdd.id,
-            title: groupToAdd.title
-         }
+ 
+  const addGroup = (groupToAdd) => {
+    const newBoard = { ...board, groups: [...board.groups, groupToAdd] }
+    const activity = {
+      actionType: 'add group',
+      group: {
+         id: groupToAdd.id,
+         title: groupToAdd.title
       }
-      onUpdateBoard(newBoard, activity)
-   }
+    }
+    onUpdateBoard(newBoard, activity)
+  }
 
-   const toggleIsAddGroupOpen = () => {
-      setIsAddGroupOpen(!isAddGroupOpen)
-   }
+  const toggleIsAddGroupOpen = () => {
+    setIsAddGroupOpen(!isAddGroupOpen)
+  }
 
-   const getAddGroupClass = () => {
-      const className = (isAddGroupOpen) ? 'add-group open' : 'add-group'
-      return className
-   }
+  const getAddGroupClass = () => {
+    const className = (isAddGroupOpen) ? 'add-group open' : 'add-group'
+    return className
+  }
 
-   const handleOnDragEnd = ({ destination, source, type }) => {
-      if (!destination) return
-      let activity
-      const groupsCopy = [...board.groups]
-      if (type === 'TASK') {
-         const destinationGroup = groupsCopy.find(group => group.id === destination.droppableId)
-         const sourceGroup = groupsCopy.find(group => group.id === source.droppableId)
-         const task = sourceGroup.tasks.splice(source.index, 1)[0]
-         destinationGroup.tasks.splice(destination.index, 0, task)
+  const handleOnDragEnd = ({ destination, source, type }) => {
+    if (!destination) return
+    let activity
+    const groupsCopy = [...board.groups]
+    if (type === 'TASK') {
+      const destinationGroup = groupsCopy.find(group => group.id === destination.droppableId)
+      const sourceGroup = groupsCopy.find(group => group.id === source.droppableId)
+      const task = sourceGroup.tasks.splice(source.index, 1)[0]
+      destinationGroup.tasks.splice(destination.index, 0, task)
 
-         activity = {
-            actionType: 'move',
-            task: {
-               id: task.id,
-               title: task.title
-            },
-            group: {
-               id: destinationGroup.id,
-               title: destinationGroup.title
-            }
-         }
+      activity = {
+        actionType: 'move',
+        task: {
+          id: task.id,
+          title: task.title
+        },
+        group: {
+          title: destinationGroup.title,
+          id: destinationGroup.id
+        } 
       }
-      if (type === 'GROUP') {
-         const group = groupsCopy.splice(source.index, 1)[0]
-         groupsCopy.splice(destination.index, 0, group)
-      }
-      onUpdateBoard({ ...board, groups: groupsCopy }, activity)
-   }
+    }
+    if (type === 'GROUP') {
+      const group = groupsCopy.splice(source.index, 1)[0]
+      groupsCopy.splice(destination.index, 0, group)
+    }
+    onUpdateBoard({ ...board, groups: groupsCopy }, activity)
+  }
 
-   const onUpdateGroup = (groupToUpdate, activity) => {
-      const updatedGroups = board.groups.map(group => group.id === groupToUpdate.id ? groupToUpdate : group)
-      onUpdateBoard({ ...board, groups: updatedGroups }, activity)
-   }
+  const onUpdateGroup = (groupToUpdate, activity) => {
+    const updatedGroups = board.groups.map(group => group.id === groupToUpdate.id ? groupToUpdate : group)
+    onUpdateBoard({ ...board, groups: updatedGroups }, activity)
+  }
 
-   return (
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-         {/* Setting each group to be a droppable area, only for groups, by wrapping is with the Droppable CMP */}
-         <Droppable droppableId='groups' type='GROUP' direction='horizontal'>
-            {provided => (
-               <section className="group-list"
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-               >
-                  {board.groups.map((group, index) => <GroupPreview key={group.id} group={group} index={index} board={board} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} onUpdateGroup={onUpdateGroup} onUpdateBoard={onUpdateBoard} />)}
-                  {provided.placeholder}
+  return (
+    <DragDropContext onDragEnd={handleOnDragEnd}>
+      {/* Setting each group to be a droppable area, only for groups, by wrapping is with the Droppable CMP */}
+      <Droppable droppableId='groups' type='GROUP' direction='horizontal'>
+        {provided => (
+          <section className="group-list"
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            {board.groups.map((group, index) => <GroupPreview key={group.id} group={group} index={index} board={board} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} onUpdateGroup={onUpdateGroup} onUpdateBoard={onUpdateBoard} />)}
+            {provided.placeholder}
 
-                  <div className={getAddGroupClass()}>
+            <div className={getAddGroupClass()}>
 
-                     {!isAddGroupOpen && <button className='add-group-btn' onClick={toggleIsAddGroupOpen}>
-                        <AiOutlinePlus /> Add another list </button>}
-                     {isAddGroupOpen && <React.Fragment>
-                        <input type="text" autoFocus placeholder='Enter list title...' onChange={handleChange} onBlur={onAddGroup} />
-                        <div className='btn-container'>
-                           <button onClick={onAddGroup} className='add-list-btn'> Add list </button>
-                           <button className='x-btn' onClick={toggleIsAddGroupOpen}><IoMdClose className='x-icon' /></button>
-                        </div>
-                     </React.Fragment>
-                     }
-
+              {!isAddGroupOpen && <button className='add-group-btn' onClick={toggleIsAddGroupOpen}>
+                <AiOutlinePlus /> Add another list </button>}
+              {isAddGroupOpen &&
+                <React.Fragment>
+                  <input type="text" autoFocus placeholder='Enter list title...' onChange={handleChange} onBlur={onAddGroup} />
+                  <div className='btn-container'>
+                    <button onClick={onAddGroup} className='add-list-btn'>Add list</button>
+                    <button className='x-btn' onClick={toggleIsAddGroupOpen}><IoMdClose className='x-icon' /></button>
                   </div>
-               </section>
-            )}
-         </Droppable>
-      </DragDropContext >
-   )
+                </React.Fragment>
+              }
+
+            </div>
+          </section>
+        )}
+      </Droppable>
+    </DragDropContext >
+  )
 }
