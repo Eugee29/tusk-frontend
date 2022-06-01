@@ -4,7 +4,6 @@ export const ModalCover = ({ task }) => {
 
    const [isOnPreviewTextColor, setIsOnPreviewTextColor] = useState(false)
 
-
    const onPreviewTextColor = (bool) => {
       setIsOnPreviewTextColor(bool)
    }
