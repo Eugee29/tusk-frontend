@@ -1,7 +1,11 @@
 
 import React, { useState, } from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate, useOutletContext, useParams } from "react-router-dom"
 import { VscClose } from 'react-icons/vsc'
+
+import { setModal } from '../store/app/app.actions.js'
+
 import { TaskDetailsCover } from '../cmps/task-details-cover.jsx'
 import { TaskDetailsTitle } from '../cmps/task-details-title.jsx'
 import { TaskDetailsInfo } from '../cmps/task-details-info.jsx'
@@ -10,8 +14,6 @@ import { TaskDetailsAttachments } from '../cmps/task-details-attachments.jsx'
 import { TaskDetailsActivity } from '../cmps/task-details-activity.jsx'
 import { TaskDetailsSideTask } from '../cmps/task-details-side-task.jsx'
 import { ChecklistList } from '../cmps/checklist-list.jsx'
-import { useDispatch } from 'react-redux'
-import { setModal } from '../store/app/app.actions.js'
 
 export const TaskDetails = () => {
 
@@ -23,7 +25,6 @@ export const TaskDetails = () => {
   const group = board.groups.find(group => group.id === groupId)
   const task = group.tasks.find(task => task.id === taskId)
 
-  // ?
   const [isCloseEdit, setIsCloseEdit] = useState(true)
 
   const updateTask = async (taskToUpdate) => {
@@ -42,27 +43,24 @@ export const TaskDetails = () => {
     dispatch(setModal(null))
   }
 
-  if (!task) return <h1>Loading task...</h1>
+  return (
+    <section className="task-details" onClick={onGoBack}>
+      <div className="task-details-container" onClick={onDetailsClick}>
+        <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
+        <div>
+          {task.style && <TaskDetailsCover task={task} setModal={setModal} />}
+          {task.title && <TaskDetailsTitle title={task.title} board={board} />}
 
-  return <section className="task-details" onClick={onGoBack}>
-    <div className="task-details-container" onClick={onDetailsClick}>
-      <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
-      <div>
-
-        {task?.style && <TaskDetailsCover task={task} setModal={setModal} />}
-        {task?.title && <TaskDetailsTitle title={task.title} board={board} />}
-
-        <div className="main-task">
-          {task && <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />}
-          {task?.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
-          {task?.attachments && <TaskDetailsAttachments task={task} />}
-          {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
-          {task && <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />}
+          <div className="main-task">
+            <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
+            {task.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
+            {task.attachments && <TaskDetailsAttachments task={task} />}
+            {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
+            <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} />
+          </div>
+          <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
         </div>
-
-        <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
-
       </div>
-    </div>
-  </section >
+    </section >
+  )
 }

@@ -19,10 +19,6 @@ export const ModalLabelCreate = ({ task, board, onUpdateBoard, updateTask }) => 
   const dispatch = useDispatch()
 
   useEffect(() => {
-    // searchInput.current.focus();
-  }, [])
-
-  useEffect(() => {
     if (!firstLoad.current) firstLoad.current = true
     else onUpdateBoard(updatedBoard)
   }, [updatedBoard])
