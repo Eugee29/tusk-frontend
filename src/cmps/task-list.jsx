@@ -30,7 +30,9 @@ export const TaskList = ({ group, board, isLabelsOpen, toggleLabels, isAddCardOp
             id: taskToAdd.id,
             title: taskToAdd.title
          },
-         groupTitle: group.title
+         group: {id: group.id,
+            title: group.title,
+         }
       }
       onUpdateGroup(updatedGroup, activity)
    }

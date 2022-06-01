@@ -22,7 +22,10 @@ export function ModalGroupActions({ onUpdateBoard, group, boardId }) {
         const boardToUpdate = { ...board, groups: newGroups }
         const activity = {
             actionType: 'delete group',
-            groupTitle: group.title
+            group: {
+                id: group.id,
+                title: group.title
+             }
         }
         setBoard(boardToUpdate)
         onUpdateBoard(boardToUpdate, activity)

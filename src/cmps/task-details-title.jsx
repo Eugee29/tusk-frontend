@@ -4,7 +4,7 @@ import { CgCreditCard } from 'react-icons/cg'
 
 export function TaskDetailsTitle({ title, board }) {
 
-   console.log('_TaskDetailsTitle', board);
+   // console.log('_TaskDetailsTitle', board);
    return (
       <header className="task-details-title" >
          <span className=""><CgCreditCard /></span>

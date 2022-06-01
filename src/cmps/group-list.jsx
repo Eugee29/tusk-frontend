@@ -33,7 +33,10 @@ export const GroupList = ({ board, onUpdateBoard }) => {
       const newBoard = { ...board, groups: [...board.groups, groupToAdd] }
       const activity = {
          actionType: 'add group',
-         groupTitle: groupToAdd.title
+         group: {
+            id: groupToAdd.id,
+            title: groupToAdd.title
+         }
       }
       onUpdateBoard(newBoard, activity)
    }
@@ -63,7 +66,10 @@ export const GroupList = ({ board, onUpdateBoard }) => {
                id: task.id,
                title: task.title
             },
-            groupTitle: destinationGroup.title
+            group: {
+               id: destinationGroup.id,
+               title: destinationGroup.title
+            }
          }
       }
       if (type === 'GROUP') {
