@@ -28,13 +28,12 @@ function getActivityUpdatedBoard(board, activity) {
 
   const newActivities = [newActivity, ...board.activities]
   const newBoard = { ...board, activities: newActivities }
-    (newBoard)
   return newBoard
 }
 
 function getActivityText(activity, board, onToggleMenu) {
 
-  const linkPath = (activity.group) ? `/board/${board._id}/${activity.group.id}/${activity.task.id}` : null
+  const linkPath = (activity.task) ? `/board/${board._id}/${activity.group.id}/${activity.task.id}` : null
   let text
 
     switch (activity.actionType) {
