@@ -12,7 +12,7 @@ function getActivityUpdatedBoard(board, activity) {
 
     // const byMember = getMember() // WHEN WE HAVE USERS
     const byMember = { fullName: 'Guest' }
-    console.log(activity.actionType)
+    // console.log(activity.actionType)
 
     let isComment = false
     if (activity.actionType === 'comment') isComment = true
@@ -33,7 +33,7 @@ function getActivityUpdatedBoard(board, activity) {
 
     const newActivities = [newActivity, ...board.activities]
     const newBoard = { ...board, activities: newActivities }
-    console.log(newBoard)
+    // console.log(newBoard)
     return newBoard
 }
 
@@ -42,7 +42,7 @@ function getActivityText(activity, board, onToggleMenu) {
     const linkPath = (activity.group) ? `/board/${board._id}/${activity.group.id}/${activity.task.id}` : null
     let text
 
-    console.log(activity)
+    // console.log(activity)
 
     switch (activity.actionType) {
         case 'delete task':
@@ -69,7 +69,7 @@ function getActivityText(activity, board, onToggleMenu) {
         default:
             text = null
     }
-    console.log(text)
+    // console.log(text)
     return text
 }
 

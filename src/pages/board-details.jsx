@@ -28,6 +28,7 @@ export const BoardDetails = () => {
     setBoard(board)
   }
 
+  debugger
   const onUpdateBoard = async (board, activity) => {
     let newBoard
     if (activity) {
