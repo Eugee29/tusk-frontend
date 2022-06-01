@@ -25,7 +25,7 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
       dispatch(setModal({ category, title: category, task, updateTask, board, onUpdateBoard, position: utilService.getPosition(buttonRef.current) }))
    }
 
-   const initials = (member) => ([...member.fullName])
+   const initials = (member) => ([...member.fullname])
    const onLabels = (label) => { return board.labels.filter(boardLabel => boardLabel.id === label)[0] }
 
    const month = new Intl.DateTimeFormat('en', { month: 'short' })

@@ -17,6 +17,8 @@ export const BoardList = ({ boards, onUpdateBoard }) => {
       dispatch(setModal({ category, title: category, position: utilService.getPosition(buttonRef.current) }))
    }
 
+   console.log('BoardList', boards);
+   
    const starredBoards = boards.filter(board => board.isStarred)
    const unStarredBoards = boards.filter(board => !board.isStarred)
 

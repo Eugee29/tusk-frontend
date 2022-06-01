@@ -12,7 +12,7 @@ export function SideMenu({ onToggleMenu, dynamicClass, board }) {
                 {activity.byMember.imgURL ? <div> <img className='member-img' src={activity.byMember.imgURL} alt="..." /> </div>
                     : <div className='member-img'> G </div>}
                 <div className='activity-info'>
-                    <h3 className='activity-text'> <span>{activity.byMember.fullName}</span> {activity.txt} </h3>
+                    <h3 className='activity-text'> <span>{activity.byMember.fullname}</span> {activity.txt} </h3>
                     <h3 className='activity-time'> {utilService.getTimeAgo(activity.createdAt)} </h3>
                 </div>
             </div>)}

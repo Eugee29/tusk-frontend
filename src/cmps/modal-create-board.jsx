@@ -48,6 +48,12 @@ export const ModalCreateBoard = () => {
          username: user.username,
          imgURL: user.imgURL
       }
+      board.members.push({
+         _id: user._id,
+         fullname: user.fullname,
+         username: user.username,
+         imgURL: user.imgURL
+      })
       const newBoard = await dispatch(addBoard(board))
       dispatch(setModal(''))
       history(`/board/${newBoard._id}`)
