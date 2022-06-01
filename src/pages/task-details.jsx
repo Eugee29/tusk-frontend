@@ -51,7 +51,6 @@ export const TaskDetails = () => {
         <div>
           {task.style && <TaskDetailsCover task={task} setModal={setModal} />}
           <TaskDetailsTitle task={task} groupTitle={group.title} updateTask={updateTask} />
-
           <div className="main-task">
             <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
             {task.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}

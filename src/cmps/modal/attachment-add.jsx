@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
 import { setModal } from '../../store/app/app.actions'
 
 import { boardService } from '../../services/board.service'
-import { useDispatch } from 'react-redux'
 import { uploadService } from '../../services/upload.service'
 
 export const AttachmentAdd = ({ task, updateTask }) => {
@@ -17,9 +18,10 @@ export const AttachmentAdd = ({ task, updateTask }) => {
   const addAttachment = async (ev) => {
     ev.preventDefault()
     dispatch(setModal(null))
-    if (!ev.target.files) ev.target.files = [fileURL]
 
+    if (!ev.target.files) ev.target.files = [fileURL]
     let attachment = boardService.getEmptyAttachment()
+
     try {
       const res = await uploadService.uploadImg(ev)
       attachment.fileName = res.original_filename
