@@ -107,16 +107,13 @@ function getDateTimeFormat(date) {
    const month = new Intl.DateTimeFormat('en', { month: 'short' })
    const day = new Intl.DateTimeFormat('en', { day: '2-digit' })
    const time = new Intl.DateTimeFormat('he', { hour: 'numeric', minute: 'numeric' })
-   const displayDate = `${day.format(date)} ${month.format(date)} at ${time.format(date)}`
+   const displayDate = `${month.format(date)} ${day.format(date)} at ${time.format(date)}`
    const displayDateOnly = `${day.format(date)} ${month.format(date)}`
    const statusDate = date > now.setHours(23, 59, 59, 59)
       ? ''
       : (date > Date.now()
          ? 'duesoon'
          : 'overdue')
-
-         // console.log('date', date);
-         // console.log('now', now.getTime());
 
    return { displayDate, statusDate, displayDateOnly }
 }

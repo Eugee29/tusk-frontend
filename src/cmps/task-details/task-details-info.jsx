@@ -9,7 +9,7 @@ import { GrDown } from 'react-icons/gr'
 import { utilService } from '../../services/util.service'
 import { MemberPreview } from './member-preview'
 
-export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
+export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard, group }) => {
 
   const memberRef = useRef()
   const labelsRef = useRef()
@@ -52,7 +52,7 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
         <div className="task-card-info" >
           <h3 className="task-member-title">Members</h3>
           {task.members?.map(member => <MemberPreview key={member._id} member={member} task={task} updateTask={updateTask} isInTaskDetails={true} board={board} onUpdateBoard={onUpdateBoard} />)}
-          <a className="members-add-button round" ref={memberRef} onClick={(ev) => onOpenModal(ev, { element: memberRef.current, category: 'Members', task, updateTask, board, onUpdateBoard })} ><span >+</span></a>
+          <a className="members-add-button round" ref={memberRef} onClick={(ev) => onOpenModal(ev, { element: memberRef.current, category: 'Members', task, updateTask, board, onUpdateBoard, group })} ><span >+</span></a>
         </div>
       }
 
@@ -78,7 +78,7 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
               }
             </div>
             <div className="date" ref={datesRef}>
-              <button className="button-date" type="button" onClick={(ev) => onOpenModal(ev, { element: datesRef.current, category: 'Dates', task, updateTask, board, onUpdateBoard })}>
+              <button className="button-date" type="button" onClick={(ev) => onOpenModal(ev, { element: datesRef.current, category: 'Dates', task, updateTask, board, onUpdateBoard, group })}>
                 <span className="dispaly-date">{dateFormat.displayDate}</span>
                 <span className={`status-date ${dateFormat.statusDate}`} >{dateFormat.statusDate}</span>
                 <span className="arrow-date">< GrDown /></span>

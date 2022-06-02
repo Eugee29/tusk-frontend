@@ -87,6 +87,7 @@ export const DynamicModal = () => {
           task={modal.task}
           updateTask={modal.updateTask}
           board={modal.board}
+          group={modal.group}
         />
       break
     case 'Labels':

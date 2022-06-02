@@ -74,7 +74,6 @@ export function TaskDetailsSideTask({ task, board, group, updateTask, onUpdateBo
     onUpdateBoard({ ...board, groups: updatedGroups })
   }
 
-
   return (
     <section className='side-task'>
 
@@ -111,7 +110,7 @@ export function TaskDetailsSideTask({ task, board, group, updateTask, onUpdateBo
             <span >Checklist</span></a>
 
           <a className='sidebar-button' ref={datesRef}
-            onClick={(ev) => onOpenModal(ev, { element: datesRef.current, category: 'Dates', title: 'Dates', task, updateTask, board, onUpdateBoard })} title='Dates'>
+            onClick={(ev) => onOpenModal(ev, { element: datesRef.current, category: 'Dates', title: 'Dates', task, updateTask, board, onUpdateBoard, group })} title='Dates'>
 
             <span className='sidebar-icon'><FiClock /></span>
             <span >Dates</span>

@@ -9,7 +9,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker'
 
-export const ModalDates = ({ task, updateTask, element }) => {
+export const ModalDates = ({ task, updateTask, element, group }) => {
 
    const modalRef = useRef()
    const [value, setValue] = React.useState(task.dueDate);
@@ -23,9 +23,21 @@ export const ModalDates = ({ task, updateTask, element }) => {
       const newDate = utilService.getNewDateTime(value, time)
       if (newDate) updatedTask.dueDate = newDate
       else updatedTask.dueDate = value
+
+      const activity = {
+        actionType: 'change date',
+        dueDate: updatedTask.dueDate,
+        task: {
+          id: task.id,
+          title: task.title
+        },
+        group: {
+          id: group.id,
+          title: group.title
+        }
+      }
       
-      // console.log(updatedTask.dueDate);
-      updateTask(updatedTask)
+      updateTask(updatedTask, activity)
       dispatch(setModal(null))
    }
 
