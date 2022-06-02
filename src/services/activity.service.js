@@ -58,7 +58,6 @@ function getActivityText(activity, board, diff) {
       taskText = [`added this card to ${activity.group.title}`]
       break
       case 'change date':
-        console.log(activity.dueDate)
         boardText = ['changed the due date of', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${utilService.getDateTimeFormat(activity.dueDate).displayDate}`]
         taskText = [`changed the due date of this card to ${utilService.getDateTimeFormat(activity.dueDate).displayDate}`]
         break

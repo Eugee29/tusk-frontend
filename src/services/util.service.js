@@ -73,7 +73,6 @@ function calcTextareaHeight(value, minHeight, lineHeight) {
 }
 
 function getTimeAgo(timestamp, locale = 'en') {
-   console.log('before', timestamp)
    let value
    const diff = Math.floor((Date.now() - timestamp) / 1000)
    const minutes = Math.floor(diff / 60)
@@ -96,7 +95,6 @@ function getTimeAgo(timestamp, locale = 'en') {
    } else {
       value = rtf.format(0 - diff, "second")
    }
-   console.log('after', value)
    return value
 }
 
@@ -116,9 +114,6 @@ function getDateTimeFormat(date) {
       : (date > Date.now()
          ? 'duesoon'
          : 'overdue')
-
-         // console.log('date', date);
-         // console.log('now', now.getTime());
 
    return { displayDate, statusDate, displayDateOnly }
 }
