@@ -46,14 +46,14 @@ export const DynamicModal = () => {
 
   const adjustPosition = () => {
     const position = utilService.getPosition(modal.element)
-    position.top += (modal.element.offsetHeight) * 1.25 // Gives the modal some space from the button that triggered it.
+    position.top += (modal.element.offsetHeight) * 1.25 // Gives the modal some space from the element that triggered it.
 
-    // Centers the modal if it does not have enough space to open.
+    // Pushes the modal into the viewport when it does not have enough space to open up + 25 padding.
     if (position.top + (modalRef.current.offsetHeight) * 1.25 >= window.innerHeight) {
-      position.top = (window.innerHeight / 2) - (modalRef.current.offsetHeight / 2)
+      position.top = window.innerHeight - modalRef.current.offsetHeight - 25
     }
     if (position.left + modalRef.current.offsetWidth >= window.innerWidth) {
-      position.left = window.innerWidth - modalRef.current.offsetWidth - 5
+      position.left = window.innerWidth - modalRef.current.offsetWidth - 25
     }
 
     setPosition(position)

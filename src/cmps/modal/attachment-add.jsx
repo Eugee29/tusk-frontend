@@ -20,6 +20,7 @@ export const AttachmentAdd = ({ task, updateTask }) => {
     dispatch(setModal(null))
 
     if (!ev.target.files) ev.target.files = [fileURL]
+    if (!task.attachments) task.attachments = []
     let attachment = boardService.getEmptyAttachment()
 
     try {
