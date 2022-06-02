@@ -1,0 +1,13 @@
+.attachment-edit {
+  .input-label {
+    @include modal-label
+  }
+
+  .link-input {
+    @include modal-input;
+  }
+
+  .attach-btn {
+    @include nice-btn($brand-clr2, $font-clr1);
+  }
+}

@@ -20,7 +20,7 @@ export const HomePage = () => {
             </p>
             <form>
               {/* <input type='email' placeholder='Email' /> */}
-              <button type='button' onClick={() => navigate('/workspace')}>Let's get started</button>
+              <button type='button' onClick={() => navigate('/workspace')}>Start demo</button>
             </form>
             {/* <small>or <Link to="/workspace">Continue as Guest</Link></small> */}
           </section>
