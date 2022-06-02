@@ -31,9 +31,9 @@ function getActivityUpdatedBoard(board, activity) {
 }
 
 function getActivityText(activity, board, diff) {
-  
+
   let onToggleMenu, task
-  
+
   if (typeof diff === ('function')) {
     onToggleMenu = diff
     task = false
@@ -45,35 +45,35 @@ function getActivityText(activity, board, diff) {
   const linkPath = (activity.task) ? `/board/${board._id}/${activity.group.id}/${activity.task.id}` : null
   let boardText, taskText
 
-    switch (activity.actionType) {
-        case 'delete task':
-            boardText = ['deleted', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
-            break
+  switch (activity.actionType) {
+    case 'delete task':
+      boardText = ['deleted', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
+      break
 
-        case 'add task':
-            boardText = ['added', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
-            break
+    case 'add task':
+      boardText = ['added', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
+      break
 
-        case 'move':
-            boardText = ['moved', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
-            taskText = [`moved this card from ${activity.group.sourceTitle} to ${activity.group.title}`]
-            break
-        case 'comment':
-            boardText = ['on', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
-            taskText = [null]
-            break
-        case 'delete group':
-            boardText = [`deleted list ${activity.group.title}`]
-            break
-        case 'add group':
-            boardText = [`added ${activity.group.title} to this board`]
-            break
+    case 'move':
+      boardText = ['moved', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
+      taskText = [`moved this card from ${activity.group.sourceTitle} to ${activity.group.title}`]
+      break
+    case 'comment':
+      boardText = ['on', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
+      taskText = [null]
+      break
+    case 'delete group':
+      boardText = [`deleted list ${activity.group.title}`]
+      break
+    case 'add group':
+      boardText = [`added ${activity.group.title} to this board`]
+      break
 
-        default:
-            boardText = null
-    }
-    if (task) return taskText
-    else return boardText
+    default:
+      boardText = null
+  }
+  if (task) return taskText
+  else return boardText
 }
 
 function getTaskActivities(taskId, board) {

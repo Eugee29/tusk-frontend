@@ -18,52 +18,56 @@ import { ChecklistList } from '../cmps/checklist/checklist-list.jsx'
 
 export const TaskDetails = () => {
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const { boardId, groupId, taskId } = useParams()
-  const { board, onUpdateBoard } = useOutletContext()
+   const navigate = useNavigate()
+   const dispatch = useDispatch()
+   const { boardId, groupId, taskId } = useParams()
+   const { board, onUpdateBoard } = useOutletContext()
 
-  const group = board.groups.find(group => group.id === groupId)
-  const task = group.tasks.find(task => task.id === taskId)
+   const group = board.groups.find(group => group.id === groupId)
+   const task = group.tasks.find(task => task.id === taskId)
 
-  const [isCloseEdit, setIsCloseEdit] = useState(true)
+   const updateTask = async (taskToUpdate) => {
+      const taskIdx = group.tasks.findIndex(task => task.id === taskToUpdate.id)
+      group.tasks[taskIdx] = taskToUpdate
+      onUpdateBoard(board)
+   }
 
-  const updateTask = async (taskToUpdate) => {
-    const taskIdx = group.tasks.findIndex(task => task.id === taskToUpdate.id)
-    group.tasks[taskIdx] = taskToUpdate
-    onUpdateBoard(board)
-  }
+   // const updateTask = async (updatedTask) => {
+   //    const taskIdx = group.tasks.findIndex(task => task.id === updatedTask.id)
+   //    group.tasks[taskIdx] = updatedTask
+   //    onUpdateBoard(board)
+   //  }
 
-  const onGoBack = () => {
-    dispatch(setModal(null))
-    navigate(`/board/${boardId}`)
-  }
+   const onGoBack = () => {
+      dispatch(setModal(null))
+      navigate(`/board/${boardId}`)
+   }
 
-  const onDetailsClick = (ev) => {
-    ev.stopPropagation()
-    dispatch(setModal(null))
-  }
+   const onDetailsClick = (ev) => {
+      ev.stopPropagation()
+      dispatch(setModal(null))
+   }
 
-  console.log(board)
+   return (
+      <section className="task-details" onClick={onGoBack}>
+         <div className="task-details-container" onClick={onDetailsClick}>
+            <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
 
-  return (
-    <section className="task-details" onClick={onGoBack}>
-      <div className="task-details-container" onClick={onDetailsClick}>
-        <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
-        <div>
-          {task.style && <TaskDetailsCover task={task} setModal={setModal} />}
-          <TaskDetailsTitle task={task} groupTitle={group.title} updateTask={updateTask} />
+            <div>
+               {task.style && <TaskDetailsCover task={task} setModal={setModal} />}
+               {task.title && <TaskDetailsTitle task={task} groupTitle={group.title} updateTask={updateTask}  />}
 
-          <div className="main-task">
-            <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
-            {task.description && <TaskDetailsDescription task={task} isCloseEdit={isCloseEdit} />}
-            {task.attachments && <TaskDetailsAttachments task={task} />}
-            {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
-            <TaskDetailsActivity task={task} isCloseEdit={isCloseEdit} board={board}/>
-          </div>
-          <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
-        </div>
-      </div>
-    </section >
-  )
+               <div className="main-task">
+                  <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
+                  {<TaskDetailsDescription task={task} updateTask={updateTask} />}
+                  {task.attachments && <TaskDetailsAttachments task={task} />}
+                  {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
+                  <TaskDetailsActivity task={task} board={board} />
+               </div>
+               <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
+            </div>
+
+         </div>
+      </section >
+   )
 }

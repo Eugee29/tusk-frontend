@@ -1,66 +1,68 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { connect } from 'react-redux'
 
 import { GrTextAlignFull } from 'react-icons/gr'
 
-function _TaskDetailsDescription({ task, isCloseEdit }) {
+export const TaskDetailsDescription = ({ task, updateTask }) => {
 
-  // const { board } = useSelector((storeState) => storeState.boardModule)
+   const [desc, setDesc] = useState(task.description)
+   const [isClickedDesc, setIsClickedDesc] = useState(null)
+   const textRef = useRef()
 
-  const [isTypeComment, setIsTypeComment] = useState(false)
-  const [isClickedDescription, setIsClickedDescription] = useState(null)
-  const [description, setIsDescription] = useState(task.description)
+   useEffect(() => {
+      setIsClickedDesc(false)
+      // textRef.current.blur()
+   }, [])
 
-  useEffect(() => {
-    setIsClickedDescription(false)
-  }, [isCloseEdit])
+   const onChangeDesc = (ev) => {
+      ev.stopPropagation()
+      setIsClickedDesc(true);
+   }
 
-  const onChangeDescription = (ev) => {
-    ev.stopPropagation()
-    setIsClickedDescription(true)
-    console.log(isClickedDescription)
-  }
+   const handleChange = (ev) => {
+      ev.stopPropagation()
+      setDesc(ev.target.value)
+   }
 
-  const handleChange = (ev) => {
-    ev.stopPropagation()
-    setIsDescription(ev.target.value)
-    console.log(ev.target.value)
+   const onSaveDesc = () => {
+      if (task.description === desc) {
+         setIsClickedDesc(false)
+         return
+      }
+      const updatedTask = { ...task }
+      updatedTask.description = desc
+      updateTask(updatedTask)
+      setIsClickedDesc(false)
+   }
 
-    if (ev.target.value.length > 0) setIsTypeComment(true)
-    if (ev.target.value.length === 0) setIsTypeComment(false)
-  }
+   const onCancelDesc = () => {
+      setDesc(task.description)
+      setIsClickedDesc(false)
+   }
 
-  const enableButton = isTypeComment ? 'enableButton' : ''
+   return (
+      <section className='task-details-desc' >
 
-  return (
-    <section className="task-details-description" >
+         {/* Description */}
+         <div className='desc-title-container'>
+            <span className=''><GrTextAlignFull /></span>
+            <h3 >Description</h3>
+         </div>
 
-      {/* Description */}
-      <div className="description-title-container">
-        <span className=""><GrTextAlignFull /></span>
-        <h3 >Description</h3>
-      </div>
+         <div className='desc-body-container'>
 
-      <p className="description-body-container">
-        {!isClickedDescription && !task.description && <a onClick={onChangeDescription}>Add a more detailed description…</a>}
-        {!isClickedDescription && task.description && <a onClick={onChangeDescription}>{task.description}</a>}
-        {isClickedDescription && !task.description && <textarea onClick={onChangeDescription} onChange={handleChange} value={description} placeholder="Add a more detailed description…" data-autosize="true" > </textarea>}
-        {isClickedDescription && task.description && <textarea onClick={onChangeDescription} onChange={handleChange} value={description} data-autosize="true"></textarea>}
-        {isClickedDescription &&
-          <div className="btn-container">
-            <input className={`${enableButton}`} type="submit" value="Save" disabled="" />
-            <input className="cancel" type="submit" value="Cancel" disabled="" />
-          </div>}
-      </p>
+            {!isClickedDesc && !task.description && <a onClick={onChangeDesc}>Add a more detailed description…</a>}
+            {!isClickedDesc && task.description && <a  onClick={onChangeDesc}>{task.description}</a>}
 
-    </section>
-  )
+            {isClickedDesc && !task.description && <textarea value={desc} onBlur={() => setIsClickedDesc(false)}  placeholder='Add a more detailed description…'> </textarea>}
+            {isClickedDesc && task.description && <textarea onClick={onChangeDesc} onChange={handleChange} value={desc} ></textarea>}
+
+            {isClickedDesc &&
+               <div className='btn-container'>
+                  <input type='submit' onClick={onSaveDesc} value='Save' />
+                  <input type='submit' onClick={onCancelDesc} value='Cancel' />
+               </div>}
+         </div>
+
+      </section>
+   )
 }
-
-function mapStateToProps(state) {
-  return {
-    board: state.boardModule.board
-  }
-}
-
-export const TaskDetailsDescription = connect(mapStateToProps)(_TaskDetailsDescription)

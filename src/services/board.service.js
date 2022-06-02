@@ -11,12 +11,12 @@ export const boardService = {
   getById,
   save,
   remove,
-  // getTask,
   getEmptyTodo,
   getEmptyTask,
   getEmptyGroup,
   getEmptyChecklist,
-  getEmptyBoard
+  getEmptyBoard,
+  getEmptyAttachment
 }
 
 //Request (Rest:GET) all Data from Backend
@@ -83,6 +83,14 @@ function getEmptyTask(title) {
       imgURL: "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
     },
     style: {}
+  }
+}
+
+function getEmptyAttachment() {
+  return {
+    id: utilService.makeId(),
+    createdAt: Date.now(),
+    fileUrl: ''
   }
 }
 

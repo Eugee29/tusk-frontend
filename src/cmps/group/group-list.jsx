@@ -74,6 +74,7 @@ export const GroupList = ({ board, onUpdateBoard }) => {
         }
       }
     }
+
     if (type === 'GROUP') {
       const group = groupsCopy.splice(source.index, 1)[0]
       groupsCopy.splice(destination.index, 0, group)
@@ -95,7 +96,17 @@ export const GroupList = ({ board, onUpdateBoard }) => {
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {board.groups.map((group, index) => <GroupPreview key={group.id} group={group} index={index} board={board} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} onUpdateGroup={onUpdateGroup} onUpdateBoard={onUpdateBoard} />)}
+            {board.groups.map((group, index) =>
+              <GroupPreview
+                key={group.id}
+                group={group}
+                index={index}
+                board={board}
+                toggleLabels={toggleLabels}
+                isLabelsOpen={isLabelsOpen}
+                onUpdateGroup={onUpdateGroup}
+                onUpdateBoard={onUpdateBoard} />)}
+
             {provided.placeholder}
 
             <div className={getAddGroupClass()}>
@@ -111,7 +122,6 @@ export const GroupList = ({ board, onUpdateBoard }) => {
                   </div>
                 </React.Fragment>
               }
-
             </div>
           </section>
         )}

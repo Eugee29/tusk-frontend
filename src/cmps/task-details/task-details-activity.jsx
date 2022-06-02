@@ -6,8 +6,7 @@ import { activityService } from '../../services/activity.service'
 import { GrList } from 'react-icons/gr'
 import { ActivityList } from '../activity-list'
 
-export function TaskDetailsActivity({ task, isCloseEdit, board}) {
-  console.log(board)
+export function TaskDetailsActivity({ task, isCloseEdit, board }) {
   const activities = activityService.getTaskActivities(task.id, board)
 
   const [isClickedComment, setIsClickedComment] = useState(null)
@@ -63,7 +62,7 @@ export function TaskDetailsActivity({ task, isCloseEdit, board}) {
 
       </div>
 
-      {activities && <ActivityList board={board} task={task}/>}
+      {activities && <ActivityList board={board} task={task} />}
 
 
 

@@ -40,43 +40,48 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
     <section className="task-details-info" >
 
       {/* Members */}
-      <div className="task-card-info" >
-        <h3 className="task-member-title">Members</h3>
-        {task.members?.map((member, idx) => (
-          member?.imgURL
-            ? <a key={member._id} className="member-img" style={{ backgroundImage: `url('${member.imgURL}')` }}> </a>
-            : <a key={member._id} className="member">{`${initials(member)[0]}${initials(member)[1]}`}</a>
-        ))}
-        <a className="members-add-button round" ref={memberRef} onClick={(ev) => { ev.stopPropagation(); onModal('Members') }} ><span >+</span></a>
-      </div>
+      {!!task.members.length &&
+        <div className="task-card-info" >
+          <h3 className="task-member-title">Members</h3>
+          {task.members?.map((member, idx) => (
+            member?.imgURL
+              ? <a key={member._id} className="member-img" style={{ backgroundImage: `url('${member.imgURL}')` }}> </a>
+              : <a key={member._id} className="member">{`${initials(member)[0]}${initials(member)[1]}`}</a>
+          ))}
+          <a className="members-add-button round" ref={memberRef} onClick={(ev) => { ev.stopPropagation(); onModal('Members') }} ><span >+</span></a>
+        </div>
+      }
 
       {/* Labels */}
-      <div className="task-card-info" ref={labelsRef}>
-        <h3 className="task-member-title">Labels</h3>
-        {task.labelIds.map(label =>
-          <a key={label} className="label" onClick={(ev) => { ev.stopPropagation(); dispatch(setModal({ element: labelsRef.current, category: 'Labels', task, updateTask, board, onUpdateBoard })) }} style={{ backgroundColor: `${onLabels(label).color}` }}><span>{onLabels(label).title}</span></a>)}
-        <a className="members-add-button " onClick={(ev) => { ev.stopPropagation(); dispatch(setModal({ element: labelsRef.current, category: 'Labels', task, updateTask, board, onUpdateBoard })) }} ><span >+</span></a>
-      </div>
+      {!!task.labelIds.length &&
+        <div className="task-card-info" ref={labelsRef}>
+          <h3 className="task-member-title">Labels</h3>
+          {task.labelIds.map(label =>
+            <a key={label} className="label" onClick={(ev) => { ev.stopPropagation(); dispatch(setModal({ element: labelsRef.current, category: 'Labels', task, updateTask, board, onUpdateBoard })) }} style={{ backgroundColor: `${onLabels(label).color}` }}><span>{onLabels(label).title}</span></a>)}
+          <a className="members-add-button " onClick={(ev) => { ev.stopPropagation(); dispatch(setModal({ element: labelsRef.current, category: 'Labels', task, updateTask, board, onUpdateBoard })) }} ><span >+</span></a>
+        </div>
+      }
 
       {/* Due date */}
-      <div className="task-card-info">
-        <h3 className="task-member-title">Due date</h3>
-        <div className="date-container">
-          <div className="date-complete-button">
-            {isCompleteDate
-              ? <ImCheckboxChecked onClick={() => onToggleComplete(false)} className='checkbox checked' />
-              : <ImCheckboxUnchecked onClick={() => onToggleComplete(true)} className='checkbox unchecked' />
-            }
+      {task.dueDate &&
+        <div className="task-card-info">
+          <h3 className="task-member-title">Due date</h3>
+          <div className="date-container">
+            <div className="date-complete-button">
+              {isCompleteDate
+                ? <ImCheckboxChecked onClick={() => onToggleComplete(false)} className='checkbox checked' />
+                : <ImCheckboxUnchecked onClick={() => onToggleComplete(true)} className='checkbox unchecked' />
+              }
+            </div>
+            <div className="date">
+              <button className="button-date" type="button">
+                <span className="dispaly-date">{displayDate}</span>
+                <span className={`status-date ${statusDate}`} >{statusDate}</span>
+                <span className="arrow-date">< GrDown /></span>
+              </button>
+            </div>
           </div>
-          <div className="date">
-            <button className="button-date" type="button">
-              <span className="dispaly-date">{displayDate}</span>
-              <span className={`status-date ${statusDate}`} >{statusDate}</span>
-              <span className="arrow-date">< GrDown /></span>
-            </button>
-          </div>
-        </div>
-      </div>
+        </div>}
 
     </section >
   )
