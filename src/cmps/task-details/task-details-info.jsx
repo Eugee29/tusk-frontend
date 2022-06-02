@@ -8,7 +8,7 @@ import { GrDown } from 'react-icons/gr'
 
 import { utilService } from '../../services/util.service'
 
-export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
+export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard, group }) => {
 
   const memberRef = useRef()
   const labelsRef = useRef()
@@ -46,7 +46,7 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
               ? <a key={member._id} className="member-img" style={{ backgroundImage: `url('${member.imgURL}')` }}> </a>
               : <a key={member._id} className="member">{`${initials(member)[0]}${initials(member)[1]}`}</a>
           ))}
-          <a className="members-add-button round" ref={memberRef} onClick={(ev) => onOpenModal(ev, { element: memberRef.current, category: 'Members', task, updateTask, board, onUpdateBoard })} ><span >+</span></a>
+          <a className="members-add-button round" ref={memberRef} onClick={(ev) => onOpenModal(ev, { element: memberRef.current, category: 'Members', task, updateTask, board, onUpdateBoard, group })} ><span >+</span></a>
         </div>
       }
 
@@ -72,7 +72,7 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
               }
             </div>
             <div className="date" ref={datesRef}>
-              <button className="button-date" type="button" onClick={(ev) => onOpenModal(ev, { element: datesRef.current, category: 'Dates', task, updateTask, board, onUpdateBoard })}>
+              <button className="button-date" type="button" onClick={(ev) => onOpenModal(ev, { element: datesRef.current, category: 'Dates', task, updateTask, board, onUpdateBoard, group })}>
                 <span className="dispaly-date">{dateFormat.displayDate}</span>
                 <span className={`status-date ${dateFormat.statusDate}`} >{dateFormat.statusDate}</span>
                 <span className="arrow-date">< GrDown /></span>

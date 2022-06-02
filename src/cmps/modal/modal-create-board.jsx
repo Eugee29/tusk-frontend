@@ -67,7 +67,7 @@ export const ModalCreateBoard = () => {
 
       <div className="create-board-preview">
         {<div className="preview-img" style={{ background: boardBg.length > 10 ? `url(${boardBg})` : `${boardBg}` }}>
-          <img src={previewboard} alt="" />
+          <img src={previewBoard} alt="" />
         </div>}
       </div>
 

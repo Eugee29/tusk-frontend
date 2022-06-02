@@ -55,7 +55,10 @@ function getActivityText(activity, board, diff) {
       boardText = ['added', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
       taskText = [`added this card to ${activity.group.title}`]
       break
-
+      case 'change date':
+        boardText = ['changed the due date of', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${utilService.getTimeFormat(activity.dueDate).displayDate}`]
+        taskText = [`changed the due date of this card to ${utilService.getTimeFormat(activity.dueDate).displayDate}`]
+        break
     case 'move':
       boardText = ['moved', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
       taskText = [`moved this card from ${activity.group.sourceTitle} to ${activity.group.title}`]

@@ -29,10 +29,10 @@ export const TaskDetails = () => {
   const group = board.groups.find(group => group.id === groupId)
   const task = group.tasks.find(task => task.id === taskId)
 
-  const updateTask = async (taskToUpdate) => {
+  const updateTask = async (taskToUpdate, activity) => {
     const taskIdx = group.tasks.findIndex(task => task.id === taskToUpdate.id)
     group.tasks[taskIdx] = taskToUpdate
-    onUpdateBoard(board)
+    onUpdateBoard(board, activity)
   }
 
   const onGoBack = () => {
@@ -62,11 +62,11 @@ export const TaskDetails = () => {
           {task.title && <TaskDetailsTitle task={task} groupTitle={group.title} updateTask={updateTask} />}
 
           <div className="main-task">
-            <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
+            <TaskDetailsInfo board={board} task={task} group={group} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
             {<TaskDetailsDescription task={task} updateTask={updateTask} />}
             {task.attachments && <TaskDetailsAttachments task={task} updateTask={updateTask} />}
             {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
-            <TaskDetailsActivity task={task} board={board} />
+            <TaskDetailsActivity task={task} board={board} group ={group} onUpdateBoard={onUpdateBoard} />
           </div>
           <TaskDetailsSideTask board={board} group={group} task={task} onUpdateBoard={onUpdateBoard} updateTask={updateTask} />
         </div>
