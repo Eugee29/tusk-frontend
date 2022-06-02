@@ -6,7 +6,8 @@ export const utilService = {
   formatTimeToDM,
   getPosition,
   calcTextareaHeight,
-  getTimeAgo
+  getTimeAgo,
+  isImage
 }
 
 function makeId(length = 6) {
@@ -50,6 +51,7 @@ function formatTimeToDM(time) {
     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
   return `${monthNames[month]} ${day}`
 }
+
 function getPosition(element) {
   if (!element) return
   let { top, left } = element.getBoundingClientRect()
@@ -90,4 +92,8 @@ function getTimeAgo(timestamp, locale = 'en') {
     value = rtf.format(0 - diff, "second")
   }
   return value
+}
+
+function isImage(url) {
+  return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
 }

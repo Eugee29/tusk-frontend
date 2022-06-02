@@ -54,7 +54,7 @@ export const TaskDetails = () => {
             <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
 
             <div>
-               {task.style && <TaskDetailsCover task={task} setModal={setModal} />}
+               {task.style && <TaskDetailsCover task={task} setModal={setModal} updateTask={updateTask}/>}
                {task.title && <TaskDetailsTitle task={task} groupTitle={group.title} updateTask={updateTask}  />}
 
                <div className="main-task">
