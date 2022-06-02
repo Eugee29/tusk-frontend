@@ -8,8 +8,10 @@ export const utilService = {
    calcTextareaHeight,
    getTimeAgo,
    isImage,
+   getDateTimeFormat,
+   getYearMonthFormat,
    getTimeFormat,
-   getYearMonthFormat
+   getNewDateTime
 }
 
 function makeId(length = 6) {
@@ -71,6 +73,7 @@ function calcTextareaHeight(value, minHeight, lineHeight) {
 }
 
 function getTimeAgo(timestamp, locale = 'en') {
+   console.log('before', timestamp)
    let value
    const diff = Math.floor((Date.now() - timestamp) / 1000)
    const minutes = Math.floor(diff / 60)
@@ -93,6 +96,7 @@ function getTimeAgo(timestamp, locale = 'en') {
    } else {
       value = rtf.format(0 - diff, "second")
    }
+   console.log('after', value)
    return value
 }
 
@@ -100,16 +104,23 @@ function isImage(url) {
    return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
 }
 
-function getTimeFormat(date) {
+function getDateTimeFormat(date) {
    const now = new Date()
    const month = new Intl.DateTimeFormat('en', { month: 'short' })
    const day = new Intl.DateTimeFormat('en', { day: '2-digit' })
    const time = new Intl.DateTimeFormat('he', { hour: 'numeric', minute: 'numeric' })
-   const displayDate = `${day.format(date)} ${month.format(date)} at ${time.format(date)}`
-   const statusDate = date > now.setHours(23, 59, 59, 59) ? '' :
-      (date <= now.setHours(23, 59, 59, 59) && date >= now ? 'duesoon' : 'overdue')
+   const displayDate = `${month.format(date)} ${day.format(date)} at ${time.format(date)}`
+   const displayDateOnly = `${day.format(date)} ${month.format(date)}`
+   const statusDate = date > now.setHours(23, 59, 59, 59)
+      ? ''
+      : (date > Date.now()
+         ? 'duesoon'
+         : 'overdue')
 
-   return { displayDate, statusDate }
+         // console.log('date', date);
+         // console.log('now', now.getTime());
+
+   return { displayDate, statusDate, displayDateOnly }
 }
 
 function getYearMonthFormat(date) {
@@ -119,3 +130,19 @@ function getYearMonthFormat(date) {
 
    return displayDate
 }
+
+function getTimeFormat(date) {
+   const time = new Intl.DateTimeFormat('he', { hour: 'numeric', minute: 'numeric' })
+   return time.format(date)
+}
+
+function getNewDateTime(date, time) {
+
+   const milliseconds = (h, m, s) => ((h * 60 * 60 + m * 60 + s) * 1000);
+   const timeParts = time.split(":")
+   let newDate = new Date(date)
+   newDate = newDate.setHours(0, 0, 0)
+
+   return milliseconds(timeParts[0], timeParts[1], 0) + newDate
+}
+

@@ -1,9 +1,22 @@
 .modal-dates {
    overflow-x: hidden;
    overflow-y: auto;
+   position: relative;
 
    .css-l0iinn {
-      display: none;
+      position: absolute;
+      left: 52%;
+      transform: translateX(-50%);
+      color: rgb(23, 43, 77);
+      font-weight: bold;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans', 'Ubuntu', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      pointer-events: none;
+
+      svg {
+         display: none;
+      }
    }
 
    .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root {
@@ -16,7 +29,6 @@
       padding: 4px 9px;
       position: relative;
       text-align: center;
-
    }
 
    .css-bkrceb-MuiButtonBase-root-MuiPickersDay-root.Mui-selected {
@@ -39,7 +51,7 @@
       display: flex;
       align-items: center;
       padding-right: 12px;
-      height: 310px;
+      height: 340px;
    }
 
    .css-9reuh9-MuiPickersArrowSwitcher-root {
@@ -47,20 +59,39 @@
       justify-content: space-between;
    }
 
-   .display-date {
-      text-align: center;
+   .date-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       margin-bottom: 10px;
-      color: #172b4d;
-      font-size: 14px;
-      line-height: 20px;
-      font-weight: 400;
 
-      &.position {
-         position: absolute;
-         top: 69px;
-         left: 119px;
-         color: rgb(23, 43, 77);
-         font-weight: bold;
+      .display-date {
+         text-align: center;
+         color: #172b4d;
+         font-size: 14px;
+         line-height: 20px;
+         font-weight: 400;
+      }
+
+      .pick-time {
+         background-color: #ffffff;
+         box-shadow: inset 0 0 0 2px #0079bf;
+         width: 45px;
+         margin: 0;
+         outline: none;
+         border: none;
+         box-sizing: border-box;
+         color: #172b4d;
+         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Noto Sans", "Ubuntu", "Droid Sans", "Helvetica Neue", sans-serif;
+         font-size: 14px;
+         line-height: 20px;
+         font-weight: 400;
+         transition-property: background-color, border-color, box-shadow;
+         transition-duration: 85ms;
+         transition-timing-function: ease;
+         border-radius: 3px;
+         text-align: center;
       }
    }
 

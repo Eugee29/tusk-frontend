@@ -30,7 +30,7 @@
     gap: 3px;
 
     .member {
-      @include task-member-button(tomato)
+      @include task-member-button(none)
     }
 
     .member-img {
