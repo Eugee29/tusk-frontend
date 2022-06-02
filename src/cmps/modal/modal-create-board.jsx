@@ -7,11 +7,7 @@ import { setModal } from '../../store/app/app.actions'
 import { boardService } from '../../services/board.service'
 import { addBoard } from '../../store/board/board.action.js'
 
-<<<<<<< HEAD
 import previewBoard from '../../assets/imgs/previewboard.svg'
-=======
-import previewboard from '../../assets/imgs/previewboard.svg'
->>>>>>> 74f7b20e6f3d9b7d8ba81a709a0d8694a328c1eb
 
 export const ModalCreateBoard = () => {
 
