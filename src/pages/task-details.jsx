@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate, useOutletContext, useParams } from "react-router-dom"
 
 import { VscClose } from 'react-icons/vsc'
+import { RiArchiveLine } from 'react-icons/ri'
 
 import { setModal } from '../store/app/app.actions.js'
 
@@ -50,6 +51,14 @@ export const TaskDetails = () => {
 
         <div>
           {task.style && <TaskDetailsCover task={task} setModal={setModal} updateTask={updateTask} />}
+
+          {task.archivedAt &&
+            <div className='task-archived'>
+              <div className="archive-icon-container"><RiArchiveLine className="archive-icon" /></div>
+              <p>This task is archived.</p>
+            </div>
+          }
+
           {task.title && <TaskDetailsTitle task={task} groupTitle={group.title} updateTask={updateTask} />}
 
           <div className="main-task">
