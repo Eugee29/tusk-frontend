@@ -19,6 +19,7 @@ export const AttachmentAdd = ({ task, updateTask }) => {
     ev.preventDefault()
     if (!fileURL && !ev.target.files) return
     dispatch(setModal(null))
+    console.log(task)
 
     if (!ev.target.files) ev.target.files = [fileURL]
     if (!task.attachments) task.attachments = []
@@ -29,6 +30,7 @@ export const AttachmentAdd = ({ task, updateTask }) => {
       attachment.fileName = res.original_filename
       attachment.fileUrl = res.secure_url
       task.attachments.unshift(attachment)
+      if (res.resource_type === 'image' && !task.style.bgColor && !task.style.imgURL) task.style = { imgURL: res.secure_url, isCover: false }
       updateTask(task)
     } catch (err) {
       attachment.fileName = fileURL

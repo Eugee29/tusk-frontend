@@ -4,10 +4,12 @@ import { useDispatch } from 'react-redux'
 import { setModal } from '../../store/app/app.actions'
 
 import { RiLayoutBottom2Fill } from 'react-icons/ri'
+import { useNavigate } from 'react-router-dom'
 
 export const AttachmentPreview = ({ attachment, task, updateTask }) => {
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const deleteRef = useRef()
   const editRef = useRef()
 
@@ -55,15 +57,17 @@ export const AttachmentPreview = ({ attachment, task, updateTask }) => {
     updateTask(task)
   }
 
-  const setCover = () => {
+  const setCover = (ev) => {
+    ev.stopPropagation()
     task.style = { imgURL: attachment.fileUrl, isCover: task.style.isCover }
     updateTask(task)
   }
 
+
   if (!attachment.fileName) attachment.fileName = 'Attachment'
   return (
-    <div key={attachment.id} className="attachments-section-container">
-      <a className="thumbnail-img" target="_blank" style={{ backgroundImage: `url('${attachment.fileUrl}')` }}></a>
+    <div key={attachment.id} className="attachments-section-container" onClick={() => window.open(attachment.fileUrl, '_blank')}>
+      <a className="thumbnail-img" target="_blank" style={{ backgroundImage: `url('${attachment.fileUrl}')` }} ></a>
       <div className="thumbnail-info">
         <span className="thumbnail-name">{attachment.fileName}</span>
         <div className="thumbnail-details">
