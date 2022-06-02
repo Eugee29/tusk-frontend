@@ -77,9 +77,8 @@ function getActivityText(activity, board, diff) {
 }
 
 function getTaskActivities(taskId, board) {
-  const taskActivities = board.activities.filter(activity => {
-    if (!activity.task) return false
-    else return activity.task.id === taskId
-  })
-  return taskActivities
+    const taskActivities = board.activities.filter(activity => {
+      if (!activity.task) return false
+      else return activity.task.id === taskId})
+    return taskActivities
 }
