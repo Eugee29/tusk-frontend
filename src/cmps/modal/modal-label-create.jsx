@@ -53,7 +53,13 @@ export const ModalLabelCreate = ({
         element: modal.element,
         category,
         title: category,
-        props: { task, updateTask, board, onUpdateBoard },
+        props: {
+          task,
+          updateTask,
+          board,
+          onUpdateBoard,
+          element: modal.element,
+        },
       })
     )
   }

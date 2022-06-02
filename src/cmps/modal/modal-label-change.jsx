@@ -72,7 +72,13 @@ export const ModalLabelChange = ({
         element: modal.element,
         category,
         title: category,
-        props: { task, updateTask, board, onUpdateBoard: onUpdateBoard },
+        props: {
+          task,
+          updateTask,
+          board,
+          onUpdateBoard: onUpdateBoard,
+          element: modal.element,
+        },
       })
     )
   }
