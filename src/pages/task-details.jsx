@@ -1,5 +1,5 @@
 
-import React, { useState, } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate, useOutletContext, useParams } from "react-router-dom"
 
@@ -62,7 +62,7 @@ export const TaskDetails = () => {
                   {<TaskDetailsDescription task={task} updateTask={updateTask} />}
                   {task.attachments && <TaskDetailsAttachments task={task} />}
                   {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
-                  <TaskDetailsActivity task={task} board={board} />
+                  <TaskDetailsActivity task={task} board={board} group={group} onUpdateBoard={onUpdateBoard}/>
                </div>
                <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
             </div>

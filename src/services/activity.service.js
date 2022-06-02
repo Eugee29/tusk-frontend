@@ -7,22 +7,21 @@ export const activityService = {
   getActivityText
 }
 
-function getActivityUpdatedBoard(board, activity) {
+function getActivityUpdatedBoard(board, activity, byMember) {
 
-  let isComment = false
+  let isComment, text = false
   if (activity.actionType === 'comment') isComment = true
+  if (activity.text) text = activity.text
 
   const newActivity = {
-    byMember: {
-      //getMember. if (!member) ====>
-      fullname: 'Guest'
-    },
+    byMember,
     createdAt: Date.now(),
     id: utilService.makeId(),
     task: activity.task,
     group: activity.group,
     actionType: activity.actionType,
-    isComment
+    isComment,
+    text
   }
 
   const newActivities = [newActivity, ...board.activities]
@@ -42,6 +41,8 @@ function getActivityText(activity, board, diff) {
     onToggleMenu = false
   }
 
+  // console.log(onToggleMenu, task)
+
   const linkPath = (activity.task) ? `/board/${board._id}/${activity.group.id}/${activity.task.id}` : null
   let boardText, taskText
 
@@ -52,6 +53,7 @@ function getActivityText(activity, board, diff) {
 
     case 'add task':
       boardText = ['added', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
+      taskText = [`added this card to ${activity.group.title}`]
       break
 
     case 'move':
@@ -60,7 +62,7 @@ function getActivityText(activity, board, diff) {
       break
     case 'comment':
       boardText = ['on', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
-      taskText = [null]
+      taskText = [`${activity.task.title}`]
       break
     case 'delete group':
       boardText = [`deleted list ${activity.group.title}`]
@@ -70,7 +72,7 @@ function getActivityText(activity, board, diff) {
       break
 
     default:
-      boardText = null
+      boardText = [null]
   }
   if (task) return taskText
   else return boardText

@@ -18,6 +18,7 @@ export const BoardDetails = () => {
   const params = useParams()
   const dispatch = useDispatch()
   const { boards } = useSelector(({ boardModule }) => boardModule)
+  const { user } = useSelector(({ userModule }) => userModule)
 
   useEffect(() => {
     loadBoard()
@@ -42,7 +43,7 @@ export const BoardDetails = () => {
   }
 
   const addActivity = (board, activity) => {
-    const newBoard = activityService.getActivityUpdatedBoard(board, activity)
+    const newBoard = activityService.getActivityUpdatedBoard(board, activity, user)
     return newBoard
   }
 
