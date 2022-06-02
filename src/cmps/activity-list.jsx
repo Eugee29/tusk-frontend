@@ -21,10 +21,15 @@ export function ActivityList(props) {
                 <div className='activity-info' key={activity.id}>
                     <h3 className='activity-text'> <span className="fullname">{activity.byMember.fullname}&nbsp;</span>
 
-                        {task && activityService.getActivityText(activity, board, task)
+                        {activity.isComment && <div className='comment'> 
+                                {activityService.getActivityText(activity, board, task)
+                                .map((text, index) => <span key={index}>{text}&nbsp;</span>)}
+                            </div>}
+
+                        {!activity.isComment && task && activityService.getActivityText(activity, board, task)
                             .map((text, index) => <span key={index}>{text}&nbsp;</span>)}
 
-                        {!task && activityService.getActivityText(activity, board, onToggleMenu)
+                        {!activity.isComment && !task && activityService.getActivityText(activity, board, onToggleMenu)
                             .map((text, index) => <span key={index}>{text}&nbsp;</span>)}
 
                     </h3>
