@@ -11,24 +11,37 @@ import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
 export const ModalDates = ({ task, updateTask, element }) => {
 
-   // const [searchLabel, setSearchLabel] = useState('')
-   // const [taskLabels, setTaskLabels] = useState(task.labelIds)
-
    const modalRef = useRef()
    const [value, setValue] = React.useState(task.dueDate);
+   const [time, setTime] = useState(utilService.getTimeFormat(value))
+
    const dispatch = useDispatch()
 
    const onSave = () => {
       const updatedTask = { ...task }
-      updatedTask.dueDate = value
+
+      const newDate = utilService.getNewDateTime(value, time)
+      if (newDate) updatedTask.dueDate = newDate
+      else updatedTask.dueDate = value
+      
+      // console.log(updatedTask.dueDate);
       updateTask(updatedTask)
       dispatch(setModal(null))
    }
 
+   const onRemove = () => {
+      const updatedTask = { ...task }
+      updatedTask.dueDate = ''
+      updateTask(updatedTask)
+      dispatch(setModal(null))
+   }
+
+   const handleChange = ({ target }) => {
+      setTime(target.value)
+   }
+
    return (
       <div className="modal-dates" ref={modalRef}>
-
-         <div className='display-date position'>{utilService.getYearMonthFormat(value)}</div>
 
          <LocalizationProvider dateAdapter={AdapterDateFns}>
             <StaticDatePicker
@@ -39,15 +52,17 @@ export const ModalDates = ({ task, updateTask, element }) => {
                onChange={(newValue) => {
                   setValue(new Date(newValue).getTime())
                }}
-               onViewChange={console.log('here')}
                renderInput={(params) => <TextField {...params} />}
             />
          </LocalizationProvider>
 
 
-         <div className='display-date'>{utilService.getTimeFormat(value).displayDate}</div>
+         <div className='date-container'>
+            <div className='display-date' >{utilService.getDateTimeFormat(value).displayDateOnly}</div>
+            <input className="pick-time" type="text" onChange={handleChange} value={time}></input>
+         </div>
          <div className="save" onClick={onSave}>Save</div>
-         <div className="save gray">Remove</div>
+         <div className="save gray" onClick={onRemove}>Remove</div>
 
       </div>
 

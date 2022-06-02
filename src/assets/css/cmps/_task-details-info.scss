@@ -73,7 +73,6 @@
                &.checked {
                   color: $brand-clr2;
                }
-
             }
 
             .unchecked {
@@ -84,10 +83,6 @@
                   background-color: darken($clr4, 4%);
                }
             }
-
-
-
-
          }
 
          .button-date {
@@ -108,11 +103,14 @@
                margin: auto 0 auto 8px;
 
                &.overdue {
-                  background-color: #EC9488;
+                  background-color: #EB5A46;
                }
 
                &.duesoon {
                   background-color: #F2D600;
+               }
+               &.complete {
+                  background-color: #61BD4F;
                }
             }
 

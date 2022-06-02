@@ -7,7 +7,7 @@ import { setModal } from '../../store/app/app.actions'
 import { boardService } from '../../services/board.service'
 import { addBoard } from '../../store/board/board.action.js'
 
-import previewBoard from '../../assets/imgs/previewBoard.svg'
+import previewboard from '../../assets/imgs/previewboard.svg'
 
 export const ModalCreateBoard = () => {
 
@@ -67,7 +67,7 @@ export const ModalCreateBoard = () => {
 
       <div className="create-board-preview">
         {<div className="preview-img" style={{ background: boardBg.length > 10 ? `url(${boardBg})` : `${boardBg}` }}>
-          <img src={previewBoard} alt="" />
+          <img src={previewboard} alt="" />
         </div>}
       </div>
 
