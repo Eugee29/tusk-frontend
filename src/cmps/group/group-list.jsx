@@ -61,16 +61,18 @@ export const GroupList = ({ board, onUpdateBoard }) => {
       const task = sourceGroup.tasks.splice(source.index, 1)[0]
       destinationGroup.tasks.splice(destination.index, 0, task)
 
-      activity = {
-        actionType: 'move',
-        task: {
-          id: task.id,
-          title: task.title
-        },
-        group: {
-          title: destinationGroup.title,
-          id: destinationGroup.id,
-          sourceTitle: sourceGroup.title
+      if (destinationGroup !== sourceGroup) {
+        activity = {
+          actionType: 'move',
+          task: {
+            id: task.id,
+            title: task.title
+          },
+          group: {
+            title: destinationGroup.title,
+            id: destinationGroup.id,
+            sourceTitle: sourceGroup.title
+          }
         }
       }
     }

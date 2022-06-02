@@ -1,13 +1,13 @@
-import React, { useState, useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { setModal } from '../../store/app/app.actions'
-import { utilService } from '../../services/util.service';
+import { utilService } from '../../services/util.service'
 
-import TextField from '@mui/material/TextField';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
+import TextField from '@mui/material/TextField'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker'
 
 export const ModalDates = ({ task, updateTask, element }) => {
 
@@ -64,11 +64,11 @@ export const ModalDates = ({ task, updateTask, element }) => {
          <div className="save" onClick={onSave}>Save</div>
          <div className="save gray" onClick={onRemove}>Remove</div>
 
-      </div>
+    </div>
 
 
 
 
-   )
+  )
 
 }
