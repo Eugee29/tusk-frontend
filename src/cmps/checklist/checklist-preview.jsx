@@ -31,12 +31,13 @@ export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updat
   const filteredChecklist = { ...checklist, todos: todosToShow }
 
 
-  const handleChange = (e) => {
-    setTodoTxt(e.target.value)
+  const handleChange = ({ nativeEvent, target }) => {
+    if (nativeEvent.inputType === 'insertLineBreak') return onAddTodo()
+    setTodoTxt(target.value)
   }
 
-  const onAddTodo = (e) => {
-    e.preventDefault()
+  const onAddTodo = (ev) => {
+    if (ev) ev.preventDefault()
     const todoToAdd = boardService.getEmptyTodo()
     todoToAdd.title = todoTxt
     const newChecklist = { ...checklist, todos: [...checklist.todos, todoToAdd] }

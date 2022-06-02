@@ -9,12 +9,14 @@ export const activityService = {
 
 function getActivityUpdatedBoard(board, activity, byMember) {
 
-  let isComment, text = false
+  let isComment, text, dueDate = false
   if (activity.actionType === 'comment') isComment = true
   if (activity.text) text = activity.text
+  if (activity.dueDate) dueDate = activity.dueDate
 
   const newActivity = {
     byMember,
+    dueDate,
     createdAt: Date.now(),
     id: utilService.makeId(),
     task: activity.task,
@@ -41,7 +43,7 @@ function getActivityText(activity, board, diff) {
     onToggleMenu = false
   }
 
-  // console.log(onToggleMenu, task)
+  // console.log(onToggleMenu, task
 
   const linkPath = (activity.task) ? `/board/${board._id}/${activity.group.id}/${activity.task.id}` : null
   let boardText, taskText
@@ -55,7 +57,10 @@ function getActivityText(activity, board, diff) {
       boardText = ['added', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
       taskText = [`added this card to ${activity.group.title}`]
       break
-
+      case 'change date':
+        boardText = ['changed the due date of', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${utilService.getDateTimeFormat(activity.dueDate).displayDate}`]
+        taskText = [`changed the due date of this card to ${utilService.getDateTimeFormat(activity.dueDate).displayDate}`]
+        break
     case 'move':
       boardText = ['moved', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
       taskText = [`moved this card from ${activity.group.sourceTitle} to ${activity.group.title}`]

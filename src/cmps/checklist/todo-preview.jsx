@@ -22,7 +22,8 @@ export const TodoPreview = (props) => {
     setTodo(newTodo)
   }
 
-  const handleChange = ({ target }) => {
+  const handleChange = ({ target, nativeEvent }) => {
+    if (nativeEvent.inputType === 'insertLineBreak') return onUpdateTodo()
     setTodo({ ...todo, title: target.value })
   }
 

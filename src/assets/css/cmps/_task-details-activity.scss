@@ -33,7 +33,7 @@
          display: block;
 
          .member {
-            @include task-member-button(tomato);
+            @include task-member-button(none);
 
             .label {
                @include task-member-label();

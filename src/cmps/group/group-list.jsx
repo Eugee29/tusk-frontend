@@ -22,7 +22,8 @@ export const GroupList = ({ board, onUpdateBoard }) => {
     setIsLabelsOpen(!isLabelsOpen)
   }
 
-  const onAddGroup = async () => {
+  const onAddGroup = async (ev) => {
+    if (ev) ev.preventDefault()
     toggleIsAddGroupOpen()
     if (!newGroupTitle) return
     const groupToAdd = await boardService.getEmptyGroup(newGroupTitle)
@@ -117,7 +118,9 @@ export const GroupList = ({ board, onUpdateBoard }) => {
                 <AiOutlinePlus /> Add another list </button>}
               {isAddGroupOpen &&
                 <React.Fragment>
-                  <input type="text" autoFocus placeholder='Enter list title...' onChange={handleChange} onBlur={onAddGroup} />
+                  <form onSubmit={onAddGroup}>
+                    <input type="text" autoFocus placeholder='Enter list title...' onChange={handleChange} onBlur={onAddGroup} />
+                  </form>
                   <div className='btn-container'>
                     <button onClick={onAddGroup} className='add-list-btn'>Add list</button>
                     <button className='x-btn' onClick={toggleIsAddGroupOpen}><IoMdClose className='x-icon' /></button>
