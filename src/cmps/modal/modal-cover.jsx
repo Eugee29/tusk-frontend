@@ -1,22 +1,96 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
-export const ModalCover = ({ task }) => {
+import { boardService } from '../../services/board.service'
+import { uploadService } from '../../services/upload.service'
+import { utilService } from '../../services/util.service';
+
+export const ModalCover = ({ task, updateTask }) => {
+
+   const dispatch = useDispatch()
 
    const [isOnPreviewTextColor, setIsOnPreviewTextColor] = useState(false)
+   const [newTask, setNewTask] = useState(task)
+   const [isCover, setIsCover] = useState(task.style.isCover || '')
+   const [fileURL, setFileURL] = useState('')
 
    const onPreviewTextColor = (bool) => {
       setIsOnPreviewTextColor(bool)
    }
 
-   const onChangeBackground = () => {
-      // if (task.description === desc) {
-      //    setIsClickedDesc(false)
-      //    return
-      // }
-      // const updatedTask = { ...task }
-      // updatedTask.description = desc
-      // updateTask(updatedTask)
-      // setIsClickedDesc(false)
+   // MERGE TO ONE FUNCTION !!! //
+
+   const onChangeCover = (bool) => {
+      setIsCover(bool)
+      const updatedTask = { ...newTask }
+      updatedTask.style.isCover = bool
+      updateTask(updatedTask)
+      setNewTask(updatedTask)
+   }
+
+   const onLightFont = (bool) => {
+      const updatedTask = { ...newTask }
+      updatedTask.style.isCover = true
+      updatedTask.style.isLight = bool
+      updateTask(updatedTask)
+      setNewTask(updatedTask)
+   }
+
+   const onPickColor = (color) => {
+      const updatedTask = { ...newTask }
+      const style = { bgColor: color, isCover: isCover }
+      updatedTask.style = style
+      updateTask(updatedTask)
+      setNewTask(updatedTask)
+   }
+
+   const onPickAttachments = (attach) => {
+      const updatedTask = { ...newTask }
+      const style = { imgURL: attach, isCover: isCover }
+      updatedTask.style = style
+      updateTask(updatedTask)
+      setNewTask(updatedTask)
+   }
+
+   const onPickUnsplash = (url) => {
+      const updatedTask = { ...newTask }
+      const style = { imgURL: url, isCover: isCover }
+      updatedTask.style = style
+      updateTask(updatedTask)
+      setNewTask(updatedTask)
+   }
+
+   const onRemoveCover = () => {
+      const updatedTask = { ...newTask }
+      const style = {}
+      updatedTask.style = style
+      updateTask(updatedTask)
+      setNewTask(updatedTask)
+   }
+
+   const addAttachment = async (ev) => {
+      ev.preventDefault()
+
+      if (!ev.target.files) ev.target.files = [fileURL]
+      if (!newTask.attachments) newTask.attachments = []
+      let attachment = boardService.getEmptyAttachment()
+      const updatedTask = { ...newTask }
+
+      try {
+         const res = await uploadService.uploadImg(ev)
+         attachment.fileName = res.original_filename
+         attachment.fileUrl = res.secure_url
+         updatedTask.attachments.unshift(attachment)
+         updateTask(updatedTask)
+         setNewTask(updatedTask)
+
+      } catch (err) {
+         attachment.fileName = fileURL
+         attachment.fileUrl = fileURL
+         updatedTask.attachments.unshift(attachment)
+         updateTask(updatedTask)
+         setNewTask(updatedTask)
+      }
    }
 
    return (
@@ -25,9 +99,9 @@ export const ModalCover = ({ task }) => {
          <div className="size-section">
             <h3 className="label">Size</h3>
             <div className="box-container">
-               <button className={`box-half`} onClick={() => onPreviewTextColor(false)} >
+               <button className={`box-half`} onClick={() => { onPreviewTextColor(false); onChangeCover(false) }} >
                   <div className="background"
-                     style={{ background: task?.style?.imgURL ? `url('${task.style.imgURL}')` : task.style.bgColor }}></div>
+                     style={{ background: newTask?.style?.imgURL ? `url('${newTask.style.imgURL}')` : newTask.style.bgColor }}></div>
                   <div className="lines">
                      <div className="lines_1"></div>
                      <div className="lines_2"></div>
@@ -39,14 +113,14 @@ export const ModalCover = ({ task }) => {
                   </div>
                </button>
 
-               <button className={`box-full`} onClick={() => onPreviewTextColor(true)}
-                  style={task?.style?.imgURL ? { backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${task.style.imgURL}')` } : { background: task.style.bgColor }}>
+               <button className={`box-full`} onClick={() => { onPreviewTextColor(true); onChangeCover(true) }}
+                  style={newTask?.style?.imgURL ? { backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${newTask.style.imgURL}')` } : { background: newTask.style.bgColor }}>
                   <div className="lines">
                      <div className="lines_1"></div>
                      <div className="lines_2"></div>
                   </div>
                </button>
-               <span className="cover-btn">Remove cover</span>
+               <span onClick={onRemoveCover} className="cover-btn">Remove cover</span>
             </div>
          </div>
 
@@ -54,13 +128,15 @@ export const ModalCover = ({ task }) => {
             <h3 className="label">Text color</h3>
             <div className="box-container">
                <button className={`box-full`}
-                  style={task?.style?.imgURL ? { backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${task.style.imgURL}')` } : { background: task.style.bgColor }}>
+                  onClick={() => { onLightFont(true) }}
+                  style={newTask?.style?.imgURL ? { backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${newTask.style.imgURL}')` } : { background: newTask.style.bgColor }}>
 
-                  <h3>{task.title}</h3>
+                  <h3>{newTask.title}</h3>
                </button>
                <button className={`box-full`}
-                  style={task?.style?.imgURL ? { backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${task.style.imgURL}')` } : { background: task.style.bgColor }}>
-                  <h3 className="dark">{task.title}</h3>
+                  onClick={() => { onLightFont(false) }}
+                  style={newTask?.style?.imgURL ? { backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${newTask.style.imgURL}')` } : { background: newTask.style.bgColor }}>
+                  <h3 className="dark">{newTask.title}</h3>
                </button>
 
             </div>
@@ -69,16 +145,16 @@ export const ModalCover = ({ task }) => {
          <div className="colors-section">
             <h3 className="label">Colors</h3>
             <div className="box-container">
-               <button style={{ backgroundColor: `#7BC86C` }}></button>
-               <button style={{ backgroundColor: `#F5DD29` }}></button>
-               <button style={{ backgroundColor: `#FFAF3F` }}></button>
-               <button style={{ backgroundColor: `#EF7564` }}></button>
-               <button style={{ backgroundColor: `#CD8DE5` }}></button>
-               <button style={{ backgroundColor: `#5BA4CF` }}></button>
-               <button style={{ backgroundColor: `#29CCE5` }}></button>
-               <button style={{ backgroundColor: `#6DECA9` }}></button>
-               <button style={{ backgroundColor: `#FF8ED4` }}></button>
-               <button style={{ backgroundColor: `#172B4D` }}></button>
+               <button onClick={() => onPickColor('#7BC86C')} style={{ backgroundColor: `#7BC86C` }}></button>
+               <button onClick={() => onPickColor('#F5DD29')} style={{ backgroundColor: `#F5DD29` }}></button>
+               <button onClick={() => onPickColor('#FFAF3F')} style={{ backgroundColor: `#FFAF3F` }}></button>
+               <button onClick={() => onPickColor('#EF7564')} style={{ backgroundColor: `#EF7564` }}></button>
+               <button onClick={() => onPickColor('#CD8DE5')} style={{ backgroundColor: `#CD8DE5` }}></button>
+               <button onClick={() => onPickColor('#5BA4CF')} style={{ backgroundColor: `#5BA4CF` }}></button>
+               <button onClick={() => onPickColor('#29CCE5')} style={{ backgroundColor: `#29CCE5` }}></button>
+               <button onClick={() => onPickColor('#6DECA9')} style={{ backgroundColor: `#6DECA9` }}></button>
+               <button onClick={() => onPickColor('#FF8ED4')} style={{ backgroundColor: `#FF8ED4` }}></button>
+               <button onClick={() => onPickColor('#172B4D')} style={{ backgroundColor: `#172B4D` }}></button>
             </div>
          </div>
 
@@ -86,31 +162,47 @@ export const ModalCover = ({ task }) => {
             <h3 className="label">Attachments</h3>
             <div className="box-container">
                {
-                  task?.attachments && !!task?.attachments.length &&
-                  task?.attachments.map(attachment => <button key={attachment.id} className="box-full" style={{ backgroundImage: `url('${attachment.fileUrl}')` }}></button>)
+                  newTask?.attachments && !!newTask?.attachments.length &&
+                  newTask?.attachments
+                     .map(attachment =>
+                        utilService.isImage(attachment.fileUrl) &&
+                        <button key={attachment.id} onClick={() => onPickAttachments(attachment.fileUrl)} className="box-full" style={{ backgroundImage: `url('${attachment.fileUrl}')` }}></button>)
                }
             </div>
-            <span className="cover-btn">Upload a cover image</span>
+
+            <label htmlFor="file-upload" className="custom-file-upload cover-btn">
+               <i className=""></i> Upload a cover image
+            </label>
+            <input id="file-upload" type="file" onInput={addAttachment} />
+
          </div>
 
          <div className="unsplash-section">
             <h3 className="label">Photos from Unsplash</h3>
             <div className="box-container">
-               <button className="box-full" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653511442060-00c7b10827c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDZ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
-               <button className="box-full" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653496905343-b1fc1277e3fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDV8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
-               <button className="box-full" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1652543549421-ea252bd209f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDR8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
-               <button className="box-full" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653450283266-c788c2ca4ab2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDN8MzE3MDk5fHx8fHwyfHwxNjUzODAwNzQ5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
-               <button className="box-full" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653419831613-56ed2a1c8ea8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
-               <button className="box-full" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653592328269-09c14b3628f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
+               <button className="box-full"
+                  onClick={() => onPickUnsplash('https://images.unsplash.com/photo-1653511442060-00c7b10827c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDZ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')}
+                  style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653511442060-00c7b10827c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDZ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
+               <button className="box-full"
+                  onClick={() => onPickUnsplash('https://images.unsplash.com/photo-1653496905343-b1fc1277e3fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDV8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')}
+                  style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653496905343-b1fc1277e3fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDV8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
+               <button className="box-full"
+                  onClick={() => onPickUnsplash('https://images.unsplash.com/photo-1652543549421-ea252bd209f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDR8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')}
+                  style={{ backgroundImage: `url('https://images.unsplash.com/photo-1652543549421-ea252bd209f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDR8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
+               <button className="box-full"
+                  onClick={() => onPickUnsplash('https://images.unsplash.com/photo-1653450283266-c788c2ca4ab2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDN8MzE3MDk5fHx8fHwyfHwxNjUzODAwNzQ5&ixlib=rb-1.2.1&q=80&w=200')}
+                  style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653450283266-c788c2ca4ab2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDN8MzE3MDk5fHx8fHwyfHwxNjUzODAwNzQ5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
+               <button className="box-full"
+                  onClick={() => onPickUnsplash('https://images.unsplash.com/photo-1653419831613-56ed2a1c8ea8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')}
+                  style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653419831613-56ed2a1c8ea8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
+               <button className="box-full"
+                  onClick={() => onPickUnsplash('https://images.unsplash.com/photo-1653592328269-09c14b3628f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')}
+                  style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653592328269-09c14b3628f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
             </div>
-            <span className="cover-btn">Search for photos</span>
+            {/* <span className="cover-btn">Search for photos</span> */}
          </div>
 
       </React.Fragment>
    )
 
 }
-
-
-
-

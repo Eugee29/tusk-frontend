@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { connect, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import { activityService } from '../../services/activity.service'
 
 import { GrList } from 'react-icons/gr'
 import { ActivityList } from '../activity-list'
 
-export function TaskDetailsActivity({ task, isCloseEdit, board }) {
+export function TaskDetailsActivity({ task, isCloseEdit, board, onUpdateBoard, group }) {
   const activities = activityService.getTaskActivities(task.id, board)
+  const { user } = useSelector(({ userModule }) => userModule)
 
   const [isClickedComment, setIsClickedComment] = useState(null)
   const [isTypeComment, setIsTypeComment] = useState(false)
-  const [comment, setIsComment] = useState('')
+  const [comment, setComment] = useState('')
 
 
   useEffect(() => {
@@ -25,11 +26,29 @@ export function TaskDetailsActivity({ task, isCloseEdit, board }) {
 
   const handleChange = (ev) => {
     ev.stopPropagation()
-    setIsComment(ev.target.value)
-    console.log(ev.target.value)
+    setComment(ev.target.value)
 
     if (ev.target.value.length > 0) setIsTypeComment(true)
     if (ev.target.value.length === 0) setIsTypeComment(false)
+  }
+
+  const onSubmitComment = () => {
+    console.log(comment)
+
+    const activity = {
+      actionType: 'comment',
+      text: comment,
+      task: {
+        id: task.id,
+        title: task.title
+      },
+      group: {
+        id: group.id,
+        title: group.title
+      }
+    }
+    onUpdateBoard(board, activity)
+    setComment('')
   }
 
   const enableButton = isTypeComment ? 'enableButton' : ''
@@ -48,7 +67,7 @@ export function TaskDetailsActivity({ task, isCloseEdit, board }) {
 
         <div className="user-container">
           <div className="member">
-            <span className="label"> {``}{``}</span>
+            <img src={user.imgURL} alt="..." />
           </div>
         </div>
 
@@ -56,7 +75,7 @@ export function TaskDetailsActivity({ task, isCloseEdit, board }) {
           <div className="comment-container">
             {!isClickedComment && <a onClick={onChangeComment}>Write a comment…</a>}
             {isClickedComment && <textarea onClick={onChangeComment} placeholder="Write a comment…" onChange={handleChange} value={comment} ></textarea>}
-            {isClickedComment && <input className={`${enableButton}`} type="submit" value="Save" disabled="" />}
+            {isClickedComment && <input className={`${enableButton}`} type="submit" value="Save" onClick={onSubmitComment} disabled="" />}
           </div>
         </div>
 

@@ -14,6 +14,16 @@
       padding: 8px 0;
       position: relative;
 
+      .member {
+
+         img {
+            object-fit: cover;
+            height: 32px;
+            width: 32px;
+            border-radius: 50%;
+         }
+      }
+
       .user-container {
          height: 32px;
          left: -44px;
@@ -106,12 +116,7 @@
          line-height: 20px;
          padding-bottom: 3px;
 
-         .member {
-            color: #172b4d;
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 20px;
-         }
+
       }
 
       .time-container {

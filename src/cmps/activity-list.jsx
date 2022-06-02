@@ -5,16 +5,12 @@ import { activityService } from '../services/activity.service'
 export function ActivityList(props) {
 
   const { board } = props
+
   let task, onToggleMenu
   if (props.task) task = props.task
-  // console.log(task)
   if (props.onToggleMenu) onToggleMenu = props.onToggleMenu
 
   const activities = (task) ? activityService.getTaskActivities(task.id, board) : board.activities
-  // console.log(activities, task)
-
-  // fix
-  return
 
   return (
     <div className='activities'>
@@ -23,20 +19,32 @@ export function ActivityList(props) {
           : <div className='member-img'> G </div>}
         <div className='activity-info' key={activity.id}>
           <h3 className='activity-text'> <span className="fullname">{activity.byMember.fullname}&nbsp;</span>
+            {activity.isComment && <span className='activity-time'> {utilService.getTimeAgo(activity.createdAt)} </span>}
 
-            {activity.isComment && <div className='comment'>
+            {activity.isComment && !task && <div className='comment'>
               {activityService.getActivityText(activity, board, task)
-                .map((text, index) => <span key={index}>{text}&nbsp;</span>)}
+                .map((text, index) => {
+                  return <span key={index}>{text}&nbsp;</span>
+                })}
+              <div className='comment-container'>
+                <span className='comment-content' key={activity.id}>{activity.text}&nbsp;</span>
+              </div>
+            </div>}
+
+            {activity.isComment && task && <div className='comment'>
+              <div className='comment-container'>
+                <span className='comment-content' key={activity.id}>{activity.text}&nbsp;</span>
+              </div>
             </div>}
 
             {!activity.isComment && task && activityService.getActivityText(activity, board, task)
-              .map((text, index) => <span key={index}>{text}&nbsp;</span>)}
+              .map((text, index) => <span className='activity-content' key={index}>{text}&nbsp;</span>)}
 
             {!activity.isComment && !task && activityService.getActivityText(activity, board, onToggleMenu)
-              .map((text, index) => <span key={index}>{text}&nbsp;</span>)}
+              .map((text, index) => <span className='activity-content' key={index}>{text}&nbsp;</span>)}
 
           </h3>
-          <h3 className='activity-time'> {utilService.getTimeAgo(activity.createdAt)} </h3>
+          {!activity.isComment && <h3 className='activity-time'> {utilService.getTimeAgo(activity.createdAt)} </h3>}
         </div>
       </div>)}
     </div>
