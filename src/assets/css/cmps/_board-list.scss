@@ -29,18 +29,23 @@
 }
 
 .board-section-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 20px;
+
+    // @media (max-width: 760px) {
+    //     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    //  }
+
+
 
     .board-tile.mod-add {
         background-color: #091e420a;
         border: none;
         box-shadow: none;
         color: $brand-clr4;
-        display: table-cell;
         font-weight: 400;
-        height: 80px;
         text-align: center;
         transition-duration: 85ms;
         transition-property: background-color, border-color, box-shadow;
@@ -60,7 +65,7 @@
     .board-tile-details-center {
         display: flex;
         flex-direction: column;
-        height: 80px;
+        height: 110px;
         justify-content: center;
         position: relative;
 

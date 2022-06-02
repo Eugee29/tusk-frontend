@@ -42,6 +42,7 @@
     .btn {
       @include button-link();
       text-align: center;
+      justify-content: center;
     }
 
     .hr {

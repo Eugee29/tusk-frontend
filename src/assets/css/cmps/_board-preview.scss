@@ -3,21 +3,21 @@
    margin: 0 2% 2% 0;
    padding: 0;
    transform: translate(0);
-   width: 193px;
+   width: 100%;
    cursor: pointer;
 
-   @media (max-width: 760px) {
-      width: 160px;
-   }
-   @media (max-width: 655px) {
-      width: 140px;
-   }
-   @media (max-width: 605px) {
-      width: 193px;
-   }
-   @media (max-width: 430px) {
-      width: 48%;
-   }
+   // @media (max-width: 760px) {
+   //    width: 240px;
+   // }
+   // @media (max-width: 655px) {
+   //    width: 140px;
+   // }
+   // @media (max-width: 605px) {
+   //    width: 193px;
+   // }
+   // @media (max-width: 430px) {
+   //    width: 48%;
+   // }
 
    .board-tile {
       background-color: $brand-clr11;
@@ -37,7 +37,7 @@
    .board-tile-details {
       display: flex;
       flex-direction: column;
-      height: 80px;
+      height: 110px;
       justify-content: space-between;
       position: relative;
 

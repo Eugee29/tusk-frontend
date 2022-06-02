@@ -21,6 +21,7 @@
 
 .sidebar-button {
   @include button-link();
+  text-align: center;
 
   &.delete-btn {
     background-color: $clr11;
