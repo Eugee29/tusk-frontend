@@ -94,6 +94,7 @@ export const DynamicModal = () => {
         <ModalLabel
           task={modal.task}
           updateTask={modal.updateTask}
+          onUpdateBoard={modal.onUpdateBoard}
           board={modal.board}
           changeEditLabel={changeEditLabel}
           element={modal.element}

@@ -16,7 +16,7 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
   const datesRef = useRef()
   const dispatch = useDispatch()
 
-  const [isCompleteDate, setIsCompleteDate] = useState(false)
+  const [isCompleteDate, setIsCompleteDate] = useState(task.isComplete || false)
 
   useEffect(() => {
     onLabels()
@@ -24,6 +24,11 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
 
   const onToggleComplete = (value, ev) => {
     setIsCompleteDate(value)
+
+    const updatedTask = { ...task }
+    updatedTask.isComplete = value
+    updateTask(updatedTask)
+
   }
 
   const onOpenModal = (ev, modal) => {
@@ -31,9 +36,13 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
     dispatch(setModal(modal))
   }
 
-
+  const initials = (member) => ([...member.fullname])
   const onLabels = (label) => { return board.labels.filter(boardLabel => boardLabel.id === label)[0] }
-  const dateFormat = utilService.getTimeFormat(task.dueDate)
+
+  var dateFormat = utilService.getDateTimeFormat(task.dueDate)
+  if (task?.isComplete && task.isComplete) {
+    dateFormat.statusDate = 'complete'
+  }
 
   return (
     <section className="task-details-info" >

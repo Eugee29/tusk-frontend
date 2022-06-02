@@ -64,8 +64,16 @@ export const TaskPreview = ({ task, groupId, index, board, toggleLabels, isLabel
   }
 
   const getTimeStyle = () => {
-    const style = (task.dueDate > Date.now()) ? { backgroundColor: '', color: '#505f79' } : { backgroundColor: '#ec9488', color: '#ffff' }
-    return style
+    var dateFormat = utilService.getDateTimeFormat(task.dueDate)
+    if (task?.isComplete && task.isComplete) {
+      dateFormat.statusDate = 'complete'
+    }
+
+    if (dateFormat.statusDate === '') return { backgroundColor: '', color: '#505f79' }
+    if (dateFormat.statusDate === 'overdue') return { backgroundColor: '#EB5A46', color: '#ffff' }
+    if (dateFormat.statusDate === 'duesoon') return { backgroundColor: '#F2D600', color: '#ffff' }
+    if (dateFormat.statusDate === 'complete') return { backgroundColor: '#61BD4F', color: '#ffff' }
+
   }
 
   return (
