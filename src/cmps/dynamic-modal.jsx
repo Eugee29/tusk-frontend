@@ -13,6 +13,7 @@ import { ModalLabelChange } from './modal/modal-label-change'
 import { ModalCreateBoard } from './modal/modal-create-board'
 import { ModalGroupActions } from './modal/modal-group-actions'
 import { ModalCover } from './modal/modal-cover'
+import { ModalDates } from './modal/modal-dates'
 import { ModalMember } from './modal/modal-member'
 import { ModalLabel } from './modal/modal-label'
 import { TodoActions } from './modal/todo-actions'
@@ -72,6 +73,13 @@ export const DynamicModal = () => {
       case 'Members':
          cmp =
             <ModalMember
+               task={modal.task}
+               updateTask={modal.updateTask}
+            />
+         break
+      case 'Dates':
+         cmp =
+            <ModalDates
                task={modal.task}
                updateTask={modal.updateTask}
                board={modal.board}
