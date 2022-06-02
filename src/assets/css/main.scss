@@ -19,7 +19,7 @@
 
 // COMPONENTS
 @import './cmps/board-list.scss';
-@import './cmps/board-preview.scss';
+@import './cmps/board-preview';
 @import './cmps/app-header/';
 @import './cmps/board-header/';
 @import './cmps/group-list/';
@@ -55,3 +55,4 @@
 @import './cmps/attachment-add/';
 @import './cmps/attachment-delete/';
 @import './cmps/attachment-edit/';
+@import './cmps/member-actions/';

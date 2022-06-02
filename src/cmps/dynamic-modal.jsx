@@ -22,6 +22,7 @@ import { ChecklistAdd } from './modal/checklist-add'
 import { AttachmentAdd } from './modal/attachment-add.jsx'
 import { AttachmentDelete } from './modal/attachment-delete'
 import { AttachmentEdit } from './modal/attachment-edit'
+import { MemberActions } from './modal/member-actions'
 
 
 export const DynamicModal = () => {
@@ -94,6 +95,7 @@ export const DynamicModal = () => {
         <ModalLabel
           task={modal.task}
           updateTask={modal.updateTask}
+          onUpdateBoard={modal.onUpdateBoard}
           board={modal.board}
           changeEditLabel={changeEditLabel}
           element={modal.element}
@@ -151,6 +153,10 @@ export const DynamicModal = () => {
       cmp =
         <AttachmentEdit {...modal.props} />
       break
+    case 'member-actions':
+      cmp =
+        <MemberActions {...modal.props} />
+      break
     default:
       break
   }
@@ -162,12 +168,14 @@ export const DynamicModal = () => {
 
   return (
     <div className="dynamic-modal" style={{ ...position }} ref={modalRef} onClick={(e) => e.stopPropagation()}>
-      <header >
-        {modal.category === 'Create label' && <button ref={buttonRef} onClick={ev => onOpenModal(ev, 'Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
-        {modal.category === 'Change label' && <button ref={buttonRef} onClick={ev => onOpenModal(ev, 'Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
-        <div className="label">{modal.title ? modal.title : modal.category}</div>
-        <button className="sidebar-icon-right" onClick={() => dispatch(setModal(null))}><span><CgClose /></span></button>
-      </header>
+      {modal.category != 'member-actions' &&
+        <header >
+          {modal.category === 'Create label' && <button ref={buttonRef} onClick={ev => onOpenModal(ev, 'Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
+          {modal.category === 'Change label' && <button ref={buttonRef} onClick={ev => onOpenModal(ev, 'Labels')} className="sidebar-icon-left"><span ><IoIosArrowBack /></span></button>}
+          <div className="label">{modal.title ? modal.title : modal.category}</div>
+          <button className="sidebar-icon-right" onClick={() => dispatch(setModal(null))}><span><CgClose /></span></button>
+        </header>
+      }
       <main className="main-modal">
         {cmp}
       </main>
