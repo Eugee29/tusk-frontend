@@ -62,62 +62,26 @@ export const DynamicModal = () => {
   }
 
   var cmp
+  console.log(modal.props)
 
   switch (modal.category) {
     case 'Cover':
-      cmp = <ModalCover task={modal.task} updateTask={modal.updateTask} />
+      cmp = <ModalCover {...modal.props} />
       break
     case 'Members':
-      cmp = (
-        <ModalMember
-          task={modal.task}
-          updateTask={modal.updateTask}
-          board={modal.board}
-        />
-      )
+      cmp = <ModalMember {...modal.props} />
       break
     case 'Dates':
-      cmp = (
-        <ModalDates
-          task={modal.task}
-          updateTask={modal.updateTask}
-          board={modal.board}
-          group={modal.group}
-        />
-      )
+      cmp = <ModalDates {...modal.props} />
       break
     case 'Labels':
-      cmp = (
-        <ModalLabel
-          task={modal.task}
-          updateTask={modal.updateTask}
-          onUpdateBoard={modal.onUpdateBoard}
-          board={modal.board}
-          changeEditLabel={changeEditLabel}
-          element={modal.element}
-        />
-      )
+      cmp = <ModalLabel {...modal.props} changeEditLabel={changeEditLabel} />
       break
     case 'Create label':
-      cmp = (
-        <ModalLabelCreate
-          task={modal.task}
-          board={modal.board}
-          updateTask={modal.updateTask}
-          onUpdateBoard={modal.onUpdateBoard}
-        />
-      )
+      cmp = <ModalLabelCreate {...modal.props} />
       break
     case 'Change label':
-      cmp = (
-        <ModalLabelChange
-          task={modal.task}
-          board={modal.board}
-          editLabel={editLabel.current}
-          updateTask={modal.updateTask}
-          onUpdateBoard={modal.onUpdateBoard}
-        />
-      )
+      cmp = <ModalLabelChange {...modal.props} editLabel={editLabel.current} />
       break
     case 'Create board':
       cmp = <ModalCreateBoard />
@@ -135,13 +99,7 @@ export const DynamicModal = () => {
       cmp = <AttachmentAdd {...modal.props} />
       break
     case 'Group actions':
-      cmp = (
-        <ModalGroupActions
-          onUpdateBoard={modal.onUpdateBoard}
-          group={modal.group}
-          boardId={modal.boardId}
-        />
-      )
+      cmp = <ModalGroupActions {...modal.props} />
       break
     case 'attachment-delete':
       cmp = <AttachmentDelete {...modal.props} />
@@ -163,9 +121,13 @@ export const DynamicModal = () => {
         element: modal.element,
         category,
         title: category,
-        task: modal.task,
-        board: modal.board,
-        onUpdateBoard: modal.onUpdateBoard,
+        props: {
+          task: modal.task,
+          board: modal.board,
+          updateTask: modal.updateTask,
+          onUpdateBoard: modal.onUpdateBoard,
+          element: modal.element,
+        },
       })
     )
   }
