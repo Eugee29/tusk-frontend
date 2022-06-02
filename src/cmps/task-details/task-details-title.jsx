@@ -23,7 +23,7 @@ export function TaskDetailsTitle({ task, groupTitle, updateTask }) {
     <header className="task-details-title" >
       <span><CgCreditCard /></span>
       <form onSubmit={onSaveTitle}>
-        <input className="main-title" ref={inputRef} value={taskTitle} onChange={handleChange} onBlur={onSaveTitle} />
+        <input className="main-title" ref={inputRef} value={taskTitle} onChange={handleChange} onBlur={onSaveTitle} onFocus={() => inputRef.current.select()} />
       </form>
       <div className="sub-title">in group<button>{groupTitle}</button></div>
     </header>
