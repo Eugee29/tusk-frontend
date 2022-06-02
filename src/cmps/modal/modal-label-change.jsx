@@ -8,7 +8,6 @@ export const ModalLabelChange = ({ task, board, editLabel, updateTask, onUpdateB
    const { modal } = useSelector(({ appModule }) => appModule)
 
    const searchInput = useRef(null)
-   const buttonRef = useRef()
 
    const dispatch = useDispatch()
 
@@ -54,7 +53,7 @@ export const ModalLabelChange = ({ task, board, editLabel, updateTask, onUpdateB
    }
 
    const onOpenModal = (category) => {
-      dispatch(setModal({ element: modal.element, category, title: category, task, updateTask, board, onUpdateBoard }))
+      dispatch(setModal({ element: modal.element, category, title: category, task, updateTask, board, onUpdateBoard: onUpdateBoard }))
    }
 
 
