@@ -59,7 +59,7 @@ export const TaskDetails = () => {
             {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
             <TaskDetailsActivity task={task} board={board} />
           </div>
-          <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
+          <TaskDetailsSideTask board={board} group={group} task={task} onUpdateBoard={onUpdateBoard} updateTask={updateTask} />
         </div>
 
       </div>

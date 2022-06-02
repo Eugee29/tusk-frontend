@@ -4,12 +4,10 @@ import { useDispatch } from 'react-redux'
 import { setModal } from '../../store/app/app.actions'
 
 import { RiLayoutBottom2Fill } from 'react-icons/ri'
-import { useNavigate } from 'react-router-dom'
 
 export const AttachmentPreview = ({ attachment, task, updateTask }) => {
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const deleteRef = useRef()
   const editRef = useRef()
 
