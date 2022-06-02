@@ -66,6 +66,7 @@ export const DynamicModal = () => {
       cmp =
         <ModalCover
           task={modal.task}
+          updateTask={modal.updateTask}
         />
       break
     case 'Members':

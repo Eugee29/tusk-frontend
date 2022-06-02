@@ -4,13 +4,13 @@ import { useDispatch } from 'react-redux'
 import { setModal } from '../../store/app/app.actions'
 
 
-export function TaskDetailsCover({ task }) {
+export function TaskDetailsCover({ task, updateTask }) {
 
   const buttonRef = useRef()
   const dispatch = useDispatch()
 
   const onModal = (category) => {
-    dispatch(setModal({ element: buttonRef.current, category, title: category, task }))
+    dispatch(setModal({ element: buttonRef.current, category, title: category, task, updateTask }))
   }
 
   return (

@@ -8,7 +8,16 @@ export const ModalCover = ({ task }) => {
       setIsOnPreviewTextColor(bool)
    }
 
-   //  if (!task) { return }
+   const onChangeBackground = () => {
+      // if (task.description === desc) {
+      //    setIsClickedDesc(false)
+      //    return
+      // }
+      // const updatedTask = { ...task }
+      // updatedTask.description = desc
+      // updateTask(updatedTask)
+      // setIsClickedDesc(false)
+   }
 
    return (
       <React.Fragment>
@@ -78,7 +87,7 @@ export const ModalCover = ({ task }) => {
             <div className="box-container">
                {
                   task?.attachments && !!task?.attachments.length &&
-                  task?.attachments.map(attachment => <div key={attachment.id} className="box-full" style={{ backgroundImage: `url('${attachment.fileUrl}')` }}></div>)
+                  task?.attachments.map(attachment => <button key={attachment.id} className="box-full" style={{ backgroundImage: `url('${attachment.fileUrl}')` }}></button>)
                }
             </div>
             <span className="cover-btn">Upload a cover image</span>
