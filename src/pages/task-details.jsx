@@ -1,6 +1,7 @@
 
-import React, { useState, } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate, useOutletContext, useParams } from "react-router-dom"
 
 import { VscClose } from 'react-icons/vsc'
@@ -18,56 +19,50 @@ import { ChecklistList } from '../cmps/checklist/checklist-list.jsx'
 
 export const TaskDetails = () => {
 
-   const navigate = useNavigate()
-   const dispatch = useDispatch()
-   const { boardId, groupId, taskId } = useParams()
-   const { board, onUpdateBoard } = useOutletContext()
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const { boardId, groupId, taskId } = useParams()
+  const { board, onUpdateBoard } = useOutletContext()
+  const { modal } = useSelector(({ appModule }) => appModule)
 
-   const group = board.groups.find(group => group.id === groupId)
-   const task = group.tasks.find(task => task.id === taskId)
+  const group = board.groups.find(group => group.id === groupId)
+  const task = group.tasks.find(task => task.id === taskId)
 
-   const updateTask = async (taskToUpdate) => {
-      const taskIdx = group.tasks.findIndex(task => task.id === taskToUpdate.id)
-      group.tasks[taskIdx] = taskToUpdate
-      onUpdateBoard(board)
-   }
+  const updateTask = async (taskToUpdate) => {
+    const taskIdx = group.tasks.findIndex(task => task.id === taskToUpdate.id)
+    group.tasks[taskIdx] = taskToUpdate
+    onUpdateBoard(board)
+  }
 
-   // const updateTask = async (updatedTask) => {
-   //    const taskIdx = group.tasks.findIndex(task => task.id === updatedTask.id)
-   //    group.tasks[taskIdx] = updatedTask
-   //    onUpdateBoard(board)
-   //  }
+  const onGoBack = () => {
+    navigate(`/board/${boardId}`)
+  }
 
-   const onGoBack = () => {
-      dispatch(setModal(null))
-      navigate(`/board/${boardId}`)
-   }
+  const onDetailsClick = (ev) => {
+    ev.stopPropagation()
+    if (modal) dispatch(setModal(null))
+  }
 
-   const onDetailsClick = (ev) => {
-      ev.stopPropagation()
-      dispatch(setModal(null))
-   }
+  return (
+    <section className="task-details" onClick={onGoBack}>
+      <div className="task-details-container" onClick={onDetailsClick}>
+        <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
 
-   return (
-      <section className="task-details" onClick={onGoBack}>
-         <div className="task-details-container" onClick={onDetailsClick}>
-            <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
+        <div>
+          {task.style && <TaskDetailsCover task={task} setModal={setModal} updateTask={updateTask} />}
+          {task.title && <TaskDetailsTitle task={task} groupTitle={group.title} updateTask={updateTask} />}
 
-            <div>
-               {task.style && <TaskDetailsCover task={task} setModal={setModal} updateTask={updateTask}/>}
-               {task.title && <TaskDetailsTitle task={task} groupTitle={group.title} updateTask={updateTask}  />}
+          <div className="main-task">
+            <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
+            {<TaskDetailsDescription task={task} updateTask={updateTask} />}
+            {task.attachments && <TaskDetailsAttachments task={task} updateTask={updateTask} />}
+            {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
+            <TaskDetailsActivity task={task} board={board} />
+          </div>
+          <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
+        </div>
 
-               <div className="main-task">
-                  <TaskDetailsInfo board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
-                  {<TaskDetailsDescription task={task} updateTask={updateTask} />}
-                  {task.attachments && <TaskDetailsAttachments task={task} />}
-                  {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
-                  <TaskDetailsActivity task={task} board={board} />
-               </div>
-               <TaskDetailsSideTask board={board} task={task} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
-            </div>
-
-         </div>
-      </section >
-   )
+      </div>
+    </section >
+  )
 }

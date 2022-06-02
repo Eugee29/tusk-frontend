@@ -13,7 +13,7 @@ export function ActivityList(props) {
   const activities = (task) ? activityService.getTaskActivities(task.id, board) : board.activities
   // console.log(activities, task)
 
-  // Need to fix
+  // fix
   return
 
   return (

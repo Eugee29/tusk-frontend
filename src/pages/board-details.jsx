@@ -49,7 +49,7 @@ export const BoardDetails = () => {
   if (!board) return <h1>Loading...</h1>
 
   return (
-    <main className='board-details' onClick={() => setModal(null)} style={{ background: board.style.bgImg.length > 10 ? `url(${board.style.bgImg})` : `${board.style.bgImg}` }}>
+    <main className='board-details' style={{ background: board.style.bgImg.length > 10 ? `url(${board.style.bgImg})` : `${board.style.bgImg}` }}>
       <BoardHeader board={board} onUpdateBoard={onUpdateBoard} />
       <GroupList board={board} onUpdateBoard={onUpdateBoard} />
       <Outlet context={{ onUpdateBoard, board }} />

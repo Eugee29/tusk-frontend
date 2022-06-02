@@ -17,6 +17,7 @@ export const AttachmentAdd = ({ task, updateTask }) => {
 
   const addAttachment = async (ev) => {
     ev.preventDefault()
+    if (!fileURL && !ev.target.files) return
     dispatch(setModal(null))
 
     if (!ev.target.files) ev.target.files = [fileURL]

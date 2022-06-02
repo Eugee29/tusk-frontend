@@ -1,38 +1,22 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { connect, useSelector } from 'react-redux'
+import React, { useRef } from 'react'
+import { useDispatch } from 'react-redux'
+
+import { setModal } from '../../store/app/app.actions'
 
 import { ImAttachment } from 'react-icons/im'
-import { RiLayoutBottom2Fill } from 'react-icons/ri'
 
-function _TaskDetailsAttachments({ task }) {
+import { AttachmentPreview } from './attachment-preview'
 
-  // const { board } = useSelector((storeState) => storeState.boardModule)
+export const TaskDetailsAttachments = ({ task, updateTask }) => {
 
-  const timeAgo = (timestamp, locale = 'en') => {
-    let value
-    const diff = (Date.now() - timestamp) / 1000
-    const minutes = Math.floor(diff / 60)
-    const hours = Math.floor(minutes / 60)
-    const days = Math.floor(hours / 24)
-    const months = Math.floor(days / 30)
-    const years = Math.floor(months / 12)
-    const rtf = new Intl.RelativeTimeFormat(locale, { numeric: "auto" })
+  const dispatch = useDispatch()
+  const addRef = useRef()
 
-    if (years > 0) {
-      value = rtf.format(0 - years, "year")
-    } else if (months > 0) {
-      value = rtf.format(0 - months, "month")
-    } else if (days > 0) {
-      value = rtf.format(0 - days, "day")
-    } else if (hours > 0) {
-      value = rtf.format(0 - hours, "hour")
-    } else if (minutes > 0) {
-      value = rtf.format(0 - minutes, "minute")
-    } else {
-      value = rtf.format(0 - diff, "second")
-    }
-    return value
+  const onOpenModal = (ev, modal) => {
+    ev.stopPropagation()
+    dispatch(setModal(modal))
   }
+
 
   return (
     <section className="task-details-attachments" >
@@ -44,35 +28,10 @@ function _TaskDetailsAttachments({ task }) {
       </div>
 
       <div className="attachments-body-container">
-
-        {task.attachments.map(att =>
-          <div key={att.id} className="attachments-section-container">
-            <a className="thumbnail-img" target="_blank" style={{ backgroundImage: `url('${att.fileUrl}')` }}></a>
-            <div className="thumbnail-info">
-              <span className="thumbnail-name">{att.fileName ? att.fileName : 'Media'}</span>
-              <div className="thumbnail-details">
-                <span className="thumbnail-date" >Added <span className="date">{timeAgo(task.attachments[0].createdAt)}</span> </span>
-                <span> - <a className="thumbnail-date" href="#"><span className="button-att">Delete</span></a> </span>
-                <span> - <a className="thumbnail-date" href="#"><span className="button-att">Edit</span></a> </span>
-              </div>
-              <div className="thumbnail-cover">
-                <span className="icon-make-cover"><RiLayoutBottom2Fill /></span>
-                <span className="button-att">Make cover</span>
-              </div>
-            </div>
-          </div>)}
-
-        <a className="attachments-add" href="#">Add an attachment</a>
+        {task.attachments.map(attachment => <AttachmentPreview key={attachment.id} attachment={attachment} task={task} updateTask={updateTask} />)}
+        <a className="attachments-add" ref={addRef} onClick={(ev) => onOpenModal(ev, { element: addRef.current, category: 'attachment-add', title: 'Attach from...', props: { task, updateTask } })}>Add an attachment</a>
       </div>
 
     </section>
   )
 }
-
-function mapStateToProps(state) {
-  return {
-    board: state.boardModule.board
-  }
-}
-
-export const TaskDetailsAttachments = connect(mapStateToProps)(_TaskDetailsAttachments)
