@@ -1,8 +1,6 @@
 
 import { utilService } from '../services/util.service'
 import { activityService } from '../services/activity.service'
-import { useSelector } from 'react-redux'
-
 
 export function ActivityList(props) {
 
@@ -21,7 +19,7 @@ export function ActivityList(props) {
           : <div className='member-img'> G </div>}
         <div className='activity-info' key={activity.id}>
           <h3 className='activity-text'> <span className="fullname">{activity.byMember.fullname}&nbsp;</span>
-          {activity.isComment && <span className='activity-time'> {utilService.getTimeAgo(activity.createdAt)} </span>}
+            {activity.isComment && <span className='activity-time'> {utilService.getTimeAgo(activity.createdAt)} </span>}
 
             {activity.isComment && !task && <div className='comment'>
               {activityService.getActivityText(activity, board, task)

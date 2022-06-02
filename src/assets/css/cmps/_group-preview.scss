@@ -1,5 +1,5 @@
 .group-preview {
-  min-width: 272px;
+  width: 272px;
   display: flex;
   flex-direction: column;
   border-radius: 3px;
@@ -92,7 +92,7 @@
       font-weight: 400;
       gap: 5px;
       line-height: 28;
-      
+
 
       &:hover {
         background-color: $clr1;

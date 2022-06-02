@@ -20,6 +20,8 @@ import { TodoActions } from './modal/todo-actions'
 import { ChecklistDelete } from './modal/checklist-delete'
 import { ChecklistAdd } from './modal/checklist-add'
 import { AttachmentAdd } from './modal/attachment-add.jsx'
+import { AttachmentDelete } from './modal/attachment-delete'
+import { AttachmentEdit } from './modal/attachment-edit'
 
 
 export const DynamicModal = () => {
@@ -75,6 +77,7 @@ export const DynamicModal = () => {
             <ModalMember
                task={modal.task}
                updateTask={modal.updateTask}
+               board={modal.board}
             />
          break
       case 'Dates':
@@ -138,6 +141,14 @@ export const DynamicModal = () => {
       case 'Group actions':
          cmp =
             <ModalGroupActions onUpdateBoard={modal.onUpdateBoard} group={modal.group} boardId={modal.boardId} />
+         break
+      case 'attachment-delete':
+         cmp =
+            <AttachmentDelete {...modal.props} />
+         break
+      case 'attachment-edit':
+         cmp =
+            <AttachmentEdit {...modal.props} />
          break
       default:
          break

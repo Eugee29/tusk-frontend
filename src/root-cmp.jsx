@@ -22,7 +22,7 @@ export function RootCmp() {
   const dispatch = useDispatch()
 
   return (
-    <div onClick={() => dispatch(setModal(null))}>
+    <div onClick={() => { if (modal) dispatch(setModal(null)) }}>
       <AppHeader />
       {modal && <DynamicModal />}
       <main className='main-layout'>
