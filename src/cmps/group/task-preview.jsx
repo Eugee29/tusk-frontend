@@ -11,8 +11,9 @@ import { IoMdCheckboxOutline } from 'react-icons/io'
 import { ImAttachment } from 'react-icons/im'
 
 import { LabelList } from './label-list'
+import { MemberPreview } from '../task-details/member-preview'
 
-export const TaskPreview = ({ task, groupId, index, board, toggleLabels, isLabelsOpen }) => {
+export const TaskPreview = ({ task, groupId, index, board, toggleLabels, isLabelsOpen, onUpdateBoard }) => {
   const navigate = useNavigate()
   const onOpenDetails = (ev) => {
     ev.stopPropagation()
@@ -96,7 +97,7 @@ export const TaskPreview = ({ task, groupId, index, board, toggleLabels, isLabel
                 </div>
                 {task.members && !!task.members.length && (!task.style.isCover)
                   && <div className='member-img-container'>
-                    {task.members.map((member) => <a key={member._id} className="member-img"> <img src={member.imgURL} alt="" /> </a>)}
+                    {task.members.map((member) => <MemberPreview key={member._id} member={member} isInTaskDetails={false} task={task} onUpdateBoard={onUpdateBoard} board={board} />)}
                   </div>}
               </div>
 

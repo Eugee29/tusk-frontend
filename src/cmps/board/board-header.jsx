@@ -4,6 +4,7 @@ import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 
 import { BoardSideMenu } from '../board/board-side-menu'
+import { MemberPreview } from '../task-details/member-preview'
 
 
 export function BoardHeader({ board, onUpdateBoard }) {
@@ -15,7 +16,7 @@ export function BoardHeader({ board, onUpdateBoard }) {
     setIsStarred(!isStarred)
     updateBoard()
   }
-  
+
   const onToggleMenu = () => {
     setIsMenuOpened(!isMenuOpened)
   }
@@ -44,7 +45,7 @@ export function BoardHeader({ board, onUpdateBoard }) {
       </button>
       {board.members && !!board.members.length
         && <div className='member-img-container'>
-          {board.members.map((member) => <a key={member._id} className="member-img"> <img src={member.imgURL} alt="" /> </a>)}
+          {board.members.map((member) => <MemberPreview key={member._id} member={member} isInTaskDetails={false} onUpdateBoard={onUpdateBoard} board={board} />)}
         </div>}
     </div>
     <div className='right-container'>

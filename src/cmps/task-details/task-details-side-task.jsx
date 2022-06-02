@@ -74,7 +74,6 @@ export function TaskDetailsSideTask({ task, board, group, updateTask, onUpdateBo
     onUpdateBoard({ ...board, groups: updatedGroups })
   }
 
-  console.log(task)
 
   return (
     <section className='side-task'>

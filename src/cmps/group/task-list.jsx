@@ -6,7 +6,7 @@ import { IoMdClose } from 'react-icons/io'
 // ?
 import { boardService } from '../../services/board.service'
 
-export const TaskList = ({ group, board, isLabelsOpen, toggleLabels, isAddCardOpen, toggleAddCard, onUpdateGroup }) => {
+export const TaskList = ({ group, board, isLabelsOpen, toggleLabels, isAddCardOpen, toggleAddCard, onUpdateGroup, onUpdateBoard }) => {
   const [cardText, setCardText] = useState('')
 
   const handleChange = (ev) => {
@@ -43,7 +43,7 @@ export const TaskList = ({ group, board, isLabelsOpen, toggleLabels, isAddCardOp
     <Droppable droppableId={group.id} type='TASK'>
       {provided => (
         <div className='task-list' {...provided.droppableProps} ref={provided.innerRef}>
-          {group.tasks.map((task, index) => !task.archivedAt && <TaskPreview key={task.id} board={board} groupId={group.id} task={task} index={index} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} />)}
+          {group.tasks.map((task, index) => !task.archivedAt && <TaskPreview key={task.id} board={board} groupId={group.id} task={task} index={index} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} onUpdateBoard={onUpdateBoard} />)}
           {provided.placeholder}
           {isAddCardOpen && <div className="add-card-container">
             <textarea autoFocus onBlur={onAddCard} placeholder='Enter a title for this card...' onChange={handleChange}></textarea>

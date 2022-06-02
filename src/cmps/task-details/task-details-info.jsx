@@ -7,6 +7,7 @@ import { ImCheckboxUnchecked, ImCheckboxChecked } from 'react-icons/im'
 import { GrDown } from 'react-icons/gr'
 
 import { utilService } from '../../services/util.service'
+import { MemberPreview } from './member-preview'
 
 export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
 
@@ -30,7 +31,7 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
     dispatch(setModal(modal))
   }
 
-  const initials = (member) => ([...member.fullname])
+
   const onLabels = (label) => { return board.labels.filter(boardLabel => boardLabel.id === label)[0] }
   const dateFormat = utilService.getTimeFormat(task.dueDate)
 
@@ -41,11 +42,7 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard }) => {
       {!!task.members.length &&
         <div className="task-card-info" >
           <h3 className="task-member-title">Members</h3>
-          {task.members?.map((member, idx) => (
-            member?.imgURL
-              ? <a key={member._id} className="member-img" style={{ backgroundImage: `url('${member.imgURL}')` }}> </a>
-              : <a key={member._id} className="member">{`${initials(member)[0]}${initials(member)[1]}`}</a>
-          ))}
+          {task.members?.map(member => <MemberPreview key={member._id} member={member} task={task} updateTask={updateTask} isInTaskDetails={true} board={board} onUpdateBoard={onUpdateBoard} />)}
           <a className="members-add-button round" ref={memberRef} onClick={(ev) => onOpenModal(ev, { element: memberRef.current, category: 'Members', task, updateTask, board, onUpdateBoard })} ><span >+</span></a>
         </div>
       }

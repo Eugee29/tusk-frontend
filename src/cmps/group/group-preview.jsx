@@ -50,7 +50,7 @@ export const GroupPreview = ({ group, index, toggleLabels, board, isLabelsOpen, 
               <button ref={buttonRef} onClick={onOpenModal} className="group-btn"> <BsThreeDots className="dots-icon" /> </button>
             </div>
 
-            <TaskList key={group.id} group={group} board={board} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} isAddCardOpen={isAddCardOpen} toggleAddCard={toggleAddCard} onUpdateGroup={onUpdateGroup} />
+            <TaskList key={group.id} group={group} board={board} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} isAddCardOpen={isAddCardOpen} toggleAddCard={toggleAddCard} onUpdateGroup={onUpdateGroup} onUpdateBoard={onUpdateBoard} />
 
             {!isAddCardOpen && <div className="add-btn-container">
               <button className="add-btn" onClick={toggleAddCard}> <AiOutlinePlus /> Add a card</button>
