@@ -1,31 +1,38 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import { useNavigate } from 'react-router-dom'
 
 import { utilService } from '../../services/util.service'
 
-import { FiClock } from 'react-icons/fi'
 import { RiPencilLine } from 'react-icons/ri'
-import { MdOutlineSubject } from 'react-icons/md'
-import { IoMdCheckboxOutline } from 'react-icons/io'
-import { ImAttachment } from 'react-icons/im'
 
 import { LabelList } from './label-list'
-import { MemberPreview } from '../task-details/member-preview'
+import { QuickEdit } from '../quick-edit'
+import { TaskPreviewIcons } from './task-preview-icons'
 
 export const TaskPreview = ({ task, groupId, index, board, toggleLabels, isLabelsOpen, onUpdateBoard }) => {
   const navigate = useNavigate()
+  const [isQuickEditOpen, setIsQuickEditOpen] = useState(false)
+  const taskRef = useRef()
+
   const onOpenDetails = (ev) => {
     ev.stopPropagation()
     navigate(`${groupId}/${task.id}`)
   }
 
-  const getTaskStyle = () => {
+  const toggleQuickEdit = (ev) => {
+    ev.stopPropagation()
+    setIsQuickEditOpen(!isQuickEditOpen)
+  }
+
+  const getTaskStyle = (isQuick) => {
     if (task.style) {
       if (task.style.imgURL && task.style.isCover) {
         return { backgroundImage: `url(${task.style.imgURL})` }
       }
       if (task.style.bgColor) {
+        if(isQuick) return { borderTop: `32px solid ${task.style.bgColor}` }
+
         if (!task.style.isCover) {
           return { borderTop: `32px solid ${task.style.bgColor}` }
         } else {
@@ -36,10 +43,12 @@ export const TaskPreview = ({ task, groupId, index, board, toggleLabels, isLabel
     } else return ''
   }
 
-  const getTaskClass = () => {
+  const getTaskClass = (isQuick) => {
     if (task.style) {
       if (task.style.bgColor && task.style.isCover) {
+        if (!isQuick)
         return 'task-preview styled'
+        else return 'task-preview color-header'
       } else if (task.style.bgColor && !task.style.isCover) {
         return 'task-preview color-header'
       } else if (task.style.imgURL && task.style.isCover) {
@@ -80,38 +89,28 @@ export const TaskPreview = ({ task, groupId, index, board, toggleLabels, isLabel
     <Draggable draggableId={task.id} index={index} type='TASK' >
       {(provided, snapshot) => (
         <div className='task-preview-handle' {...provided.draggableProps} {...provided.dragHandleProps}>
+          <div ref={taskRef}>
           <section className={`${getTaskClass()} ${snapshot.isDragging && !snapshot.isDropAnimating ? 'tilted' : ''}`} onClick={onOpenDetails} ref={provided.innerRef} style={getTaskStyle()}  >
-            {!task.style.isCover && task.style.imgURL && <img className='task-img-container' src={task.style.imgURL} alt="..." />}
-            <div className='task-info'>
-              {!!task.labelIds.length && (!task.style.isCover) && <LabelList board={board} labelIds={task.labelIds} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} />}
+            
+              {!task.style.isCover && task.style.imgURL && <img className='task-img-container' src={task.style.imgURL} alt="..." />}
+              <div className='task-info'>
+                {!!task.labelIds.length && (!task.style.isCover) && <LabelList board={board} labelIds={task.labelIds} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} />}
 
-              <div className='task-title-container'>
-                <h2 className='task-title'> {task.title} </h2>
-              </div>
-
-              <div className='task-icon-container'>
-                <div className='icon-container'>
-                  {task.dueDate && (!task.style.isCover)
-                    && <div className='icon-time-container' style={getTimeStyle()}>
-                      <FiClock /> <span> {utilService.formatTimeToDM(task.dueDate)} </span>
-                    </div>
-                  }
-                  {task.description && (!task.style.bgColor) && (!task.style.imgURL)
-                    && <MdOutlineSubject />}
-                  {task.checklists && !!task.checklists.length && (!task.style.isCover)
-                    && <div className='icon-num-container'> <IoMdCheckboxOutline /> <span> {getChecklistLength()} </span> </div>}
-                  {task.attachments && !!task.attachments.length && (!task.style.isCover)
-                    && <div className='icon-num-container'><ImAttachment className='attachment-icon' /> <span> {task.attachments.length} </span> </div>}
+                <div className='task-title-container'>
+                  <h2 className='task-title'> {task.title} </h2>
                 </div>
-                {task.members && !!task.members.length && (!task.style.isCover)
-                  && <div className='member-img-container'>
-                    {task.members.map((member) => <MemberPreview key={member._id} member={member} isInTaskDetails={false} task={task} onUpdateBoard={onUpdateBoard} board={board} />)}
-                  </div>}
-              </div>
 
-            </div>
-            <button className='edit-btn'> <RiPencilLine className='btn-icon' /> </button>
+                <TaskPreviewIcons task={task} board={board} getTimeStyle={getTimeStyle} getChecklistLength={getChecklistLength} onUpdateBoard={onUpdateBoard} />
+
+              </div>
+              <button className='edit-btn' onClick={toggleQuickEdit}> <RiPencilLine className='btn-icon' /> </button>
+
+              {isQuickEditOpen && <QuickEdit toggleQuickEdit={toggleQuickEdit} task={task}
+                board={board} getTimeStyle={getTimeStyle} getChecklistLength={getChecklistLength}
+                onUpdateBoard={onUpdateBoard} toggleLabels={toggleLabels}
+                isLabelsOpen={isLabelsOpen} element={taskRef.current} getTaskStyle={getTaskStyle} getTaskClass={getTaskClass} />}
           </section>
+            </div>
         </div>
       )}
     </Draggable >
