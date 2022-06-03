@@ -23,6 +23,7 @@ import { AttachmentAdd } from './modal/attachment-add.jsx'
 import { AttachmentDelete } from './modal/attachment-delete'
 import { AttachmentEdit } from './modal/attachment-edit'
 import { MemberActions } from './modal/member-actions'
+import { TaskDelete } from './modal/task-delete'
 
 export const DynamicModal = () => {
   const { modal } = useSelector(({ appModule }) => appModule)
@@ -109,6 +110,9 @@ export const DynamicModal = () => {
       break
     case 'member-actions':
       cmp = <MemberActions {...modal.props} />
+      break
+    case 'task-delete':
+      cmp = <TaskDelete {...modal.props} />
       break
     default:
       break

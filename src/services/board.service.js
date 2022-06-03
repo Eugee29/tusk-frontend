@@ -1,10 +1,5 @@
-
-// import { socketService } from "../services/socket.service.js";
-
 import { httpService } from './http.service'
 import { utilService } from './util.service.js'
-
-const axios = require('axios').default
 
 export const boardService = {
   query,
@@ -16,7 +11,7 @@ export const boardService = {
   getEmptyGroup,
   getEmptyChecklist,
   getEmptyBoard,
-  getEmptyAttachment
+  getEmptyAttachment,
 }
 
 //Request (Rest:GET) all Data from Backend
@@ -71,18 +66,19 @@ function getEmptyTask(title) {
     createdAt: Date.now(),
     archivedAt: null,
     title,
-    description: "",
+    description: '',
     checklists: [],
     members: [],
     labelIds: [],
     dueDate: null,
     byMember: {
-      _id: "u102",
-      username: "Eranavichzer",
-      fullname: "Eran Avichzer",
-      imgURL: "https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226"
+      _id: 'u102',
+      username: 'Eranavichzer',
+      fullname: 'Eran Avichzer',
+      imgURL:
+        'https://s.yimg.com/uu/api/res/1.2/UFrbnCxEMnNRJIEG2g3hIg--~B/aD02NzU7dz0xMjAwO2FwcGlkPXl0YWNoeW9u/https://media.zenfs.com/en/latestly_557/7c791a28696b3b24b70c447c07b37226',
     },
-    style: {}
+    style: {},
   }
 }
 
@@ -90,7 +86,7 @@ function getEmptyAttachment() {
   return {
     id: utilService.makeId(),
     createdAt: Date.now(),
-    fileUrl: ''
+    fileUrl: '',
   }
 }
 
@@ -99,7 +95,7 @@ function getEmptyGroup(title) {
     id: utilService.makeId(),
     title,
     archivedAt: null,
-    tasks: []
+    tasks: [],
   }
 }
 
@@ -107,7 +103,7 @@ function getEmptyTodo() {
   return {
     id: utilService.makeId(),
     isDone: false,
-    title: ''
+    title: '',
   }
 }
 
@@ -115,57 +111,57 @@ function getEmptyChecklist() {
   return {
     id: utilService.makeId(),
     title: '',
-    todos: []
+    todos: [],
   }
 }
 
 function getEmptyBoard() {
   return {
-    "title": "",
-    "archivedAt": null,
-    "createdAt": 0,
-    "isStarred": false,
-    "createdBy": {
-      "_id": "",
-      "fullname": "",
-      "username": "",
-      "imgURL": ""
+    title: '',
+    archivedAt: null,
+    createdAt: 0,
+    isStarred: false,
+    createdBy: {
+      _id: '',
+      fullname: '',
+      username: '',
+      imgURL: '',
     },
-    "style": {},
-    "labels": [
+    style: {},
+    labels: [
       {
-        "id": "l101",
-        "title": "",
-        "color": "#63be53"
+        id: 'l101',
+        title: '',
+        color: '#63be53',
       },
       {
-        "id": "l102",
-        "title": "",
-        "color": "#eed62b"
+        id: 'l102',
+        title: '',
+        color: '#eed62b',
       },
       {
-        "id": "l103",
-        "title": "",
-        "color": "#fa9e30"
+        id: 'l103',
+        title: '',
+        color: '#fa9e30',
       },
       {
-        "id": "l104",
-        "title": "",
-        "color": "#e6574c"
+        id: 'l104',
+        title: '',
+        color: '#e6574c',
       },
       {
-        "id": "l105",
-        "title": "",
-        "color": "#c374df"
+        id: 'l105',
+        title: '',
+        color: '#c374df',
       },
       {
-        "id": "l106",
-        "title": "",
-        "color": "#2579bd"
-      }
+        id: 'l106',
+        title: '',
+        color: '#2579bd',
+      },
     ],
-    "members": [],
-    "groups": [],
-    "activities": []
+    members: [],
+    groups: [],
+    activities: [],
   }
 }

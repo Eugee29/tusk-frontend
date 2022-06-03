@@ -27,10 +27,20 @@ export const TaskDetails = () => {
   const group = board.groups.find((group) => group.id === groupId)
   const task = group.tasks.find((task) => task.id === taskId)
 
-  const updateTask = async (taskToUpdate, activity) => {
-    const taskIdx = group.tasks.findIndex((task) => task.id === taskToUpdate.id)
-    group.tasks[taskIdx] = taskToUpdate
-    await onUpdateBoard(board, activity)
+  const updateTask = (updatedTask, activity) => {
+    const taskIdx = group.tasks.findIndex((task) => task.id === updatedTask.id)
+    group.tasks[taskIdx] = updatedTask
+    onUpdateBoard(board, activity)
+  }
+
+  const deleteTask = () => {
+    navigate(`/board/${board._id}`)
+    const taskIdx = group.tasks.findIndex((currTask) => currTask.id === task.id)
+    group.tasks.splice(taskIdx, 1)
+    const updatedGroups = board.groups.map((currGroup) =>
+      currGroup.id === group.id ? group : currGroup
+    )
+    onUpdateBoard({ ...board, groups: updatedGroups })
   }
 
   const onGoBack = () => {
@@ -103,6 +113,7 @@ export const TaskDetails = () => {
             task={task}
             onUpdateBoard={onUpdateBoard}
             updateTask={updateTask}
+            deleteTask={deleteTask}
           />
         </div>
       </div>

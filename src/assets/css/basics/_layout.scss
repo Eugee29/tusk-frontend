@@ -3,6 +3,7 @@
   max-width: 540px;
   height: 100%;
   padding: rem(112px) rem(15px);
+  min-height: 100vh;
 
   @include for-narrow-layout {
     max-width: 720px;
