@@ -26,19 +26,19 @@ export function RootCmp() {
         if (modal) dispatch(setModal(null))
       }}
     >
-      <main className="main-layout">
-        <AppHeader />
-        {modal && <DynamicModal />}
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginSignupPage type="login" />} />
-          <Route path="/signup" element={<LoginSignupPage type="signup" />} />
-          <Route path="/workspace" element={<Workspace />} />
-          <Route path="/board/:boardId/*" element={<BoardDetails />}>
-            <Route path=":groupId/:taskId" element={<TaskDetails />} />
-          </Route>
-        </Routes>
-      </main>
+      {/* <main className="main-layout"> */}
+      <AppHeader />
+      {modal && <DynamicModal />}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginSignupPage type="login" />} />
+        <Route path="/signup" element={<LoginSignupPage type="signup" />} />
+        <Route path="/workspace" element={<Workspace />} />
+        <Route path="/board/:boardId/*" element={<BoardDetails />}>
+          <Route path=":groupId/:taskId" element={<TaskDetails />} />
+        </Route>
+      </Routes>
+      {/* </main> */}
     </div>
   )
 }
