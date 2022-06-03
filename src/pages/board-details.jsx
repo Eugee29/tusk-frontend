@@ -35,6 +35,15 @@ export const BoardDetails = () => {
     dispatch(updateBoard(board))
   }
 
+  //   const addActivity = (board, activity) => {
+  //     const newBoard = activityService.getActivityUpdatedBoard(
+  //       board,
+  //       activity,
+  //       user
+  //     )
+  //     return newBoard
+  //   }
+
   const addActivity = (board, activity) => {
     const newBoard = activityService.getActivityUpdatedBoard(
       board,
@@ -44,7 +53,14 @@ export const BoardDetails = () => {
     return newBoard
   }
 
-  if (!board) return <h1>Loading...</h1>
+  if (!board)
+    return (
+      <div className="icon-bars">
+        <div className="bar board"></div>
+        <div className="bar board"></div>
+        <div className="bar board"></div>
+      </div>
+    )
 
   return (
     <main

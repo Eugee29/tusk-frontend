@@ -8,6 +8,7 @@ import logoDark from '../assets/imgs/logo-horizontal-dark.png'
 
 import { FiChevronDown } from 'react-icons/fi'
 
+
 export const AppHeader = () => {
 
    const { user } = useSelector(({ userModule }) => userModule)
