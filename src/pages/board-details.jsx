@@ -24,8 +24,9 @@ export const BoardDetails = () => {
   }, [boards])
 
   const loadBoard = async () => {
-    const board = await boardService.getById(params.boardId)
-    setBoard(board)
+    const boardFromService = await boardService.getById(params.boardId)
+    if (!JSON.stringify(boardFromService).localeCompare(JSON.stringify(board)))
+      setBoard(boardFromService)
   }
 
   const onUpdateBoard = async (board, activity) => {
