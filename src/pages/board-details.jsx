@@ -12,48 +12,61 @@ import { updateBoard } from '../store/board/board.action.js'
 import { BoardHeader } from '../cmps/board/board-header.jsx'
 import { GroupList } from '../cmps/group/group-list.jsx'
 
+import BounceBarPreloader from '../assets/imgs/BounceBarPreloader.gif'
 
 export const BoardDetails = () => {
-  const [board, setBoard] = useState(null)
-  const params = useParams()
-  const dispatch = useDispatch()
-  const { boards } = useSelector(({ boardModule }) => boardModule)
-  const { user } = useSelector(({ userModule }) => userModule)
+   const [board, setBoard] = useState(null)
+   const params = useParams()
+   const dispatch = useDispatch()
+   const { boards } = useSelector(({ boardModule }) => boardModule)
+   const { user } = useSelector(({ userModule }) => userModule)
 
-  useEffect(() => {
-    loadBoard()
-  }, [boards])
+   useEffect(() => {
+      loadBoard()
+   }, [boards])
 
-  const loadBoard = async () => {
-    const board = await boardService.getById(params.boardId)
-    setBoard(board)
-  }
-
-  const onUpdateBoard = async (board, activity) => {
-    let newBoard
-    if (activity) {
-      newBoard = addActivity(board, activity)
-      setBoard(newBoard)
-      await dispatch(updateBoard(newBoard))
-    } else {
+   const loadBoard = async () => {
+      const board = await boardService.getById(params.boardId)
       setBoard(board)
-      await dispatch(updateBoard(board))
-    }
-    socketService.emit('emit-any-change', 'emit from onUpdateBoard')
-  }
+   }
 
-  const addActivity = (board, activity) => {
-    const newBoard = activityService.getActivityUpdatedBoard(board, activity, user)
-    return newBoard
-  }
+   const onUpdateBoard = async (board, activity) => {
+      let newBoard
+      if (activity) {
+         newBoard = addActivity(board, activity)
+         setBoard(newBoard)
+         await dispatch(updateBoard(newBoard))
+      } else {
+         setBoard(board)
+         await dispatch(updateBoard(board))
+      }
+      socketService.emit('emit-any-change', 'emit from onUpdateBoard')
+   }
 
-  if (!board) return <h1>Loading...</h1>
+   const addActivity = (board, activity) => {
+      const newBoard = activityService.getActivityUpdatedBoard(board, activity, user)
+      return newBoard
+   }
 
-  return (
-    <main className='board-details' style={{ background: board.style.bgImg.length > 10 ? `url(${board.style.bgImg})` : `${board.style.bgImg}` }}>
-      <BoardHeader board={board} onUpdateBoard={onUpdateBoard} />
-      <GroupList board={board} onUpdateBoard={onUpdateBoard} />
-      <Outlet context={{ onUpdateBoard, board }} />
-    </main>
-  )
+
+   if (!board) return <div className="icon-bars">
+      <div className="bar board"></div>
+      <div className="bar board"></div>
+      <div className="bar board"></div>
+   </div>
+   // if (board) return <div className="icon-bars">
+   //    <div className="bar"></div>
+   //    <div className="bar"></div>
+   //    <div className="bar"></div>
+   // </div>
+   // if (!board) return <img className='loader' src={BounceBarPreloader} alt="" />
+
+
+   return (
+      <main className='board-details' style={{ background: board.style.bgImg.length > 10 ? `url(${board.style.bgImg})` : `${board.style.bgImg}` }}>
+         <BoardHeader board={board} onUpdateBoard={onUpdateBoard} />
+         <GroupList board={board} onUpdateBoard={onUpdateBoard} />
+         <Outlet context={{ onUpdateBoard, board }} />
+      </main>
+   )
 }
