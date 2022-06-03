@@ -27,10 +27,10 @@ export const TaskDetails = () => {
   const group = board.groups.find((group) => group.id === groupId)
   const task = group.tasks.find((task) => task.id === taskId)
 
-  const updateTask = async (taskToUpdate, activity) => {
+  const updateTask = (taskToUpdate, activity) => {
     const taskIdx = group.tasks.findIndex((task) => task.id === taskToUpdate.id)
     group.tasks[taskIdx] = taskToUpdate
-    await onUpdateBoard(board, activity)
+    onUpdateBoard(board, activity)
   }
 
   const onGoBack = () => {
