@@ -1,8 +1,7 @@
-
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { useNavigate, useOutletContext, useParams } from "react-router-dom"
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom'
 
 import { VscClose } from 'react-icons/vsc'
 import { RiArchiveLine } from 'react-icons/ri'
@@ -19,18 +18,17 @@ import { TaskDetailsSideTask } from '../cmps/task-details/task-details-side-task
 import { ChecklistList } from '../cmps/checklist/checklist-list.jsx'
 
 export const TaskDetails = () => {
-
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { boardId, groupId, taskId } = useParams()
   const { board, onUpdateBoard } = useOutletContext()
   const { modal } = useSelector(({ appModule }) => appModule)
 
-  const group = board.groups.find(group => group.id === groupId)
-  const task = group.tasks.find(task => task.id === taskId)
+  const group = board.groups.find((group) => group.id === groupId)
+  const task = group.tasks.find((task) => task.id === taskId)
 
-  const updateTask = async (taskToUpdate, activity) => {
-    const taskIdx = group.tasks.findIndex(task => task.id === taskToUpdate.id)
+  const updateTask = (taskToUpdate, activity) => {
+    const taskIdx = group.tasks.findIndex((task) => task.id === taskToUpdate.id)
     group.tasks[taskIdx] = taskToUpdate
     onUpdateBoard(board, activity)
   }
@@ -47,31 +45,67 @@ export const TaskDetails = () => {
   return (
     <section className="task-details" onClick={onGoBack}>
       <div className="task-details-container" onClick={onDetailsClick}>
-        <button className="go-back-button" onClick={onGoBack}><VscClose className='close-icon' /> </button>
+        <button className="go-back-button" onClick={onGoBack}>
+          <VscClose className="close-icon" />{' '}
+        </button>
 
         <div>
-          {task.style && <TaskDetailsCover task={task} setModal={setModal} updateTask={updateTask} />}
+          {task.style && (
+            <TaskDetailsCover
+              task={task}
+              setModal={setModal}
+              updateTask={updateTask}
+            />
+          )}
 
-          {task.archivedAt &&
-            <div className='task-archived'>
-              <div className="archive-icon-container"><RiArchiveLine className="archive-icon" /></div>
+          {task.archivedAt && (
+            <div className="task-archived">
+              <div className="archive-icon-container">
+                <RiArchiveLine className="archive-icon" />
+              </div>
               <p>This task is archived.</p>
             </div>
-          }
+          )}
 
-          {task.title && <TaskDetailsTitle task={task} groupTitle={group.title} updateTask={updateTask} />}
+          {task.title && (
+            <TaskDetailsTitle
+              task={task}
+              groupTitle={group.title}
+              updateTask={updateTask}
+            />
+          )}
 
           <div className="main-task">
-            <TaskDetailsInfo board={board} task={task} group={group} updateTask={updateTask} onUpdateBoard={onUpdateBoard} />
+            <TaskDetailsInfo
+              board={board}
+              task={task}
+              group={group}
+              updateTask={updateTask}
+              onUpdateBoard={onUpdateBoard}
+            />
             {<TaskDetailsDescription task={task} updateTask={updateTask} />}
-            {task.attachments && <TaskDetailsAttachments task={task} updateTask={updateTask} />}
-            {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
-            <TaskDetailsActivity task={task} board={board} group ={group} onUpdateBoard={onUpdateBoard} />
+            {task.attachments && (
+              <TaskDetailsAttachments task={task} updateTask={updateTask} />
+            )}
+            {!!task.checklists?.length && (
+              <ChecklistList task={task} updateTask={updateTask} />
+            )}
+            <TaskDetailsActivity
+              task={task}
+              board={board}
+              group={group}
+              onUpdateBoard={onUpdateBoard}
+            />
           </div>
-          <TaskDetailsSideTask board={board} group={group} task={task} onUpdateBoard={onUpdateBoard} updateTask={updateTask} />
+          <TaskDetailsSideTask
+            board={board}
+            group={group}
+            task={task}
+            onUpdateBoard={onUpdateBoard}
+            updateTask={updateTask}
+          />
         </div>
-
       </div>
-    </section >
+    </section>
   )
 }

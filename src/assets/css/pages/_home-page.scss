@@ -39,7 +39,7 @@
       h1 {
         width: 100%;
         font-size: 2rem;
-        margin-bottom: .5rem;
+        margin-bottom: 0.5rem;
         line-height: 1.25;
         font-family: source-sans-pro-semibold;
 
@@ -78,7 +78,7 @@
           border-radius: 6px;
           border: 1px solid $clr1;
           background-color: white;
-          transition: .2s;
+          transition: 0.2s;
 
           &:focus {
             border-color: $brand-clr7;
@@ -93,15 +93,15 @@
           @include for-narrow-layout {
             display: initial;
             width: rem(397px);
-            margin-inline-end: 16px
+            margin-inline-end: 16px;
           }
 
           @include for-normal-layout {
-            width: rem(303px)
+            width: rem(303px);
           }
 
           @include for-wide-layout {
-            width: rem(364px)
+            width: rem(364px);
           }
         }
 

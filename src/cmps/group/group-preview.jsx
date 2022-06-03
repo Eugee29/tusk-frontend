@@ -51,9 +51,11 @@ export const GroupPreview = ({
         element: buttonRef.current,
         category: 'Group actions',
         title: 'List actions',
-        onUpdateBoard,
-        boardId,
-        group,
+        props: {
+          onUpdateBoard,
+          boardId,
+          group,
+        },
       })
     )
   }

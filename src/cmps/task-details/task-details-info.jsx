@@ -9,8 +9,13 @@ import { GrDown } from 'react-icons/gr'
 import { utilService } from '../../services/util.service'
 import { MemberPreview } from './member-preview'
 
-export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard, group }) => {
-
+export const TaskDetailsInfo = ({
+  task,
+  updateTask,
+  board,
+  onUpdateBoard,
+  group,
+}) => {
   const memberRef = useRef()
   const labelsRef = useRef()
   const datesRef = useRef()
@@ -28,7 +33,6 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard, group 
     const updatedTask = { ...task }
     updatedTask.isComplete = value
     updateTask(updatedTask)
-
   }
 
   const onOpenModal = (ev, modal) => {
@@ -36,8 +40,10 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard, group 
     dispatch(setModal(modal))
   }
 
-  const initials = (member) => ([...member.fullname])
-  const onLabels = (label) => { return board.labels.filter(boardLabel => boardLabel.id === label)[0] }
+  const initials = (member) => [...member.fullname]
+  const onLabels = (label) => {
+    return board.labels.filter((boardLabel) => boardLabel.id === label)[0]
+  }
 
   var dateFormat = utilService.getDateTimeFormat(task.dueDate)
   if (task?.isComplete && task.isComplete) {
@@ -45,48 +51,130 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard, group 
   }
 
   return (
-    <section className="task-details-info" >
-
+    <section className="task-details-info">
       {/* Members */}
-      {!!task.members.length &&
-        <div className="task-card-info" >
+      {!!task.members.length && (
+        <div className="task-card-info">
           <h3 className="task-member-title">Members</h3>
-          {task.members?.map(member => <MemberPreview key={member._id} member={member} task={task} updateTask={updateTask} isInTaskDetails={true} board={board} onUpdateBoard={onUpdateBoard} />)}
-          <a className="members-add-button round" ref={memberRef} onClick={(ev) => onOpenModal(ev, { element: memberRef.current, category: 'Members', task, updateTask, board, onUpdateBoard, group })} ><span >+</span></a>
+          {task.members?.map((member) => (
+            <MemberPreview
+              key={member._id}
+              member={member}
+              task={task}
+              updateTask={updateTask}
+              isInTaskDetails={true}
+              board={board}
+              onUpdateBoard={onUpdateBoard}
+            />
+          ))}
+          <a
+            className="members-add-button round"
+            ref={memberRef}
+            onClick={(ev) =>
+              onOpenModal(ev, {
+                element: memberRef.current,
+                category: 'Members',
+                props: { task, updateTask, board, onUpdateBoard, group },
+              })
+            }
+          >
+            <span>+</span>
+          </a>
         </div>
-      }
+      )}
 
       {/* Labels */}
-      {!!task.labelIds.length &&
+      {!!task.labelIds.length && (
         <div className="task-card-info" ref={labelsRef}>
           <h3 className="task-member-title">Labels</h3>
-          {task.labelIds.map(label =>
-            <a key={label} className="label" onClick={(ev) => onOpenModal(ev, { element: labelsRef.current, category: 'Labels', task, updateTask, board, onUpdateBoard })} style={{ backgroundColor: `${onLabels(label).color}` }}><span>{onLabels(label).title}</span></a>)}
-          <a className="members-add-button " onClick={(ev) => onOpenModal(ev, { element: labelsRef.current, category: 'Labels', task, updateTask, board, onUpdateBoard })} ><span >+</span></a>
+          {task.labelIds.map((label) => (
+            <a
+              key={label}
+              className="label"
+              onClick={(ev) =>
+                onOpenModal(ev, {
+                  element: labelsRef.current,
+                  category: 'Labels',
+                  task,
+                  updateTask,
+                  board,
+                  onUpdateBoard,
+                })
+              }
+              style={{ backgroundColor: `${onLabels(label).color}` }}
+            >
+              <span>{onLabels(label).title}</span>
+            </a>
+          ))}
+          <a
+            className="members-add-button "
+            onClick={(ev) =>
+              onOpenModal(ev, {
+                element: labelsRef.current,
+                category: 'Labels',
+                props: {
+                  task,
+                  updateTask,
+                  board,
+                  onUpdateBoard,
+                  element: labelsRef.current,
+                },
+              })
+            }
+          >
+            <span>+</span>
+          </a>
         </div>
-      }
+      )}
 
       {/* Due date */}
-      {task.dueDate &&
+      {task.dueDate && (
         <div className="task-card-info">
           <h3 className="task-member-title">Due date</h3>
           <div className="date-container">
             <div className="date-complete-button">
-              {isCompleteDate
-                ? <ImCheckboxChecked onClick={() => onToggleComplete(false)} className='checkbox checked' />
-                : <ImCheckboxUnchecked onClick={() => onToggleComplete(true)} className='checkbox unchecked' />
-              }
+              {isCompleteDate ? (
+                <ImCheckboxChecked
+                  onClick={() => onToggleComplete(false)}
+                  className="checkbox checked"
+                />
+              ) : (
+                <ImCheckboxUnchecked
+                  onClick={() => onToggleComplete(true)}
+                  className="checkbox unchecked"
+                />
+              )}
             </div>
             <div className="date" ref={datesRef}>
-              <button className="button-date" type="button" onClick={(ev) => onOpenModal(ev, { element: datesRef.current, category: 'Dates', task, updateTask, board, onUpdateBoard, group })}>
+              <button
+                className="button-date"
+                type="button"
+                onClick={(ev) =>
+                  onOpenModal(ev, {
+                    element: datesRef.current,
+                    category: 'Dates',
+                    props: {
+                      task,
+                      updateTask,
+                      board,
+                      onUpdateBoard,
+                      group,
+                    },
+                  })
+                }
+              >
                 <span className="dispaly-date">{dateFormat.displayDate}</span>
-                <span className={`status-date ${dateFormat.statusDate}`} >{dateFormat.statusDate}</span>
-                <span className="arrow-date">< GrDown /></span>
+                <span className={`status-date ${dateFormat.statusDate}`}>
+                  {dateFormat.statusDate}
+                </span>
+                <span className="arrow-date">
+                  <GrDown />
+                </span>
               </button>
             </div>
           </div>
-        </div>}
-
-    </section >
+        </div>
+      )}
+    </section>
   )
 }
