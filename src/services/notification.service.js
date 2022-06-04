@@ -30,14 +30,17 @@ async function send() {
 
   // Send Push Notification
   console.log('Sending Push...')
-  await httpService.post('notification/subscribe', JSON.stringify(subscription))
-  // await fetch('//localhost:3030/api/notification/subscribe/', {
-  //   method: 'POST',
-  //   body: JSON.stringify(subscription),
-  //   headers: {
-  //     'content-type': 'application/json',
-  //   },
-  // })
+  // await httpService.post(
+  //   'notification/subscribe/',
+  //   JSON.stringify(subscription)
+  // )
+  await fetch('//localhost:3030/api/notification/subscribe/', {
+    method: 'POST',
+    body: JSON.stringify(subscription),
+    headers: {
+      'content-type': 'application/json',
+    },
+  })
   console.log('Push Sent...')
 }
 
