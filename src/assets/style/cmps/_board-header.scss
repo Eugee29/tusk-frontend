@@ -50,7 +50,6 @@
     }
   }
 
-
   .show-menu,
   .filter-btn {
     color: #ffff;
@@ -63,9 +62,9 @@
     align-items: center;
     gap: 6px;
     height: 32px;
-    width: 32px;
+    // width: 32px;
     padding: 0;
-
+    padding: 0 4px 0px 4px;
 
 
     .filter-icon-container {
