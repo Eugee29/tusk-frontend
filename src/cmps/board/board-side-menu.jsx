@@ -7,13 +7,21 @@ import { BsImage } from 'react-icons/bs'
 
 import { ActivityList } from '../activity-list'
 import { ArchivedList } from '../archived-list'
+import { ChangeBackgroundList } from '../change-background-list'
 
 export function BoardSideMenu({ onToggleMenu, dynamicClass, board, onUpdateBoard }) {
 
    const [isArchivedOpen, setIsArchivedOpen] = useState(false)
+   const [isBackgroundOpen, setIsBackgroundOpen] = useState(false)
 
    const onToggleArchived = () => {
       setIsArchivedOpen(!isArchivedOpen)
+      setIsBackgroundOpen(false)
+   }
+
+   const onToggleBackground = () => {
+      setIsBackgroundOpen(!isBackgroundOpen)
+      setIsArchivedOpen(false)
    }
 
    return (
@@ -30,11 +38,11 @@ export function BoardSideMenu({ onToggleMenu, dynamicClass, board, onUpdateBoard
 
          <div className="line-break"></div>
 
-         <div className="activity-title-container hover"  >
+         <div className="activity-title-container hover" onClick={onToggleBackground} >
             <span className=""><BsImage /></span>
             <h3 className='activity-title-text'>Change background</h3>
          </div>
-         {/* { isArchivedOpen && <ChangeBackgroungList board={board} onUpdateBoard={onUpdateBoard}/>} */}
+         { isBackgroundOpen && <ChangeBackgroundList board={board} onUpdateBoard={onUpdateBoard}/>}
 
 
          <div className="line-break"></div>
