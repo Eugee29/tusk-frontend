@@ -1,13 +1,8 @@
 import React, { useRef, useState } from 'react'
-import { Draggable } from 'react-beautiful-dnd'
 import { useNavigate } from 'react-router-dom'
 
 import { utilService } from '../services/util.service'
 
-import { RiPencilLine } from 'react-icons/ri'
-
-import { LabelList } from './group/label-list'
-import { QuickEdit } from './quick-edit'
 import { TaskPreviewIcons } from './group/task-preview-icons'
 
 export const ArchivedPreview = ({ task, groupId, index, board, onUpdateBoard }) => {

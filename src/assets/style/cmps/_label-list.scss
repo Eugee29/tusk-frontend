@@ -62,6 +62,11 @@
         text-align: center;
     }
 
+    .label .opened {
+        width: 69px;
+        height: 16px;
+    }
+
     .label.open {
         animation-name: open-up;
         animation-duration: 0.6s;

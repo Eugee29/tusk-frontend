@@ -14,6 +14,7 @@ export const TaskPreview = ({ task, group, index, board, toggleLabels, isLabelsO
   const navigate = useNavigate()
   const [isQuickEditOpen, setIsQuickEditOpen] = useState(false)
   const taskRef = useRef()
+  
 
   const onOpenDetails = (ev) => {
     ev.stopPropagation()
@@ -89,6 +90,14 @@ export const TaskPreview = ({ task, group, index, board, toggleLabels, isLabelsO
 
   }
 
+  const isIconsShown = () => {
+    if (task.description || (task.checklists && !!task.checklists.length) ||
+    (task.attachments && !!task.attachments.length) || (task.members && !!task.members.length)) {
+      return true
+    }
+    else return false
+  }
+
   return (
     <Draggable draggableId={task.id} index={index} type='TASK' >
       {(provided, snapshot) => (
@@ -104,8 +113,7 @@ export const TaskPreview = ({ task, group, index, board, toggleLabels, isLabelsO
                   <h2 className='task-title'> {task.title} </h2>
                 </div>
 
-                {!!task.description || (task.checklists && !!task.checklists.length) ||
-                 (task.attachments && !!task.attachments.length) || (task.members && !!task.members.length) &&
+                { isIconsShown() &&
                  <TaskPreviewIcons task={task} board={board} getTimeStyle={getTimeStyle} getChecklistLength={getChecklistLength} onUpdateBoard={onUpdateBoard} />}
 
               </div>

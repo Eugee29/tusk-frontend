@@ -1,12 +1,8 @@
-import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-import { boardService } from '../../services/board.service'
 
 export function LabelList({ labelIds, board, toggleLabels, isLabelsOpen }) {
-
-  const { boardId } = useParams()
 
   const [boardLabels, setBoardLabels] = useState()
   const [taskLabels, setTaskLabels] = useState(labelIds)
@@ -26,7 +22,11 @@ export function LabelList({ labelIds, board, toggleLabels, isLabelsOpen }) {
   }
 
   const getLabelClass = () => {
-    const className = (isLabelsOpen) ? 'label open' : 'label close'
+    let className
+    if (isLabelsOpen === 'initial') {
+      return 'label'
+    }
+    else className = (isLabelsOpen) ? 'label open' : 'label close'
     return className
   }
 
