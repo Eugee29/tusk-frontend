@@ -22,7 +22,11 @@ export function LabelList({ labelIds, board, toggleLabels, isLabelsOpen }) {
   }
 
   const getLabelClass = () => {
-    const className = (isLabelsOpen) ? 'label open' : 'label close'
+    let className
+    if (isLabelsOpen === 'initial') {
+      return 'label'
+    }
+    else className = (isLabelsOpen) ? 'label open' : 'label close'
     return className
   }
 

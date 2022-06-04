@@ -10,7 +10,7 @@ import { boardService } from '../../services/board.service'
 
 export const GroupList = ({ board, onUpdateBoard }) => {
 
-  const [isLabelsOpen, setIsLabelsOpen] = useState(false)
+  const [isLabelsOpen, setIsLabelsOpen] = useState('initial')
   const [isAddGroupOpen, setIsAddGroupOpen] = useState(false)
   const [newGroupTitle, setNewGroupTitle] = useState('')
 
@@ -19,7 +19,8 @@ export const GroupList = ({ board, onUpdateBoard }) => {
   }
 
   const toggleLabels = () => {
-    setIsLabelsOpen(!isLabelsOpen)
+    if (isLabelsOpen === 'initial') setIsLabelsOpen(true)
+    else setIsLabelsOpen(!isLabelsOpen)
   }
 
   const onAddGroup = async (ev) => {

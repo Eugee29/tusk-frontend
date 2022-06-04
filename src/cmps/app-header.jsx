@@ -2,12 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { setModal } from '../store/app/app.actions'
+import {utilService} from '../services/util.service'
 
 import logoLight from '../assets/imgs/logo-horizontal-white.png'
 import logoDark from '../assets/imgs/logo-horizontal-dark.png'
-
-import { FiChevronDown } from 'react-icons/fi'
-
 
 export const AppHeader = () => {
 
@@ -15,6 +13,7 @@ export const AppHeader = () => {
   const { user } = useSelector(({ userModule }) => userModule)
   const { pathname } = useLocation()
   const profileRef = useRef()
+  const createRef = useRef()
   const dispatch = useDispatch()
 
   const isHome = pathname === '/'
@@ -51,6 +50,10 @@ export const AppHeader = () => {
     dispatch(setModal(modal))
   }
 
+  const onModal = (category) => {
+    dispatch(setModal({ element: createRef.current, category, title: category, position: utilService.getPosition(createRef.current) }))
+ }
+
 
   return (
     <header className={`app-header ${getClassName()} ${isScrolled ? 'scrolled' : ''}`}>
@@ -68,7 +71,7 @@ export const AppHeader = () => {
         {!isHome && <Link className='workspace-link' to='/workspace'>Workspaces</Link>}
         {/* {!isHome && <div className='workspace-link' >Recent <FiChevronDown /></div>}
         {!isHome && <div className='workspace-link' >Starred <FiChevronDown /></div>} */}
-        {!isHome && <div className='workspace-create' >Create</div>}
+        {!isHome && <div className='workspace-create' ref={createRef} onClick={(ev) => { ev.stopPropagation(); onModal('Create board') }}>Create</div>}
 
       </nav>
       {
