@@ -126,11 +126,7 @@ export const DynamicModal = () => {
         category,
         title: category,
         props: {
-          task: modal.task,
-          board: modal.board,
-          updateTask: modal.updateTask,
-          onUpdateBoard: modal.onUpdateBoard,
-          element: modal.element,
+          ...modal.props
         },
       })
     )
