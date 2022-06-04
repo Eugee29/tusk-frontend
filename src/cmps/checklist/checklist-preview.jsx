@@ -127,7 +127,7 @@ export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updat
                 style={{ height: utilService.calcTextareaHeight(todoTxt, 56, 20) }}
                 value={todoTxt}
                 onChange={handleChange}
-                onBlur={() => setIsAdding(false)}
+                onBlur={() => setIsAdding(true)}
                 autoFocus
               >
               </textarea>
