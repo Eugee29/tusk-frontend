@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-
-import { onLogout } from '../store/user/user.action.js'
+import { setModal } from '../store/app/app.actions'
 
 import logoLight from '../assets/imgs/logo-horizontal-white.png'
 import logoDark from '../assets/imgs/logo-horizontal-dark.png'
@@ -47,9 +46,11 @@ export const AppHeader = () => {
     return className
   }
 
-  const logout = async () => {
-    dispatch(onLogout())
+  const onOpenModal = (ev, modal) => {
+    ev.preventDefault()
+    dispatch(setModal(modal))
   }
+
 
   return (
     <header className={`app-header ${getClassName()} ${isScrolled ? 'scrolled' : ''}`}>
@@ -79,10 +80,10 @@ export const AppHeader = () => {
       }
       {
         !isHome &&
-        <div className='user-img-container' onClick={logout} ref={profileRef}>
+        <div className='user-img-container' ref={profileRef} onClick={(ev) => onOpenModal(ev, { category: 'account-actions', title: 'Account', element: profileRef.current, props: { user } })}>
           {user &&
             (user?.imgURL
-              ? <span className="user-img" style={{ backgroundImage: `url('${user.imgURL}')` }}></span>
+              ? <span className="user-img" style={{ backgroundImage: `url('${user.imgURL}')` }} ></span>
               : <span className="user-initial" >{`${initials(user)[0]}${initials(user)[1]}`}</span>)
           }
           {!user && <span className="user-initial" ></span>}
