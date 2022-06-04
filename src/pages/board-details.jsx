@@ -35,15 +35,6 @@ export const BoardDetails = () => {
     dispatch(updateBoard(board))
   }
 
-  //   const addActivity = (board, activity) => {
-  //     const newBoard = activityService.getActivityUpdatedBoard(
-  //       board,
-  //       activity,
-  //       user
-  //     )
-  //     return newBoard
-  //   }
-
   const addActivity = (board, activity) => {
     const newBoard = activityService.getActivityUpdatedBoard(
       board,
