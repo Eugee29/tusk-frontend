@@ -39,11 +39,11 @@
 
             textarea {
                 margin: 4px 0;
-            padding: 6px 8px;
+                padding: 6px 8px;
             }
         }
 
-        
+
     }
 
     textarea {
@@ -74,8 +74,12 @@
         flex-direction: column;
         gap: 4px;
 
+        .blank-space {
+            flex: 1
+        }
+
         .quick-edit-btn {
-            background: #0009;
+            background: rgba(29, 29, 29, 0.6);
             border: none;
             border-radius: 3px;
             color: #e6e6e6;
@@ -83,6 +87,11 @@
             font-size: 14px;
             padding: 6px 12px 6px 8px;
             transition: transform 0.075s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            line-height: 20px;
+            width: fit-content;
 
             &:hover {
                 background: #000c;
