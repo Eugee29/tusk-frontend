@@ -40,11 +40,20 @@
       height: 88px;
       box-shadow: 5px 10px 20px -10px rgba(0, 0, 0, 0.2);
 
+      .member {
+        @include task-member-button(tomato);
+        width: 88px;
+        height: 88px;
+        font-size: 36px;
+      }
+
       .member-img {
         object-fit: cover;
         width: 100%;
         height: 100%;
         border-radius: 50%;
+
+        
       }
     }
 

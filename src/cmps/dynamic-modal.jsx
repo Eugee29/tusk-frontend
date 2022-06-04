@@ -15,6 +15,8 @@ import { ModalGroupActions } from './modal/modal-group-actions'
 import { ModalCover } from './modal/modal-cover'
 import { ModalDates } from './modal/modal-dates'
 import { ModalMember } from './modal/modal-member'
+import { ModalBoardMember } from './modal/modal-board-member'
+import { ModalBoardMemberDelete } from './modal/modal-board-member-delete'
 import { ModalLabel } from './modal/modal-label'
 import { TodoActions } from './modal/todo-actions'
 import { ChecklistDelete } from './modal/checklist-delete'
@@ -26,97 +28,107 @@ import { MemberActions } from './modal/member-actions'
 import { TaskDelete } from './modal/task-delete'
 
 export const DynamicModal = () => {
-  const { modal } = useSelector(({ appModule }) => appModule)
-  const [position, setPosition] = useState(null)
-  const dispatch = useDispatch()
-  const editLabel = useRef('')
-  const buttonRef = useRef()
+   const { modal } = useSelector(({ appModule }) => appModule)
+   const [position, setPosition] = useState(null)
+   const dispatch = useDispatch()
+   const editLabel = useRef('')
+   const deleteMember = useRef('')
 
-  const modalRef = useRef()
+   const buttonRef = useRef()
+   const modalRef = useRef()
 
-  const changeEditLabel = (label) => {
-    editLabel.current = label
-  }
+   const changeEditLabel = (label) => {
+      editLabel.current = label
+   }
 
-  useEffect(() => {
-    window.addEventListener('resize', adjustPosition)
-    return () => window.removeEventListener('resize', adjustPosition)
-  }, [])
+   const deleteMemberFromBoard = (id) => {
+      deleteMember.current = id
+   }
 
-  useEffect(() => {
-    adjustPosition()
-  }, [modal.element])
+   useEffect(() => {
+      window.addEventListener('resize', adjustPosition)
+      return () => window.removeEventListener('resize', adjustPosition)
+   }, [])
 
-  const adjustPosition = () => {
-    const position = utilService.getPosition(modal.element)
-    position.top += modal.element.offsetHeight * 1.25 // Gives the modal some space from the element that triggered it.
+   useEffect(() => {
+      adjustPosition()
+   }, [modal.element])
 
-    // Pushes the modal into the viewport when it does not have enough space to open up + 25 padding.
-    if (position.top + modalRef.current.offsetHeight >= window.innerHeight) {
-      position.top = window.innerHeight - modalRef.current.offsetHeight - 25
-    }
-    if (position.left + modalRef.current.offsetWidth >= window.innerWidth) {
-      position.left = window.innerWidth - modalRef.current.offsetWidth - 25
-    }
+   const adjustPosition = () => {
+      const position = utilService.getPosition(modal.element)
+      position.top += modal.element.offsetHeight * 1.25 // Gives the modal some space from the element that triggered it.
 
-    setPosition(position)
-  }
+      // Pushes the modal into the viewport when it does not have enough space to open up + 25 padding.
+      if (position.top + modalRef.current.offsetHeight >= window.innerHeight) {
+         position.top = window.innerHeight - modalRef.current.offsetHeight - 25
+      }
+      if (position.left + modalRef.current.offsetWidth >= window.innerWidth) {
+         position.left = window.innerWidth - modalRef.current.offsetWidth - 25
+      }
 
-  var cmp
-  console.log(modal.props)
+      setPosition(position)
+   }
 
-  switch (modal.category) {
-    case 'Cover':
-      cmp = <ModalCover {...modal.props} />
-      break
-    case 'Members':
-      cmp = <ModalMember {...modal.props} />
-      break
-    case 'Dates':
-      cmp = <ModalDates {...modal.props} />
-      break
-    case 'Labels':
-      cmp = <ModalLabel {...modal.props} changeEditLabel={changeEditLabel} />
-      break
-    case 'Create label':
-      cmp = <ModalLabelCreate {...modal.props} />
-      break
-    case 'Change label':
-      cmp = <ModalLabelChange {...modal.props} editLabel={editLabel.current} />
-      break
-    case 'Create board':
-      cmp = <ModalCreateBoard />
-      break
-    case 'todo-actions':
-      cmp = <TodoActions {...modal.props} />
-      break
-    case 'checklist-delete':
-      cmp = <ChecklistDelete {...modal.props} />
-      break
-    case 'checklist-add':
-      cmp = <ChecklistAdd {...modal.props} />
-      break
-    case 'attachment-add':
-      cmp = <AttachmentAdd {...modal.props} />
-      break
-    case 'Group actions':
-      cmp = <ModalGroupActions {...modal.props} />
-      break
-    case 'attachment-delete':
-      cmp = <AttachmentDelete {...modal.props} />
-      break
-    case 'attachment-edit':
-      cmp = <AttachmentEdit {...modal.props} />
-      break
-    case 'member-actions':
-      cmp = <MemberActions {...modal.props} />
-      break
-    case 'task-delete':
-      cmp = <TaskDelete {...modal.props} />
-      break
-    default:
-      break
-  }
+   var cmp
+   console.log(modal.props)
+   switch (modal.category) {
+      case 'Cover':
+         cmp = <ModalCover {...modal.props} />
+         break
+      case 'Members':
+         cmp = <ModalMember {...modal.props} />
+         break
+      case 'Dates':
+         cmp = <ModalDates {...modal.props} />
+         break
+      case 'Labels':
+         cmp = <ModalLabel {...modal.props} changeEditLabel={changeEditLabel} />
+         break
+      case 'Create label':
+         cmp = <ModalLabelCreate {...modal.props} />
+         break
+      case 'Change label':
+         cmp = <ModalLabelChange {...modal.props} editLabel={editLabel.current} />
+         break
+      case 'Create board':
+         cmp = <ModalCreateBoard />
+         break
+      case 'Board members':
+         cmp = <ModalBoardMember {...modal.props} deleteMemberFromBoard={deleteMemberFromBoard} />
+         break
+      case 'Board members delete':
+         cmp = <ModalBoardMemberDelete {...modal.props} memberId={deleteMember.current} />
+         break
+      case 'todo-actions':
+         cmp = <TodoActions {...modal.props} />
+         break
+      case 'checklist-delete':
+         cmp = <ChecklistDelete {...modal.props} />
+         break
+      case 'checklist-add':
+         cmp = <ChecklistAdd {...modal.props} />
+         break
+      case 'attachment-add':
+         cmp = <AttachmentAdd {...modal.props} />
+         break
+      case 'Group actions':
+         cmp = <ModalGroupActions {...modal.props} />
+         break
+      case 'attachment-delete':
+         cmp = <AttachmentDelete {...modal.props} />
+         break
+      case 'attachment-edit':
+         cmp = <AttachmentEdit {...modal.props} />
+         break
+      case 'member-actions':
+         cmp = <MemberActions {...modal.props} />
+         break
+      case 'task-delete':
+         cmp = <TaskDelete {...modal.props} />
+         break
+      default:
+         break
+   }
 
   const onOpenModal = (ev, category) => {
     ev.stopPropagation()
@@ -132,51 +144,42 @@ export const DynamicModal = () => {
     )
   }
 
-  return (
-    <div
-      className="dynamic-modal"
-      style={{ ...position }}
-      ref={modalRef}
-      onClick={(e) => e.stopPropagation()}
-    >
-      {modal.category != 'member-actions' && (
-        <header>
-          {modal.category === 'Create label' && (
-            <button
-              ref={buttonRef}
-              onClick={(ev) => onOpenModal(ev, 'Labels')}
-              className="sidebar-icon-left"
-            >
-              <span>
-                <IoIosArrowBack />
-              </span>
-            </button>
-          )}
-          {modal.category === 'Change label' && (
-            <button
-              ref={buttonRef}
-              onClick={(ev) => onOpenModal(ev, 'Labels')}
-              className="sidebar-icon-left"
-            >
-              <span>
-                <IoIosArrowBack />
-              </span>
-            </button>
-          )}
-          <div className="label">
-            {modal.title ? modal.title : modal.category}
-          </div>
-          <button
-            className="sidebar-icon-right"
-            onClick={() => dispatch(setModal(null))}
-          >
-            <span>
-              <CgClose />
-            </span>
-          </button>
-        </header>
-      )}
-      <main className="main-modal">{cmp}</main>
-    </div>
-  )
+   return (
+      <div
+         className="dynamic-modal"
+         style={{ ...position }}
+         ref={modalRef}
+         onClick={(e) => e.stopPropagation()}
+      >
+         {modal.category != 'member-actions' && (
+            <header>
+               {modal.category === 'Create label' && (
+                  <button
+                     ref={buttonRef}
+                     onClick={(ev) => onOpenModal(ev, 'Labels')}
+                     className="sidebar-icon-left">
+                     <span><IoIosArrowBack /></span>
+                  </button>
+               )}
+               {modal.category === 'Change label' && (
+                  <button
+                     ref={buttonRef}
+                     onClick={(ev) => onOpenModal(ev, 'Labels')}
+                     className="sidebar-icon-left">
+                     <span><IoIosArrowBack /></span>
+                  </button>
+               )}
+               <div className="label">
+                  {modal.title ? modal.title : modal.category}
+               </div>
+               <button
+                  className="sidebar-icon-right"
+                  onClick={() => dispatch(setModal(null))}><span><CgClose />
+                  </span>
+               </button>
+            </header>
+         )}
+         <main className="main-modal">{cmp}</main>
+      </div>
+   )
 }
