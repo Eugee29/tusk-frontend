@@ -34,6 +34,8 @@ export function BoardSideMenu({ onToggleMenu, dynamicClass, board, onUpdateBoard
             <span className=""><BsImage /></span>
             <h3 className='activity-title-text'>Change background</h3>
          </div>
+         {/* { isArchivedOpen && <ChangeBackgroungList board={board} onUpdateBoard={onUpdateBoard}/>} */}
+
 
          <div className="line-break"></div>
 

@@ -1,6 +1,7 @@
 .change-section {
   overflow-x: hidden;
   overflow-y: auto;
+  width: 280px;
 
   .label {
     @include task-sub-header();
