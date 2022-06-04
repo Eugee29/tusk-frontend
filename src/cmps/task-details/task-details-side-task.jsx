@@ -72,16 +72,6 @@ export function TaskDetailsSideTask({
     updateTask({ ...task, archivedAt: null })
   }
 
-  // const onDeleteTask = () => {
-  //   navigate(`/board/${board._id}`)
-  //   const taskIdx = group.tasks.findIndex((currTask) => currTask.id === task.id)
-  //   group.tasks.splice(taskIdx, 1)
-  //   const updatedGroups = board.groups.map((currGroup) =>
-  //     currGroup.id === group.id ? group : currGroup
-  //   )
-  //   onUpdateBoard({ ...board, groups: updatedGroups })
-  // }
-
   return (
     <section className="side-task">
       {!isUserMember && <h3 className="label-header">Suggested</h3>}

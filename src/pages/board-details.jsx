@@ -33,8 +33,8 @@ export const BoardDetails = () => {
   }
 
    const loadUsersAsync = async () => {
-      if (!users) users = await dispatch(loadUsers())
-      setUsers(users)
+      if (!users) setUsers(await dispatch(loadUsers()))
+      // setUsers(users)
    }
 
    const onUpdateBoard = (board, activity) => {

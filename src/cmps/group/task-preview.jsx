@@ -10,18 +10,22 @@ import { LabelList } from './label-list'
 import { QuickEdit } from '../quick-edit'
 import { TaskPreviewIcons } from './task-preview-icons'
 
-export const TaskPreview = ({ task, groupId, index, board, toggleLabels, isLabelsOpen, onUpdateBoard }) => {
+export const TaskPreview = ({ task, group, index, board, toggleLabels, isLabelsOpen, onUpdateBoard }) => {
   const navigate = useNavigate()
   const [isQuickEditOpen, setIsQuickEditOpen] = useState(false)
   const taskRef = useRef()
 
   const onOpenDetails = (ev) => {
     ev.stopPropagation()
-    navigate(`${groupId}/${task.id}`)
+    navigate(`${group.id}/${task.id}`)
   }
 
-  const toggleQuickEdit = (ev) => {
+  const onToggleQuickEdit = (ev) => {
     ev.stopPropagation()
+    toggleQuickEdit()
+  }
+
+  const toggleQuickEdit = () => {
     setIsQuickEditOpen(!isQuickEditOpen)
   }
 
@@ -31,7 +35,7 @@ export const TaskPreview = ({ task, groupId, index, board, toggleLabels, isLabel
         return { backgroundImage: `url(${task.style.imgURL})` }
       }
       if (task.style.bgColor) {
-        if(isQuick) return { borderTop: `32px solid ${task.style.bgColor}` }
+        if (isQuick) return { borderTop: `32px solid ${task.style.bgColor}` }
 
         if (!task.style.isCover) {
           return { borderTop: `32px solid ${task.style.bgColor}` }
@@ -47,7 +51,7 @@ export const TaskPreview = ({ task, groupId, index, board, toggleLabels, isLabel
     if (task.style) {
       if (task.style.bgColor && task.style.isCover) {
         if (!isQuick)
-        return 'task-preview styled'
+          return 'task-preview styled'
         else return 'task-preview color-header'
       } else if (task.style.bgColor && !task.style.isCover) {
         return 'task-preview color-header'
@@ -90,8 +94,8 @@ export const TaskPreview = ({ task, groupId, index, board, toggleLabels, isLabel
       {(provided, snapshot) => (
         <div className='task-preview-handle' {...provided.draggableProps} {...provided.dragHandleProps}>
           <div ref={taskRef}>
-          <section className={`${getTaskClass()} ${snapshot.isDragging && !snapshot.isDropAnimating ? 'tilted' : ''}`} onClick={onOpenDetails} ref={provided.innerRef} style={getTaskStyle()}  >
-            
+            <section className={`${getTaskClass()} ${snapshot.isDragging && !snapshot.isDropAnimating ? 'tilted' : ''}`} onClick={onOpenDetails} ref={provided.innerRef} style={getTaskStyle()}  >
+
               {!task.style.isCover && task.style.imgURL && <img className='task-img-container' src={task.style.imgURL} alt="..." />}
               <div className='task-info'>
                 {!!task.labelIds.length && (!task.style.isCover) && <LabelList board={board} labelIds={task.labelIds} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} />}
@@ -100,17 +104,19 @@ export const TaskPreview = ({ task, groupId, index, board, toggleLabels, isLabel
                   <h2 className='task-title'> {task.title} </h2>
                 </div>
 
-                <TaskPreviewIcons task={task} board={board} getTimeStyle={getTimeStyle} getChecklistLength={getChecklistLength} onUpdateBoard={onUpdateBoard} />
+                {!!task.description || (task.checklists && !!task.checklists.length) ||
+                 (task.attachments && !!task.attachments.length) || (task.members && !!task.members.length) &&
+                 <TaskPreviewIcons task={task} board={board} getTimeStyle={getTimeStyle} getChecklistLength={getChecklistLength} onUpdateBoard={onUpdateBoard} />}
 
               </div>
-              <button className='edit-btn' onClick={toggleQuickEdit}> <RiPencilLine className='btn-icon' /> </button>
+              <button className='edit-btn' onClick={onToggleQuickEdit}> <RiPencilLine className='btn-icon' /> </button>
 
-              {isQuickEditOpen && <QuickEdit toggleQuickEdit={toggleQuickEdit} task={task}
+              {isQuickEditOpen && <QuickEdit toggleQuickEdit={toggleQuickEdit} task={task} group={group}
                 board={board} getTimeStyle={getTimeStyle} getChecklistLength={getChecklistLength}
                 onUpdateBoard={onUpdateBoard} toggleLabels={toggleLabels}
                 isLabelsOpen={isLabelsOpen} element={taskRef.current} getTaskStyle={getTaskStyle} getTaskClass={getTaskClass} />}
-          </section>
-            </div>
+            </section>
+          </div>
         </div>
       )}
     </Draggable >

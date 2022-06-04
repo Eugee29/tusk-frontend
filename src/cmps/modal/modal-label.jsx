@@ -38,9 +38,22 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
       setSearchLabel(target.value)
    }
 
-   const onOpenModal = (category) => {
-      dispatch(setModal({ element, category, title: category, props: { task, updateTask, board, onUpdateBoard, }, }))
-   }
+  const onOpenModal = (category) => {
+    dispatch(
+      setModal({
+        element,
+        category,
+        title: category,
+        props: {
+          task,
+          updateTask,
+          board,
+          onUpdateBoard,
+          element
+        },
+      })
+    )
+  }
 
    return (
       <div className="label-section" ref={modalRef}>

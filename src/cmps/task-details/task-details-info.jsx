@@ -50,7 +50,6 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard, group 
          {!!task.members.length && (
             <div className="task-card-info">
                <h3 className="task-member-title">Members</h3>
-
                {task.members?.map((member) => (
                   <MemberPreview key={member._id} member={member} task={task} updateTask={updateTask} isInTaskDetails={true} board={board} onUpdateBoard={onUpdateBoard} />))
                } 
@@ -70,7 +69,7 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard, group 
                   <a
                      key={label}
                      className="label"
-                     onClick={(ev) => onOpenModal(ev, { element: labelsRef.current, category: 'Labels', task, updateTask, board, onUpdateBoard, })} style={{ backgroundColor: `${onLabels(label).color}` }}>
+                     onClick={(ev) => onOpenModal(ev, { element: labelsRef.current, category: 'Labels', props:{task, updateTask, board, onUpdateBoard, element: labelsRef.current} })} style={{ backgroundColor: `${onLabels(label).color}` }}>
                      <span>{onLabels(label).title}</span>
                   </a>
                ))}

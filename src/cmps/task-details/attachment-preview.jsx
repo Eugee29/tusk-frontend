@@ -58,7 +58,7 @@ export const AttachmentPreview = ({ attachment, task, updateTask }) => {
   const setCover = (ev) => {
     ev.stopPropagation()
     task.style = { imgURL: attachment.fileUrl, isCover: task.style.isCover }
-    updateTask(task)
+    updateTask({...task})
   }
 
 
