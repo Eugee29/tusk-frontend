@@ -15,18 +15,18 @@ export const AppHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const { user } = useSelector(({ userModule }) => userModule)
   const { pathname } = useLocation()
-  const headerRef = useRef()
+  const profileRef = useRef()
   const dispatch = useDispatch()
 
   const isHome = pathname === '/'
   useEffect(() => {
     if (isHome) {
-      window.addEventListener('scroll', () => {
+      window.addEventListener('scroll', function () {
         if (window.pageYOffset > 0) return setIsScrolled(true)
         setIsScrolled(false)
       })
     }
-  }, [])
+  }, [isHome])
 
 
 
@@ -53,8 +53,9 @@ export const AppHeader = () => {
     dispatch(onLogout())
   }
 
+
   return (
-    <header className={`app-header ${getClassName()} ${!!isScrolled && 'scrolled'}`} ref={headerRef}>
+    <header className={`app-header ${getClassName()} ${isScrolled ? 'scrolled' : ''}`}>
       <nav className='link-container'>
         <div className='logo-container'>
           <Link to='/'>
@@ -81,7 +82,7 @@ export const AppHeader = () => {
       }
       {
         !isHome &&
-        <div className='user-img-container' onClick={logout}>
+        <div className='user-img-container' onClick={logout} ref={profileRef}>
           {user &&
             (user?.imgURL
               ? <span className="user-img" style={{ backgroundImage: `url('${user.imgURL}')` }}></span>
