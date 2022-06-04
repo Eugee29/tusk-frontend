@@ -19,6 +19,7 @@ export function TaskDetailsSideTask({
   group,
   updateTask,
   onUpdateBoard,
+  deleteTask,
 }) {
   const membersRef = useRef()
   const labelsRef = useRef()
@@ -26,6 +27,7 @@ export function TaskDetailsSideTask({
   const datesRef = useRef()
   const attachmentRef = useRef()
   const coverRef = useRef()
+  const deleteRef = useRef()
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -70,15 +72,15 @@ export function TaskDetailsSideTask({
     updateTask({ ...task, archivedAt: null })
   }
 
-  const onDeleteTask = () => {
-    navigate(`/board/${board._id}`)
-    const taskIdx = group.tasks.findIndex((currTask) => currTask.id === task.id)
-    group.tasks.splice(taskIdx, 1)
-    const updatedGroups = board.groups.map((currGroup) =>
-      currGroup.id === group.id ? group : currGroup
-    )
-    onUpdateBoard({ ...board, groups: updatedGroups })
-  }
+  // const onDeleteTask = () => {
+  //   navigate(`/board/${board._id}`)
+  //   const taskIdx = group.tasks.findIndex((currTask) => currTask.id === task.id)
+  //   group.tasks.splice(taskIdx, 1)
+  //   const updatedGroups = board.groups.map((currGroup) =>
+  //     currGroup.id === group.id ? group : currGroup
+  //   )
+  //   onUpdateBoard({ ...board, groups: updatedGroups })
+  // }
 
   return (
     <section className="side-task">
@@ -246,7 +248,20 @@ export function TaskDetailsSideTask({
                 <span>Send to board</span>
               </a>
 
-              <a className="sidebar-button delete-btn" onClick={onDeleteTask}>
+              <a
+                className="sidebar-button delete-btn"
+                ref={deleteRef}
+                onClick={(ev) =>
+                  onOpenModal(ev, {
+                    element: deleteRef.current,
+                    category: 'task-delete',
+                    title: 'Delete task?',
+                    props: {
+                      deleteTask,
+                    },
+                  })
+                }
+              >
                 <span className="sidebar-icon">
                   <HiOutlineMinus />
                 </span>

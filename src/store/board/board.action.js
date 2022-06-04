@@ -1,18 +1,5 @@
-
-import { socketService } from "../../services/socket.service.js"
 import { boardService } from '../../services/board.service.js'
-import { store } from '../../store/store.js'
-
-// import { showSuccessMsg, showErrorMsg } from '../../services/event-bus.service.js'
-
-;(() => {
-socketService.off('on-any-change')
-socketService.on('on-any-change', async (msg) => {
-  console.log('Socket msg: ', msg)
-  const boards = await boardService.query()
-  store.dispatch({ type: 'SET_BOARDS', boards })
-})
-})()
+import { socketService } from '../../services/socket.service.js'
 
 export function setBoard(board) {
   return (dispatch) => {
@@ -37,13 +24,13 @@ export function addBoard(board) {
   try {
     return async (dispatch) => {
       const savedBoard = await boardService.save(board)
-      console.log('Added Board', savedBoard);
+      console.log('Added Board', savedBoard)
       dispatch({ type: 'ADD_BOARD', board: savedBoard })
       return savedBoard
       // showSuccessMsg('Board added')
     }
   } catch (err) {
-    console.log('cannot add board', err);
+    console.log('cannot add board', err)
     // showErrorMsg('Cannot add board')
   }
 }
@@ -52,6 +39,7 @@ export function updateBoard(boardToSave) {
   try {
     return async (dispatch) => {
       const savedBoard = await boardService.save(boardToSave)
+      socketService.emit('board-activity', savedBoard)
       dispatch({ type: 'UPDATE_BOARD', board: savedBoard })
       return savedBoard
     }

@@ -1,30 +1,34 @@
 .home-page {
+  position: relative;
   color: $brand-clr6;
   background: linear-gradient(0deg, #fff, #eae6ff 100%);
   overflow-x: hidden;
-  height: 100vh;
+  height: 100%;
 
   .hero {
     text-align: center;
     position: relative;
     align-items: flex-start;
-    height: 480px;
+    height: 450x;
 
     @include for-narrow-layout {
-      text-align: initial;
+      text-align: center;
+      height: 450px;
     }
 
     @include for-normal-layout {
       display: flex;
       align-items: center;
+      height: 450px;
     }
 
     @include for-wide-layout {
-      height: 575px;
+      text-align: initial;
+      height: 450px;
     }
 
     .hero-message {
-      height: rem(348px);
+      // height: rem(348px);
 
       @include for-normal-layout {
         width: rem(560px);
@@ -33,7 +37,7 @@
       }
 
       @include for-wide-layout {
-        width: rem(665px);
+        // width: rem(665px);
       }
 
       h1 {
@@ -104,26 +108,6 @@
             width: rem(364px);
           }
         }
-
-        button {
-          @include btn2($brand-clr5, white);
-          font-family: inherit;
-          width: 100%;
-          height: rem(44px);
-          font-size: rem(20px);
-
-          @include for-narrow-layout {
-            width: rem(277px);
-          }
-
-          @include for-normal-layout {
-            width: rem(210px);
-          }
-
-          @include for-wide-layout {
-            width: rem(254px);
-          }
-        }
       }
     }
 
@@ -150,6 +134,71 @@
         height: 100%;
         object-fit: contain;
       }
+    }
+  }
+
+  .app-info {
+    margin-top: 4rem;
+    text-align: center;
+
+    .introduction-header {
+      font-family: source-sans-pro-semibold;
+      font-size: 2.25rem;
+      line-height: 1.333;
+      margin-bottom: 0.5rem;
+    }
+
+    .introduction {
+      font-family: source-sans-pro-regular;
+      font-size: rem(24px);
+      margin-bottom: 5rem;
+    }
+
+    .demo-img-container {
+      margin: auto;
+      max-width: 900px;
+      width: 100%;
+      background-color: lightgray;
+      aspect-ratio: 16/9;
+      margin-bottom: 4rem;
+    }
+  }
+
+  .home-page-footer {
+    position: absolute;
+    padding: 0.25rem;
+    bottom: 0;
+    left: 0;
+    background-color: $brand-clr12;
+    width: 100%;
+    height: 72px;
+    display: flex;
+    color: $font-clr1;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    font-family: source-sans-pro-regular;
+    font-size: 1.15rem;
+    text-align: center;
+  }
+
+  .start-demo {
+    @include btn2($brand-clr5, white);
+    font-family: inherit;
+    width: 100%;
+    height: rem(44px);
+    font-size: rem(20px);
+
+    @include for-narrow-layout {
+      width: rem(277px);
+    }
+
+    @include for-normal-layout {
+      width: rem(210px);
+    }
+
+    @include for-wide-layout {
+      width: rem(254px);
     }
   }
 }

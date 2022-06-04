@@ -27,10 +27,10 @@ export const BoardDetails = () => {
       return () => socketService.emit('leave-board', params.boardId)
    }, [])
 
-   const loadBoard = async (board) => {
-      if (!board) board = await boardService.getById(params.boardId)
-      setBoard(board)
-   }
+  const loadBoard = async (board) => {
+    if (!board) board = await boardService.getById(params.boardId)
+    setBoard(board)
+  }
 
    const loadUsersAsync = async () => {
       if (!users) users = await dispatch(loadUsers())
@@ -40,43 +40,41 @@ export const BoardDetails = () => {
    const onUpdateBoard = (board, activity) => {
       if (activity) board = addActivity(board, activity)
       setBoard({ ...board })
-      socketService.emit('board-activity', board)
+      // socketService.emit('board-activity', board)
       dispatch(updateBoard(board))
    }
 
-   //   const addActivity = (board, activity) => {
-   //     const newBoard = activityService.getActivityUpdatedBoard(
-   //       board,
-   //       activity,
-   //       user
-   //     )
-   //     return newBoard
-   //   }
+  const addActivity = (board, activity) => {
+    const newBoard = activityService.getActivityUpdatedBoard(
+      board,
+      activity,
+      user
+    )
+    return newBoard
+  }
 
-   const addActivity = (board, activity) => {
-      const newBoard = activityService.getActivityUpdatedBoard(board, activity, user)
-      return newBoard
-   }
+  if (!board)
+    return (
+      <div className="icon-bars">
+        <div className="bar board"></div>
+        <div className="bar board"></div>
+        <div className="bar board"></div>
+      </div>
+    )
 
-   if (!board) return <div className="icon-bars">
-      <div className="bar board"></div>
-      <div className="bar board"></div>
-      <div className="bar board"></div>
-   </div>
-
-   return (
-      <main
-         className="board-details"
-         style={{
-            background:
-               board.style.bgImg.length > 10
-                  ? `url(${board.style.bgImg})`
-                  : `${board.style.bgImg}`,
-         }}
-      >
-         <BoardHeader board={board} onUpdateBoard={onUpdateBoard} />
-         <GroupList board={board} onUpdateBoard={onUpdateBoard} />
-         <Outlet context={{ onUpdateBoard, board }} />
-      </main>
-   )
+  return (
+    <main
+      className="board-details"
+      style={{
+        background:
+          board.style.bgImg.length > 10
+            ? `url(${board.style.bgImg})`
+            : `${board.style.bgImg}`,
+      }}
+    >
+      <BoardHeader board={board} onUpdateBoard={onUpdateBoard} />
+      <GroupList board={board} onUpdateBoard={onUpdateBoard} />
+      <Outlet context={{ onUpdateBoard, board }} />
+    </main>
+  )
 }

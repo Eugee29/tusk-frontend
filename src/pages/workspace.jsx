@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 
 import { BoardList } from '../cmps/board/board-list.jsx'
 import { loadBoards, updateBoard } from '../store/board/board.action.js'
-import BounceBarPreloader from '../assets/imgs/BounceBarPreloader.gif'
+// import BounceBarPreloader from '../assets/imgs/BounceBarPreloader.gif'
 
 export const Workspace = () => {
 

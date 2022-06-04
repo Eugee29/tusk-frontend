@@ -25,6 +25,7 @@ import { AttachmentAdd } from './modal/attachment-add.jsx'
 import { AttachmentDelete } from './modal/attachment-delete'
 import { AttachmentEdit } from './modal/attachment-edit'
 import { MemberActions } from './modal/member-actions'
+import { TaskDelete } from './modal/task-delete'
 
 export const DynamicModal = () => {
    const { modal } = useSelector(({ appModule }) => appModule)
@@ -70,19 +71,12 @@ export const DynamicModal = () => {
 
    var cmp
    console.log(modal.props)
-
    switch (modal.category) {
       case 'Cover':
          cmp = <ModalCover {...modal.props} />
          break
       case 'Members':
          cmp = <ModalMember {...modal.props} />
-         break
-      case 'Board members':
-         cmp = <ModalBoardMember {...modal.props} deleteMemberFromBoard={deleteMemberFromBoard} />
-         break
-      case 'Board members delete':
-         cmp = <ModalBoardMemberDelete {...modal.props} memberId={deleteMember.current} />
          break
       case 'Dates':
          cmp = <ModalDates {...modal.props} />
@@ -98,6 +92,12 @@ export const DynamicModal = () => {
          break
       case 'Create board':
          cmp = <ModalCreateBoard />
+         break
+      case 'Board members':
+         cmp = <ModalBoardMember {...modal.props} deleteMemberFromBoard={deleteMemberFromBoard} />
+         break
+      case 'Board members delete':
+         cmp = <ModalBoardMemberDelete {...modal.props} memberId={deleteMember.current} />
          break
       case 'todo-actions':
          cmp = <TodoActions {...modal.props} />
@@ -122,6 +122,9 @@ export const DynamicModal = () => {
          break
       case 'member-actions':
          cmp = <MemberActions {...modal.props} />
+         break
+      case 'task-delete':
+         cmp = <TaskDelete {...modal.props} />
          break
       default:
          break
