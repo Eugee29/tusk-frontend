@@ -4,21 +4,21 @@ import { useDispatch } from 'react-redux'
 import { setModal } from '../../store/app/app.actions'
 import FastAverageColor from 'fast-average-color'
 
+import { FaWindowMaximize } from 'react-icons/fa'
+
 export function TaskDetailsCover({ task, updateTask }) {
   const buttonRef = useRef()
-  const [bgColor,setBgColor] = useState(null)
+  const [bgColor, setBgColor] = useState(null)
   const dispatch = useDispatch()
 
+  const fac = new FastAverageColor()
 
-  const fac = new FastAverageColor();
+  useEffect(() => {
+    console.log('run')
+    if (task?.style?.imgURL) loadBgColor()
+  }, [task])
 
-  
-  useEffect(()=>{
-    console.log('run');
-   if (task?.style?.imgURL) loadBgColor()
-  },[task])
-    
-  const loadBgColor =async ()=>{
+  const loadBgColor = async () => {
     const color = await fac.getColorAsync(task.style.imgURL)
     setBgColor(color.hexa)
   }
@@ -48,6 +48,7 @@ export function TaskDetailsCover({ task, updateTask }) {
               onModal('Cover')
             }}
           >
+            <FaWindowMaximize />
             Cover
           </button>
         </div>
@@ -56,7 +57,7 @@ export function TaskDetailsCover({ task, updateTask }) {
       {task?.style?.imgURL && (
         <div
           className="task-details-cover img "
-          style={{backgroundColor:bgColor, backgroundImage: `url('${task.style.imgURL}')` }}
+          style={{ backgroundColor: bgColor, backgroundImage: `url('${task.style.imgURL}')` }}
         >
           <button
             ref={buttonRef}
@@ -65,6 +66,7 @@ export function TaskDetailsCover({ task, updateTask }) {
               onModal('Cover')
             }}
           >
+            <FaWindowMaximize />
             Cover
           </button>
         </div>

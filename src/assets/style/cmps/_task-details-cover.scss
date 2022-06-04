@@ -1,28 +1,31 @@
 .task-details-cover {
-   position: relative;
-   padding: 0px;
-   background-origin: content-box;
+  position: relative;
+  padding: 0px;
+  background-origin: content-box;
 
-   &.color {
-      background-size: initial;
-      background-position: left center;
-      height: 116px;
-      min-height: 116px;
-   }
+  &.color {
+    background-size: initial;
+    background-position: left center;
+    height: 116px;
+    min-height: 116px;
+  }
 
-   &.img {
-      background-size: contain;
-      background-position: center center;
-      background-color: transparent;
-      height: 160px;
-      min-height: 160px;
-      background-repeat: no-repeat;
-   }
+  &.img {
+    background-size: contain;
+    background-position: center center;
+    background-color: transparent;
+    height: 160px;
+    min-height: 160px;
+    background-repeat: no-repeat;
+  }
 
-   button {
-      @include button-cover();
-      position: absolute;
-      right: 8px;
-      bottom: 8px;
-   }
+  button {
+    @include button-cover();
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px
+  }
 }

@@ -81,7 +81,7 @@ export function BoardHeader({ task, board, updateTask, onUpdateBoard }) {
       </div>
       <div className='right-container'>
          {!isMenuOpened && <button className='show-menu' onClick={onToggleMenu}> <BiDotsHorizontalRounded className='icon' /></button>}
-         <BoardSideMenu dynamicClass={getMenuClass()} onToggleMenu={onToggleMenu} board={board} />
+         <BoardSideMenu dynamicClass={getMenuClass()} onToggleMenu={onToggleMenu} board={board} onUpdateBoard={onUpdateBoard} updateTask={updateTask}/>
       </div>
    </section>
 }

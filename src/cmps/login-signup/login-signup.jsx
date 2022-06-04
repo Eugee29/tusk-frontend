@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { onLogin, onSignup } from '../../store/user/user.action.js'
 
@@ -10,15 +11,25 @@ export const LoginSignup = ({ type }) => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
+  const [isError, setIsError] = useState(false)
+
+  useEffect(() => {
+    setIsError(false)
+  }, [location])
 
   const signup = async (credentials) => {
     await dispatch(onSignup(credentials))
     navigate('/workspace')
   }
 
-  const loginn = async (credentials) => {
-    await dispatch(onLogin(credentials))
-    navigate('/workspace')
+  const login = async (credentials) => {
+    try {
+      await dispatch(onLogin(credentials))
+      navigate('/workspace')
+    } catch (err) {
+      setIsError(true)
+    }
 
   }
 
@@ -26,7 +37,7 @@ export const LoginSignup = ({ type }) => {
 
   switch (type) {
     case 'login':
-      cmp = <LoginForm onLogin={loginn} />
+      cmp = <LoginForm onLogin={login} />
       break
     case 'signup':
       cmp = <SignupForm onSignup={signup} />
@@ -35,6 +46,10 @@ export const LoginSignup = ({ type }) => {
 
   return (
     <div className='login-signup'>
+      {isError &&
+        <div className='error-message'>
+          <p>Invalid username or password.</p>
+        </div>}
       {cmp}
       <div className='login-method'>
         <div>OR</div>
