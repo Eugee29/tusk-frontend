@@ -26,7 +26,6 @@ export function RootCmp() {
         if (modal) dispatch(setModal(null))
       }}
     >
-      {/* <main className="main-layout"> */}
       <AppHeader />
       {modal && <DynamicModal />}
       <Routes>
@@ -38,7 +37,6 @@ export function RootCmp() {
           <Route path=":groupId/:taskId" element={<TaskDetails />} />
         </Route>
       </Routes>
-      {/* </main> */}
     </div>
   )
 }
