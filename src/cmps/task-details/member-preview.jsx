@@ -9,6 +9,7 @@ export const MemberPreview = ({ member, task, board, onUpdateBoard, isInTaskDeta
    const memberRef = useRef()
 
    const initials = (member) => ([...member.fullname])
+   
 
    const onOpenModal = (ev, modal) => {
       ev.stopPropagation()

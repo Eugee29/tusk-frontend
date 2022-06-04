@@ -21,6 +21,22 @@
       justify-content: space-around;
       align-items: center;
 
+      .member-img-container {
+         display: flex;
+
+         .more-members { 
+            border-radius: 50%;
+            color: #ffff;
+            height: 32px;
+            width: 32px;
+            aspect-ratio: 1/1;
+
+            &:hover {
+               background-color: rgba(9, 30, 66, 0.0784313725)
+            }
+         }
+      }
+
       h1 {
          font-size: 18px;
          font-weight: 700;
@@ -116,6 +132,10 @@
          @include task-member-button(tomato);
          margin-bottom: 0px;
          margin-right: -5px;
+
+         &:hover {
+            opacity: 1;
+         }
       }
 
 

@@ -26,6 +26,7 @@ import { AttachmentDelete } from './modal/attachment-delete'
 import { AttachmentEdit } from './modal/attachment-edit'
 import { MemberActions } from './modal/member-actions'
 import { TaskDelete } from './modal/task-delete'
+import { MoreMembers } from './modal/more-members'
 
 export const DynamicModal = () => {
    const { modal } = useSelector(({ appModule }) => appModule)
@@ -126,23 +127,26 @@ export const DynamicModal = () => {
       case 'task-delete':
          cmp = <TaskDelete {...modal.props} />
          break
+      case 'more-members':
+         cmp = <MoreMembers {...modal.props} />
+         break
       default:
          break
    }
 
-  const onOpenModal = (ev, category) => {
-    ev.stopPropagation()
-    dispatch(
-      setModal({
-        element: modal.element,
-        category,
-        title: category,
-        props: {
-          ...modal.props
-        },
-      })
-    )
-  }
+   const onOpenModal = (ev, category) => {
+      ev.stopPropagation()
+      dispatch(
+         setModal({
+            element: modal.element,
+            category,
+            title: category,
+            props: {
+               ...modal.props
+            },
+         })
+      )
+   }
 
    return (
       <div
