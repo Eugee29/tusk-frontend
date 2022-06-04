@@ -16,7 +16,6 @@ export function TaskDetailsCover({ task, updateTask }) {
 
 
   useEffect(() => {
-    console.log('run')
     if (task?.style?.imgURL) loadBgColor()
   }, [task])
 

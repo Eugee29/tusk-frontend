@@ -27,6 +27,7 @@ import { AttachmentEdit } from './modal/attachment-edit'
 import { MemberActions } from './modal/member-actions'
 import { TaskDelete } from './modal/task-delete'
 import { AccountActions } from './modal/account-actions'
+import { BoardFilter } from './modal/board-filter'
 
 export const DynamicModal = () => {
   const { modal } = useSelector(({ appModule }) => appModule)
@@ -129,6 +130,9 @@ export const DynamicModal = () => {
       break
     case 'account-actions':
       cmp = <AccountActions {...modal.props} />
+      break
+    case 'board-filter':
+      cmp = <BoardFilter {...modal.props} />
       break
     default:
       break
