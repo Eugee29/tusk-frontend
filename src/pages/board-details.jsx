@@ -7,18 +7,21 @@ import { activityService } from '../services/activity.service.js'
 import { socketService } from '../services/socket.service.js'
 
 import { updateBoard } from '../store/board/board.action.js'
+import { loadUsers } from '../store/user/user.action.js'
 
 import { BoardHeader } from '../cmps/board/board-header.jsx'
 import { GroupList } from '../cmps/group/group-list.jsx'
 
 export const BoardDetails = () => {
    const [board, setBoard] = useState(null)
+   const [users, setUsers] = useState(null)
    const params = useParams()
    const dispatch = useDispatch()
    const { user } = useSelector(({ userModule }) => userModule)
 
    useEffect(() => {
       loadBoard()
+      loadUsersAsync()
       socketService.emit('listen-to-board', params.boardId)
       socketService.on('board-activity', loadBoard)
       return () => socketService.emit('leave-board', params.boardId)
@@ -27,6 +30,11 @@ export const BoardDetails = () => {
    const loadBoard = async (board) => {
       if (!board) board = await boardService.getById(params.boardId)
       setBoard(board)
+   }
+
+   const loadUsersAsync = async () => {
+      if (!users) users = await dispatch(loadUsers())
+      setUsers(users)
    }
 
    const onUpdateBoard = (board, activity) => {

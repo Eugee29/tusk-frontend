@@ -17,7 +17,7 @@ export const Workspace = () => {
 
    const loadBoardsAsync = async () => {
       const boardsFromService = await dispatch(loadBoards())
-      console.log('boardsFromSrevice', boardsFromService)
+      console.log('boardsFromService', boardsFromService)
       setBoards(boardsFromService)
    }
 
