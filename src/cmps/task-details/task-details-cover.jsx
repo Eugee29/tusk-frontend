@@ -14,7 +14,6 @@ export function TaskDetailsCover({ task, updateTask }) {
   const fac = new FastAverageColor()
 
   useEffect(() => {
-    console.log('run')
     if (task?.style?.imgURL) loadBgColor()
   }, [task])
 
