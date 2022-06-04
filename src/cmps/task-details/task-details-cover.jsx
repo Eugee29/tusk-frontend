@@ -1,15 +1,25 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { setModal } from '../../store/app/app.actions'
+import FastAverageColor from 'fast-average-color'
 
 export function TaskDetailsCover({ task, updateTask }) {
   const buttonRef = useRef()
+  const [bgColor,setBgColor] = useState(null)
   const dispatch = useDispatch()
 
-  // useEffect(() => {
-  //   onModal('Cover')
-  // }, [task])
+
+  const fac = new FastAverageColor();
+
+  useEffect(()=>{
+    loadBgColor()
+  },[task])
+    
+  const loadBgColor =async ()=>{
+    const color = await fac.getColorAsync(task.style.imgURL)
+    setBgColor(color.hexa)
+  }
 
   const onModal = (category) => {
     dispatch(
@@ -44,7 +54,7 @@ export function TaskDetailsCover({ task, updateTask }) {
       {task?.style?.imgURL && (
         <div
           className="task-details-cover img "
-          style={{ backgroundImage: `url('${task.style.imgURL}')` }}
+          style={{backgroundColor:bgColor, backgroundImage: `url('${task.style.imgURL}')` }}
         >
           <button
             ref={buttonRef}
