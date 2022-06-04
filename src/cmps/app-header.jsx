@@ -19,23 +19,21 @@ export const AppHeader = () => {
   const dispatch = useDispatch()
 
   const isHome = pathname === '/'
+
   useEffect(() => {
-    if (isHome) {
-      window.addEventListener('scroll', function () {
-        if (window.pageYOffset > 0) return setIsScrolled(true)
-        setIsScrolled(false)
-      })
-    }
+    if (isHome) window.addEventListener('scroll', checkScroll)
+    return () => { window.removeEventListener('scroll', checkScroll) }
   }, [isHome])
 
-
+  const checkScroll = () => {
+    if (window.pageYOffset > 0) return setIsScrolled(true)
+    setIsScrolled(false)
+  }
 
   if (pathname === '/login' || pathname === '/signup') return
 
   const isBoard = (pathname.includes('/board'))
   const initials = (user) => ([...user.fullname])
-
-
 
   const getClassName = () => {
     let className
@@ -52,7 +50,6 @@ export const AppHeader = () => {
   const logout = async () => {
     dispatch(onLogout())
   }
-
 
   return (
     <header className={`app-header ${getClassName()} ${isScrolled ? 'scrolled' : ''}`}>
