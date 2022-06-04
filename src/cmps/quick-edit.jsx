@@ -88,7 +88,7 @@ export function QuickEdit({ toggleQuickEdit, task, group,
                     }
 
                     <div className='task-info'>
-                        {!!task.labelIds.length && (!task.style.isCover) && <LabelList board={board} labelIds={task.labelIds} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} />}
+                        {!!task.labelIds.length && <LabelList board={board} labelIds={task.labelIds} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} />}
 
                         <textarea autoFocus onChange={handleChange} defaultValue={taskText} onFocus={handleFocus}></textarea>
                         <TaskPreviewIcons task={task} board={board} getTimeStyle={getTimeStyle}

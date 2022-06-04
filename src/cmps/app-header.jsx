@@ -65,9 +65,9 @@ export const AppHeader = () => {
             }
           </Link>
         </div>
-        {!isHome && <Link className='workspace-link' to='/workspace'>Workspace <FiChevronDown /></Link>}
-        {!isHome && <div className='workspace-link' >Recent <FiChevronDown /></div>}
-        {!isHome && <div className='workspace-link' >Starred <FiChevronDown /></div>}
+        {!isHome && <Link className='workspace-link' to='/workspace'>Workspaces</Link>}
+        {/* {!isHome && <div className='workspace-link' >Recent <FiChevronDown /></div>}
+        {!isHome && <div className='workspace-link' >Starred <FiChevronDown /></div>} */}
         {!isHome && <div className='workspace-create' >Create</div>}
 
       </nav>
