@@ -71,8 +71,6 @@ self.addEventListener('message', (event) => {
 })
 
 // Any other custom service worker logic can go here.
-console.log('Service Worker Loaded...')
-
 self.addEventListener('push', (e) => {
   const data = e.data.json()
   console.log('Push Recieved...')
