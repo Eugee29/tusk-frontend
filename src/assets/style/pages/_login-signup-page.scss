@@ -1,5 +1,5 @@
 .login-signup-page {
-  height: 100vh;
+  height: 100%;
   width: 100%;
 
   .logo-container {
@@ -16,9 +16,13 @@
       object-fit: cover;
     }
   }
+  .background {
+    display: none;
+  }
 
   @include for-narrow-layout {
     .background {
+      display: initial;
       position: fixed;
       top: 0;
       height: 100%;

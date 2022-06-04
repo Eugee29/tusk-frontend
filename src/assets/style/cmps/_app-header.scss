@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow: hidden;
 
   .workspace-link {
     font-size: 0.875rem;
@@ -205,6 +206,7 @@
     align-items: center;
     height: rem(68.25px);
     padding: 1rem;
+    transition:  .2s;
 
     .logo-container {
       width: rem(126px);
@@ -243,6 +245,11 @@
         width: rem(80px);
         font-family: source-sans-pro-semibold;
       }
+    }
+
+    &.scrolled{
+      background-color: white;
+      box-shadow: rgb(9 30 66 / 15%) 0px 0.5rem 1rem 0px;
     }
   }
 }

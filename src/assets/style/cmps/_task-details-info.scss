@@ -16,7 +16,6 @@
 
       .members-add-button {
          @include task-add-button();
-
       }
 
       .round {
@@ -37,6 +36,21 @@
          background: center;
          background-size: cover;
          margin-right: 3px;
+
+         img {
+            cursor: pointer;
+            float: left;
+            border-radius: 50%;
+            text-transform: uppercase;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+            object-fit: cover;
+            margin-right: -5px;
+         }
       }
 
       .label {
@@ -110,6 +124,7 @@
                &.duesoon {
                   background-color: #F2D600;
                }
+
                &.complete {
                   background-color: #61BD4F;
                }
@@ -121,7 +136,7 @@
                line-height: 1.7;
                color: #172b4d;
                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Noto Sans", "Ubuntu", "Droid Sans", "Helvetica Neue", sans-serif;
- 
+
                svg {
                   height: 13px;
                }

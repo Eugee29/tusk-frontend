@@ -14,28 +14,29 @@ import { useDispatch } from 'react-redux'
 
 import { setModal } from './store/app/app.actions'
 
-import './assets/css/main.scss'
+import './assets/style/main.scss'
 
 export function RootCmp() {
-
   const { modal } = useSelector(({ appModule }) => appModule)
   const dispatch = useDispatch()
 
   return (
-    <div onClick={() => { if (modal) dispatch(setModal(null)) }}>
+    <div
+      onClick={() => {
+        if (modal) dispatch(setModal(null))
+      }}
+    >
       <AppHeader />
       {modal && <DynamicModal />}
-      <main className='main-layout'>
-        <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='/login' element={<LoginSignupPage type='login' />} />
-          <Route path='/signup' element={<LoginSignupPage type='signup' />} />
-          <Route path='/workspace' element={<Workspace />} />
-          <Route path='/board/:boardId/*' element={<BoardDetails />} >
-            <Route path=':groupId/:taskId' element={<TaskDetails />} />
-          </Route>
-        </Routes>
-      </main>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginSignupPage type="login" />} />
+        <Route path="/signup" element={<LoginSignupPage type="signup" />} />
+        <Route path="/workspace" element={<Workspace />} />
+        <Route path="/board/:boardId/*" element={<BoardDetails />}>
+          <Route path=":groupId/:taskId" element={<TaskDetails />} />
+        </Route>
+      </Routes>
     </div>
   )
 }
