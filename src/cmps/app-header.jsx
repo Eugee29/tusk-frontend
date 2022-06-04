@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { useLocation, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -11,63 +12,84 @@ import { FiChevronDown } from 'react-icons/fi'
 
 export const AppHeader = () => {
 
-   const { user } = useSelector(({ userModule }) => userModule)
-   const { pathname } = useLocation()
-   const dispatch = useDispatch()
+  const [isScrolled, setIsScrolled] = useState(false)
+  const { user } = useSelector(({ userModule }) => userModule)
+  const { pathname } = useLocation()
+  const headerRef = useRef()
+  const dispatch = useDispatch()
 
-   if (pathname === '/login' || pathname === '/signup') return
+  const isHome = pathname === '/'
+  useEffect(() => {
+    if (isHome) {
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 0) return setIsScrolled(true)
+        setIsScrolled(false)
+      })
+    }
+  }, [])
 
-   const isHome = pathname === '/'
-   const isBoard = (pathname.includes('/board'))
-   const initials = (user) => ([...user.fullname])
 
-   const getClassName = () => {
-      if (isHome) return 'home'
-      if (isBoard) return 'board'
-      else return 'general'
-   }
 
-   const logout = async () => {
-      dispatch(onLogout())
-   }
+  if (pathname === '/login' || pathname === '/signup') return
 
-   return (
-      <header className={`app-header ${getClassName()}`} >
-         <nav className='link-container'>
-            <div className='logo-container'>
-               <Link to='/'>
-                  {
-                     isHome ?
-                        <img src={logoDark} alt="tusk-logo" className='logo' />
-                        :
-                        <img src={logoLight} alt="tusk-logo" className='logo smaller' />
-                  }
-               </Link>
-            </div>
-            {!isHome && <Link className='workspace-link' to='/workspace'>Workspace <FiChevronDown/></Link>}
-            {!isHome && <div className='workspace-link' >Recent <FiChevronDown/></div>}
-            {!isHome && <div className='workspace-link' >Starred <FiChevronDown/></div>}
-            {!isHome && <div className='workspace-create' >Create</div>}
+  const isBoard = (pathname.includes('/board'))
+  const initials = (user) => ([...user.fullname])
 
-         </nav>
-         {
-            isHome &&
-            <nav className='login-signup-container'>
-               <Link to='/login' className='login'>Log in</Link>
-               <Link to='/signup' className='signup'>Sign up</Link>
-            </nav>
-         }
-         {
-            !isHome &&
-            <div className='user-img-container' onClick={logout}>
-               {user &&
-                  (user?.imgURL
-                     ? <span className="user-img" style={{ backgroundImage: `url('${user.imgURL}')` }}></span>
-                     : <span className="user-initial" >{`${initials(user)[0]}${initials(user)[1]}`}</span>)
-               }
-               {!user && <span className="user-initial" ></span>}
-            </div>
-         }
-      </header >
-   )
+
+
+  const getClassName = () => {
+    let className
+    if (isHome) {
+      className = 'home'
+      if (window.pageYOffset > 0) className += ' scrolled'
+      return className
+    }
+    if (isBoard) className = 'board'
+    else className = 'general'
+    return className
+  }
+
+  const logout = async () => {
+    dispatch(onLogout())
+  }
+
+  return (
+    <header className={`app-header ${getClassName()} ${!!isScrolled && 'scrolled'}`} ref={headerRef}>
+      <nav className='link-container'>
+        <div className='logo-container'>
+          <Link to='/'>
+            {
+              isHome ?
+                <img src={logoDark} alt="tusk-logo" className='logo' />
+                :
+                <img src={logoLight} alt="tusk-logo" className='logo smaller' />
+            }
+          </Link>
+        </div>
+        {!isHome && <Link className='workspace-link' to='/workspace'>Workspace <FiChevronDown /></Link>}
+        {!isHome && <div className='workspace-link' >Recent <FiChevronDown /></div>}
+        {!isHome && <div className='workspace-link' >Starred <FiChevronDown /></div>}
+        {!isHome && <div className='workspace-create' >Create</div>}
+
+      </nav>
+      {
+        isHome &&
+        <nav className='login-signup-container'>
+          <Link to='/login' className='login'>Log in</Link>
+          <Link to='/signup' className='signup'>Sign up</Link>
+        </nav>
+      }
+      {
+        !isHome &&
+        <div className='user-img-container' onClick={logout}>
+          {user &&
+            (user?.imgURL
+              ? <span className="user-img" style={{ backgroundImage: `url('${user.imgURL}')` }}></span>
+              : <span className="user-initial" >{`${initials(user)[0]}${initials(user)[1]}`}</span>)
+          }
+          {!user && <span className="user-initial" ></span>}
+        </div>
+      }
+    </header >
+  )
 }
