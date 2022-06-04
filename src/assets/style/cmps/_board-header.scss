@@ -5,7 +5,7 @@
    overflow: hidden;
    justify-content: space-between;
    max-height: 60px;
-   padding: 12px 8px 12px 16px;
+   padding: 12px 8px;
    color: $font-clr1;
    margin-top: 44px;
    position: static;
@@ -38,7 +38,7 @@
       }
 
       h1 {
-         font-size: 18px;
+         font-size: 16px;
          font-weight: 700;
          line-height: 20px;
          padding: 0 12px;
@@ -58,6 +58,7 @@
       gap: 6px;
       height: 32px;
       width: 32px;
+      margin-left: 10px;
 
       svg {
          height: 16px;
@@ -162,7 +163,7 @@
    }
 }
 
-@media (min-width: 400px) {
+@media (min-width: 500px) {
    .board-header .show-menu {
       height: auto;
       width: auto;
@@ -172,5 +173,9 @@
          content: "Show menu";
          padding-right: 3px;
       }
+   }
+
+   .board-header .left-container h1 {
+      font-size: 18px;
    }
 }
