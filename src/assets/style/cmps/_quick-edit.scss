@@ -6,6 +6,7 @@
     width: 100%;
     background-color: rgba(0, 0, 0, 0.578);
     z-index: 1000;
+    cursor: default;
 
     .quick-edit {
         display: flex;
@@ -14,6 +15,12 @@
     }
 
     .quick-edit-body {
+
+        cursor: default;
+
+        .task-preview {
+            cursor: default;
+        }
 
         .task-preview.styled.img {
             padding: 0;

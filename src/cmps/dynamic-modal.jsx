@@ -26,6 +26,7 @@ import { AttachmentDelete } from './modal/attachment-delete'
 import { AttachmentEdit } from './modal/attachment-edit'
 import { MemberActions } from './modal/member-actions'
 import { TaskDelete } from './modal/task-delete'
+import { MoreMembers } from './modal/more-members'
 import { AccountActions } from './modal/account-actions'
 import { BoardFilter } from './modal/board-filter'
 
@@ -127,6 +128,9 @@ export const DynamicModal = () => {
       break
     case 'task-delete':
       cmp = <TaskDelete {...modal.props} />
+      break
+    case 'more-members':
+      cmp = <MoreMembers {...modal.props} />
       break
     case 'account-actions':
       cmp = <AccountActions {...modal.props} />

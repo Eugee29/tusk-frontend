@@ -5,11 +5,15 @@
   flex-direction: column;
   padding: 0 .25rem;
   margin: 0 .25rem;
-  margin-bottom: 0.65rem;;
+  margin-bottom: 0.65rem;
   overflow-y: auto;
   overflow-x: hidden;
 
-
+  &.archived {
+    overflow-y: scroll;
+    overflow-x: unset;
+    margin-bottom: 0;
+  }
 
   .add-card-container {
     padding: 0 0 4px;
@@ -70,7 +74,7 @@
         &:hover {
           color: darken($font-clr3, 20%)
         }
-  
+
         .x-icon {
           height: 26px;
           width: 26px;
@@ -78,7 +82,7 @@
       }
     }
 
-    
+
   }
 
   @include custom-scrollbar

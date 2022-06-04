@@ -18,6 +18,7 @@ export function BoardHeader({ task, board, updateTask, onUpdateBoard }) {
 
   const dispatch = useDispatch()
   const memberRef = useRef()
+  const moreMembersRef = useRef()
   const filterRef = useRef()
 
   const onToggleStar = () => {
@@ -49,15 +50,30 @@ export function BoardHeader({ task, board, updateTask, onUpdateBoard }) {
     dispatch(setModal(modal))
   }
 
+  const getMembersForPreview = (members) => {
+    const membersForPreview = members.slice(0, 3)
+    return membersForPreview
+  }
+
+  const getMembersForModal = (members) => {
+    const membersForModal = members.slice(3)
+    return membersForModal
+  }
+
   return <section className="board-header">
     <div className='left-container'>
       <h1> {board.title} </h1>
       <button onClick={onToggleStar} className={getStarClass()}>
         {isStarred ? <AiFillStar className='star-icon' /> : <AiOutlineStar className='star-icon' />}
       </button>
+
       {board.members && /*!!board.members.length &&*/
         <div className='member-img-container'>
-          {board.members.map((member) => <MemberPreview key={member._id} member={member} isInTaskDetails={true} onUpdateBoard={onUpdateBoard} board={board} />)}
+          {board.members.length <= 4 && board.members.map((member) => <MemberPreview key={member._id} member={member} isInTaskDetails={true} onUpdateBoard={onUpdateBoard} board={board} />)}
+          {board.members.length > 4 && getMembersForPreview(board.members).map((member) => <MemberPreview key={member._id} member={member} isInTaskDetails={true} onUpdateBoard={onUpdateBoard} board={board} />)}
+          {board.members.length > 4 &&
+            <button ref={moreMembersRef} onClick={(ev) => onOpenModal(ev, { category: 'more-members', element: moreMembersRef.current, title: 'More members', props: { moreMembers: getMembersForModal(board.members), board, task, onUpdateBoard, element: moreMembersRef.current } })}
+              className='more-members'> +{getMembersForModal(board.members).length} </button>}
           <a className="members-add-button round"
             ref={memberRef}
             onClick={(ev) => onOpenModal(ev, { element: memberRef.current, category: 'Board members', props: { task, updateTask, board, onUpdateBoard/*, group*/ }, })}>
@@ -68,7 +84,7 @@ export function BoardHeader({ task, board, updateTask, onUpdateBoard }) {
     <div className='right-container'>
       <button className='filter-btn' ref={filterRef} onClick={(ev) => onOpenModal(ev, { element: filterRef.current, category: 'board-filter', title: 'Filter' })}><div className='filter-icon-container' ><BsFilter className='filter-icon' /></div>Filter</button>
       {!isMenuOpened && <button className='show-menu' onClick={onToggleMenu}> <BiDotsHorizontalRounded className='icon' /></button>}
-      <BoardSideMenu dynamicClass={getMenuClass()} onToggleMenu={onToggleMenu} board={board} />
+      <BoardSideMenu dynamicClass={getMenuClass()} onToggleMenu={onToggleMenu} board={board} onUpdateBoard={onUpdateBoard} updateTask={updateTask} />
     </div>
   </section>
 }

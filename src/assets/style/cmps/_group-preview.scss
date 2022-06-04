@@ -10,6 +10,15 @@
   max-height: 100%;
   overflow: hidden;
 
+  &.archived {
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: unset;
+    margin-bottom: 10px;
+  }
+
   .group-title-container {
     height: 40px;
     padding: 6px 8px;
