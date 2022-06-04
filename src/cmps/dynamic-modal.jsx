@@ -130,23 +130,19 @@ export const DynamicModal = () => {
          break
    }
 
-   const onOpenModal = (ev, category) => {
-      ev.stopPropagation()
-      dispatch(
-         setModal({
-            element: modal.element,
-            category,
-            title: category,
-            props: {
-               task: modal.task,
-               board: modal.board,
-               updateTask: modal.updateTask,
-               onUpdateBoard: modal.onUpdateBoard,
-               element: modal.element,
-            },
-         })
-      )
-   }
+  const onOpenModal = (ev, category) => {
+    ev.stopPropagation()
+    dispatch(
+      setModal({
+        element: modal.element,
+        category,
+        title: category,
+        props: {
+          ...modal.props
+        },
+      })
+    )
+  }
 
    return (
       <div
