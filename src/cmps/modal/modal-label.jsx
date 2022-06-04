@@ -55,6 +55,7 @@ export const ModalLabel = ({
           updateTask,
           board,
           onUpdateBoard,
+          element
         },
       })
     )

@@ -95,10 +95,14 @@ export const TaskDetailsInfo = ({
                 onOpenModal(ev, {
                   element: labelsRef.current,
                   category: 'Labels',
-                  task,
-                  updateTask,
-                  board,
-                  onUpdateBoard,
+                  props:{
+                    task,
+                    updateTask,
+                    board,
+                    onUpdateBoard,
+                    element: labelsRef.current,
+                  }
+                  
                 })
               }
               style={{ backgroundColor: `${onLabels(label).color}` }}
