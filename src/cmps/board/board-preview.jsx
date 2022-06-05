@@ -41,17 +41,8 @@ export function BoardPreview({ board, onUpdateBoard }) {
                </div>
 
                <div className="board-tile-details-sub-container">
-                  <span className="board-tile-options" onClick={onStarred}>
-
-                     <span className="board-tile-options-star-icon">
-                        {!board.isStarred && <span className="boardlist-icon"><AiOutlineStar /></span>}
-                     </span>
-
-                     <span className="board-tile-options-starred-icon">
-                        {board.isStarred && <span className="boardlist-icon fill" ><AiFillStar /></span>}
-                     </span>
-
-                  </span>
+                     {!board.isStarred && <span onClick={onStarred} className="boardlist-icon outline"><AiOutlineStar className="star-icon" /></span>}
+                     {board.isStarred && <span onClick={onStarred} className="boardlist-icon fill" >< AiFillStar className="star-icon" /></span>}
                </div>
 
             </div>

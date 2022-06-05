@@ -1,4 +1,3 @@
-
 .board-section-list-item {
    margin: 0 2% 2% 0;
    padding: 0;
@@ -6,23 +5,8 @@
    width: 100%;
    cursor: pointer;
 
-   // @media (max-width: 760px) {
-   //    width: 240px;
-   // }
-   // @media (max-width: 655px) {
-   //    width: 140px;
-   // }
-   // @media (max-width: 605px) {
-   //    width: 193px;
-   // }
-   // @media (max-width: 430px) {
-   //    width: 48%;
-   // }
-
    .board-tile {
       background-color: $brand-clr11;
-      // background-position: 50%;
-      // background-size: cover;
       color: $font-clr1;
       line-height: 20px;
       padding: 8px;
@@ -50,7 +34,7 @@
          max-height: 40px;
          overflow: hidden;
          width: 100%;
-      }  
+      }
    }
 }
 
@@ -69,86 +53,113 @@
    display: block;
 }
 
-
 .board-tile-details-sub-container {
-   align-items: baseline;
-   display: flex;
-   flex: 0 0 auto;
-   justify-content: flex-end;
 
-   .board-tile-options {
-      align-items: center;
-      display: flex;
-      flex: 0 0 auto;
-      margin-left: 4px;
-      overflow: hidden;
-      position: relative;
-      right: 8px;
-      top: -1px;
+   .boardlist-icon {
+      position: absolute;
+      right: 4px;
+      bottom: 1px;
 
-      .board-tile-options-star-icon {
-         bottom: 0;
-         color: $font-clr1;
-         display: block;
-         font-size: rem(16px);
-         height: 18px;
-         line-height: 18px;
-         opacity: 0;
-         right: 0;
-         top: 0;
-         transition-duration: .15s;
-         transition-property: color,background,opacity,transform,width,margin;
-         width: 0;
+      .star-icon {
+         height: 16px;
+         width: 16px;
       }
 
-      .board-tile-options-starred-icon {
-         bottom: 0;
-         display: block;
-         font-size: rem(16px);
-         height: 18px;
-         line-height: 18px;
-         opacity: 1;
-         right: 0;
-         top: 0;
+      &.fill {
 
-         .boardlist-icon{
-            color: $brand-clr10;    
-            svg {
-                height: 14px;
-                width: 14px;
-            }
-         }
-         
-         :hover {
-            color: $font-clr1;
+         .star-icon {
+            color: gold;
          }
 
+         &:hover .star-icon {
+            color: #ffff
+         }
       }
-   }
 
-}
+      &.outline {
+         &:hover .star-icon {
+            color: gold;
+         }
 
-.board-tile:hover .board-tile-options-star-icon {
-   margin-right: 13px;
-   opacity: 1;
-   // width: 18px;
-   // font-size: rem(13px);
-
-   .boardlist-icon{
-      color: #fff;    
-      svg {
-          height: 14px;
-          width: 14px;
+         .star-icon {
+            color: #ffff;
+         }
       }
+
    }
 }
 
-.board-list .starred-container .star-icon {
-   color: $font-clr1;
-   font-size: 1.3rem;
-   height: 17px;
-   opacity: 0;
-   opacity: 1;
-   width: 17px;
-}
-  
+//    .board-tile-options {
+//       align-items: center;
+//       display: flex;
+//       flex: 0 0 auto;
+//       margin-left: 4px;
+//       overflow: hidden;
+//       position: relative;
+//       right: 8px;
+//       top: -1px;
+
+//       .board-tile-options-star-icon {
+//          bottom: 0;
+//          color: $font-clr1;
+//          display: block;
+//          font-size: rem(16px);
+//          height: 18px;
+//          line-height: 18px;
+//          opacity: 0;
+//          right: 0;
+//          top: 0;
+//          transition-duration: .15s;
+//          transition-property: color, backgroundColor ,opacity,transform,width,margin;
+//          width: 0;
+//       }
+
+//       .board-tile-options-starred-icon {
+//          bottom: 0;
+//          display: block;
+//          font-size: rem(16px);
+//          height: 18px;
+//          line-height: 18px;
+//          opacity: 1;
+//          right: 0;
+//          top: 0;
+
+//          .boardlist-icon{
+//             color: $brand-clr10;    
+//             svg {
+//                 height: 14px;
+//                 width: 14px;
+//             }
+//          }
+
+//          :hover {
+//             color: $font-clr1;
+//          }
+
+//       }
+//    }
+
+// }
+
+// .board-tile:hover .board-tile-options-star-icon {
+//    margin-right: 13px;
+//    opacity: 1;
+
+
+//    .boardlist-icon{
+//       color: #fff;    
+//       svg {
+//           height: 14px;
+//           width: 14px;
+//       }
+//    }
+// }
+
+// .board-list .starred-container .star-icon {
+//    color: $font-clr1;
+//    font-size: 1.3rem;
+//    height: 17px;
+//    opacity: 0;
+//    opacity: 1;
+//    width: 17px;
+// }
