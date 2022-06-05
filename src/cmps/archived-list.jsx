@@ -14,7 +14,7 @@ export function ArchivedList({ board, onUpdateBoard }) {
             { tasks.some(task => task.task.archivedAt) 
             ? tasks.map((task, index) => task.task.archivedAt &&
                <ArchivedPreview key={task.task.id} board={board} groupId={task.groupId} task={task.task} index={index} onUpdateBoard={onUpdateBoard} />)
-               : <div className="empty">Archived empty</div> 
+               : <div className="empty">Archive empty</div> 
             }     
          </div>
       </div>
