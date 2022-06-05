@@ -74,7 +74,7 @@ export function QuickEdit({ toggleQuickEdit, task, group,
     }
 
 
-    return <section className="quick-edit-container" onClick={onToggleQuickEdit} >
+    return <section className="quick-edit-container" onClick={onToggleQuickEdit}>
         <div className="quick-edit" onClick={(ev) => ev.stopPropagation()} style={utilService.getPosition(element)}>
             <section className="quick-edit-body" style={{ width: element.offsetWidth }} onClick={onToggleQuickEdit}>
                 <div className={getTaskClass(true)} style={getTaskStyle(true)} onClick={(ev) => ev.stopPropagation()}>

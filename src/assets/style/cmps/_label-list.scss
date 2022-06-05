@@ -47,6 +47,7 @@
 
 .label-list {
     display: flex;
+    flex-wrap: wrap;
 
     .label {
         height: 8px;

@@ -239,7 +239,6 @@ function getDemoImages() {
 function getExtension(filename) {
   try {
     var parts = filename.split('.')
-    // console.log(parts[parts.length - 1])
     return _imageOrVideo(parts[parts.length - 1])
   } catch (error) {
     return 'image'

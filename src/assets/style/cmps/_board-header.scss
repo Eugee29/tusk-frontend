@@ -1,6 +1,7 @@
 .board-header {
   box-sizing: border-box;
   display: flex;
+  flex-direction: row;
   align-items: center;
   overflow: hidden;
   justify-content: space-between;
@@ -40,7 +41,7 @@
       transition-duration: 85ms;
 
       &:hover {
-        background-color: rgba(9, 30, 66, 0.0784313725)
+        background-color: rgba(255, 255, 255, 0.415);
       }
     }
   }
@@ -90,7 +91,6 @@
     border: none;
     border-radius: 3px;
     background-color: rgba(255, 255, 255, 0.325);
-
   }
 
 
@@ -133,14 +133,25 @@
   .member-img-container {
 
     .members-add-button {
-      @include task-add-button();
+      // @include task-add-button();
+      width: 32px;
+      height: 32px;
+      border-radius: 3px;
+      margin: 0 8px 8px 0;
       background-color: rgba(255, 255, 255, 0.325);
       margin: 0px;
       margin-left: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.415);
+      }
+
     }
+
 
     &.round {
       border-radius: 100%;
@@ -200,7 +211,7 @@
   .member-img-container {
 
     .members-add-button {
-      @include task-add-button();
+      // @include task-add-button();
       background-color: rgba(255, 255, 255, 0.325);
       margin: 0px;
       margin-right: 4px;
@@ -208,10 +219,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-    }
 
-    &.round {
-      border-radius: 100%;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.415);
+      }
     }
 
     .member {
@@ -228,6 +239,10 @@
   }
 
   @media (min-width: 510px) {
+    .board-header {
+      flex-direction: column;
+    }
+
     .show-menu {
       height: auto;
       width: auto;
@@ -242,6 +257,10 @@
 
     .left-container h1 {
       font-size: 18px;
+    }
+
+    .right-container {
+      justify-content: space-between;
     }
   }
 
