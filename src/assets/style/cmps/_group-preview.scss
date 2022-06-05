@@ -84,7 +84,6 @@
     cursor: pointer;
 
     .add-btn {
-      height: 20px;
       text-align: flex-start;
       align-self: flex-end;
       font-size: 14px;
@@ -99,10 +98,11 @@
       font-weight: 400;
       gap: 5px;
       line-height: 28;
-
       &:hover {
         background-color: $clr1;
-      }
+    }
+
+    
     }
   }
 }

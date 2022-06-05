@@ -66,10 +66,7 @@ export const GroupPreview = ({
       {(provided, snapshot) => (
         <div ref={provided.innerRef} {...provided.draggableProps}>
           <section
-            className={`group-preview ${
-              snapshot.isDragging && !snapshot.isDropAnimating ? 'tilted' : ''
-            }`}
-          >
+            className={`group-preview ${snapshot.isDragging && !snapshot.isDropAnimating ? 'tilted' : ''}`}>
             <div
               className="group-title-container"
               {...provided.dragHandleProps}
@@ -88,8 +85,7 @@ export const GroupPreview = ({
                 onClick={onOpenModal}
                 className="group-btn"
               >
-                {' '}
-                <BsThreeDots className="dots-icon" />{' '}
+                <BsThreeDots className="dots-icon" />
               </button>
             </div>
 
@@ -108,7 +104,6 @@ export const GroupPreview = ({
             {!isAddCardOpen && (
               <div className="add-btn-container">
                 <button className="add-btn" onClick={toggleAddCard}>
-                  {' '}
                   <AiOutlinePlus /> Add a card
                 </button>
               </div>
