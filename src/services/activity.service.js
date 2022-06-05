@@ -23,7 +23,8 @@ function getActivityUpdatedBoard(board, activity, byMember) {
     group: activity.group,
     actionType: activity.actionType,
     isComment,
-    text
+    text,
+    file: activity.file
   }
 
   const newActivities = [newActivity, ...board.activities]
@@ -32,7 +33,6 @@ function getActivityUpdatedBoard(board, activity, byMember) {
 }
 
 function getActivityText(activity, board, diff) {
-
   let onToggleMenu, task
 
   if (typeof diff === ('function')) {
@@ -57,10 +57,10 @@ function getActivityText(activity, board, diff) {
       boardText = ['added', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
       taskText = [`added this card to ${activity.group.title}`]
       break
-      case 'change date':
-        boardText = ['changed the due date of', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${utilService.getDateTimeFormat(activity.dueDate).displayDate}`]
-        taskText = [`changed the due date of this card to ${utilService.getDateTimeFormat(activity.dueDate).displayDate}`]
-        break
+    case 'change date':
+      boardText = ['changed the due date of', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${utilService.getDateTimeFormat(activity.dueDate).displayDate}`]
+      taskText = [`changed the due date of this card to ${utilService.getDateTimeFormat(activity.dueDate).displayDate}`]
+      break
     case 'move':
       boardText = ['moved', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>, `to ${activity.group.title}`]
       taskText = [`moved this card from ${activity.group.sourceTitle} to ${activity.group.title}`]
@@ -75,6 +75,9 @@ function getActivityText(activity, board, diff) {
     case 'add group':
       boardText = [`added ${activity.group.title} to this board`]
       break
+    case 'add attachment':
+      boardText = ['attached', <a href={activity.file.fileUrl} target='_blank'>{activity.file.fileName}</a>, 'to', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
+      taskText = ['attached', <a href={activity.file.fileUrl} target='_blank'>{activity.file.fileName}</a>, 'to this card', <div className='img-container'> <img src={activity.file.fileUrl} alt={activity.file.fileName} /></div>]
 
     default:
       boardText = [null]
@@ -84,8 +87,9 @@ function getActivityText(activity, board, diff) {
 }
 
 function getTaskActivities(taskId, board) {
-    const taskActivities = board.activities.filter(activity => {
-      if (!activity.task) return false
-      else return activity.task.id === taskId})
-    return taskActivities
+  const taskActivities = board.activities.filter(activity => {
+    if (!activity.task) return false
+    else return activity.task.id === taskId
+  })
+  return taskActivities
 }

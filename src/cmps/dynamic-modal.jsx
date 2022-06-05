@@ -28,7 +28,7 @@ import { MemberActions } from './modal/member-actions'
 import { TaskDelete } from './modal/task-delete'
 import { MoreMembers } from './modal/more-members'
 import { AccountActions } from './modal/account-actions'
-import { BoardFilter } from './modal/board-filter'
+import { TaskFilter } from './modal/task-filter'
 
 export const DynamicModal = () => {
   const { modal } = useSelector(({ appModule }) => appModule)
@@ -135,8 +135,8 @@ export const DynamicModal = () => {
     case 'account-actions':
       cmp = <AccountActions {...modal.props} />
       break
-    case 'board-filter':
-      cmp = <BoardFilter {...modal.props} />
+    case 'task-filter':
+      cmp = <TaskFilter {...modal.props} />
       break
     default:
       break
@@ -158,7 +158,7 @@ export const DynamicModal = () => {
 
   return (
     <div
-      className={`dynamic-modal ${modal.category === 'board-filter' ? 'wide' : ''}`}
+      className={`dynamic-modal ${modal.category === 'task-filter' ? 'wide' : ''}`}
       style={{ ...position }}
       ref={modalRef}
       onClick={(e) => e.stopPropagation()}

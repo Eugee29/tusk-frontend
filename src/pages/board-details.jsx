@@ -13,36 +13,41 @@ import { BoardHeader } from '../cmps/board/board-header.jsx'
 import { GroupList } from '../cmps/group/group-list.jsx'
 
 export const BoardDetails = () => {
-   const [board, setBoard] = useState(null)
-   const [users, setUsers] = useState(null)
-   const params = useParams()
-   const dispatch = useDispatch()
-   const { user } = useSelector(({ userModule }) => userModule)
+  // const [filterBy, setFilterBy] = useState({ keyword: '', memberIds: [], labelIds: [] })
+  const [board, setBoard] = useState(null)
+  const [users, setUsers] = useState(null)
+  const params = useParams()
+  const dispatch = useDispatch()
+  const { user } = useSelector(({ userModule }) => userModule)
 
-   useEffect(() => {
-      loadBoard()
-      loadUsersAsync()
-      socketService.emit('listen-to-board', params.boardId)
-      socketService.on('board-activity', loadBoard)
-      return () => socketService.emit('leave-board', params.boardId)
-   }, [])
+
+
+  useEffect(() => {
+    loadBoard()
+    loadUsersAsync()
+    socketService.emit('listen-to-board', params.boardId)
+    socketService.on('board-activity', loadBoard)
+    return () => socketService.emit('leave-board', params.boardId)
+  }, [])
+
+
 
   const loadBoard = async (board) => {
     if (!board) board = await boardService.getById(params.boardId)
     setBoard(board)
   }
 
-   const loadUsersAsync = async () => {
-      if (!users) setUsers(await dispatch(loadUsers()))
-      // setUsers(users)
-   }
+  const loadUsersAsync = async () => {
+    if (!users) setUsers(await dispatch(loadUsers()))
+    // setUsers(users)
+  }
 
-   const onUpdateBoard = (board, activity) => {
-      if (activity) board = addActivity(board, activity)
-      setBoard({ ...board })
-      // socketService.emit('board-activity', board)
-      dispatch(updateBoard(board))
-   }
+  const onUpdateBoard = (board, activity) => {
+    if (activity) board = addActivity(board, activity)
+    setBoard({ ...board })
+    // socketService.emit('board-activity', board)
+    dispatch(updateBoard(board))
+  }
 
   const addActivity = (board, activity) => {
     const newBoard = activityService.getActivityUpdatedBoard(

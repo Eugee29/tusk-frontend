@@ -2,13 +2,14 @@ const initialState = {
   boards: [],
   board: [],
   lastRemovedBoard: null,
-  task: ''
+  task: '',
+  filterBy: { keyword: '', memberIds: [], labelIds: [] }
 }
 export function boardReducer(state = initialState, action) {
   var newState = state
   var boards
   var board
-  
+
   switch (action.type) {
     case 'SET_BOARDS':
       newState = { ...state, boards: action.boards }
@@ -45,6 +46,9 @@ export function boardReducer(state = initialState, action) {
       if (state.lastRemovedBoard) {
         newState = { ...state, boards: [...state.boards, state.lastRemovedBoard], lastRemovedBoard: null }
       }
+      break
+    case 'SET_FILTER_BY':
+      newState = { ...state, filterBy: action.filterBy }
       break
     default:
   }

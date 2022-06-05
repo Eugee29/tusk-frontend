@@ -82,7 +82,7 @@ export function BoardHeader({ task, board, updateTask, onUpdateBoard }) {
         </div>}
     </div>
     <div className='right-container'>
-      <button className='filter-btn' ref={filterRef} onClick={(ev) => onOpenModal(ev, { element: filterRef.current, category: 'board-filter', title: 'Filter' })}><div className='filter-icon-container' ><BsFilter className='filter-icon' /></div>Filter</button>
+      <button className='filter-btn' ref={filterRef} onClick={(ev) => onOpenModal(ev, { element: filterRef.current, category: 'task-filter', title: 'Filter' })}><div className='filter-icon-container' ><BsFilter className='filter-icon' /></div>Filter</button>
       {!isMenuOpened && <button className='show-menu' onClick={onToggleMenu}> <BiDotsHorizontalRounded className='icon' /></button>}
       <BoardSideMenu dynamicClass={getMenuClass()} onToggleMenu={onToggleMenu} board={board} onUpdateBoard={onUpdateBoard} updateTask={updateTask} />
     </div>

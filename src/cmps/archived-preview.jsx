@@ -7,136 +7,136 @@ import { TaskPreviewIcons } from './group/task-preview-icons'
 
 export const ArchivedPreview = ({ task, groupId, index, board, onUpdateBoard }) => {
 
-   const navigate = useNavigate()
-   const [updatedTask, setUpdatedTask] = useState(task)
-   const taskRef = useRef()
+  const navigate = useNavigate()
+  const [updatedTask, setUpdatedTask] = useState(task)
+  const taskRef = useRef()
 
-   const onOpenDetails = (ev) => {
-      ev.stopPropagation()
-      navigate(`${groupId}/${task.id}`)
-   }
+  const onOpenDetails = (ev) => {
+    ev.stopPropagation()
+    navigate(`${groupId}/${task.id}`)
+  }
 
-   const getTaskStyle = (isQuick) => {
-      if (task.style) {
-         if (task.style.imgURL && task.style.isCover) {
-            return { backgroundImage: `url(${task.style.imgURL})` }
-         }
-         if (task.style.bgColor) {
-            if (isQuick) return { borderTop: `32px solid ${task.style.bgColor}` }
-
-            if (!task.style.isCover) {
-               return { borderTop: `32px solid ${task.style.bgColor}` }
-            } else {
-               return { backgroundColor: `${task.style.bgColor}` }
-            }
-         }
-
-      } else return ''
-   }
-
-   const getTaskClass = (isQuick) => {
-      if (task.style) {
-         if (task.style.bgColor && task.style.isCover) {
-            if (!isQuick)
-               return 'task-preview styled'
-            else return 'task-preview color-header'
-         } else if (task.style.bgColor && !task.style.isCover) {
-            return 'task-preview color-header'
-         } else if (task.style.imgURL && task.style.isCover) {
-            return 'task-preview styled img'
-         } else if (task.style.imgURL && !task.style.isCover) {
-            return 'task-preview img-header'
-         }
-         return 'task-preview'
+  const getTaskStyle = (isQuick) => {
+    if (task.style) {
+      if (task.style.imgURL && task.style.isCover) {
+        return { backgroundImage: `url(${task.style.imgURL})` }
       }
-   }
+      if (task.style.bgColor) {
+        if (isQuick) return { borderTop: `32px solid ${task.style.bgColor}` }
 
-   const getChecklistLength = () => {
-      const todosLength = task.checklists.reduce((acc1, checklist) => acc1 += checklist.todos.length, 0)
-      const doneLength = task.checklists.reduce((acc2, checklist) => acc2 += getDoneTodos(checklist), 0)
-      const activeCount = doneLength + "/" + todosLength
-      return activeCount
-   }
-
-   const getDoneTodos = (checklist) => {
-      let doneTodos = checklist.todos.filter(todo => (todo.isDone))
-      return doneTodos.length
-   }
-
-   const getTimeStyle = () => {
-      var dateFormat = utilService.getDateTimeFormat(task.dueDate)
-      if (task?.isComplete && task.isComplete) {
-         dateFormat.statusDate = 'complete'
+        if (!task.style.isCover) {
+          return { borderTop: `32px solid ${task.style.bgColor}` }
+        } else {
+          return { backgroundColor: `${task.style.bgColor}` }
+        }
       }
 
-      if (dateFormat.statusDate === '') return { backgroundColor: '', color: '#505f79' }
-      if (dateFormat.statusDate === 'overdue') return { backgroundColor: '#EB5A46', color: '#ffff' }
-      if (dateFormat.statusDate === 'duesoon') return { backgroundColor: '#F2D600', color: '#ffff' }
-      if (dateFormat.statusDate === 'complete') return { backgroundColor: '#61BD4F', color: '#ffff' }
+    } else return ''
+  }
 
-   }
+  const getTaskClass = (isQuick) => {
+    if (task.style) {
+      if (task.style.bgColor && task.style.isCover) {
+        if (!isQuick)
+          return 'task-preview styled'
+        else return 'task-preview color-header'
+      } else if (task.style.bgColor && !task.style.isCover) {
+        return 'task-preview color-header'
+      } else if (task.style.imgURL && task.style.isCover) {
+        return 'task-preview styled img'
+      } else if (task.style.imgURL && !task.style.isCover) {
+        return 'task-preview img-header'
+      }
+      return 'task-preview'
+    }
+  }
 
-   const OnSentToBoard = () => {
-      const newTask = { ...updatedTask }
-      newTask.archivedAt = null
-      
-      const groupIdx = board.groups.findIndex((group) => group.id === groupId)
-      const taskIdx = board.groups[groupIdx].tasks.findIndex((groupTask) => groupTask.id === task.id)
-      board.groups[groupIdx].tasks[taskIdx] = newTask
-      
-      setUpdatedTask(newTask)
+  const getChecklistLength = () => {
+    const todosLength = task.checklists.reduce((acc1, checklist) => acc1 += checklist.todos.length, 0)
+    const doneLength = task.checklists.reduce((acc2, checklist) => acc2 += getDoneTodos(checklist), 0)
+    const activeCount = doneLength + "/" + todosLength
+    return activeCount
+  }
 
-      console.log('OnSentToBoard', board);
-      onUpdateBoard(board)
-   }
+  const getDoneTodos = (checklist) => {
+    let doneTodos = checklist.todos.filter(todo => (todo.isDone))
+    return doneTodos.length
+  }
 
-   const OnDelete = () => {
+  const getTimeStyle = () => {
+    var dateFormat = utilService.getDateTimeFormat(task.dueDate)
+    if (task?.isComplete && task.isComplete) {
+      dateFormat.statusDate = 'complete'
+    }
 
-      let newTask = { ...updatedTask }
-      newTask = null
-      
-      const groupIdx = board.groups.findIndex((group) => group.id === groupId)
-      const taskIdx = board.groups[groupIdx].tasks.findIndex((groupTask) => groupTask.id === task.id)
-      board.groups[groupIdx].tasks.splice(taskIdx, 1)
-      
-      console.log(board);
-      setUpdatedTask(newTask)
+    if (dateFormat.statusDate === '') return { backgroundColor: '', color: '#505f79' }
+    if (dateFormat.statusDate === 'overdue') return { backgroundColor: '#EB5A46', color: '#ffff' }
+    if (dateFormat.statusDate === 'duesoon') return { backgroundColor: '#F2D600', color: '#ffff' }
+    if (dateFormat.statusDate === 'complete') return { backgroundColor: '#61BD4F', color: '#ffff' }
 
-      console.log('OnDelete', board);
-      onUpdateBoard(board)
-   }
+  }
+
+  const OnSentToBoard = () => {
+    const newTask = { ...updatedTask }
+    newTask.archivedAt = null
+
+    const groupIdx = board.groups.findIndex((group) => group.id === groupId)
+    const taskIdx = board.groups[groupIdx].tasks.findIndex((groupTask) => groupTask.id === task.id)
+    board.groups[groupIdx].tasks[taskIdx] = newTask
+
+    setUpdatedTask(newTask)
+
+    console.log('OnSentToBoard', board)
+    onUpdateBoard({ ...board })
+  }
+
+  const OnDelete = () => {
+
+    let newTask = { ...updatedTask }
+    newTask = null
+
+    const groupIdx = board.groups.findIndex((group) => group.id === groupId)
+    const taskIdx = board.groups[groupIdx].tasks.findIndex((groupTask) => groupTask.id === task.id)
+    board.groups[groupIdx].tasks.splice(taskIdx, 1)
+
+    console.log(board)
+    setUpdatedTask(newTask)
+
+    console.log('OnDelete', board)
+    onUpdateBoard(board)
+  }
 
 
 
-   return (
-      // <Draggable draggableId={task.id} index={index} type='TASK' >
-      // {(provided, snapshot) => (
-      <div className='task-preview-handle' /*{...provided.draggableProps} {...provided.dragHandleProps}*/>
-         <div ref={taskRef}>
-            <section className={`${getTaskClass()}`} onClick={onOpenDetails} /*ref={provided.innerRef}*/ style={getTaskStyle()}  >
+  return (
+    // <Draggable draggableId={task.id} index={index} type='TASK' >
+    // {(provided, snapshot) => (
+    <div className='task-preview-handle' /*{...provided.draggableProps} {...provided.dragHandleProps}*/>
+      <div ref={taskRef}>
+        <section className={`${getTaskClass()}`} onClick={onOpenDetails} /*ref={provided.innerRef}*/ style={getTaskStyle()}  >
 
-               {!task.style.isCover && task.style.imgURL && <img className='task-img-container' src={task.style.imgURL} alt="..." />}
-               <div className='task-info'>
-                  {/* {!!task.labelIds.length && (!task.style.isCover) && <LabelList board={board} labelIds={task.labelIds} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} />} */}
+          {!task.style.isCover && task.style.imgURL && <img className='task-img-container' src={task.style.imgURL} alt="..." />}
+          <div className='task-info'>
+            {/* {!!task.labelIds.length && (!task.style.isCover) && <LabelList board={board} labelIds={task.labelIds} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} />} */}
 
-                  <div className='task-title-container'>
-                     <h2 className='task-title'> {task.title} </h2>
-                  </div>
+            <div className='task-title-container'>
+              <h2 className='task-title'> {task.title} </h2>
+            </div>
 
-                  <TaskPreviewIcons task={task} board={board} getTimeStyle={getTimeStyle} getChecklistLength={getChecklistLength} onUpdateBoard={onUpdateBoard} />
+            <TaskPreviewIcons task={task} board={board} getTimeStyle={getTimeStyle} getChecklistLength={getChecklistLength} onUpdateBoard={onUpdateBoard} />
 
-               </div>
-               {/* <button className='edit-btn' > <RiPencilLine className='btn-icon' /> </button> */}
-            </section>
-         </div>
-
-         <div className="edit">
-            <span className="button-att" onClick={OnSentToBoard}>Send to board</span>
-            <span> - <a className="button-att" onClick={OnDelete}><span className="button-att">Delete</span></a> </span>
-         </div>
-
+          </div>
+          {/* <button className='edit-btn' > <RiPencilLine className='btn-icon' /> </button> */}
+        </section>
       </div>
-      // )}
-      // </Draggable >
-   )
+
+      <div className="edit">
+        <span className="button-att" onClick={OnSentToBoard}>Send to board</span>
+        <span> - <a className="button-att" onClick={OnDelete}><span className="button-att">Delete</span></a> </span>
+      </div>
+
+    </div>
+    // )}
+    // </Draggable >
+  )
 }

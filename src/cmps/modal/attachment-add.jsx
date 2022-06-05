@@ -31,12 +31,17 @@ export const AttachmentAdd = ({ task, updateTask }) => {
       attachment.fileUrl = res.secure_url
       task.attachments.unshift(attachment)
       if (res.resource_type === 'image' && !task.style.bgColor && !task.style.imgURL) task.style = { imgURL: res.secure_url, isCover: false }
-      updateTask(task)
+      // updateTask(task)
     } catch (err) {
       attachment.fileName = fileURL
       attachment.fileUrl = fileURL
       task.attachments.unshift(attachment)
-      updateTask(task)
+    } finally {
+      const activity = {
+        actionType: 'add attachment',
+        file: { fileName: attachment.fileName, fileUrl: attachment.fileUrl }
+      }
+      updateTask(task, activity)
     }
   }
 
