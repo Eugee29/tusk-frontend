@@ -73,7 +73,7 @@ export const DynamicModal = () => {
   }
 
   var cmp
-  console.log(modal.props)
+  // console.log(modal.props)
   switch (modal.category) {
     case 'Cover':
       cmp = <ModalCover {...modal.props} />

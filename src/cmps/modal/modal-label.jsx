@@ -1,15 +1,23 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
+
 import { setModal } from '../../store/app/app.actions'
 
 import { BsCheck2 } from 'react-icons/bs'
 import { BsPencil } from 'react-icons/bs'
 
 export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, updateTask, element }) => {
-   
+
    const [searchLabel, setSearchLabel] = useState('')
    const [taskLabels, setTaskLabels] = useState(task.labelIds)
 
+   useEffect(() => {
+     var taskByFilter = ''
+     board.groups.map(group => group.tasks.map(taskFromBoard => taskFromBoard.id === task.id ? taskByFilter = taskFromBoard : ''))
+     setTaskLabels(taskByFilter.labelIds)
+     // console.log('taskFromBoard', taskByFilter);
+   }, [])
+   
    const modalRef = useRef()
    const searchInput = useRef(null)
 
@@ -20,15 +28,18 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
 
    const onToggle = (id) => {
       const updatedLabelList = [...taskLabels]
-      const taskLabelIdx = updatedLabelList.findIndex(
-         (taskLabel) => taskLabel === id
-      )
+      const taskLabelIdx = updatedLabelList.findIndex((taskLabel) => taskLabel === id)
       const boardLabelIdx = board.labels.findIndex(
          (boardLabel) => boardLabel.id === id
       )
       taskLabelIdx >= 0
          ? updatedLabelList.splice(taskLabelIdx, 1)
          : updatedLabelList.push(board.labels[boardLabelIdx].id)
+
+      console.log('updatedLabelList', updatedLabelList)
+      console.log('board.labels', board.labels)
+      console.log('task.labelIds', task.labelIds)
+      console.log('board', board)
 
       setTaskLabels(updatedLabelList)
       updateTask({ ...task, labelIds: updatedLabelList })
@@ -38,22 +49,22 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
       setSearchLabel(target.value)
    }
 
-  const onOpenModal = (category) => {
-    dispatch(
-      setModal({
-        element,
-        category,
-        title: category,
-        props: {
-          task,
-          updateTask,
-          board,
-          onUpdateBoard,
-          element
-        },
-      })
-    )
-  }
+   const onOpenModal = (category) => {
+      dispatch(
+         setModal({
+            element,
+            category,
+            title: category,
+            props: {
+               task,
+               updateTask,
+               board,
+               onUpdateBoard,
+               element
+            },
+         })
+      )
+   }
 
    return (
       <div className="label-section" ref={modalRef}>
@@ -69,20 +80,9 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
                   <li key={label.id}>
                      <span onClick={() => onToggle(label.id)} className="label-color" style={{ backgroundColor: label.color }}>
                         <span className="label-txt">{`${label.title}`}</span>
-                        {taskLabels &&
-                           taskLabels.some((taskLabel) => taskLabel === label.id) && (
-                              <span className="label-icon"><BsCheck2 /> </span>
-                           )}
+                        {taskLabels && taskLabels.some((taskLabel) => taskLabel === label.id) && (<span className="label-icon"><BsCheck2 /> </span>)}
                      </span>
-                     <span
-                        className="label-icon pencil"
-                        onClick={(ev) => {
-                           ev.stopPropagation()
-                           onOpenModal('Change label')
-                           changeEditLabel(label)
-                        }}>
-                        <BsPencil />
-                     </span>
+                     <span className="label-icon pencil" onClick={(ev) => { ev.stopPropagation(); onOpenModal('Change label'); changeEditLabel(label) }}><BsPencil /> </span>
                   </li>
                ))}
             </ul>
