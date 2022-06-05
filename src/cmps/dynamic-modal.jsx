@@ -158,7 +158,7 @@ export const DynamicModal = () => {
 
   return (
     <div
-      className="dynamic-modal"
+      className={`dynamic-modal ${modal.category === 'board-filter' ? 'wide' : ''}`}
       style={{ ...position }}
       ref={modalRef}
       onClick={(e) => e.stopPropagation()}
