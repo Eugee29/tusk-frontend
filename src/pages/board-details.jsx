@@ -40,7 +40,6 @@ export const BoardDetails = () => {
    const onUpdateBoard = (board, activity) => {
       if (activity) board = addActivity(board, activity)
       setBoard({ ...board })
-      // socketService.emit('board-activity', board)
       dispatch(updateBoard(board))
    }
 

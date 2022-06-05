@@ -14,7 +14,7 @@ import { MemberPreview } from '../task-details/member-preview'
 export function BoardHeader({ task, board, updateTask, onUpdateBoard }) {
 
   const [isStarred, setIsStarred] = useState(board.isStarred)
-  const [isMenuOpened, setIsMenuOpened] = useState(false)
+  const [isMenuOpened, setIsMenuOpened] = useState('initial')
 
   const dispatch = useDispatch()
   const memberRef = useRef()
@@ -27,7 +27,8 @@ export function BoardHeader({ task, board, updateTask, onUpdateBoard }) {
   }
 
   const onToggleMenu = () => {
-    setIsMenuOpened(!isMenuOpened)
+    if (isMenuOpened === 'initial') setIsMenuOpened(true)
+    else setIsMenuOpened(!isMenuOpened)
   }
 
   const getStarClass = () => {
@@ -36,8 +37,11 @@ export function BoardHeader({ task, board, updateTask, onUpdateBoard }) {
   }
 
   const getMenuClass = () => {
-    const className = isMenuOpened ? 'side-menu opened' : 'side-menu closed'
-    return className
+    if (isMenuOpened === 'initial') return 'side-menu'
+    else {
+      const className = isMenuOpened ? 'side-menu opened' : 'side-menu closed'
+      return className
+    }
   }
 
   const updateBoard = () => {
@@ -83,7 +87,7 @@ export function BoardHeader({ task, board, updateTask, onUpdateBoard }) {
     </div>
     <div className='right-container'>
       <button className='filter-btn' ref={filterRef} onClick={(ev) => onOpenModal(ev, { element: filterRef.current, category: 'board-filter', title: 'Filter' })}><div className='filter-icon-container' ><BsFilter className='filter-icon' /></div>Filter</button>
-      {!isMenuOpened && <button className='show-menu' onClick={onToggleMenu}> <BiDotsHorizontalRounded className='icon' /></button>}
+      {(!isMenuOpened || isMenuOpened === 'initial') && <button className='show-menu' onClick={onToggleMenu}> <BiDotsHorizontalRounded className='icon' /></button>}
       <BoardSideMenu dynamicClass={getMenuClass()} onToggleMenu={onToggleMenu} board={board} onUpdateBoard={onUpdateBoard} updateTask={updateTask} />
     </div>
   </section>
