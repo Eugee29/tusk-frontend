@@ -12,7 +12,8 @@ export const utilService = {
    getYearMonthFormat,
    getTimeFormat,
    getNewDateTime,
-   getDemoImages
+   getDemoImages,
+   getExtension
 }
 
 function makeId(length = 6) {
@@ -235,3 +236,52 @@ function getDemoImages() {
    ]
 }
 
+function getExtension(filename) {
+   try {
+      var parts = filename.split('.')
+      console.log(parts[parts.length - 1])
+      return _imageOrVideo(parts[parts.length - 1])
+   } catch (error) {
+      return 'image'
+   }
+}
+
+function _imageOrVideo(filename) {
+   var type = ''
+   switch (filename) {
+      case 'm4v':
+         type = 'video'
+         break;
+      case 'avi':
+         type = 'video'
+         break;
+      case 'mpg':
+         type = 'video'
+         break;
+      case 'mp4':
+         type = 'video'
+         break;
+      case 'mkv':
+         type = 'video'
+         break;
+      case 'mov':
+         type = 'video'
+         break;
+      case 'jpg':
+         type = 'image'
+         break;
+      case 'gif':
+         type = 'image'
+         break;
+      case 'bmp':
+         type = 'image'
+         break;
+      case 'png':
+         type = 'image'
+         break;
+      default:
+         break;
+   }
+   return type
+
+}
