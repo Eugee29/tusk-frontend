@@ -30,7 +30,8 @@ export function TaskDetailsCover({ task, updateTask }) {
       setIsFullScreen(!isFullScreen)
    }
 
-   const onGoBack = () => {
+   const onGoBack = (ev) => {
+      ev.stopPropagation()
       setIsFullScreen(false)
    }
 
@@ -66,7 +67,7 @@ export function TaskDetailsCover({ task, updateTask }) {
             )}
 
          {isFullScreen &&
-            <div className="background-blur">
+            <div className="background-blur" onClick={onGoBack}>
                <button className="go-back-button" onClick={onGoBack}><VscClose className="close-icon" style={{color: '#ffffff'}} /></button>
                <div className="full-screen">
                   <div className="task-details-cover img" style={{ backgroundImage: `url('${task.style.imgURL}')`, height: '80vh' }}></div>
