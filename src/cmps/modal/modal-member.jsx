@@ -47,7 +47,8 @@ export const ModalMember = ({ task, board, updateTask }) => {
                      ? <li key={member._id} onClick={() => onToggle(member._id)}>
                         <a className='member-list'>
                            <span className="member-img" style={{ backgroundImage: `url('${member.imgURL}')` }}></span>
-                           <span className="member-txt" >{`${member.fullname} (${member.username.match(/^([^@]*)@/)[1]})`}</span>
+                           <span className="member-txt" >{`${member.fullname} (${member.username.match(/^([^@]*)@/)[1]})`}
+                           </span>
                            {task?.members && taskMembers.some(taskMember => taskMember._id === member._id) && <span className='member-icon' ><BsCheck2 /></span>}
                         </a>
                      </li>
