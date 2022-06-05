@@ -53,7 +53,7 @@ export const TaskDetailsDescription = ({ task, updateTask }) => {
             {!isClickedDesc && !task.description && <a onClick={onChangeDesc}>Add a more detailed description…</a>}
             {!isClickedDesc && task.description && <a  onClick={onChangeDesc}>{task.description}</a>}
 
-            {isClickedDesc && !task.description && <textarea value={desc} onBlur={() => setIsClickedDesc(false)}  placeholder='Add a more detailed description…'> </textarea>}
+            {isClickedDesc && !task.description && <textarea value={desc} onBlur={() => setIsClickedDesc(false)} onChange={handleChange} placeholder='Add a more detailed description…'> </textarea>}
             {isClickedDesc && task.description && <textarea onClick={onChangeDesc} onChange={handleChange} value={desc} ></textarea>}
 
             {isClickedDesc &&
