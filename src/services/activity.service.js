@@ -78,7 +78,7 @@ function getActivityText(activity, board, diff) {
     case 'add attachment':
       boardText = ['attached', <a href={activity.file.fileUrl} target='_blank'>{activity.file.fileName}</a>, 'to', <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
       taskText = ['attached', <a href={activity.file.fileUrl} target='_blank'>{activity.file.fileName}</a>, 'to this card', <div className='img-container'> <img src={activity.file.fileUrl} alt={activity.file.fileName} /></div>]
-
+      break
     default:
       boardText = [null]
   }
