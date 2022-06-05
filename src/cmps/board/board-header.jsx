@@ -80,7 +80,7 @@ export function BoardHeader({ task, board, updateTask, onUpdateBoard }) {
               className='more-members'> +{getMembersForModal(board.members).length} </button>}
           <a className="members-add-button round"
             ref={memberRef}
-            onClick={(ev) => onOpenModal(ev, { element: memberRef.current, category: 'Board members', props: { task, updateTask, board, onUpdateBoard/*, group*/ }, })}>
+            onClick={(ev) => onOpenModal(ev, { element: memberRef.current, category: 'Board members', title: 'Add members', props: { task, updateTask, board, onUpdateBoard }, })}>
             <AiOutlinePlus />
           </a>
         </div>}

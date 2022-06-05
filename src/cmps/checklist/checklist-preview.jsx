@@ -72,7 +72,11 @@ export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updat
 
   const deleteChecklist = () => {
     const updatedChecklists = checklists.filter(currChecklist => checklist.id !== currChecklist.id)
-    updateTask({ ...task, checklists: updatedChecklists })
+    const activity = {
+      actionType: 'delete checklist',
+      checklist: { title: checklist.title }
+    }
+    updateTask({ ...task, checklists: updatedChecklists }, activity)
   }
 
 
