@@ -1,6 +1,7 @@
 .board-header {
   box-sizing: border-box;
   display: flex;
+  flex-direction: row;
   align-items: center;
   overflow: hidden;
   justify-content: space-between;
@@ -238,6 +239,10 @@
   }
 
   @media (min-width: 510px) {
+    .board-header {
+      flex-direction: column;
+    }
+
     .show-menu {
       height: auto;
       width: auto;
@@ -252,6 +257,10 @@
 
     .left-container h1 {
       font-size: 18px;
+    }
+
+    .right-container {
+      justify-content: space-between;
     }
   }
 
