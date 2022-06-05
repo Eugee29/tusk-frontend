@@ -255,6 +255,16 @@
       }
     }
 
+    .filter-btn {
+
+
+      &::after {
+        padding-bottom: 3px;
+        content: "Filter";
+        padding-right: 3px;
+      }
+    }
+
     .left-container h1 {
       font-size: 18px;
     }

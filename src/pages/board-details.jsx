@@ -43,6 +43,7 @@ export const BoardDetails = () => {
   }
 
   const onUpdateBoard = (board, activity) => {
+    console.log('update')
     if (activity) board = addActivity(board, activity)
     setBoard({ ...board })
     dispatch(updateBoard(board))

@@ -10,69 +10,74 @@ import { VscClose } from 'react-icons/vsc'
 
 
 export function TaskDetailsCover({ task, updateTask }) {
-   const buttonRef = useRef()
-   const [bgColor, setBgColor] = useState(null)
-   const [isFullScreen, setIsFullScreen] = useState(false)
-   const dispatch = useDispatch()
+  const buttonRef = useRef()
+  const [bgColor, setBgColor] = useState(null)
+  const [isFullScreen, setIsFullScreen] = useState(false)
+  const dispatch = useDispatch()
 
-   const fac = new FastAverageColor()
+  const fac = new FastAverageColor()
 
-   useEffect(() => {
-      if (task?.style?.imgURL) loadBgColor()
-   }, [task])
+  useEffect(() => {
+    if (task?.style?.imgURL) loadBgColor()
+  }, [task])
 
-   const loadBgColor = async () => {
+  const loadBgColor = async () => {
+    try {
       const color = await fac.getColorAsync(task.style.imgURL)
       setBgColor(color.hexa)
-   }
+    } catch (err) {
+      setBgColor('white')
+    }
 
-   const onFullScreen = () => {
-      setIsFullScreen(!isFullScreen)
-   }
+  }
 
-   const onGoBack = () => {
-      setIsFullScreen(false)
-   }
+  const onFullScreen = () => {
+    setIsFullScreen(!isFullScreen)
+  }
 
-   const onModal = (category) => {
-      dispatch(
-         setModal({
-            element: buttonRef.current,
-            category,
-            title: category,
-            props: { task, updateTask },
-         })
-      )
-   }
+  const onGoBack = () => {
+    setIsFullScreen(false)
+  }
 
-   return (
-      <header>
-         {task?.style?.bgColor && (
-            <div className="task-details-cover color" style={{ backgroundColor: `${task.style.bgColor}` }}>
-               <button ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Cover') }}> <FaWindowMaximize /> Cover </button>
-            </div>
-         )}
+  const onModal = (category) => {
+    dispatch(
+      setModal({
+        element: buttonRef.current,
+        category,
+        title: category,
+        props: { task, updateTask },
+      })
+    )
+  }
 
-         {task?.style?.imgURL && utilService.getExtension(task.style.imgURL) === 'image' &&
-            (<div className="task-details-cover img point" onClick={onFullScreen} style={{ backgroundColor: bgColor, backgroundImage: `url('${task.style.imgURL}')` }}>
-               <button ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Cover') }}><FaWindowMaximize />Cover</button>
-            </div>
-            )}
-         {task?.style?.imgURL && utilService.getExtension(task.style.imgURL) === 'video' &&
-            (<div className="task-details-cover img" >
-               <video height="160" width='100%' muted controls><source src={task.style.imgURL} type="video/mp4"></source></video>
-               <button ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Cover') }}><FaWindowMaximize />Cover</button>
-            </div>
-            )}
+  return (
+    <header>
+      {task?.style?.bgColor && (
+        <div className="task-details-cover color" style={{ backgroundColor: `${task.style.bgColor}` }}>
+          <button ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Cover') }}> <FaWindowMaximize /> Cover </button>
+        </div>
+      )}
 
-         {isFullScreen &&
-            <div className="background-blur">
-               <button className="go-back-button" onClick={onGoBack}><VscClose className="close-icon" style={{color: '#ffffff'}} /></button>
-               <div className="full-screen">
-                  <div className="task-details-cover img" style={{ backgroundImage: `url('${task.style.imgURL}')`, height: '80vh' }}></div>
-               </div>
-            </div>}
+      {task?.style?.imgURL && utilService.getExtension(task.style.imgURL) === 'image' &&
+        (<div className="task-details-cover img point" onClick={onFullScreen} style={{ backgroundColor: bgColor, backgroundImage: `url('${task.style.imgURL}')` }}>
+          <button ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Cover') }}><FaWindowMaximize />Cover</button>
+        </div>
+        )}
+      {task?.style?.imgURL && utilService.getExtension(task.style.imgURL) === 'video' &&
+        (<div className="task-details-cover img" >
+          <video height="160" width='100%' muted controls><source src={task.style.imgURL} type="video/mp4"></source></video>
+          <button ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Cover') }}><FaWindowMaximize />Cover</button>
+        </div>
+        )}
 
-      </header>
-   )
+      {isFullScreen &&
+        <div className="background-blur">
+          <button className="go-back-button" onClick={onGoBack}><VscClose className="close-icon" style={{ color: '#ffffff' }} /></button>
+          <div className="full-screen">
+            <div className="task-details-cover img" style={{ backgroundImage: `url('${task.style.imgURL}')`, height: '80vh' }}></div>
+          </div>
+        </div>}
+
+    </header>
+  )
 }

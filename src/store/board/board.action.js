@@ -74,4 +74,11 @@ export function removeBoard(boardId) {
       // showErrorMsg('Cannot remove board')
     }
   }
+
+}
+
+export function setFilter(filterBy) {
+  return (dispatch) => {
+    dispatch({ type: 'SET_FILTER_BY', filterBy })
+  }
 }
