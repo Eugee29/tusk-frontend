@@ -46,7 +46,11 @@ export const AttachmentPreview = ({ attachment, task, updateTask }) => {
 
   const deleteAttachment = () => {
     const updatedAttachments = task.attachments.filter(currAtt => currAtt.id !== attachment.id)
-    updateTask({ ...task, attachments: updatedAttachments })
+    const activity = {
+      actionType: 'delete attachment',
+      file: { fileName: attachment.fileName }
+    }
+    updateTask({ ...task, attachments: updatedAttachments }, activity)
   }
 
   const editAttachment = (fileName) => {
@@ -58,7 +62,7 @@ export const AttachmentPreview = ({ attachment, task, updateTask }) => {
   const setCover = (ev) => {
     ev.stopPropagation()
     task.style = { imgURL: attachment.fileUrl, isCover: task.style.isCover }
-    updateTask({...task})
+    updateTask({ ...task })
   }
 
 

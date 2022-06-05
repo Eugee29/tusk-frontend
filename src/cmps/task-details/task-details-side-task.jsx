@@ -65,11 +65,17 @@ export function TaskDetailsSideTask({
   }
 
   const onArchiveTask = () => {
-    updateTask({ ...task, archivedAt: Date.now() })
+    const activity = {
+      actionType: 'archive task',
+    }
+    updateTask({ ...task, archivedAt: Date.now() }, activity)
   }
 
   const onRestoreTask = () => {
-    updateTask({ ...task, archivedAt: null })
+    const activity = {
+      actionType: 'restore task',
+    }
+    updateTask({ ...task, archivedAt: null }, activity)
   }
 
   return (
