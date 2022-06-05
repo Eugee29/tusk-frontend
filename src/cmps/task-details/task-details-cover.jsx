@@ -31,11 +31,17 @@ export function TaskDetailsCover({ task, updateTask }) {
 
   }
 
+  const onFullScreen = () => {
+    setIsFullScreen(!isFullScreen)
+  }
   const onGoBack = (ev) => {
     ev.stopPropagation()
     setIsFullScreen(false)
   }
 
+  // const onGoBack = () => {
+  //   setIsFullScreen(false)
+  // }
 
   const onModal = (category) => {
     dispatch(
@@ -56,6 +62,21 @@ export function TaskDetailsCover({ task, updateTask }) {
         </div>
       )}
 
+      {
+        task?.style?.imgURL && utilService.getExtension(task.style.imgURL) === 'image' &&
+        (<div className="task-details-cover img point" onClick={onFullScreen} style={{ backgroundColor: bgColor, backgroundImage: `url('${task.style.imgURL}')` }}>
+          <button ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Cover') }}><FaWindowMaximize />Cover</button>
+        </div>
+        )
+      }
+      {
+        task?.style?.imgURL && utilService.getExtension(task.style.imgURL) === 'video' &&
+        (<div className="task-details-cover img" >
+          <video height="160" width='100%' muted controls><source src={task.style.imgURL} type="video/mp4"></source></video>
+          <button ref={buttonRef} onClick={(ev) => { ev.stopPropagation(); onModal('Cover') }}><FaWindowMaximize />Cover</button>
+        </div>
+        )
+      }
       {isFullScreen &&
         <div className="background-blur" onClick={onGoBack}>
           <button className="go-back-button" onClick={onGoBack}><VscClose className="close-icon" style={{ color: '#ffffff' }} /></button>
@@ -64,14 +85,16 @@ export function TaskDetailsCover({ task, updateTask }) {
           </div>
         </div>}
 
-      {isFullScreen &&
+      {
+        isFullScreen &&
         <div className="background-blur">
           <button className="go-back-button" onClick={onGoBack}><VscClose className="close-icon" style={{ color: '#ffffff' }} /></button>
           <div className="full-screen">
             <div className="task-details-cover img" style={{ backgroundImage: `url('${task.style.imgURL}')`, height: '80vh' }}></div>
           </div>
-        </div>}
+        </div>
+      }
 
-    </header>
+    </header >
   )
 }

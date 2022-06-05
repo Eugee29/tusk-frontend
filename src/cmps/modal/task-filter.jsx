@@ -2,9 +2,9 @@ import { Fragment, useEffect, useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 
-import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im'
+import { useDebounce } from '../../hooks/useDebounce'
 
-import debounce from 'lodash/debounce'
+import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im'
 
 import { setFilter } from '../../store/board/board.action'
 
@@ -12,32 +12,19 @@ export const TaskFilter = ({ board }) => {
 
   const boardModule = useSelector(({ boardModule }) => boardModule)
   const [filterBy, setFilterBy] = useState(boardModule.filterBy)
+  const keyword = useDebounce(filterBy.keyword, 300)
   const dispatch = useDispatch()
-
-
 
   useEffect(() => {
     dispatch(setFilter(filterBy))
-    console.log(filterBy)
-  }, [filterBy])
+  }, [filterBy.memberIds, filterBy.labelIds])
 
-  // useEffect(() => {
-  //   debouncedChangeHandler()
-  // }, [filterBy.keyword])
-
-
-  // const debounceDispatch = () => {
-  //   console.log(filterBy)
-  //   dispatch(setFilter(filterBy))
-  // }
-
-  // const debouncedChangeHandler = useCallback(
-  //   debounce(debounceDispatch, 1000)
-  //   , [filterBy])
+  useEffect(() => {
+    dispatch(setFilter(filterBy))
+  }, [keyword])
 
   const handleChange = ({ target }) => {
     setFilterBy({ ...filterBy, keyword: target.value })
-
   }
 
   const initials = (member) => ([...member.fullname])
