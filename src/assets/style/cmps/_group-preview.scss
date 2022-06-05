@@ -97,12 +97,13 @@
       height: 28px;
       font-weight: 400;
       gap: 5px;
-      line-height: 28;
+
+      // line-height: 28;
       &:hover {
         background-color: $clr1;
-    }
+      }
 
-    
+
     }
   }
 }
