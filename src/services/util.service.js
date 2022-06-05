@@ -280,6 +280,7 @@ function _imageOrVideo(filename) {
          type = 'image'
          break
       default:
+         type = 'image'
          break
    }
    return type
