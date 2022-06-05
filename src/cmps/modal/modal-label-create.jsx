@@ -9,7 +9,7 @@ import { utilService } from '../../services/util.service.js'
 
 export const ModalLabelCreate = ({ task, board, onUpdateBoard, updateTask, }) => {
    const [labelName, setLabelName] = useState('')
-   const [color, setColor] = useState('')
+   const [color, setColor] = useState('#7bc86c')
    const [updatedBoard, setUpdatedBoard] = useState(board)
    const { modal } = useSelector(({ appModule }) => appModule)
 
@@ -77,7 +77,7 @@ export const ModalLabelCreate = ({ task, board, onUpdateBoard, updateTask, }) =>
 
             <div className="colors-section">
                <div className="box-container">
-                  <button onClick={() => { onPickColor('#7BC86C') }} style={{ backgroundColor: `#7BC86C` }}></button>
+                  <button onClick={() => { onPickColor('#7BC86C') }} style={{ backgroundColor: `#7BC86C` }} ></button>
                   <button onClick={() => { onPickColor('#F5DD29') }} style={{ backgroundColor: `#F5DD29` }}></button>
                   <button onClick={() => { onPickColor('#FFAF3F') }} style={{ backgroundColor: `#FFAF3F` }} ></button>
                   <button onClick={() => { onPickColor('#EF7564') }} style={{ backgroundColor: `#EF7564` }} ></button>

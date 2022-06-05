@@ -25,7 +25,8 @@ function getActivityUpdatedBoard(board, activity, byMember) {
     isComment,
     text,
     file: activity.file,
-    checklist: activity.checklist
+    checklist: activity.checklist,
+    join: activity.join
   }
 
   const newActivities = [newActivity, ...board.activities]
@@ -87,6 +88,10 @@ function getActivityText(activity, board, diff) {
     case 'add checklist':
       boardText = [`added ${activity.checklist.title} to`, <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
       taskText = [`added ${activity.checklist.title} to this task`]
+      break
+    case 'join':
+      boardText = [`joined to`, <Link to={linkPath} onClick={onToggleMenu}>{activity.join.title}</Link>]
+      taskText = [`joined this task`]
       break
     case 'delete checklist':
       boardText = [`removed ${activity.checklist.title} from`, <Link to={linkPath} onClick={onToggleMenu}>{activity.task.title}</Link>]
