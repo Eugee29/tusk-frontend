@@ -28,14 +28,17 @@ export const TaskDetails = () => {
   const task = group.tasks.find((task) => task.id === taskId)
 
   const updateTask = (updatedTask, activity) => {
-    activity.task = {
-      id: task.id,
-      title: task.title
-    }
-    activity.group = {
-      group: {
-        id: group.id,
-        title: group.title,
+
+    if (activity) {
+      activity.task = {
+        id: task.id,
+        title: task.title
+      }
+      activity.group = {
+        group: {
+          id: group.id,
+          title: group.title,
+        }
       }
     }
     const taskIdx = group.tasks.findIndex((task) => task.id === updatedTask.id)
