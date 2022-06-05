@@ -109,7 +109,7 @@ export const TaskPreview = ({ task, group, index, board, toggleLabels, isLabelsO
                         <img className='task-img-container' src={task.style.imgURL} alt="..." />   }
 
                        {!task.style.isCover && task.style.imgURL && utilService.getExtension(task.style.imgURL) === 'video' && 
-                       <video controls><source src={task.style.imgURL} type="video/mp4"></source></video> }
+                       <video muted controls><source src={task.style.imgURL} type="video/mp4"></source></video> }
 
                      <div className='task-info'>
                         {!!task.labelIds.length && (!task.style.isCover) && <LabelList board={board} labelIds={task.labelIds} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} />}
