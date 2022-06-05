@@ -41,7 +41,7 @@ export const AttachmentAdd = ({ task, updateTask }) => {
         actionType: 'add attachment',
         file: { fileName: attachment.fileName, fileUrl: attachment.fileUrl }
       }
-      updateTask(task, activity)
+      updateTask({ ...task }, activity)
     }
   }
 

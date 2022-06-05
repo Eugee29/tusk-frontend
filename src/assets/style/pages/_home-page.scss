@@ -161,6 +161,11 @@
       background-color: lightgray;
       aspect-ratio: 16/9;
       margin-bottom: 4rem;
+       img {
+        flex: 1;
+        height: 100%;
+        border-radius: 4px;
+       }
     }
   }
 

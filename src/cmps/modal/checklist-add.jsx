@@ -24,7 +24,11 @@ export const ChecklistAdd = ({ updateTask, task }) => {
     const newChecklist = boardService.getEmptyChecklist()
     newChecklist.title = title
     const updatedTask = { ...task, checklists: [newChecklist, ...task.checklists] }
-    updateTask(updatedTask)
+    const activity = {
+      actionType: 'add checklist',
+      checklist: { title: newChecklist.title }
+    }
+    updateTask(updatedTask, activity)
   }
 
   return (

@@ -1,7 +1,7 @@
 
 import { userService } from "../../services/user.service.js"
 
-const guestUser = { _id: '1', fullname: 'Guest', username: 'Guest', imgURL: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' }
+const guestUser = { _id: '1', fullname: 'Guest', username: 'Guest@gmail.com', imgURL: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' }
 
 const initialState = {
   count: 10,
