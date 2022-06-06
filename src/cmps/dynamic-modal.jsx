@@ -38,12 +38,10 @@ export const DynamicModal = () => {
 
   const [position, setPosition] = useState(null)
   const { modal } = useSelector(({ appModule }) => appModule)
-
   const editLabel = useRef()
   const deleteMember = useRef()
   const buttonRef = useRef()
   const modalRef = useRef()
-
   const dispatch = useDispatch()
 
   useEffect(() => {

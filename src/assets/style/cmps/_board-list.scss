@@ -1,6 +1,6 @@
 .board-section-header {
     display: flex;
-    margin: 0px 0 0 0px;
+    margin: 0px 0 0 50px;
     padding: 0px 0 11px;
     position: relative;
     justify-content: flex-start;
@@ -8,6 +8,11 @@
     width: 100%;
     gap: 11px;
     margin-top: 40px ;
+
+    @media (max-width: 500px) {
+        margin-right: 50x;
+        margin-left: 50x;
+     }
 
     .board-section-header-icon {
         img {
@@ -29,16 +34,14 @@
 }
 
 .board-section-list {
-
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
+    margin: 0 50px;
 
-    // @media (max-width: 760px) {
-    //     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    //  }
-
-
+    @media (max-width: 500px) {
+        margin: 0px;
+     }
 
     .board-tile.mod-add {
         background-color: #091e420a;
@@ -52,6 +55,7 @@
         transition-timing-function: ease;
         vertical-align: middle;
         width: inherit;
+        
     }
 
     .board-tile.mod-add:hover {
