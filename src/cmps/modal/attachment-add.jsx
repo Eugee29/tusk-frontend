@@ -31,7 +31,6 @@ export const AttachmentAdd = ({ task, updateTask }) => {
       attachment.fileUrl = res.secure_url
       task.attachments.unshift(attachment)
       if (res.resource_type === 'image' && !task.style.bgColor && !task.style.imgURL) task.style = { imgURL: res.secure_url, isCover: false }
-      // updateTask(task)
     } catch (err) {
       attachment.fileName = fileURL
       attachment.fileUrl = fileURL

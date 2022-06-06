@@ -1,39 +1,38 @@
 import { Fragment, useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { useDebounce } from '../../hooks/useDebounce'
 
 import { ImCheckboxChecked, ImCheckboxUnchecked } from 'react-icons/im'
 
-import { setFilter } from '../../store/board/board.action'
+import { setFilterBy } from '../../store/board/board.action'
 import { utilService } from '../../services/util.service'
 
 export const TaskFilter = ({ board }) => {
-  const boardModule = useSelector(({ boardModule }) => boardModule)
-  const [filterBy, setFilterBy] = useState(boardModule.filterBy)
-  const keyword = useDebounce(filterBy.keyword, 300)
+  const { filterBy } = useSelector(({ boardModule }) => boardModule)
+  const [filter, setFilter] = useState(filterBy)
+  const keyword = useDebounce(filter.keyword, 300)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(setFilter(filterBy))
-  }, [filterBy.memberIds, filterBy.labelIds])
+    dispatch(setFilterBy(filter))
+  }, [filter.memberIds, filter.labelIds])
 
   useEffect(() => {
-    dispatch(setFilter(filterBy))
+    dispatch(setFilterBy(filter))
   }, [keyword])
 
   const handleChange = ({ target }) => {
-    setFilterBy({ ...filterBy, [target.name]: target.value })
+    setFilter({ ...filter, [target.name]: target.value })
   }
 
   const onUncheck = (id, key) => {
-    filterBy[key] = filterBy[key].filter((currId) => currId !== id)
-    setFilterBy({ ...filterBy })
+    filter[key] = filter[key].filter((currId) => currId !== id)
+    setFilter({ ...filter })
   }
 
   const onCheck = (id, key) => {
-    setFilterBy({ ...filterBy, [key]: [...filterBy[key], id] })
+    setFilter({ ...filter, [key]: [...filter[key], id] })
   }
 
   return (
@@ -50,7 +49,7 @@ export const TaskFilter = ({ board }) => {
           type="text"
           placeholder="Enter a keyword..."
           onChange={handleChange}
-          value={filterBy.keyword}
+          value={filter.keyword}
         />
         <p className="instructions">Look for tasks.</p>
       </section>
@@ -60,9 +59,8 @@ export const TaskFilter = ({ board }) => {
         <h2 className="member-label">Members</h2>
         {board.members.map((member) => (
           <div className="member-preview" key={member._id}>
-            ``
             <div className="checkbox-container">
-              {filterBy.memberIds.includes(member._id) ? (
+              {filter.memberIds.includes(member._id) ? (
                 <ImCheckboxChecked
                   className="checkbox checked"
                   onClick={() => onUncheck(member._id, 'memberIds')}
@@ -97,7 +95,7 @@ export const TaskFilter = ({ board }) => {
         {board.labels.map((label) => (
           <div className="label-preview" key={label.id}>
             <div className="checkbox-container">
-              {filterBy.labelIds.includes(label.id) ? (
+              {filter.labelIds.includes(label.id) ? (
                 <ImCheckboxChecked
                   className="checkbox checked"
                   onClick={() => onUncheck(label.id, 'labelIds')}
