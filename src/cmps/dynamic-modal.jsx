@@ -32,6 +32,8 @@ import { MoreMembers } from './modal/more-members'
 import { AccountActions } from './modal/account-actions'
 import { TaskFilter } from './modal/task-filter'
 
+
+
 export const DynamicModal = () => {
 
   const [position, setPosition] = useState(null)
@@ -64,9 +66,10 @@ export const DynamicModal = () => {
 
   const adjustPosition = () => {
     const position = utilService.getPosition(modal.element)
-    position.top += modal.element.offsetHeight * 1.25 // Gives the modal some space from the element that triggered it, equal to 1/4 of that element height
+    // Gives the modal some space from the element that triggered it, equal to 1/4 of that element height
+    position.top += modal.element.offsetHeight * 1.25
 
-    // Pushes the modal into the viewport when it does not have enough space to open up, + 10 px from the edge of the screen.
+    // Pushes the modal into the viewport when it does not have enough space to open up, + 10 px from the edge of the viewport.
     if (position.top + modalRef.current.offsetHeight >= window.innerHeight) {
       position.top = window.innerHeight - modalRef.current.offsetHeight - 10
     }

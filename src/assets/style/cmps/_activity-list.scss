@@ -12,6 +12,7 @@
   height: 100%;
   padding: 12px 6px;
 
+
   @include custom-scrollbar
 }
 
@@ -40,6 +41,7 @@
   }
 
   .activity-text {
+
     .comment-container {
       padding: 8px 12px;
       position: relative;
@@ -82,7 +84,14 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    flex: 11
+    // flex: 11
+  }
+
+  .activity-text {
+
+    .activity-content {
+      word-break: break-all;
+    }
   }
 
   h3 {
