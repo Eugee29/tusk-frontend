@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
+import { debounce } from 'lodash'
+
 import { IoIosArrowBack } from 'react-icons/io'
 import { CgClose } from 'react-icons/cg'
 
@@ -31,14 +33,15 @@ import { AccountActions } from './modal/account-actions'
 import { TaskFilter } from './modal/task-filter'
 
 export const DynamicModal = () => {
+
   const { modal } = useSelector(({ appModule }) => appModule)
   const [position, setPosition] = useState(null)
-  const dispatch = useDispatch()
-  const editLabel = useRef('')
-  const deleteMember = useRef('')
-
+  const editLabel = useRef()
+  const deleteMember = useRef()
   const buttonRef = useRef()
   const modalRef = useRef()
+  const dispatch = useDispatch()
+
 
   const changeEditLabel = (label) => {
     editLabel.current = label
@@ -49,8 +52,8 @@ export const DynamicModal = () => {
   }
 
   useEffect(() => {
-    window.addEventListener('resize', adjustPosition)
-    return () => window.removeEventListener('resize', adjustPosition)
+    window.addEventListener('resize', debouncedAdjust)
+    return () => window.removeEventListener('resize', debouncedAdjust)
   }, [])
 
   useEffect(() => {
@@ -59,21 +62,23 @@ export const DynamicModal = () => {
 
   const adjustPosition = () => {
     const position = utilService.getPosition(modal.element)
-    position.top += modal.element.offsetHeight * 1.25 // Gives the modal some space from the element that triggered it.
+    position.top += modal.element.offsetHeight * 1.25 // Gives the modal some space from the element that triggered it, equal to 1/4 of that element height
 
-    // Pushes the modal into the viewport when it does not have enough space to open up + 25 padding.
+    // Pushes the modal into the viewport when it does not have enough space to open up, + 10 px from the edge of the screen.
     if (position.top + modalRef.current.offsetHeight >= window.innerHeight) {
-      position.top = window.innerHeight - modalRef.current.offsetHeight - 25
+      position.top = window.innerHeight - modalRef.current.offsetHeight - 10
     }
     if (position.left + modalRef.current.offsetWidth >= window.innerWidth) {
-      position.left = window.innerWidth - modalRef.current.offsetWidth - 25
+      position.left = window.innerWidth - modalRef.current.offsetWidth - 10
     }
 
     setPosition(position)
   }
 
+  const debouncedAdjust = debounce(adjustPosition, 200)
+
   var cmp
-  // console.log(modal.props)
+
   switch (modal.category) {
     case 'Cover':
       cmp = <ModalCover {...modal.props} />
