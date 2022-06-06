@@ -22,6 +22,7 @@ export const BoardDetails = () => {
 
 
   useEffect(() => {
+    console.log('loaded')
     loadBoard()
     loadUsersAsync()
     socketService.emit('listen-to-board', params.boardId)
@@ -32,7 +33,6 @@ export const BoardDetails = () => {
 
 
   const loadBoard = async (board) => {
-    console.log(board)
     if (!board) board = await boardService.getById(params.boardId)
     setBoard(board)
   }
