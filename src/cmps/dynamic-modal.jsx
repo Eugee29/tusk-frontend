@@ -34,22 +34,15 @@ import { TaskFilter } from './modal/task-filter'
 
 export const DynamicModal = () => {
 
-  const { modal } = useSelector(({ appModule }) => appModule)
   const [position, setPosition] = useState(null)
+  const { modal } = useSelector(({ appModule }) => appModule)
+
   const editLabel = useRef()
   const deleteMember = useRef()
   const buttonRef = useRef()
   const modalRef = useRef()
+
   const dispatch = useDispatch()
-
-
-  const changeEditLabel = (label) => {
-    editLabel.current = label
-  }
-
-  const deleteMemberFromBoard = (id) => {
-    deleteMember.current = id
-  }
 
   useEffect(() => {
     window.addEventListener('resize', debouncedAdjust)
@@ -59,6 +52,15 @@ export const DynamicModal = () => {
   useEffect(() => {
     adjustPosition()
   }, [modal.element])
+
+
+  const changeEditLabel = (label) => {
+    editLabel.current = label
+  }
+
+  const deleteMemberFromBoard = (id) => {
+    deleteMember.current = id
+  }
 
   const adjustPosition = () => {
     const position = utilService.getPosition(modal.element)
@@ -76,6 +78,7 @@ export const DynamicModal = () => {
   }
 
   const debouncedAdjust = debounce(adjustPosition, 200)
+
 
   var cmp
 
