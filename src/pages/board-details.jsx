@@ -13,7 +13,6 @@ import { BoardHeader } from '../cmps/board/board-header.jsx'
 import { GroupList } from '../cmps/group/group-list.jsx'
 
 export const BoardDetails = () => {
-  // const [filterBy, setFilterBy] = useState({ keyword: '', memberIds: [], labelIds: [] })
   const [board, setBoard] = useState(null)
   const [users, setUsers] = useState(null)
   const params = useParams()
@@ -33,20 +32,20 @@ export const BoardDetails = () => {
 
 
   const loadBoard = async (board) => {
+    console.log(board)
     if (!board) board = await boardService.getById(params.boardId)
     setBoard(board)
   }
 
   const loadUsersAsync = async () => {
     if (!users) setUsers(await dispatch(loadUsers()))
-    // setUsers(users)
   }
 
   const onUpdateBoard = (board, activity) => {
-    console.log('update')
     if (activity) board = addActivity(board, activity)
-    setBoard({ ...board })
+    socketService.emit('board-activity', board)
     dispatch(updateBoard(board))
+    setBoard({ ...board })
   }
 
   const addActivity = (board, activity) => {

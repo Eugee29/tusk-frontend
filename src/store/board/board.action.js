@@ -39,7 +39,7 @@ export function updateBoard(boardToSave) {
   try {
     return async (dispatch) => {
       const savedBoard = await boardService.save(boardToSave)
-      socketService.emit('board-activity', savedBoard)
+      // socketService.emit('board-activity', savedBoard)
       dispatch({ type: 'UPDATE_BOARD', board: savedBoard })
       return savedBoard
     }
