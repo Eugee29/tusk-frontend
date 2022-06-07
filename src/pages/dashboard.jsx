@@ -4,7 +4,8 @@ import { VscClose } from 'react-icons/vsc'
 import { DashboardAllTasks } from '../cmps/dashboard/dashboard-all-tasks'
 import { DashboardDueSoon } from '../cmps/dashboard/dashboard-due-soon'
 import { DashboardOverdue } from '../cmps/dashboard/dashboard-overdue'
-import { DashboardPerGroup } from '../cmps/dashboard/dashboard-per-group'
+import { DashboardChart } from '../cmps/dashboard/dashboard-chart'
+import { DashboardComplete } from '../cmps/dashboard/dashboard-complete'
 
 export const Dashboard = () => {
   const { board } = useOutletContext()
@@ -21,30 +22,39 @@ export const Dashboard = () => {
   const tasks = getTasks()
 
   return (
-    <main className="dashboard">
-      <button
-        className="close-btn"
-        onClick={() => navigate(`/board/${board._id}`)}
-      >
-        <VscClose className="close-icon" />
-      </button>
+    <div className="dashboard">
+      <main className="dashboard-modal">
+        <button
+          className="close-btn"
+          onClick={() => navigate(`/board/${board._id}`)}
+        >
+          <VscClose className="close-icon" />
+        </button>
 
-      <section className="dashboard-grid">
-        <div className="all-task-container grid-item">
-          <DashboardAllTasks tasks={tasks} />
-        </div>
-        <div className="due-soon-container grid-item">
-          <DashboardDueSoon tasks={tasks} />
-        </div>
-        <div className="overdue-container grid-item">
-          <DashboardOverdue tasks={tasks} />
-        </div>
-        <div className="tasks-per-group-container grid-item">
-          <DashboardPerGroup tasks={tasks} groups={board.groups} />
-        </div>
-        <div className="tasks-per-label-container grid-item"></div>
-        <div className="tasks-per-member-container grid-item"></div>
-      </section>
-    </main>
+        <section className="info-container">
+          <section className="dashboard-grid">
+            <div className="all-task-container grid-item">
+              <DashboardAllTasks tasks={tasks} />
+            </div>
+            <div className="complete-container grid-item">
+              <DashboardComplete tasks={tasks} />
+            </div>
+            <div className="due-soon-container grid-item">
+              <DashboardDueSoon tasks={tasks} />
+            </div>
+            <div className="overdue-container grid-item">
+              <DashboardOverdue tasks={tasks} />
+            </div>
+          </section>
+
+          <div className="main-chart-container">
+            <DashboardChart tasks={tasks} board={board} />
+          </div>
+
+          {/* <div className="tasks-per-label-container grid-item"></div>
+        <div className="tasks-per-member-container grid-item"></div> */}
+        </section>
+      </main>
+    </div>
   )
 }
