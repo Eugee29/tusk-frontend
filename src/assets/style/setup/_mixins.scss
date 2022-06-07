@@ -355,6 +355,25 @@
   }
 }
 
+
+@mixin custom-scrollbar2 {
+  &::-webkit-scrollbar {
+    border-radius: 3px;
+    width: 1rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin: 1rem;
+    border-radius: 3px;
+    background-color: #dadbe22d;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+    background: #dde0e7ab;
+  }
+}
+
 @mixin modal-main-btn {
   text-align: left;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

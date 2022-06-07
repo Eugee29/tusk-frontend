@@ -56,72 +56,13 @@
         }
 
         .member-list {
-          padding-right: 28px;
-          border-radius: 3px;
-          display: block;
-          height: 37px;
-          line-height: 32px;
-          margin-bottom: 2px;
-          overflow: hidden;
-          padding: 4px;
-          position: relative;
-          text-decoration: none;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          color: #172b4d;
-
-          .member {
-            @include task-member-button(tomato);
-            margin-right: 8px;
-          }
-
-          .member-img {
-            cursor: pointer;
-            float: left;
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            background-repeat: round;
-            background: center;
-            background-size: cover;
-            margin-right: 3px;
-
-            object-fit: cover;
-            max-width: 100%;
-            margin-right: 8px;
-            margin: 0 8px 4px 0;
-          }
-
-          .member-txt {
-            color: #172b4d;
-            font-size: 14px;
-            font-weight: 400;
-          }
-
-          .member-icon {
-            background-clip: content-box;
-            background-origin: content-box;
-            padding: 4px;
-            position: absolute;
-            right: 0;
-            top: 0;
-
-            svg {
-              height: 14px;
-              width: 14px;
-            }
-          }
-        }
-
-        .member-list {
-          padding-right: 28px;
           border-radius: 3px;
           display: block;
           height: 40px;
           line-height: 32px;
           margin-bottom: 2px;
           overflow: hidden;
-          padding: 4px;
+          padding: 4px 0;
           position: relative;
           text-decoration: none;
           text-overflow: ellipsis;
@@ -143,7 +84,6 @@
             background: center;
             background-size: cover;
             margin-right: 3px;
-
             object-fit: cover;
             max-width: 100%;
             margin-right: 8px;

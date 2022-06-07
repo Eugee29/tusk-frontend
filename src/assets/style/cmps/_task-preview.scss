@@ -27,6 +27,7 @@
     align-self: flex-end;
     display: flex;
     gap: 3px;
+    margin: 0 -5px -5px 0;
 
     .member {
       @include task-member-button(tomato);
@@ -87,6 +88,12 @@
       width: 65px;
       border-radius: 3px;
       padding: 0px 4px;
+
+      span {
+        // display: flex;
+        // align-items: center;
+        height: 50%;
+      }
     }
 
     .attachment-icon {

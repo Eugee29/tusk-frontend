@@ -12,6 +12,7 @@
   top: 0;
   width: 100%;
   z-index: 20;
+  @include custom-scrollbar2;
 
   .task-details-container {
     min-height: 934px;
