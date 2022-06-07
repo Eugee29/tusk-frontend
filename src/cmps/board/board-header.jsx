@@ -88,7 +88,7 @@ export function BoardHeader({ task, board, updateTask, onUpdateBoard }) {
             </div>}
       </div>
       <div className='right-container'>
-         <button className='dashboard-btn' ref={filterRef} onClick={(ev) => onOpenModal(ev, { element: filterRef.current, category: 'dashboard', title: 'Dashboard', props: { board } })}><AiOutlineDashboard className='filter-icon' /></button>
+         {/* <button className='dashboard-btn' ref={filterRef} onClick={(ev) => onOpenModal(ev, { element: filterRef.current, category: 'dashboard', title: 'Dashboard', props: { board } })}><AiOutlineDashboard className='filter-icon' /></button> */}
          <button className='filter-btn' ref={dashboardRef} onClick={(ev) => onOpenModal(ev, { element: filterRef.current, category: 'task-filter', title: 'Filter', props: { board } })}><BsFilter className='filter-icon' /></button>
 
          {(!isMenuOpened || isMenuOpened === 'initial') && <button className='show-menu' onClick={onToggleMenu}> <BiDotsHorizontalRounded className='icon' /></button>}
