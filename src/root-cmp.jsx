@@ -1,20 +1,20 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Routes, Route } from 'react-router-dom'
 
-import { AppHeader } from './cmps/app-header'
-import { DynamicModal } from './cmps/dynamic-modal'
+import { setModal } from './store/app/app.actions'
+
+import './assets/style/main.scss'
 
 import { HomePage } from './pages/home-page'
 import { LoginSignupPage } from './pages/login-signup-page'
 import { Workspace } from './pages/workspace'
 import { BoardDetails } from './pages/board-details'
 import { TaskDetails } from './pages/task-details'
-import { useDispatch } from 'react-redux'
+import { Dashboard } from './pages/dashboard'
 
-import { setModal } from './store/app/app.actions'
-
-import './assets/style/main.scss'
+import { AppHeader } from './cmps/app-header'
+import { DynamicModal } from './cmps/dynamic-modal'
 
 export function RootCmp() {
   const { modal } = useSelector(({ appModule }) => appModule)
@@ -35,6 +35,7 @@ export function RootCmp() {
         <Route path="/workspace" element={<Workspace />} />
         <Route path="/board/:boardId/*" element={<BoardDetails />}>
           <Route path=":groupId/:taskId" element={<TaskDetails />} />
+          <Route path="dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </div>

@@ -17,6 +17,7 @@
 @import './pages/board-details';
 @import './pages/task-details';
 @import './pages/login-signup-page';
+@import './pages/dashboard';
 
 // COMPONENTS
 @import './cmps/board-list.scss';
@@ -63,4 +64,4 @@
 @import './cmps/account-actions/';
 @import './cmps/background-list/';
 @import './cmps/task-filter/';
-@import './cmps/dashboard/';
+// @import './cmps/dashboard/';

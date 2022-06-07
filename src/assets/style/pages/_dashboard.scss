@@ -1,0 +1,95 @@
+.dashboard {
+  position: absolute;
+  background-color: $brand-clr9;
+  border-radius: 3px;
+  z-index: 1000;
+  top: 100px;
+  left: 8px;
+  right: 8px;
+  height: calc(100% - 108px);
+  padding: 3rem 1rem 1rem;
+  box-shadow: -1px 1px 39px -1px rgba(0, 0, 0, 0.69);
+
+  .close-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0.5rem;
+    height: 2rem;
+    width: 2rem;
+    background: none;
+    border: none;
+    padding: 0;
+
+    .close-icon {
+      height: 100%;
+      width: 100%;
+      color: $brand-clr14;
+    }
+  }
+
+  .dashboard-grid {
+    display: grid;
+    height: 100%;
+    gap: 1rem;
+    grid-template:
+      'per-group per-label all-task' 2fr
+      'per-group per-label due-soon' 1fr
+      'per-member per-member due-soon' 1fr
+      'per-member per-member overdue' 2fr;
+
+    grid-template-columns: 1fr 1fr 0.5fr;
+
+    .grid-item {
+      border-radius: 3px;
+      padding: 2rem;
+      box-shadow: 0 3px 5px rgb(9 30 66 / 20%), 0 0 1px rgb(9 30 66 / 31%);
+    }
+
+    .all-task-container {
+      grid-area: all-task;
+
+      background: rgb(2, 0, 36);
+      background: linear-gradient(235deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(9, 9, 121, 1) 0%,
+          rgba(4, 112, 189, 1) 0%,
+          rgba(0, 212, 255, 1) 100%);
+    }
+
+    .due-soon-container {
+      grid-area: due-soon;
+      background: rgb(2, 0, 36);
+      background: linear-gradient(235deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(9, 9, 121, 1) 0%,
+          rgba(189, 112, 4, 1) 0%,
+          rgba(255, 214, 0, 1) 100%);
+    }
+
+    .overdue-container {
+      grid-area: overdue;
+      background: rgb(2, 0, 36);
+      background: linear-gradient(235deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(9, 9, 121, 1) 0%,
+          rgba(189, 4, 4, 1) 0%,
+          rgba(255, 115, 0, 1) 100%);
+    }
+
+    .tasks-per-group-container {
+      grid-area: per-group;
+      background-color: white;
+    }
+
+    .tasks-per-label-container {
+      grid-area: per-label;
+      background-color: white;
+    }
+
+    .tasks-per-member-container {
+      grid-area: per-member;
+      background-color: white;
+    }
+  }
+}

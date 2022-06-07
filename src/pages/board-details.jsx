@@ -19,8 +19,6 @@ export const BoardDetails = () => {
   const dispatch = useDispatch()
   const { user } = useSelector(({ userModule }) => userModule)
 
-
-
   useEffect(() => {
     console.log('loaded')
     loadBoard()
@@ -29,8 +27,6 @@ export const BoardDetails = () => {
     socketService.on('board-activity', loadBoard)
     return () => socketService.emit('leave-board', params.boardId)
   }, [])
-
-
 
   const loadBoard = async (board) => {
     if (!board) board = await boardService.getById(params.boardId)
