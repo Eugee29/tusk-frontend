@@ -16,14 +16,14 @@ export const Dashboard = () => {
     board.groups.forEach((group) =>
       group.tasks.forEach((task) => tasks.push(task))
     )
-    return tasks
+    return tasks.filter(task => !task.archivedAt)
   }
 
   const tasks = getTasks()
 
   return (
-    <div className="dashboard">
-      <main className="dashboard-modal">
+    <div className="dashboard" onClick={() => navigate(`/board/${board._id}`)}>
+      <main className="dashboard-modal" onClick={(ev) => ev.stopPropagation()}>
         <button
           className="close-btn"
           onClick={() => navigate(`/board/${board._id}`)}

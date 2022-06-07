@@ -46,26 +46,30 @@
 
       .dashboard-grid {
         display: grid;
-        flex-basis: 50%;
+        flex-grow: 1;
         grid-template-columns: 1fr 1fr;
         background-color: white;
         box-shadow: 0 3px 5px rgb(9 30 66 / 20%), 0 0 1px rgb(9 30 66 / 31%);
         border-radius: 3px;
 
         .grid-item {
-          border: 1px solid #091e4221;
+          // border: 1px solid #091e4221;
         }
 
         .all-task-container {
+          border-bottom: 1px solid #091e4221;
+          border-right: 1px solid #091e4221;
           border-top-left-radius: 3px;
         }
 
         .complete-container {
+          border-bottom: 1px solid #091e4221;
           border-top-right-radius: 3px;
 
         }
 
         .due-soon-container {
+          border-right: 1px solid #091e4221;
           border-bottom-left-radius: 3px;
         }
 
@@ -75,7 +79,7 @@
       }
 
       .main-chart-container {
-        flex-basis: 50%;
+        flex-grow: 1;
         border-radius: 3px;
         background-color: white;
         box-shadow: 0 3px 5px rgb(9 30 66 / 20%), 0 0 1px rgb(9 30 66 / 31%);
