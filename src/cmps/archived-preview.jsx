@@ -85,8 +85,6 @@ export const ArchivedPreview = ({ task, groupId, index, board, onUpdateBoard }) 
     board.groups[groupIdx].tasks[taskIdx] = newTask
 
     setUpdatedTask(newTask)
-
-    console.log('OnSentToBoard', board)
     onUpdateBoard({ ...board })
   }
 
@@ -99,10 +97,7 @@ export const ArchivedPreview = ({ task, groupId, index, board, onUpdateBoard }) 
     const taskIdx = board.groups[groupIdx].tasks.findIndex((groupTask) => groupTask.id === task.id)
     board.groups[groupIdx].tasks.splice(taskIdx, 1)
 
-    console.log(board)
     setUpdatedTask(newTask)
-
-    console.log('OnDelete', board)
     onUpdateBoard(board)
   }
 

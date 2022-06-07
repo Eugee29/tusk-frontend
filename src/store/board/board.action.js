@@ -1,5 +1,4 @@
 import { boardService } from '../../services/board.service.js'
-import { socketService } from '../../services/socket.service.js'
 
 export function setBoard(board) {
   return (dispatch) => {
@@ -27,11 +26,9 @@ export function addBoard(board) {
       console.log('Added Board', savedBoard)
       dispatch({ type: 'ADD_BOARD', board: savedBoard })
       return savedBoard
-      // showSuccessMsg('Board added')
     }
   } catch (err) {
     console.log('cannot add board', err)
-    // showErrorMsg('Cannot add board')
   }
 }
 
@@ -45,7 +42,6 @@ export function updateBoard(boardToSave) {
     }
   } catch (err) {
     console.log('cannot edit board', err)
-    // showErrorMsg('Cannot edit board')
   }
 }
 
@@ -53,7 +49,6 @@ export function filtering(filterBy) {
   return async (dispatch) => {
     try {
       const boards = await boardService.query(filterBy)
-      // console.log('Boards from DB:', boards);
       dispatch({ type: 'SET_BOARDS', boards })
       dispatch({ type: 'FILTER_BOARD', filterBy })
     } catch (err) {
@@ -68,10 +63,8 @@ export function removeBoard(boardId) {
       await boardService.remove(boardId)
       dispatch({ type: 'REMOVE_BOARD', boardId })
       console.log('Deleted Succesfully!')
-      // showSuccessMsg('Board removed')
     } catch (err) {
       console.error('Error:', err)
-      // showErrorMsg('Cannot remove board')
     }
   }
 

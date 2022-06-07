@@ -14,7 +14,6 @@ export const TaskList = ({ group, board, isLabelsOpen, toggleLabels, isAddCardOp
 
 
   const handleChange = ({ target, nativeEvent }) => {
-    console.log(nativeEvent)
     if (nativeEvent.inputType === 'insertLineBreak') return onAddCard()
     setCardText(target.value)
   }

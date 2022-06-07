@@ -45,8 +45,6 @@ function getActivityText(activity, board, diff) {
     onToggleMenu = false
   }
 
-  // console.log(onToggleMenu, task
-
   const linkPath = (activity.task) ? `/board/${board._id}/${activity.group.id}/${activity.task.id}` : null
   let boardText, taskText
 

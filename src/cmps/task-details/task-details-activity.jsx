@@ -33,7 +33,6 @@ export function TaskDetailsActivity({ task, isCloseEdit, board, onUpdateBoard, g
   }
 
   const onSubmitComment = () => {
-    console.log(comment)
 
     const activity = {
       actionType: 'comment',
