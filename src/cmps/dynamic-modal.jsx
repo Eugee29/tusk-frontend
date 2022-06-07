@@ -80,7 +80,6 @@ export const DynamicModal = () => {
 
    const debouncedAdjust = debounce(adjustPosition, 200)
 
-
    var cmp
 
    switch (modal.category) {
