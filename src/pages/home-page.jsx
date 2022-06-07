@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
 import hero from '../assets/imgs/hero.png'
-import demo from '../assets/imgs/demo.png'
+import demo from '../assets/imgs/demo.jpg'
 
 export const HomePage = () => {
   const navigate = useNavigate()
