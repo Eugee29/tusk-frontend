@@ -13,68 +13,68 @@ import { BoardHeader } from '../cmps/board/board-header.jsx'
 import { GroupList } from '../cmps/group/group-list.jsx'
 
 export const BoardDetails = () => {
-  const [board, setBoard] = useState(null)
-  const [users, setUsers] = useState(null)
-  const params = useParams()
-  const dispatch = useDispatch()
-  const { user } = useSelector(({ userModule }) => userModule)
+   const [board, setBoard] = useState(null)
+   const [users, setUsers] = useState(null)
+   const params = useParams()
+   const dispatch = useDispatch()
+   const { user } = useSelector(({ userModule }) => userModule)
 
-  useEffect(() => {
-    console.log('loaded')
-    loadBoard()
-    loadUsersAsync()
-    socketService.emit('listen-to-board', params.boardId)
-    socketService.on('board-activity', loadBoard)
-    return () => socketService.emit('leave-board', params.boardId)
-  }, [])
+   useEffect(() => {
+      console.log('loaded')
+      loadBoard()
+      loadUsersAsync()
+      socketService.emit('listen-to-board', params.boardId)
+      socketService.on('board-activity', loadBoard)
+      return () => socketService.emit('leave-board', params.boardId)
+   }, [])
 
-  const loadBoard = async (board) => {
-    if (!board) board = await boardService.getById(params.boardId)
-    setBoard(board)
-  }
+   const loadBoard = async (board) => {
+      if (!board) board = await boardService.getById(params.boardId)
+      setBoard(board)
+   }
 
-  const loadUsersAsync = async () => {
-    if (!users) setUsers(await dispatch(loadUsers()))
-  }
+   const loadUsersAsync = async () => {
+      if (!users) setUsers(await dispatch(loadUsers()))
+   }
 
-  const onUpdateBoard = (board, activity) => {
-    if (activity) board = addActivity(board, activity)
-    socketService.emit('board-activity', board)
-    dispatch(updateBoard(board))
-    setBoard({ ...board })
-  }
+   const onUpdateBoard = (board, activity) => {
+      if (activity) board = addActivity(board, activity)
+      socketService.emit('board-activity', board)
+      dispatch(updateBoard(board))
+      setBoard({ ...board })
+   }
 
-  const addActivity = (board, activity) => {
-    const newBoard = activityService.getActivityUpdatedBoard(
-      board,
-      activity,
-      user
-    )
-    return newBoard
-  }
+   const addActivity = (board, activity) => {
+      const newBoard = activityService.getActivityUpdatedBoard(
+         board,
+         activity,
+         user
+      )
+      return newBoard
+   }
 
-  if (!board)
-    return (
-      <div className="icon-bars">
-        <div className="bar board"></div>
-        <div className="bar board"></div>
-        <div className="bar board"></div>
-      </div>
-    )
+   if (!board)
+      return (
+         <div className="icon-bars">
+            <div className="bar board"></div>
+            <div className="bar board"></div>
+            <div className="bar board"></div>
+         </div>
+      )
 
-  return (
-    <main
-      className="board-details"
-      style={{
-        background:
-          board.style.bgImg.length > 10
-            ? `url(${board.style.bgImg})`
-            : `${board.style.bgImg}`,
-      }}
-    >
-      <BoardHeader board={board} onUpdateBoard={onUpdateBoard} />
-      <GroupList board={board} onUpdateBoard={onUpdateBoard} />
-      <Outlet context={{ onUpdateBoard, board }} />
-    </main>
-  )
+   return (
+      <main
+         className="board-details"
+         style={{
+            background:
+               board.style.bgImg.length > 10
+                  ? `url(${board.style.bgImg})`
+                  : `${board.style.bgImg}`,
+         }}
+      >
+         <BoardHeader board={board} onUpdateBoard={onUpdateBoard} />
+         <GroupList board={board} onUpdateBoard={onUpdateBoard} />
+         <Outlet context={{ onUpdateBoard, board }} />
+      </main>
+   )
 }

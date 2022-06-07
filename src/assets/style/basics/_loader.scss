@@ -13,15 +13,14 @@ $bar-color: #172b4d;
   width: 50px;
   height: 50px;
   margin-top: 51.7px;
-  ;
-  position: absolute;
+  position: fixed;
   left: 50%;
-  top: 2.3%;
+  top: 40%;
   transform: translate(-50%, -50%);
 
   .bar {
     position: absolute;
-    border-radius: 0px 0px 3px 3px;
+    border-radius: 3px 3px 3px 3px;
     bottom: 0;
     left: 0;
     top: 0;
@@ -51,7 +50,7 @@ $bar-color: #172b4d;
 
   from {
 
-    bottom: $size
+    top: $size
   }
 
   50% {
