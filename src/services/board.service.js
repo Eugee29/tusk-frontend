@@ -50,6 +50,7 @@ async function remove(boardId) {
 async function save(board) {
   try {
     if (board._id) {
+      console.log('Board updated...')
       return await httpService.put(`board/${board._id}`, board)
     } else {
       return await httpService.post(`board/`, board)
