@@ -50,9 +50,10 @@ async function remove(boardId) {
 async function save(board) {
   try {
     if (board._id) {
-      console.log('Board updated...')
+      console.log('Board updated...', board)
       return await httpService.put(`board/${board._id}`, board)
     } else {
+      console.log('board created', board)
       return await httpService.post(`board/`, board)
     }
   } catch (err) {
