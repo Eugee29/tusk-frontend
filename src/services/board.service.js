@@ -1,5 +1,6 @@
 import { httpService } from './http.service'
 import { utilService } from './util.service.js'
+import { socketService } from './socket.service'
 
 export const boardService = {
   query,
@@ -51,7 +52,9 @@ async function save(board) {
   try {
     if (board._id) {
       console.log('Board updated...', board)
-      return await httpService.put(`board/${board._id}`, board)
+      const savedBoard = await httpService.put(`board/${board._id}`, board)
+      socketService.emit('board-activity', savedBoard)
+      return savedBoard
     } else {
       console.log('board created', board)
       return await httpService.post(`board/`, board)

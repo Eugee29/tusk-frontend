@@ -24,7 +24,9 @@ export const BoardDetails = () => {
     loadUsersAsync()
     socketService.emit('listen-to-board', params.boardId)
     socketService.on('board-activity', loadBoard)
-    return () => socketService.emit('leave-board', params.boardId)
+    return () => {
+      socketService.emit('leave-board', params.boardId)
+    }
   }, [])
 
   const loadBoard = async (board) => {
@@ -38,7 +40,7 @@ export const BoardDetails = () => {
 
   const onUpdateBoard = (board, activity) => {
     if (activity) board = addActivity(board, activity)
-    socketService.emit('board-activity', board)
+    // socketService.emit('board-activity', board)
     dispatch(updateBoard(board))
     setBoard({ ...board })
   }
