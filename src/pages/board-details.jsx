@@ -40,10 +40,10 @@ export const BoardDetails = () => {
   }
 
   const onUpdateBoard = async (board, activity) => {
-    const updatedBoard = { ...board }
-    if (activity) board = addActivity(updatedBoard, activity)
-    dispatch(updateBoard(updatedBoard))
-    setBoard({ ...updatedBoard })
+    board = { ...board }
+    if (activity) board = addActivity(board, activity)
+    dispatch(updateBoard(board))
+    setBoard(board)
     // socketService.emit('board-activity')
   }
 
