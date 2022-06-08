@@ -21,9 +21,12 @@
   text-transform: capitalize;
 
   .text-container {
+    flex-grow: 1;
+    align-self: flex-start;
+
     .title {
-      margin-bottom: 1.1rem;
-      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
       font-weight: 500;
     }
 

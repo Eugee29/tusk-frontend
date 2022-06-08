@@ -29,20 +29,22 @@ export const BoardDetails = () => {
     }
   }, [])
 
-  const loadBoard = async (board) => {
-    if (!board) board = await boardService.getById(params.boardId)
-    setBoard(board)
+  const loadBoard = async (updatedBoard) => {
+    console.log(updatedBoard)
+    if (!updatedBoard) updatedBoard = await boardService.getById(params.boardId)
+    setBoard(updatedBoard)
   }
 
   const loadUsersAsync = async () => {
     if (!users) setUsers(await dispatch(loadUsers()))
   }
 
-  const onUpdateBoard = (board, activity) => {
-    if (activity) board = addActivity(board, activity)
-    // socketService.emit('board-activity', board)
-    dispatch(updateBoard(board))
-    setBoard({ ...board })
+  const onUpdateBoard = async (board, activity) => {
+    const updatedBoard = { ...board }
+    if (activity) board = addActivity(updatedBoard, activity)
+    dispatch(updateBoard(updatedBoard))
+    setBoard({ ...updatedBoard })
+    // socketService.emit('board-activity')
   }
 
   const addActivity = (board, activity) => {

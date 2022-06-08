@@ -51,9 +51,9 @@ async function remove(boardId) {
 async function save(board) {
   try {
     if (board._id) {
-      console.log('Board updated...', board)
+      // console.log('Board updated...', board)
+      socketService.emit('board-activity', board)
       const savedBoard = await httpService.put(`board/${board._id}`, board)
-      socketService.emit('board-activity', savedBoard)
       return savedBoard
     } else {
       console.log('board created', board)
