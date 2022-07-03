@@ -1,9 +1,8 @@
-
-import { userService } from "../../services/user.service.js"
+import { userService } from '../../services/user.service.js'
 // import { showErrorMsg } from '../services/event-bus.service.js'
 
 export function loadUsers() {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       const users = await userService.getUsers()
       dispatch({ type: 'SET_USERS', users })
@@ -14,7 +13,7 @@ export function loadUsers() {
 }
 
 export function removeUser(userId) {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
       await userService.remove(userId)
       dispatch({ type: 'REMOVE_USER', userId })
@@ -30,22 +29,21 @@ export function onLogin(credentials) {
       const user = await userService.login(credentials)
       dispatch({
         type: 'SET_USER',
-        user
+        user,
       })
     } catch (err) {
-      throw (err)
+      throw err
     }
   }
 }
 
 export function onSignup(credentials) {
-
   return async (dispatch) => {
     try {
       const user = await userService.signup(credentials)
       dispatch({
         type: 'SET_USER',
-        user
+        user,
       })
       return user
     } catch (err) {
@@ -60,7 +58,7 @@ export function onLogout() {
       await userService.logout()
       dispatch({
         type: 'SET_USER',
-        user: null
+        user: null,
       })
     } catch (err) {
       console.log('Cannot logout', err)
@@ -78,4 +76,3 @@ export function loadUser(userId) {
     }
   }
 }
-

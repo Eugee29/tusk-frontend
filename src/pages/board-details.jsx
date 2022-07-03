@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -27,6 +27,7 @@ export const BoardDetails = () => {
     return () => {
       socketService.emit('leave-board', params.boardId)
     }
+    // eslint-disable-next-line
   }, [])
 
   const loadBoard = async (updatedBoard) => {
@@ -48,11 +49,7 @@ export const BoardDetails = () => {
   }
 
   const addActivity = (board, activity) => {
-    const newBoard = activityService.getActivityUpdatedBoard(
-      board,
-      activity,
-      user
-    )
+    const newBoard = activityService.getActivityUpdatedBoard(board, activity, user)
     return newBoard
   }
 
@@ -69,10 +66,7 @@ export const BoardDetails = () => {
     <main
       className="board-details"
       style={{
-        background:
-          board.style.bgImg.length > 10
-            ? `url(${board.style.bgImg})`
-            : `${board.style.bgImg}`,
+        background: board.style.bgImg.length > 10 ? `url(${board.style.bgImg})` : `${board.style.bgImg}`,
       }}
     >
       <BoardHeader board={board} onUpdateBoard={onUpdateBoard} />

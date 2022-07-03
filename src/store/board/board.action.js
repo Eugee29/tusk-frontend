@@ -7,41 +7,41 @@ export function setBoard(board) {
 }
 
 export function loadBoards() {
-  try {
-    return async (dispatch) => {
+  return async (dispatch) => {
+    try {
       const boards = await boardService.query()
       console.log('Got Boards', boards)
       dispatch({ type: 'SET_BOARDS', boards })
       return boards
+    } catch (err) {
+      console.log('cannot load boards', err)
     }
-  } catch (err) {
-    console.log('cannot load boards', err)
   }
 }
 
 export function addBoard(board) {
-  try {
-    return async (dispatch) => {
+  return async (dispatch) => {
+    try {
       const savedBoard = await boardService.save(board)
       console.log('Added Board', savedBoard)
       dispatch({ type: 'ADD_BOARD', board: savedBoard })
       return savedBoard
+    } catch (err) {
+      console.log('cannot add board', err)
     }
-  } catch (err) {
-    console.log('cannot add board', err)
   }
 }
 
 export function updateBoard(boardToSave) {
-  try {
-    return async (dispatch) => {
+  return async (dispatch) => {
+    try {
       const savedBoard = await boardService.save(boardToSave)
       // socketService.emit('board-activity', savedBoard)
       dispatch({ type: 'UPDATE_BOARD', board: savedBoard })
       return savedBoard
+    } catch (err) {
+      console.log('cannot edit board', err)
     }
-  } catch (err) {
-    console.log('cannot edit board', err)
   }
 }
 
@@ -67,7 +67,6 @@ export function removeBoard(boardId) {
       console.error('Error:', err)
     }
   }
-
 }
 
 export function setFilterBy(filterBy) {

@@ -3,9 +3,6 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 
-// import * as serviceWorkerRegistration from './serviceWorkerRegistration'
-// import './services/notification.service'
-
 import { store } from './store/store'
 import { RootCmp } from './root-cmp'
 

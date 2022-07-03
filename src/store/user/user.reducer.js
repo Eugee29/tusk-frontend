@@ -1,13 +1,17 @@
+import { userService } from '../../services/user.service.js'
 
-import { userService } from "../../services/user.service.js"
-
-const guestUser = { _id: '1', fullname: 'Guest', username: 'Guest@gmail.com', imgURL: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png' }
+const guestUser = {
+  _id: '1',
+  fullname: 'Guest',
+  username: 'Guest@gmail.com',
+  imgURL: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
+}
 
 const initialState = {
   count: 10,
   user: userService.getLoggedinUser() || guestUser,
   users: [],
-  watchedUser: null
+  watchedUser: null,
 }
 export function userReducer(state = initialState, action) {
   var newState = state
@@ -19,7 +23,7 @@ export function userReducer(state = initialState, action) {
       newState = { ...state, watchedUser: action.user }
       break
     case 'REMOVE_USER':
-      newState = { ...state, users: state.users.filter(user => user._id !== action.userId) }
+      newState = { ...state, users: state.users.filter((user) => user._id !== action.userId) }
       break
     case 'SET_USERS':
       newState = { ...state, users: action.users }
@@ -30,5 +34,4 @@ export function userReducer(state = initialState, action) {
     default:
   }
   return newState
-
 }
