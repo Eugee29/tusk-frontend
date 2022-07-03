@@ -11,6 +11,7 @@ export function ModalGroupActions({ onUpdateBoard, group, boardId }) {
 
   useEffect(() => {
     getBoard()
+    // eslint-disable-next-line
   }, [])
 
   const getBoard = async () => {
@@ -22,9 +23,7 @@ export function ModalGroupActions({ onUpdateBoard, group, boardId }) {
     dispatch(setModal(null))
     const newBoard = { ...board }
     const { groups } = newBoard
-    const groupIndex = groups.findIndex(
-      (currGroup) => currGroup.id === group.id
-    )
+    const groupIndex = groups.findIndex((currGroup) => currGroup.id === group.id)
     const newGroups = groups.filter((currGroup, index) => index !== groupIndex)
     const boardToUpdate = { ...board, groups: newGroups }
     const activity = {

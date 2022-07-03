@@ -13,10 +13,8 @@ export const Dashboard = () => {
 
   const getTasks = () => {
     let tasks = []
-    board.groups.forEach((group) =>
-      group.tasks.forEach((task) => tasks.push(task))
-    )
-    return tasks.filter(task => !task.archivedAt)
+    board.groups.forEach((group) => group.tasks.forEach((task) => tasks.push(task)))
+    return tasks.filter((task) => !task.archivedAt)
   }
 
   const tasks = getTasks()
@@ -24,10 +22,7 @@ export const Dashboard = () => {
   return (
     <div className="dashboard" onClick={() => navigate(`/board/${board._id}`)}>
       <main className="dashboard-modal" onClick={(ev) => ev.stopPropagation()}>
-        <button
-          className="close-btn"
-          onClick={() => navigate(`/board/${board._id}`)}
-        >
+        <button className="close-btn" onClick={() => navigate(`/board/${board._id}`)}>
           <VscClose className="close-icon" />
         </button>
 

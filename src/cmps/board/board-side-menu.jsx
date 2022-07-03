@@ -10,7 +10,6 @@ import { ArchivedList } from '../archived-list'
 import { ChangeBackgroundList } from '../change-background-list'
 
 export function BoardSideMenu({ onToggleMenu, dynamicClass, board, onUpdateBoard }) {
-
   const [isArchivedOpen, setIsArchivedOpen] = useState(false)
   const [isBackgroundOpen, setIsBackgroundOpen] = useState(false)
 
@@ -26,33 +25,43 @@ export function BoardSideMenu({ onToggleMenu, dynamicClass, board, onUpdateBoard
 
   return (
     <section className={dynamicClass}>
+      <button className="x-btn" onClick={onToggleMenu}>
+        {' '}
+        <IoMdClose className="x-icon" />{' '}
+      </button>
+      <div className="menu-title">
+        {' '}
+        <h3> Menu </h3>{' '}
+      </div>
 
-      <button className='x-btn' onClick={onToggleMenu}> <IoMdClose className='x-icon' /> </button>
-      <div className='menu-title'> <h3> Menu </h3> </div>
-
-      <div className="activity-title-container hover" onClick={onToggleArchived} >
-        <span className=""><FiArchive /></span>
-        <h3 className='activity-title-text'>Archived items</h3>
+      <div className="activity-title-container hover" onClick={onToggleArchived}>
+        <span className="">
+          <FiArchive />
+        </span>
+        <h3 className="activity-title-text">Archived items</h3>
       </div>
       {isArchivedOpen && <ArchivedList board={board} onUpdateBoard={onUpdateBoard} />}
 
       {/* <div className="line-break"></div> */}
       <hr />
 
-      <div className="activity-title-container hover" onClick={onToggleBackground} >
-        <span className=""><BsImage /></span>
-        <h3 className='activity-title-text'>Change background</h3>
+      <div className="activity-title-container hover" onClick={onToggleBackground}>
+        <span className="">
+          <BsImage />
+        </span>
+        <h3 className="activity-title-text">Change background</h3>
       </div>
       {isBackgroundOpen && <ChangeBackgroundList board={board} onUpdateBoard={onUpdateBoard} />}
-
 
       {/* <div className="line-break"></div> */}
 
       <hr />
 
       <div className="activity-title-container">
-        <span className=""><GrList /></span>
-        <h3 className='activity-title-text'>Activity</h3>
+        <span className="">
+          <GrList />
+        </span>
+        <h3 className="activity-title-text">Activity</h3>
       </div>
       {board.activities.length > 0 && <ActivityList board={board} onToggleMenu={onToggleMenu} />}
     </section>

@@ -1,9 +1,6 @@
-
-import React, { useState, } from 'react'
-
+import React, { useState } from 'react'
 
 export const LoginForm = ({ onLogin }) => {
-
   const [credentials, setCredentials] = useState({ username: '', password: '' })
 
   const handleChange = (ev) => {
@@ -14,7 +11,6 @@ export const LoginForm = ({ onLogin }) => {
 
   const login = (ev) => {
     if (ev) ev.preventDefault()
-    //   // if (ev) ev.stopPropagation()
     if (!credentials.username || !credentials.password) return
     onLogin(credentials)
     clearState()
@@ -27,11 +23,28 @@ export const LoginForm = ({ onLogin }) => {
     })
   }
   return (
-    <form className='user-login' onSubmit={login}>
+    <form className="user-login" onSubmit={login}>
       <h1>Log in to Tusk</h1>
-      <input type="email" placeholder='Enter email' name='username' value={credentials.username} autoComplete='username' onChange={handleChange} required autoFocus />
-      <input type="password" placeholder='Enter password' name='password' value={credentials.password} autoComplete='password' onChange={handleChange} required />
-      <button className='login-btn'>Log in</button>
+      <input
+        type="email"
+        placeholder="Enter email"
+        name="username"
+        value={credentials.username}
+        autoComplete="username"
+        onChange={handleChange}
+        required
+        autoFocus
+      />
+      <input
+        type="password"
+        placeholder="Enter password"
+        name="password"
+        value={credentials.password}
+        autoComplete="password"
+        onChange={handleChange}
+        required
+      />
+      <button className="login-btn">Log in</button>
     </form>
   )
 }

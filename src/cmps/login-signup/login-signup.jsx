@@ -8,7 +8,6 @@ import { LoginForm } from './login-form'
 import { SignupForm } from './signup-form'
 
 export const LoginSignup = ({ type }) => {
-
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation()
@@ -30,7 +29,6 @@ export const LoginSignup = ({ type }) => {
     } catch (err) {
       setIsError(true)
     }
-
   }
 
   var cmp
@@ -42,24 +40,27 @@ export const LoginSignup = ({ type }) => {
     case 'signup':
       cmp = <SignupForm onSignup={signup} />
       break
+    default:
+      break
   }
 
   return (
-    <div className='login-signup'>
-      {isError &&
-        <div className='error-message'>
+    <div className="login-signup">
+      {isError && (
+        <div className="error-message">
           <p>Invalid username or password.</p>
-        </div>}
+        </div>
+      )}
       {cmp}
-      <div className='login-method'>
+      <div className="login-method">
         <div>OR</div>
         <button onClick={() => navigate('/workspace')}>Continue as Guest</button>
       </div>
       <hr />
       <footer>
-        <Link to='/'>Back home</Link>
+        <Link to="/">Back home</Link>
         <Link to={type === 'login' ? '/signup' : '/login'}>{type === 'login' ? 'Sign up' : 'Log in'}</Link>
       </footer>
-    </div >
+    </div>
   )
 }

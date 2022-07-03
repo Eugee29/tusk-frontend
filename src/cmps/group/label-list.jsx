@@ -1,20 +1,19 @@
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-
 export function LabelList({ labelIds, board, toggleLabels, isLabelsOpen }) {
-
   const [boardLabels, setBoardLabels] = useState()
   const [taskLabels, setTaskLabels] = useState(labelIds)
 
   useEffect(() => {
     setBoardLabels(board.labels)
     setTaskLabels(labelIds)
+    // eslint-disable-next-line
   }, [labelIds])
 
   const getLabelValueById = (type, labelId) => {
     if (!boardLabels) return
-    const currLabel = boardLabels.find(label => label.id === labelId)
+    const currLabel = boardLabels.find((label) => label.id === labelId)
     const { color, title } = currLabel
 
     if (type === 'color') return { backgroundColor: `${color}` }
@@ -25,8 +24,7 @@ export function LabelList({ labelIds, board, toggleLabels, isLabelsOpen }) {
     let className
     if (isLabelsOpen === 'initial') {
       return 'label'
-    }
-    else className = (isLabelsOpen) ? 'label open' : 'label close'
+    } else className = isLabelsOpen ? 'label open' : 'label close'
     return className
   }
 
@@ -35,7 +33,20 @@ export function LabelList({ labelIds, board, toggleLabels, isLabelsOpen }) {
     toggleLabels()
   }
 
-  return <section className="label-list">
-    {taskLabels && taskLabels.map(label => <div onClick={onToggleLabel} className={getLabelClass()} key={label} style={getLabelValueById('color', label)}> {getLabelValueById('title', label)} </div>)}
-  </section>
+  return (
+    <section className="label-list">
+      {taskLabels &&
+        taskLabels.map((label) => (
+          <div
+            onClick={onToggleLabel}
+            className={getLabelClass()}
+            key={label}
+            style={getLabelValueById('color', label)}
+          >
+            {' '}
+            {getLabelValueById('title', label)}{' '}
+          </div>
+        ))}
+    </section>
+  )
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { utilService } from '../services/util.service'
@@ -6,7 +6,6 @@ import { utilService } from '../services/util.service'
 import { TaskPreviewIcons } from './group/task-preview-icons'
 
 export const ArchivedPreview = ({ task, groupId, index, board, onUpdateBoard }) => {
-
   const navigate = useNavigate()
   const [updatedTask, setUpdatedTask] = useState(task)
   const taskRef = useRef()
@@ -30,15 +29,13 @@ export const ArchivedPreview = ({ task, groupId, index, board, onUpdateBoard }) 
           return { backgroundColor: `${task.style.bgColor}` }
         }
       }
-
     } else return ''
   }
 
   const getTaskClass = (isQuick) => {
     if (task.style) {
       if (task.style.bgColor && task.style.isCover) {
-        if (!isQuick)
-          return 'task-preview styled'
+        if (!isQuick) return 'task-preview styled'
         else return 'task-preview color-header'
       } else if (task.style.bgColor && !task.style.isCover) {
         return 'task-preview color-header'
@@ -52,14 +49,14 @@ export const ArchivedPreview = ({ task, groupId, index, board, onUpdateBoard }) 
   }
 
   const getChecklistLength = () => {
-    const todosLength = task.checklists.reduce((acc1, checklist) => acc1 += checklist.todos.length, 0)
-    const doneLength = task.checklists.reduce((acc2, checklist) => acc2 += getDoneTodos(checklist), 0)
-    const activeCount = doneLength + "/" + todosLength
+    const todosLength = task.checklists.reduce((acc1, checklist) => (acc1 += checklist.todos.length), 0)
+    const doneLength = task.checklists.reduce((acc2, checklist) => (acc2 += getDoneTodos(checklist)), 0)
+    const activeCount = doneLength + '/' + todosLength
     return activeCount
   }
 
   const getDoneTodos = (checklist) => {
-    let doneTodos = checklist.todos.filter(todo => (todo.isDone))
+    let doneTodos = checklist.todos.filter((todo) => todo.isDone)
     return doneTodos.length
   }
 
@@ -73,7 +70,6 @@ export const ArchivedPreview = ({ task, groupId, index, board, onUpdateBoard }) 
     if (dateFormat.statusDate === 'overdue') return { backgroundColor: '#EB5A46', color: '#ffff' }
     if (dateFormat.statusDate === 'duesoon') return { backgroundColor: '#F2D600', color: '#ffff' }
     if (dateFormat.statusDate === 'complete') return { backgroundColor: '#61BD4F', color: '#ffff' }
-
   }
 
   const OnSentToBoard = () => {
@@ -89,7 +85,6 @@ export const ArchivedPreview = ({ task, groupId, index, board, onUpdateBoard }) 
   }
 
   const OnDelete = () => {
-
     let newTask = { ...updatedTask }
     newTask = null
 
@@ -101,37 +96,40 @@ export const ArchivedPreview = ({ task, groupId, index, board, onUpdateBoard }) 
     onUpdateBoard(board)
   }
 
-
-
   return (
-    // <Draggable draggableId={task.id} index={index} type='TASK' >
-    // {(provided, snapshot) => (
-    <div className='task-preview-handle' /*{...provided.draggableProps} {...provided.dragHandleProps}*/>
+    <div className="task-preview-handle">
       <div ref={taskRef}>
-        <section className={`${getTaskClass()}`} onClick={onOpenDetails} /*ref={provided.innerRef}*/ style={getTaskStyle()}  >
-
-          {!task.style.isCover && task.style.imgURL && <img className='task-img-container' src={task.style.imgURL} alt="..." />}
-          <div className='task-info'>
-            {/* {!!task.labelIds.length && (!task.style.isCover) && <LabelList board={board} labelIds={task.labelIds} toggleLabels={toggleLabels} isLabelsOpen={isLabelsOpen} />} */}
-
-            <div className='task-title-container'>
-              <h2 className='task-title'> {task.title} </h2>
+        <section className={`${getTaskClass()}`} onClick={onOpenDetails} style={getTaskStyle()}>
+          {!task.style.isCover && task.style.imgURL && (
+            <img className="task-img-container" src={task.style.imgURL} alt="..." />
+          )}
+          <div className="task-info">
+            <div className="task-title-container">
+              <h2 className="task-title"> {task.title} </h2>
             </div>
 
-            <TaskPreviewIcons task={task} board={board} getTimeStyle={getTimeStyle} getChecklistLength={getChecklistLength} onUpdateBoard={onUpdateBoard} />
-
+            <TaskPreviewIcons
+              task={task}
+              board={board}
+              getTimeStyle={getTimeStyle}
+              getChecklistLength={getChecklistLength}
+              onUpdateBoard={onUpdateBoard}
+            />
           </div>
-          {/* <button className='edit-btn' > <RiPencilLine className='btn-icon' /> </button> */}
         </section>
       </div>
 
       <div className="edit">
-        <span className="button-att" onClick={OnSentToBoard}>Send to board</span>
-        <span> - <a className="button-att" onClick={OnDelete}><span className="button-att">Delete</span></a> </span>
+        <span className="button-att" onClick={OnSentToBoard}>
+          Send to board
+        </span>
+        <span>
+          {/* eslint-disable-next-line */}
+          <a className="button-att" onClick={OnDelete}>
+            <span className="button-att">Delete</span>
+          </a>
+        </span>
       </div>
-
     </div>
-    // )}
-    // </Draggable >
   )
 }

@@ -14,7 +14,6 @@ export function TaskDetailsActivity({ task, isCloseEdit, board, onUpdateBoard, g
   const [isTypeComment, setIsTypeComment] = useState(false)
   const [comment, setComment] = useState('')
 
-
   useEffect(() => {
     setIsClickedComment(false)
   }, [isCloseEdit])
@@ -33,37 +32,35 @@ export function TaskDetailsActivity({ task, isCloseEdit, board, onUpdateBoard, g
   }
 
   const onSubmitComment = () => {
-
     const activity = {
       actionType: 'comment',
       text: comment,
       task: {
         id: task.id,
-        title: task.title
+        title: task.title,
       },
       group: {
         id: group.id,
-        title: group.title
-      }
+        title: group.title,
+      },
     }
     onUpdateBoard(board, activity)
     setComment('')
   }
 
   const enableButton = isTypeComment ? 'enableButton' : ''
-  const initials = (member) => ([...member.fullname])
 
   return (
-    <section className="task-details-activity" >
-
+    <section className="task-details-activity">
       {/* Activity */}
       <div className="activity-title-container">
-        <span className=""><GrList /></span>
-        <h3 >Activity</h3>
+        <span className="">
+          <GrList />
+        </span>
+        <h3>Activity</h3>
       </div>
 
       <div className="activity-list-container">
-
         <div className="user-container">
           <div className="member">
             <img src={user.imgURL} alt="..." />
@@ -72,18 +69,24 @@ export function TaskDetailsActivity({ task, isCloseEdit, board, onUpdateBoard, g
 
         <div className="comment-frame">
           <div className="comment-container">
+            {/* eslint-disable-next-line */}
             {!isClickedComment && <a onClick={onChangeComment}>Write a comment…</a>}
-            {isClickedComment && <textarea onClick={onChangeComment} placeholder="Write a comment…" onChange={handleChange} value={comment} ></textarea>}
-            {isClickedComment && <input className={`${enableButton}`} type="submit" value="Save" onClick={onSubmitComment} disabled="" />}
+            {isClickedComment && (
+              <textarea
+                onClick={onChangeComment}
+                placeholder="Write a comment…"
+                onChange={handleChange}
+                value={comment}
+              ></textarea>
+            )}
+            {isClickedComment && (
+              <input className={`${enableButton}`} type="submit" value="Save" onClick={onSubmitComment} disabled="" />
+            )}
           </div>
         </div>
-
       </div>
 
       {activities && <ActivityList board={board} task={task} />}
-
-
-
     </section>
   )
 }

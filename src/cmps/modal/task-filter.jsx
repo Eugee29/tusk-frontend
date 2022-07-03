@@ -16,10 +16,12 @@ export const TaskFilter = ({ board }) => {
 
   useEffect(() => {
     dispatch(setFilterBy(filter))
+    // eslint-disable-next-line
   }, [filter.memberIds, filter.labelIds])
 
   useEffect(() => {
     dispatch(setFilterBy(filter))
+    // eslint-disable-next-line
   }, [keyword])
 
   const handleChange = ({ target }) => {
@@ -61,27 +63,16 @@ export const TaskFilter = ({ board }) => {
           <div className="member-preview" key={member._id}>
             <div className="checkbox-container">
               {filter.memberIds.includes(member._id) ? (
-                <ImCheckboxChecked
-                  className="checkbox checked"
-                  onClick={() => onUncheck(member._id, 'memberIds')}
-                />
+                <ImCheckboxChecked className="checkbox checked" onClick={() => onUncheck(member._id, 'memberIds')} />
               ) : (
-                <ImCheckboxUnchecked
-                  className="checkbox unchecked"
-                  onClick={() => onCheck(member._id, 'memberIds')}
-                />
+                <ImCheckboxUnchecked className="checkbox unchecked" onClick={() => onCheck(member._id, 'memberIds')} />
               )}
             </div>
             <div className="member-img-container">
               {member.imgURL ? (
-                <img
-                  className="member-img"
-                  src={member.imgURL}
-                  alt={member.username}
-                />
+                <img className="member-img" src={member.imgURL} alt={member.username} />
               ) : (
-                <Fragment>{`${utilService.getInitials(member)[0]}${utilService.getInitials(member)[1]
-                  }`}</Fragment>
+                <Fragment>{`${utilService.getInitials(member)[0]}${utilService.getInitials(member)[1]}`}</Fragment>
               )}
             </div>
             <h3 className="member-name">{member.fullname}</h3>
@@ -96,15 +87,9 @@ export const TaskFilter = ({ board }) => {
           <div className="label-preview" key={label.id}>
             <div className="checkbox-container">
               {filter.labelIds.includes(label.id) ? (
-                <ImCheckboxChecked
-                  className="checkbox checked"
-                  onClick={() => onUncheck(label.id, 'labelIds')}
-                />
+                <ImCheckboxChecked className="checkbox checked" onClick={() => onUncheck(label.id, 'labelIds')} />
               ) : (
-                <ImCheckboxUnchecked
-                  className="checkbox unchecked"
-                  onClick={() => onCheck(label.id, 'labelIds')}
-                />
+                <ImCheckboxUnchecked className="checkbox unchecked" onClick={() => onCheck(label.id, 'labelIds')} />
               )}
             </div>
             <div className="label" style={{ backgroundColor: label.color }}>

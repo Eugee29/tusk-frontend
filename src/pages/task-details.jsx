@@ -32,7 +32,7 @@ export const TaskDetails = () => {
     if (activity) {
       activity.task = {
         id: task.id,
-        title: task.title
+        title: task.title,
       }
       activity.group = {
         id: groupId,
@@ -50,9 +50,7 @@ export const TaskDetails = () => {
     navigate(`/board/${board._id}`)
     const taskIdx = group.tasks.findIndex((currTask) => currTask.id === task.id)
     group.tasks.splice(taskIdx, 1)
-    const updatedGroups = board.groups.map((currGroup) =>
-      currGroup.id === group.id ? group : currGroup
-    )
+    const updatedGroups = board.groups.map((currGroup) => (currGroup.id === group.id ? group : currGroup))
     onUpdateBoard({ ...board, groups: updatedGroups })
   }
 
@@ -73,13 +71,7 @@ export const TaskDetails = () => {
         </button>
 
         <div>
-          {task.style && (
-            <TaskDetailsCover
-              task={task}
-              setModal={setModal}
-              updateTask={updateTask}
-            />
-          )}
+          {task.style && <TaskDetailsCover task={task} setModal={setModal} updateTask={updateTask} />}
 
           {task.archivedAt && (
             <div className="task-archived">
@@ -90,13 +82,7 @@ export const TaskDetails = () => {
             </div>
           )}
 
-          {task.title && (
-            <TaskDetailsTitle
-              task={task}
-              groupTitle={group.title}
-              updateTask={updateTask}
-            />
-          )}
+          {task.title && <TaskDetailsTitle task={task} groupTitle={group.title} updateTask={updateTask} />}
 
           <div className="main-task">
             <TaskDetailsInfo
@@ -107,18 +93,9 @@ export const TaskDetails = () => {
               onUpdateBoard={onUpdateBoard}
             />
             {<TaskDetailsDescription task={task} updateTask={updateTask} />}
-            {task.attachments && (
-              <TaskDetailsAttachments task={task} updateTask={updateTask} />
-            )}
-            {!!task.checklists?.length && (
-              <ChecklistList task={task} updateTask={updateTask} />
-            )}
-            <TaskDetailsActivity
-              task={task}
-              board={board}
-              group={group}
-              onUpdateBoard={onUpdateBoard}
-            />
+            {task.attachments && <TaskDetailsAttachments task={task} updateTask={updateTask} />}
+            {!!task.checklists?.length && <ChecklistList task={task} updateTask={updateTask} />}
+            <TaskDetailsActivity task={task} board={board} group={group} onUpdateBoard={onUpdateBoard} />
           </div>
           <TaskDetailsSideTask
             board={board}

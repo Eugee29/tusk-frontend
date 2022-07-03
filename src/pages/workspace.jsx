@@ -5,12 +5,12 @@ import { BoardList } from '../cmps/board/board-list.jsx'
 import { loadBoards, updateBoard } from '../store/board/board.action.js'
 
 export const Workspace = () => {
-
   const [boards, setBoards] = useState(null)
   const dispatch = useDispatch()
 
   useEffect(() => {
     loadBoardsAsync()
+    // eslint-disable-next-line
   }, [])
 
   const loadBoardsAsync = async () => {
@@ -19,20 +19,22 @@ export const Workspace = () => {
   }
 
   const onUpdateBoard = async (updatedBoard) => {
-
     await dispatch(updateBoard(updatedBoard))
-    const updatedBoards = boards.map(board => board._id === updatedBoard._id ? updatedBoard : board)
+    const updatedBoards = boards.map((board) => (board._id === updatedBoard._id ? updatedBoard : board))
     setBoards(updatedBoards)
   }
 
-  if (!boards) return <div className="icon-bars">
-    <div className="bar"></div>
-    <div className="bar"></div>
-    <div className="bar"></div>
-  </div>
+  if (!boards)
+    return (
+      <div className="icon-bars">
+        <div className="bar"></div>
+        <div className="bar"></div>
+        <div className="bar"></div>
+      </div>
+    )
 
   return (
-    <main className='workspace'>
+    <main className="workspace">
       <BoardList boards={boards} onUpdateBoard={onUpdateBoard} />
     </main>
   )

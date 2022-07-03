@@ -13,7 +13,6 @@ import { VscClose } from 'react-icons/vsc'
 import { TodoList } from './todo-list'
 
 export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updateTask, task }) => {
-
   const [hideChecked, setHideChecked] = useState(false)
   const [todoTxt, setTodoTxt] = useState('')
   const [checklistTitle, setChecklistTitle] = useState(checklist.title)
@@ -22,14 +21,13 @@ export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updat
   const dispatch = useDispatch()
   const deleteRef = useRef()
 
-  const numOfDone = checklist.todos.reduce((count, todo) => todo.isDone ? count + 1 : count, 0)
+  const numOfDone = checklist.todos.reduce((count, todo) => (todo.isDone ? count + 1 : count), 0)
   let progress = parseInt((numOfDone / checklist.todos.length) * 100)
   if (!checklist.todos.length) progress = 0
 
-  const todosToShow = hideChecked ? checklist.todos.filter(todo => !todo.isDone) : [...checklist.todos]
+  const todosToShow = hideChecked ? checklist.todos.filter((todo) => !todo.isDone) : [...checklist.todos]
   const numOfChecked = checklist.todos.length - todosToShow.length
   const filteredChecklist = { ...checklist, todos: todosToShow }
-
 
   const handleChange = ({ nativeEvent, target }) => {
     if (nativeEvent.inputType === 'insertLineBreak') return onAddTodo()
@@ -58,12 +56,14 @@ export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updat
 
   const openDeleteModal = (e) => {
     e.stopPropagation()
-    dispatch(setModal({
-      element: deleteRef.current,
-      category: 'checklist-delete',
-      title: `Delete ${checklist.title}?`,
-      props: { deleteChecklist }
-    }))
+    dispatch(
+      setModal({
+        element: deleteRef.current,
+        category: 'checklist-delete',
+        title: `Delete ${checklist.title}?`,
+        props: { deleteChecklist },
+      })
+    )
   }
 
   const handleTitleChange = (e) => {
@@ -71,77 +71,95 @@ export const ChecklistPreview = ({ checklist, updateChecklist, checklists, updat
   }
 
   const deleteChecklist = () => {
-    const updatedChecklists = checklists.filter(currChecklist => checklist.id !== currChecklist.id)
+    const updatedChecklists = checklists.filter((currChecklist) => checklist.id !== currChecklist.id)
     const activity = {
       actionType: 'delete checklist',
-      checklist: { title: checklist.title }
+      checklist: { title: checklist.title },
     }
     updateTask({ ...task, checklists: updatedChecklists }, activity)
   }
 
-
   return (
-    <li className='checklist-preview'>
+    <li className="checklist-preview">
       <header>
-        <div className='icon-container'>
-          <FiCheckSquare className='icon' />
+        <div className="icon-container">
+          <FiCheckSquare className="icon" />
         </div>
-        <div className='inner-container'>
-          {isEdit ?
-            <div className='title-editor'>
-              <textarea
-                value={checklistTitle}
-                onChange={handleTitleChange}
-                onBlur={() => setIsEdit(false)}
-                autoFocus
-              />
-              <div className='controls' >
-                <div className='btn-container' onMouseDown={e => e.preventDefault()} >
-                  <button className='save' onClick={onSaveTitle}>Save</button>
-                  <button className='discard-container' onClick={onDiscardChanges}><VscClose className='discard' /></button>
+        <div className="inner-container">
+          {isEdit ? (
+            <div className="title-editor">
+              <textarea value={checklistTitle} onChange={handleTitleChange} onBlur={() => setIsEdit(false)} autoFocus />
+              <div className="controls">
+                <div className="btn-container" onMouseDown={(e) => e.preventDefault()}>
+                  <button className="save" onClick={onSaveTitle}>
+                    Save
+                  </button>
+                  <button className="discard-container" onClick={onDiscardChanges}>
+                    <VscClose className="discard" />
+                  </button>
                 </div>
               </div>
             </div>
-            :
-            <h3 className='title' onClick={() => setIsEdit(true)}>{checklist.title}</h3>
-          }
-          <div className='header-btn-container'>
-            {!isEdit && <div className='inner-btn-container'>
-              {progress != 0 && <button onClick={() => setHideChecked(!hideChecked)} className='btn-secondary'>{hideChecked ? `Show checked items (${numOfChecked})` : 'Hide checked items'}</button>}
-              <button onClick={openDeleteModal} ref={deleteRef} className='btn-secondary'>Delete</button>
-            </div>}
+          ) : (
+            <h3 className="title" onClick={() => setIsEdit(true)}>
+              {checklist.title}
+            </h3>
+          )}
+          <div className="header-btn-container">
+            {!isEdit && (
+              <div className="inner-btn-container">
+                {!!progress && (
+                  <button onClick={() => setHideChecked(!hideChecked)} className="btn-secondary">
+                    {hideChecked ? `Show checked items (${numOfChecked})` : 'Hide checked items'}
+                  </button>
+                )}
+                <button onClick={openDeleteModal} ref={deleteRef} className="btn-secondary">
+                  Delete
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </header>
 
-      <div className='progress-bar-container'>
-        <h4 className='progress'>{progress}%</h4>
-        <ProgressBar now={progress} variant={progress === 100 ? 'green' : 'blue'} className='progress-bar'></ProgressBar>
+      <div className="progress-bar-container">
+        <h4 className="progress">{progress}%</h4>
+        <ProgressBar
+          now={progress}
+          variant={progress === 100 ? 'green' : 'blue'}
+          className="progress-bar"
+        ></ProgressBar>
       </div>
-      {!!filteredChecklist.todos?.length && <TodoList filteredChecklist={filteredChecklist} checklist={checklist} updateChecklist={updateChecklist} />}
-      <div className='add-container'>
-        {
-          !isAdding ?
-            <button className='open-add btn-secondary' onClick={() => setIsAdding(true)}>Add an item</button>
-            :
-            <form onSubmit={onAddTodo}>
-              <textarea
-                className='todo-content'
-                placeholder='Add an item'
-                style={{ height: utilService.calcTextareaHeight(todoTxt, 56, 20) }}
-                value={todoTxt}
-                onChange={handleChange}
-                onBlur={() => setIsAdding(false)}
-                autoFocus
-              >
-              </textarea>
-              <div className='add-controls'>
-                <button className='add-btn' onMouseDown={(e) => e.preventDefault()}>Add</button>
-                <button className='cancel-btn' type='button'>Cancel</button>
-              </div>
-            </form>
-        }
+      {!!filteredChecklist.todos?.length && (
+        <TodoList filteredChecklist={filteredChecklist} checklist={checklist} updateChecklist={updateChecklist} />
+      )}
+      <div className="add-container">
+        {!isAdding ? (
+          <button className="open-add btn-secondary" onClick={() => setIsAdding(true)}>
+            Add an item
+          </button>
+        ) : (
+          <form onSubmit={onAddTodo}>
+            <textarea
+              className="todo-content"
+              placeholder="Add an item"
+              style={{ height: utilService.calcTextareaHeight(todoTxt, 56, 20) }}
+              value={todoTxt}
+              onChange={handleChange}
+              onBlur={() => setIsAdding(false)}
+              autoFocus
+            ></textarea>
+            <div className="add-controls">
+              <button className="add-btn" onMouseDown={(e) => e.preventDefault()}>
+                Add
+              </button>
+              <button className="cancel-btn" type="button">
+                Cancel
+              </button>
+            </div>
+          </form>
+        )}
       </div>
-    </li >
+    </li>
   )
 }

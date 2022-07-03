@@ -1,5 +1,5 @@
-import svg1 from '../assets/svg/svg1.svg'
-import svg2 from '../assets/svg/svg2.svg'
+import { ReactComponent as Svg1 } from '../assets/svg/svg1.svg'
+import { ReactComponent as Svg2 } from '../assets/svg/svg2.svg'
 import logoDark from '../assets/imgs/logo-horizontal-dark.png'
 
 import { LoginSignup } from '../cmps/login-signup/login-signup'
@@ -12,8 +12,8 @@ export const LoginSignupPage = ({ type }) => {
       </div>
       <LoginSignup type={type} />
       <div className="background">
-        <object className="svg svg1" data={svg1} alt="" />
-        <object className="svg svg2" data={svg2} alt="" />
+        <Svg1 className="svg svg1" />
+        <Svg2 className="svg svg2" />
       </div>
     </main>
   )

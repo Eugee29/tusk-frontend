@@ -1,5 +1,5 @@
 export const setModal = (modal) => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({ type: 'TOGGLE_MODAL', modal })
   }
 }

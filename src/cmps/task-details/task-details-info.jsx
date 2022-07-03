@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { setModal } from '../../store/app/app.actions'
@@ -19,6 +19,7 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard, group 
 
   useEffect(() => {
     onLabels()
+    // eslint-disable-next-line
   }, [])
 
   const onToggleComplete = (value, ev) => {
@@ -50,11 +51,28 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard, group 
         <div className="task-card-info">
           <h3 className="task-member-title">Members</h3>
           {task.members?.map((member) => (
-            <MemberPreview key={member._id} member={member} task={task} updateTask={updateTask} isInTaskDetails={true} board={board} onUpdateBoard={onUpdateBoard} />))
-          }
-
-          <a className="members-add-button round" ref={memberRef}
-            onClick={(ev) => onOpenModal(ev, { element: memberRef.current, category: 'Members', props: { task, updateTask, board, onUpdateBoard, group }, })}>
+            <MemberPreview
+              key={member._id}
+              member={member}
+              task={task}
+              updateTask={updateTask}
+              isInTaskDetails={true}
+              board={board}
+              onUpdateBoard={onUpdateBoard}
+            />
+          ))}
+          {/* eslint-disable-next-line */}
+          <a
+            className="members-add-button round"
+            ref={memberRef}
+            onClick={(ev) =>
+              onOpenModal(ev, {
+                element: memberRef.current,
+                category: 'Members',
+                props: { task, updateTask, board, onUpdateBoard, group },
+              })
+            }
+          >
             <span>+</span>
           </a>
         </div>
@@ -65,16 +83,33 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard, group 
         <div className="task-card-info" ref={labelsRef}>
           <h3 className="task-member-title">Labels</h3>
           {task.labelIds.map((label) => (
+            // eslint-disable-next-line
             <a
               key={label}
               className="label"
-              onClick={(ev) => onOpenModal(ev, { element: labelsRef.current, category: 'Labels', props: { task, updateTask, board, onUpdateBoard, element: labelsRef.current } })} style={{ backgroundColor: `${onLabels(label).color}` }}>
+              onClick={(ev) =>
+                onOpenModal(ev, {
+                  element: labelsRef.current,
+                  category: 'Labels',
+                  props: { task, updateTask, board, onUpdateBoard, element: labelsRef.current },
+                })
+              }
+              style={{ backgroundColor: `${onLabels(label).color}` }}
+            >
               <span>{onLabels(label).title}</span>
             </a>
           ))}
+          {/* eslint-disable-next-line */}
           <a
             className="members-add-button "
-            onClick={(ev) => onOpenModal(ev, { element: labelsRef.current, category: 'Labels', props: { task, updateTask, board, onUpdateBoard, element: labelsRef.current, }, })}>
+            onClick={(ev) =>
+              onOpenModal(ev, {
+                element: labelsRef.current,
+                category: 'Labels',
+                props: { task, updateTask, board, onUpdateBoard, element: labelsRef.current },
+              })
+            }
+          >
             <span>+</span>
           </a>
         </div>
@@ -86,16 +121,26 @@ export const TaskDetailsInfo = ({ task, updateTask, board, onUpdateBoard, group 
           <h3 className="task-member-title">Due date</h3>
           <div className="date-container">
             <div className="date-complete-button">
-              {isCompleteDate
-                ? (<ImCheckboxChecked onClick={() => onToggleComplete(false)} className="checkbox checked" />)
-                : (<ImCheckboxUnchecked onClick={() => onToggleComplete(true)} className="checkbox unchecked" />)}
+              {isCompleteDate ? (
+                <ImCheckboxChecked onClick={() => onToggleComplete(false)} className="checkbox checked" />
+              ) : (
+                <ImCheckboxUnchecked onClick={() => onToggleComplete(true)} className="checkbox unchecked" />
+              )}
             </div>
             <div className="date" ref={datesRef}>
-              <button className="button-date" type="button" onClick={(ev) => onOpenModal(ev, { element: datesRef.current, category: 'Dates', props: { task, updateTask, board, onUpdateBoard, group, }, })}>
+              <button
+                className="button-date"
+                type="button"
+                onClick={(ev) =>
+                  onOpenModal(ev, {
+                    element: datesRef.current,
+                    category: 'Dates',
+                    props: { task, updateTask, board, onUpdateBoard, group },
+                  })
+                }
+              >
                 <span className="dispaly-date">{dateFormat.displayDate}</span>
-                <span className={`status-date ${dateFormat.statusDate}`}>
-                  {dateFormat.statusDate}
-                </span>
+                <span className={`status-date ${dateFormat.statusDate}`}>{dateFormat.statusDate}</span>
                 <span className="arrow-date">
                   <GrDown />
                 </span>

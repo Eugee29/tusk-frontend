@@ -13,16 +13,11 @@ export const HomePage = () => {
           <section className="hero-message">
             <h1>Tusk helps teams move work forward.</h1>
             <p>
-              Collaborate, manage projects, and reach new productivity peaks.
-              &nbsp; From high rises to the home office, the way your team works
-              is unique—accomplish it all with Tusk.
+              Collaborate, manage projects, and reach new productivity peaks. &nbsp; From high rises to the home office,
+              the way your team works is unique—accomplish it all with Tusk.
             </p>
             <form>
-              <button
-                type="button"
-                className="start-demo"
-                onClick={() => navigate('/workspace')}
-              >
+              <button type="button" className="start-demo" onClick={() => navigate('/workspace')}>
                 Start demo
               </button>
             </form>
@@ -32,13 +27,10 @@ export const HomePage = () => {
           </div>
         </section>
         <section className="app-info">
-          <h2 className="introduction-header">
-            It's more than work. It's a way of working together.
-          </h2>
+          <h2 className="introduction-header">It's more than work. It's a way of working together.</h2>
           <p className="introduction">
-            Start with a Tusk board, lists, and cards. Customize and expand with
-            more features as your teamwork grows. Manage projects, organize
-            tasks, and build team spirit—all in one place.
+            Start with a Tusk board, lists, and cards. Customize and expand with more features as your teamwork grows.
+            Manage projects, organize tasks, and build team spirit—all in one place.
           </p>
           <div className="demo-img-container">
             <img src={demo} alt="demo" />

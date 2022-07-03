@@ -2,13 +2,7 @@ import React, { useState, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setModal } from '../../store/app/app.actions'
 
-export const ModalLabelChange = ({
-  task,
-  board,
-  editLabel,
-  updateTask,
-  onUpdateBoard,
-}) => {
+export const ModalLabelChange = ({ task, board, editLabel, updateTask, onUpdateBoard }) => {
   const [labelName, setLabelName] = useState(editLabel.title)
   const [color, setColor] = useState(editLabel.color)
   const { modal } = useSelector(({ appModule }) => appModule)
@@ -23,9 +17,7 @@ export const ModalLabelChange = ({
 
   const onSave = (ev) => {
     ev.preventDefault()
-    const boardLabelIdx = board.labels.findIndex(
-      (boardLabel) => boardLabel.id === editLabel.id
-    )
+    const boardLabelIdx = board.labels.findIndex((boardLabel) => boardLabel.id === editLabel.id)
     board.labels[boardLabelIdx] = {
       id: editLabel.id,
       title: labelName,
@@ -37,9 +29,7 @@ export const ModalLabelChange = ({
 
   const onDelete = (ev) => {
     ev.preventDefault()
-    const boardLabelIdx = board.labels.findIndex(
-      (boardLabel) => boardLabel.id === editLabel.id
-    )
+    const boardLabelIdx = board.labels.findIndex((boardLabel) => boardLabel.id === editLabel.id)
     board.labels.splice(boardLabelIdx, 1)
 
     for (let i = 0; i < board.groups.length; i++) {
@@ -87,13 +77,7 @@ export const ModalLabelChange = ({
     <div className="change-section">
       <div className="change-box">
         <h3 className="label">Name</h3>
-        <input
-          ref={searchInput}
-          type="text"
-          name="search"
-          value={labelName}
-          onChange={handleChange}
-        />
+        <input ref={searchInput} type="text" name="search" value={labelName} onChange={handleChange} />
       </div>
 
       <div className="change-box">

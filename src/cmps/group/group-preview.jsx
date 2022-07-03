@@ -10,21 +10,12 @@ import { AiOutlinePlus } from 'react-icons/ai'
 
 import { TaskList } from './task-list'
 
-export const GroupPreview = ({
-  group,
-  index,
-  toggleLabels,
-  board,
-  isLabelsOpen,
-  onUpdateGroup,
-  onUpdateBoard,
-}) => {
+export const GroupPreview = ({ group, index, toggleLabels, board, isLabelsOpen, onUpdateGroup, onUpdateBoard }) => {
   const dispatch = useDispatch()
   const buttonRef = useRef()
   const titleRef = useRef()
   const { boardId } = useParams()
 
-  const params = useParams()
   const [titleText, setTitleText] = useState(group.title)
   const [isAddCardOpen, setIsAddCardOpen] = useState(false)
 
@@ -65,12 +56,8 @@ export const GroupPreview = ({
     <Draggable draggableId={group.id} index={index} type="GROUP">
       {(provided, snapshot) => (
         <div ref={provided.innerRef} {...provided.draggableProps}>
-          <section
-            className={`group-preview ${snapshot.isDragging && !snapshot.isDropAnimating ? 'tilted' : ''}`}>
-            <div
-              className="group-title-container"
-              {...provided.dragHandleProps}
-            >
+          <section className={`group-preview ${snapshot.isDragging && !snapshot.isDropAnimating ? 'tilted' : ''}`}>
+            <div className="group-title-container" {...provided.dragHandleProps}>
               <textarea
                 className="group-title"
                 ref={titleRef}
@@ -80,11 +67,7 @@ export const GroupPreview = ({
                 onFocus={() => titleRef.current.select()}
                 spellCheck="false"
               ></textarea>
-              <button
-                ref={buttonRef}
-                onClick={onOpenModal}
-                className="group-btn"
-              >
+              <button ref={buttonRef} onClick={onOpenModal} className="group-btn">
                 <BsThreeDots className="dots-icon" />
               </button>
             </div>

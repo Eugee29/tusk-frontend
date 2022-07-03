@@ -41,26 +41,28 @@ export const TodoPreview = (props) => {
 
   const onOpenModal = (e) => {
     e.stopPropagation()
-    dispatch(setModal({
-      element: menuRef.current,
-      category: 'todo-actions',
-      title: 'Item actions',
-      props: {
-        checklist: props.checklist,
-        updateChecklist: props.updateChecklist,
-        todoId: props.todo.id
-      }
-    }))
+    dispatch(
+      setModal({
+        element: menuRef.current,
+        category: 'todo-actions',
+        title: 'Item actions',
+        props: {
+          checklist: props.checklist,
+          updateChecklist: props.updateChecklist,
+          todoId: props.todo.id,
+        },
+      })
+    )
   }
 
   return (
-    <li className='todo-preview'>
-      <div className='checkbox-container' onClick={onCheck}>
-        {props.todo.isDone ?
-          <ImCheckboxChecked className='checkbox checked' />
-          :
-          <ImCheckboxUnchecked className='checkbox unchecked' />
-        }
+    <li className="todo-preview">
+      <div className="checkbox-container" onClick={onCheck}>
+        {props.todo.isDone ? (
+          <ImCheckboxChecked className="checkbox checked" />
+        ) : (
+          <ImCheckboxUnchecked className="checkbox unchecked" />
+        )}
       </div>
       <div className={`title-container ${isEdit ? 'edit' : ''}`}>
         <textarea
@@ -73,16 +75,20 @@ export const TodoPreview = (props) => {
           ref={textRef}
           style={{ height: utilService.calcTextareaHeight(todo.title, 20, 20) }}
         />
-        <div className='controls' >
-          <div className='btn-container' onMouseDown={e => e.preventDefault()} >
-            <button className='save' onClick={onUpdateTodo}>Save</button>
-            <button className='discard-container' onClick={onDiscardChanges}><VscClose className='discard' /></button>
+        <div className="controls">
+          <div className="btn-container" onMouseDown={(e) => e.preventDefault()}>
+            <button className="save" onClick={onUpdateTodo}>
+              Save
+            </button>
+            <button className="discard-container" onClick={onDiscardChanges}>
+              <VscClose className="discard" />
+            </button>
           </div>
-          <div className='menu-container' onMouseDown={e => e.preventDefault()} onClick={onOpenModal} ref={menuRef}>
-            <BsThreeDots className='menu' />
+          <div className="menu-container" onMouseDown={(e) => e.preventDefault()} onClick={onOpenModal} ref={menuRef}>
+            <BsThreeDots className="menu" />
           </div>
         </div>
       </div>
-    </li >
+    </li>
   )
 }

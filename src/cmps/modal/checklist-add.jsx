@@ -26,16 +26,18 @@ export const ChecklistAdd = ({ updateTask, task }) => {
     const updatedTask = { ...task, checklists: [newChecklist, ...task.checklists] }
     const activity = {
       actionType: 'add checklist',
-      checklist: { title: newChecklist.title }
+      checklist: { title: newChecklist.title },
     }
     updateTask(updatedTask, activity)
   }
 
   return (
-    <form className='checklist-add' onSubmit={onAddChecklist}>
+    <form className="checklist-add" onSubmit={onAddChecklist}>
       <label htmlFor="title">Title</label>
-      <input id='title' type="text" ref={inputRef} value={title} onChange={handleChange} autoFocus />
-      <button className='btn-primary' onClick={onAddChecklist}>Add</button>
+      <input id="title" type="text" ref={inputRef} value={title} onChange={handleChange} autoFocus />
+      <button className="btn-primary" onClick={onAddChecklist}>
+        Add
+      </button>
     </form>
   )
 }

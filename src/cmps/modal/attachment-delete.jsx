@@ -11,9 +11,11 @@ export const AttachmentDelete = ({ deleteAttachment }) => {
   }
 
   return (
-    <section className='attachment-delete'>
-      <p className='warning-msg'>Deleting an attachment is permanent. There is no undo.</p>
-      <button className='delete-btn' onClick={onDeleteAttachment}>Delete</button>
+    <section className="attachment-delete">
+      <p className="warning-msg">Deleting an attachment is permanent. There is no undo.</p>
+      <button className="delete-btn" onClick={onDeleteAttachment}>
+        Delete
+      </button>
     </section>
   )
 }

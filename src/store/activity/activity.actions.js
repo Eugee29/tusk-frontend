@@ -1,5 +1,5 @@
 export const setAction = () => {
-  return dispatch => {
+  return (dispatch) => {
     dispatch({ type: 'SET_ACTIVITY', activity })
   }
 }

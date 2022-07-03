@@ -1,12 +1,8 @@
-import { amber } from '@mui/material/colors'
 import { useState } from 'react'
 import { Bar } from 'react-chartjs-2'
 
 export const DashboardChart = ({ tasks, board }) => {
   const [dataType, setDataType] = useState('label')
-
-  // const labels = groups.map((group) => group.title)
-  // const chartData = groups.map((group) => group.tasks.length)
 
   var chartLabels = []
   var chartData = []
@@ -14,13 +10,9 @@ export const DashboardChart = ({ tasks, board }) => {
 
   switch (dataType) {
     case 'label':
-      const labelsIdMap = board.labels.reduce(
-        (acc, label) => ((acc[label.id] = 0), acc),
-        {}
-      )
-      tasks.forEach((task) =>
-        task.labelIds.forEach((labelId) => (labelsIdMap[labelId] += 1))
-      )
+      // eslint-disable-next-line
+      const labelsIdMap = board.labels.reduce((acc, label) => ((acc[label.id] = 0), acc), {})
+      tasks.forEach((task) => task.labelIds.forEach((labelId) => (labelsIdMap[labelId] += 1)))
 
       for (let labelId in labelsIdMap) {
         const label = board.labels.find((label) => label.id === labelId)
@@ -37,14 +29,11 @@ export const DashboardChart = ({ tasks, board }) => {
       })
       break
     case 'member':
-      const membersIdMap = board.members.reduce(
-        (acc, member) => ((acc[member._id] = 0), acc),
-        {}
-      )
+      // eslint-disable-next-line
+      const membersIdMap = board.members.reduce((acc, member) => ((acc[member._id] = 0), acc), {})
       tasks.forEach((task) =>
         task.members.forEach((member) => {
-          if (membersIdMap[member._id] != undefined)
-            membersIdMap[member._id] += 1
+          if (membersIdMap[member._id] !== undefined) membersIdMap[member._id] += 1
         })
       )
 
@@ -53,6 +42,8 @@ export const DashboardChart = ({ tasks, board }) => {
         chartData.push(membersIdMap[memberId])
         chartLabels.push(member.fullname)
       }
+      break
+    default:
       break
   }
 
@@ -74,9 +65,7 @@ export const DashboardChart = ({ tasks, board }) => {
       {
         label: 'Tasks',
         data: chartData,
-        backgroundColor: chartColors.length
-          ? chartColors
-          : ['rgb(66, 82, 110)'],
+        backgroundColor: chartColors.length ? chartColors : ['rgb(66, 82, 110)'],
         borderRadius: 3,
       },
     ],
@@ -86,25 +75,13 @@ export const DashboardChart = ({ tasks, board }) => {
       <header className="chart-header">
         <h1 className="title">Tasks per {dataType}</h1>
         <nav className="chart-options">
-          <button
-            className="label"
-            disabled={dataType === 'label'}
-            onClick={() => setDataType('label')}
-          >
+          <button className="label" disabled={dataType === 'label'} onClick={() => setDataType('label')}>
             Label
           </button>
-          <button
-            className="group"
-            disabled={dataType === 'group'}
-            onClick={() => setDataType('group')}
-          >
+          <button className="group" disabled={dataType === 'group'} onClick={() => setDataType('group')}>
             Group
           </button>
-          <button
-            className="member"
-            disabled={dataType === 'member'}
-            onClick={() => setDataType('member')}
-          >
+          <button className="member" disabled={dataType === 'member'} onClick={() => setDataType('member')}>
             Member
           </button>
         </nav>

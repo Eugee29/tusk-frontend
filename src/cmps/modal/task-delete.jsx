@@ -12,8 +12,7 @@ export const TaskDelete = ({ deleteTask }) => {
   return (
     <section className="task-delete">
       <p className="warning-msg">
-        All actions will be removed from the activity feed and you won’t be able
-        to re-open the card. There is no undo.
+        All actions will be removed from the activity feed and you won’t be able to re-open the card. There is no undo.
       </p>
       <button className="delete-btn" onClick={onDeleteTask}>
         Delete

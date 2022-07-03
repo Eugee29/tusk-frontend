@@ -1,24 +1,19 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
 
 import { boardService } from '../../services/board.service'
 import { uploadService } from '../../services/upload.service'
 import { utilService } from '../../services/util.service'
 
 export const ModalCover = ({ task, updateTask }) => {
-
-  const dispatch = useDispatch()
-
   const [isOnPreviewTextColor, setIsOnPreviewTextColor] = useState(false)
   const [newTask, setNewTask] = useState(task)
   const [isCover, setIsCover] = useState(task.style.isCover || '')
-  const [fileURL, setFileURL] = useState('')
+
+  const fileURL = ''
 
   const onPreviewTextColor = (bool) => {
     setIsOnPreviewTextColor(bool)
   }
-
-  // MERGE TO ONE FUNCTION !!! //
 
   const onChangeCover = (bool) => {
     setIsCover(bool)
@@ -83,7 +78,6 @@ export const ModalCover = ({ task, updateTask }) => {
       updatedTask.attachments.unshift(attachment)
       updateTask(updatedTask)
       setNewTask(updatedTask)
-
     } catch (err) {
       attachment.fileName = fileURL
       attachment.fileUrl = fileURL
@@ -95,13 +89,20 @@ export const ModalCover = ({ task, updateTask }) => {
 
   return (
     <React.Fragment>
-
       <div className="size-section">
         <h3 className="label">Size</h3>
         <div className="box-container">
-          <button className={`box-half`} onClick={() => { onPreviewTextColor(false); onChangeCover(false) }} >
-            <div className="background"
-              style={{ background: newTask?.style?.imgURL ? `url('${newTask.style.imgURL}')` : newTask.style.bgColor }}></div>
+          <button
+            className={`box-half`}
+            onClick={() => {
+              onPreviewTextColor(false)
+              onChangeCover(false)
+            }}
+          >
+            <div
+              className="background"
+              style={{ background: newTask?.style?.imgURL ? `url('${newTask.style.imgURL}')` : newTask.style.bgColor }}
+            ></div>
             <div className="lines">
               <div className="lines_1"></div>
               <div className="lines_2"></div>
@@ -113,34 +114,68 @@ export const ModalCover = ({ task, updateTask }) => {
             </div>
           </button>
 
-          <button className={`box-full`} onClick={() => { onPreviewTextColor(true); onChangeCover(true) }}
-            style={newTask?.style?.imgURL ? { backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${newTask.style.imgURL}')` } : { background: newTask.style.bgColor }}>
+          <button
+            className={`box-full`}
+            onClick={() => {
+              onPreviewTextColor(true)
+              onChangeCover(true)
+            }}
+            style={
+              newTask?.style?.imgURL
+                ? {
+                    backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${newTask.style.imgURL}')`,
+                  }
+                : { background: newTask.style.bgColor }
+            }
+          >
             <div className="lines">
               <div className="lines_1"></div>
               <div className="lines_2"></div>
             </div>
           </button>
-          <span onClick={onRemoveCover} className="cover-btn">Remove cover</span>
+          <span onClick={onRemoveCover} className="cover-btn">
+            Remove cover
+          </span>
         </div>
       </div>
 
-      {isOnPreviewTextColor && <div className="textcolor-section">
-        <h3 className="label">Text color</h3>
-        <div className="box-container">
-          <button className={`box-full`}
-            onClick={() => { onLightFont(true) }}
-            style={newTask?.style?.imgURL ? { backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${newTask.style.imgURL}')` } : { background: newTask.style.bgColor }}>
-
-            <h3>{newTask.title}</h3>
-          </button>
-          <button className={`box-full`}
-            onClick={() => { onLightFont(false) }}
-            style={newTask?.style?.imgURL ? { backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${newTask.style.imgURL}')` } : { background: newTask.style.bgColor }}>
-            <h3 className="dark">{newTask.title}</h3>
-          </button>
-
+      {isOnPreviewTextColor && (
+        <div className="textcolor-section">
+          <h3 className="label">Text color</h3>
+          <div className="box-container">
+            <button
+              className={`box-full`}
+              onClick={() => {
+                onLightFont(true)
+              }}
+              style={
+                newTask?.style?.imgURL
+                  ? {
+                      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${newTask.style.imgURL}')`,
+                    }
+                  : { background: newTask.style.bgColor }
+              }
+            >
+              <h3>{newTask.title}</h3>
+            </button>
+            <button
+              className={`box-full`}
+              onClick={() => {
+                onLightFont(false)
+              }}
+              style={
+                newTask?.style?.imgURL
+                  ? {
+                      backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('${newTask.style.imgURL}')`,
+                    }
+                  : { background: newTask.style.bgColor }
+              }
+            >
+              <h3 className="dark">{newTask.title}</h3>
+            </button>
+          </div>
         </div>
-      </div>}
+      )}
 
       <div className="colors-section">
         <h3 className="label">Colors</h3>
@@ -161,48 +196,99 @@ export const ModalCover = ({ task, updateTask }) => {
       <div className="attachments-section">
         <h3 className="label">Attachments</h3>
         <div className="box-container">
-          {
-            newTask?.attachments && !!newTask?.attachments.length &&
-            newTask?.attachments
-              .map(attachment =>
-                utilService.isImage(attachment.fileUrl) &&
-                <button key={attachment.id} onClick={() => onPickAttachments(attachment.fileUrl)} className="box-full" style={{ backgroundImage: `url('${attachment.fileUrl}')` }}></button>)
-          }
+          {newTask?.attachments &&
+            !!newTask?.attachments.length &&
+            newTask?.attachments.map(
+              (attachment) =>
+                utilService.isImage(attachment.fileUrl) && (
+                  <button
+                    key={attachment.id}
+                    onClick={() => onPickAttachments(attachment.fileUrl)}
+                    className="box-full"
+                    style={{ backgroundImage: `url('${attachment.fileUrl}')` }}
+                  ></button>
+                )
+            )}
         </div>
 
         <label htmlFor="file-upload" className="custom-file-upload cover-btn">
           <i className=""></i> Upload a cover image
         </label>
         <input id="file-upload" type="file" onInput={addAttachment} />
-
       </div>
 
       <div className="unsplash-section">
         <h3 className="label">Photos from Unsplash</h3>
         <div className="box-container">
-          <button className="box-full"
-            onClick={() => onPickUnsplash('https://images.unsplash.com/photo-1653511442060-00c7b10827c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDZ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')}
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653511442060-00c7b10827c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDZ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
-          <button className="box-full"
-            onClick={() => onPickUnsplash('https://images.unsplash.com/photo-1653496905343-b1fc1277e3fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDV8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')}
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653496905343-b1fc1277e3fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDV8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
-          <button className="box-full"
-            onClick={() => onPickUnsplash('https://images.unsplash.com/photo-1652543549421-ea252bd209f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDR8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')}
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1652543549421-ea252bd209f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDR8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
-          <button className="box-full"
-            onClick={() => onPickUnsplash('https://images.unsplash.com/photo-1653450283266-c788c2ca4ab2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDN8MzE3MDk5fHx8fHwyfHwxNjUzODAwNzQ5&ixlib=rb-1.2.1&q=80&w=200')}
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653450283266-c788c2ca4ab2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDN8MzE3MDk5fHx8fHwyfHwxNjUzODAwNzQ5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
-          <button className="box-full"
-            onClick={() => onPickUnsplash('https://images.unsplash.com/photo-1653419831613-56ed2a1c8ea8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')}
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653419831613-56ed2a1c8ea8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
-          <button className="box-full"
-            onClick={() => onPickUnsplash('https://images.unsplash.com/photo-1653592328269-09c14b3628f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')}
-            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1653592328269-09c14b3628f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')` }}></button>
+          <button
+            className="box-full"
+            onClick={() =>
+              onPickUnsplash(
+                'https://images.unsplash.com/photo-1653511442060-00c7b10827c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDZ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200'
+              )
+            }
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1653511442060-00c7b10827c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDZ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')`,
+            }}
+          ></button>
+          <button
+            className="box-full"
+            onClick={() =>
+              onPickUnsplash(
+                'https://images.unsplash.com/photo-1653496905343-b1fc1277e3fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDV8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200'
+              )
+            }
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1653496905343-b1fc1277e3fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDV8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')`,
+            }}
+          ></button>
+          <button
+            className="box-full"
+            onClick={() =>
+              onPickUnsplash(
+                'https://images.unsplash.com/photo-1652543549421-ea252bd209f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDR8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200'
+              )
+            }
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1652543549421-ea252bd209f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDR8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')`,
+            }}
+          ></button>
+          <button
+            className="box-full"
+            onClick={() =>
+              onPickUnsplash(
+                'https://images.unsplash.com/photo-1653450283266-c788c2ca4ab2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDN8MzE3MDk5fHx8fHwyfHwxNjUzODAwNzQ5&ixlib=rb-1.2.1&q=80&w=200'
+              )
+            }
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1653450283266-c788c2ca4ab2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDN8MzE3MDk5fHx8fHwyfHwxNjUzODAwNzQ5&ixlib=rb-1.2.1&q=80&w=200')`,
+            }}
+          ></button>
+          <button
+            className="box-full"
+            onClick={() =>
+              onPickUnsplash(
+                'https://images.unsplash.com/photo-1653419831613-56ed2a1c8ea8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200'
+              )
+            }
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1653419831613-56ed2a1c8ea8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDJ8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')`,
+            }}
+          ></button>
+          <button
+            className="box-full"
+            onClick={() =>
+              onPickUnsplash(
+                'https://images.unsplash.com/photo-1653592328269-09c14b3628f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200'
+              )
+            }
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1653592328269-09c14b3628f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw3MDY2fDB8MXxjb2xsZWN0aW9ufDF8MzE3MDk5fHx8fHwyfHwxNjUzNzQzMTM5&ixlib=rb-1.2.1&q=80&w=200')`,
+            }}
+          ></button>
         </div>
         {/* <span className="cover-btn">Search for photos</span> */}
       </div>
-
     </React.Fragment>
   )
-
 }

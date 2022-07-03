@@ -1,10 +1,8 @@
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 import { CgCreditCard } from 'react-icons/cg'
 
-
 export function TaskDetailsTitle({ task, groupTitle, updateTask }) {
-
   const [taskTitle, setTaskTitle] = useState(task.title)
 
   const inputRef = useRef()
@@ -20,12 +18,23 @@ export function TaskDetailsTitle({ task, groupTitle, updateTask }) {
   }
 
   return (
-    <header className="task-details-title" >
-      <span><CgCreditCard /></span>
+    <header className="task-details-title">
+      <span>
+        <CgCreditCard />
+      </span>
       <form onSubmit={onSaveTitle}>
-        <input className="main-title" ref={inputRef} value={taskTitle} onChange={handleChange} onBlur={onSaveTitle} onFocus={() => inputRef.current.select()} />
+        <input
+          className="main-title"
+          ref={inputRef}
+          value={taskTitle}
+          onChange={handleChange}
+          onBlur={onSaveTitle}
+          onFocus={() => inputRef.current.select()}
+        />
       </form>
-      <div className="sub-title">in group<button>{groupTitle}</button></div>
+      <div className="sub-title">
+        in group<button>{groupTitle}</button>
+      </div>
     </header>
   )
 }

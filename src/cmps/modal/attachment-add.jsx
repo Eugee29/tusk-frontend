@@ -7,7 +7,6 @@ import { boardService } from '../../services/board.service'
 import { uploadService } from '../../services/upload.service'
 
 export const AttachmentAdd = ({ task, updateTask }) => {
-
   const [fileURL, setFileURL] = useState('')
   const dispatch = useDispatch()
 
@@ -29,7 +28,8 @@ export const AttachmentAdd = ({ task, updateTask }) => {
       attachment.fileName = res.original_filename
       attachment.fileUrl = res.secure_url
       task.attachments.unshift(attachment)
-      if (res.resource_type === 'image' && !task.style.bgColor && !task.style.imgURL) task.style = { imgURL: res.secure_url, isCover: false }
+      if (res.resource_type === 'image' && !task.style.bgColor && !task.style.imgURL)
+        task.style = { imgURL: res.secure_url, isCover: false }
     } catch (err) {
       attachment.fileName = fileURL
       attachment.fileUrl = fileURL
@@ -37,7 +37,7 @@ export const AttachmentAdd = ({ task, updateTask }) => {
     } finally {
       const activity = {
         actionType: 'add attachment',
-        file: { fileName: attachment.fileName, fileUrl: attachment.fileUrl }
+        file: { fileName: attachment.fileName, fileUrl: attachment.fileUrl },
       }
       updateTask({ ...task }, activity)
     }
@@ -45,12 +45,24 @@ export const AttachmentAdd = ({ task, updateTask }) => {
 
   return (
     <section className="attachment-add">
-      <label htmlFor="fileInput" className="attach-computer-label">Computer</label>
+      <label htmlFor="fileInput" className="attach-computer-label">
+        Computer
+      </label>
       <input type="file" id="fileInput" className="attach-computer" onInput={addAttachment} />
       <hr />
       <form onSubmit={addAttachment}>
-        <label htmlFor="linkInput" className="input-label">Attach a link</label>
-        <input id="linkInput" className="link-input" type="text" value={fileURL} placeholder="Paste any link here..." onChange={handleChange} autoFocus />
+        <label htmlFor="linkInput" className="input-label">
+          Attach a link
+        </label>
+        <input
+          id="linkInput"
+          className="link-input"
+          type="text"
+          value={fileURL}
+          placeholder="Paste any link here..."
+          onChange={handleChange}
+          autoFocus
+        />
         <button className="attach-btn">Attach</button>
       </form>
     </section>

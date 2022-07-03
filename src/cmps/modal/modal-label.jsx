@@ -7,15 +7,16 @@ import { BsCheck2 } from 'react-icons/bs'
 import { BsPencil } from 'react-icons/bs'
 
 export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, updateTask, element }) => {
-
   const [searchLabel, setSearchLabel] = useState('')
   const [taskLabels, setTaskLabels] = useState(task.labelIds)
 
   useEffect(() => {
-    var taskByFilter = ''
-    board.groups.map(group => group.tasks.map(taskFromBoard => taskFromBoard.id === task.id ? taskByFilter = taskFromBoard : ''))
+    let taskByFilter = ''
+    board.groups.map((group) =>
+      group.tasks.map((taskFromBoard) => (taskFromBoard.id === task.id ? (taskByFilter = taskFromBoard) : ''))
+    )
     setTaskLabels(taskByFilter.labelIds)
-    // console.log('taskFromBoard', taskByFilter);
+    // eslint-disable-next-line
   }, [])
 
   const modalRef = useRef()
@@ -29,12 +30,8 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
   const onToggle = (id) => {
     const updatedLabelList = [...taskLabels]
     const taskLabelIdx = updatedLabelList.findIndex((taskLabel) => taskLabel === id)
-    const boardLabelIdx = board.labels.findIndex(
-      (boardLabel) => boardLabel.id === id
-    )
-    taskLabelIdx >= 0
-      ? updatedLabelList.splice(taskLabelIdx, 1)
-      : updatedLabelList.push(board.labels[boardLabelIdx].id)
+    const boardLabelIdx = board.labels.findIndex((boardLabel) => boardLabel.id === id)
+    taskLabelIdx >= 0 ? updatedLabelList.splice(taskLabelIdx, 1) : updatedLabelList.push(board.labels[boardLabelIdx].id)
 
     setTaskLabels(updatedLabelList)
     updateTask({ ...task, labelIds: updatedLabelList })
@@ -55,7 +52,7 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
           updateTask,
           board,
           onUpdateBoard,
-          element
+          element,
         },
       })
     )
@@ -64,7 +61,14 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
   return (
     <div className="label-section" ref={modalRef}>
       <div className="search-box">
-        <input ref={searchInput} type="text" name="search" placeholder="Search label..." value={searchLabel} onChange={handleChange} />
+        <input
+          ref={searchInput}
+          type="text"
+          name="search"
+          placeholder="Search label..."
+          value={searchLabel}
+          onChange={handleChange}
+        />
       </div>
 
       <div className="label-box">
@@ -75,9 +79,22 @@ export const ModalLabel = ({ task, board, onUpdateBoard, changeEditLabel, update
             <li key={label.id}>
               <span onClick={() => onToggle(label.id)} className="label-color" style={{ backgroundColor: label.color }}>
                 <span className="label-txt">{`${label.title}`}</span>
-                {taskLabels && taskLabels.some((taskLabel) => taskLabel === label.id) && (<span className="label-icon"><BsCheck2 /> </span>)}
+                {taskLabels && taskLabels.some((taskLabel) => taskLabel === label.id) && (
+                  <span className="label-icon">
+                    <BsCheck2 />{' '}
+                  </span>
+                )}
               </span>
-              <span className="label-icon pencil" onClick={(ev) => { ev.stopPropagation(); onOpenModal('Change label'); changeEditLabel(label) }}><BsPencil /> </span>
+              <span
+                className="label-icon pencil"
+                onClick={(ev) => {
+                  ev.stopPropagation()
+                  onOpenModal('Change label')
+                  changeEditLabel(label)
+                }}
+              >
+                <BsPencil />{' '}
+              </span>
             </li>
           ))}
         </ul>

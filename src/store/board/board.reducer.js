@@ -3,7 +3,7 @@ const initialState = {
   board: [],
   lastRemovedBoard: null,
   task: '',
-  filterBy: { keyword: '', memberIds: [], labelIds: [] }
+  filterBy: { keyword: '', memberIds: [], labelIds: [] },
 }
 export function boardReducer(state = initialState, action) {
   var newState = state
@@ -18,8 +18,8 @@ export function boardReducer(state = initialState, action) {
       newState = { ...state, task: action.task }
       break
     case 'REMOVE_BOARD':
-      const lastRemovedBoard = state.boards.find(board => board._id === action.boardId)
-      boards = state.boards.filter(board => board._id !== action.boardId)
+      const lastRemovedBoard = state.boards.find((board) => board._id === action.boardId)
+      boards = state.boards.filter((board) => board._id !== action.boardId)
       newState = { ...state, boards, lastRemovedBoard }
       break
     case 'ADD_BOARD':
@@ -29,14 +29,14 @@ export function boardReducer(state = initialState, action) {
       newState = { ...state, board: action.board }
       break
     case 'UPDATE_BOARD':
-      boards = state.boards.map(board => (board._id === action.board._id) ? action.board : board)
+      boards = state.boards.map((board) => (board._id === action.board._id ? action.board : board))
       newState = { ...state, boards }
       break
     case 'ADD_TO_BOARD':
       newState = { ...state, board: [...state.board, action.board] }
       break
     case 'REMOVE_FROM_BOARD':
-      board = state.board.filter(board => board._id !== action.boardId)
+      board = state.board.filter((board) => board._id !== action.boardId)
       newState = { ...state, board }
       break
     case 'CLEAR_BOARD':
@@ -52,8 +52,5 @@ export function boardReducer(state = initialState, action) {
       break
     default:
   }
-  // For debug:
-  window.boardState = newState
   return newState
-
 }

@@ -14,8 +14,7 @@ export const SignupForm = ({ onSignup }) => {
   }
 
   const signup = (ev = null) => {
-    if (!credentials.username || !credentials.password || !credentials.fullname)
-      return
+    if (!credentials.username || !credentials.password || !credentials.fullname) return
     if (ev) {
       ev.preventDefault()
       ev.stopPropagation()
